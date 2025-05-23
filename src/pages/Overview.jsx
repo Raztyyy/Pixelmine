@@ -1,5 +1,11 @@
+import Hero from "../ui/hero/Hero";
+
 function Overview() {
-  return <div>Overview</div>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 }
 
 export default Overview;

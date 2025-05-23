@@ -7,6 +7,10 @@ import DemocraticSystem from "./pages/DemocraticSystem";
 import Roadmap from "./pages/Roadmap";
 import PageNotFound from "./pages/PageNotFound";
 import AppLayout from "./ui/AppLayout";
+import About from "./pages/About";
+import NewsEvents from "./pages/NewsEvents";
+import Careers from "./pages/Careers";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -14,8 +18,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<AppLayout />}>
-            <Route index element={<Navigate replace to="overview" />}></Route>
-            <Route path="overview" element={<Overview />}></Route>
+            {/* <Route index element={<Navigate replace to="overview" />}></Route>
+            <Route path="overview" element={<Overview />}></Route> */}
+
+            <Route index element={<Overview />}></Route>
             <Route path="concept" element={<Concept />}></Route>
             <Route
               path="design-implementation"
@@ -30,6 +36,11 @@ function App() {
               element={<DemocraticSystem />}
             ></Route>
             <Route path="roadmap" element={<Roadmap />}></Route>
+
+            <Route path="about-us" element={<About />}></Route>
+            <Route path="news-events" element={<NewsEvents />}></Route>
+            <Route path="careers" element={<Careers />}></Route>
+            <Route path="contact-us" element={<Contact />}></Route>
           </Route>
 
           <Route path="*" element={<PageNotFound />}></Route>
