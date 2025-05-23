@@ -25,6 +25,7 @@ function StackedAvatars() {
           className="w-10 h-10 rounded-full border-2 border-white"
           src={`/avatars/${avatar.src}`}
           alt={avatar.alt}
+          key={avatar.alt}
         />
       ))}
     </div>
