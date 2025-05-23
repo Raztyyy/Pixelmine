@@ -13,11 +13,11 @@ function DesktopLink({ products, links }) {
   return (
     <PopoverGroup className="hidden lg:flex lg:gap-x-12">
       <Popover className="relative">
-        <PopoverButton className="group flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 hover:text-primary focus:text-primary">
+        <PopoverButton className="group flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 hover:text-primary focus:text-primary transition-all duration-300 ease-in-out">
           Product
           <FontAwesomeIcon
             icon={faChevronDown}
-            className="size-4 text-gray-900 group-hover:text-primary group-focus:text-primary"
+            className="size-4 text-gray-900 group-hover:text-primary group-focus:text-primary transition-all duration-300 ease-in-out"
           />
         </PopoverButton>
 

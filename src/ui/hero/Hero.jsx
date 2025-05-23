@@ -1,10 +1,10 @@
 import StackedAvatars from "./StackedAvatars";
-import heroImg from "../../assets/placeholder.jpg";
+import heroImg from "../../assets/placeholder.png";
 import DownloadButtons from "./DownloadButtons";
 
 function Hero() {
   return (
-    <section className="pt-[2rem] pb-[2rem] sm:pt-[6rem] sm:pb-[6rem]">
+    <section className="pt-[2rem] pb-[2rem] sm:pt-[8rem] sm:pb-[8rem] bg-green-50">
       <div className="flex gap-10 items-center mx-auto  max-w-7xl p-6 flex-col sm:flex-row ">
         <div className="flex-1">
           {/* Stacked Avatars */}
@@ -19,13 +19,14 @@ function Hero() {
             Earn as you engage. Own what you create with Pixelmine.
           </h1>
           <p className="pt-5 max-w-[30rem] text-lg">
-            With Pixelmine, you can connect, share, and earn—while staying in
-            control of your content and data.
+            Pixelmine is a social networking system that enhances user
+            empowerment by decentralizing control and governance across multiple
+            nodes or servers.
           </p>
           <DownloadButtons />
         </div>
         <div className="flex-1 ">
-          <img src={heroImg} alt="" />
+          <img src={heroImg} alt="Hero Image" />
         </div>
       </div>
     </section>
