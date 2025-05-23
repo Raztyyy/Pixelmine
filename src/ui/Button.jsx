@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Button({
   children,
   type = "button",
@@ -5,6 +7,7 @@ function Button({
   variant = "default",
   size = "md",
   className = "",
+  path = "",
 }) {
   const baseStyles =
     "flex gap-2 group border rounded-lg text-sm text-center items-center me-2 mb-2 transition-all duration-300 ease-in-out";
@@ -23,13 +26,14 @@ function Button({
   };
 
   return (
-    <button
+    <Link
       type={type}
       onClick={onClick}
       className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
+      to={path}
     >
       {children}
-    </button>
+    </Link>
   );
 }
 

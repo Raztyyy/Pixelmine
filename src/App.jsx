@@ -11,6 +11,7 @@ import About from "./pages/About";
 import NewsEvents from "./pages/NewsEvents";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
+import SignUp from "./ui/storer/SignUp";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
             <Route path="news-events" element={<NewsEvents />}></Route>
             <Route path="careers" element={<Careers />}></Route>
             <Route path="contact-us" element={<Contact />}></Route>
+            <Route path="sign-up" element={<SignUp />}></Route>
           </Route>
 
           <Route path="*" element={<PageNotFound />}></Route>

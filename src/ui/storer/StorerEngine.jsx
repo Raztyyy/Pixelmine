@@ -6,6 +6,7 @@ import {
   faArrowRightToBracket,
   faUserCheck,
 } from "@fortawesome/pro-regular-svg-icons";
+import LoginModal from "./LoginModal";
 
 function StorerEngine() {
   return (
@@ -25,15 +26,15 @@ function StorerEngine() {
           </p>
           {/* Buttons */}
           <div className="flex gap-3">
-            <Button>
+            <LoginModal variant="outline">
               <FontAwesomeIcon
                 icon={faArrowRightToBracket}
-                className="size-4 text-gray-900 group-hover:text-white transition-all duration-300 ease-in-out"
+                className="size-4 text-gray-900 xs transition-all duration-300 ease-in-out"
               />
               Login
-            </Button>
+            </LoginModal>
 
-            <Button variant="primary" size="md">
+            <Button variant="primary" size="md" path="sign-up">
               <FontAwesomeIcon
                 icon={faUserCheck}
                 className="size-4 text-white  transition-all duration-300 ease-in-out"
