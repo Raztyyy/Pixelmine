@@ -23,17 +23,17 @@ function LoginModal({ children }) {
       {/* Modal */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 flex justify-center items-center bg-black/50"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
           role="dialog"
           aria-modal="true"
           onClick={handleBackdropClick}
         >
           <div
             ref={modalRef}
-            className="bg-white dark:bg-gray-700 rounded-lg shadow p-6 w-full max-w-md relative"
+            className="relative w-full max-w-md p-6 bg-white rounded-lg shadow dark:bg-gray-700"
           >
             {/* Header */}
-            <div className="flex justify-between items-center border-b pb-2 mb-4">
+            <div className="flex items-center justify-between pb-2 mb-4 border-b">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                 Sign in to our platform
               </h3>
@@ -57,6 +57,7 @@ function LoginModal({ children }) {
                 <input
                   type="email"
                   id="email"
+                  placeholder="Enter your email"
                   required
                   className="w-full p-2.5 mt-1 border rounded-lg text-sm bg-gray-50 dark:bg-gray-600 dark:text-white"
                 />
@@ -72,19 +73,20 @@ function LoginModal({ children }) {
                 <input
                   type="password"
                   id="password"
+                  placeholder="Enter your password"
                   required
                   className="w-full p-2.5 mt-1 border rounded-lg text-sm bg-gray-50 dark:bg-gray-600 dark:text-white"
                 />
               </div>
 
-              <div className="flex justify-between items-center text-sm">
+              <div className="flex items-center justify-between text-sm">
                 <label className="flex items-center gap-2">
                   <input type="checkbox" required />
                   <span className="dark:text-gray-300">Remember me</span>
                 </label>
                 <a
                   href="#"
-                  className="text-primary  hover:underline transition-all duration-300 ease-in-out"
+                  className="transition-all duration-300 ease-in-out text-primary hover:underline"
                 >
                   Lost password?
                 </a>
