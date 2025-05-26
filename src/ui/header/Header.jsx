@@ -1,16 +1,16 @@
 "use client";
 
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLightbulbOn,
   faPuzzlePiece,
   faBars,
   faHandHoldingCircleDollar,
-} from "@fortawesome/pro-solid-svg-icons"; // Importing from pro-solid-svg-icons
+  faHandshakeSimple,
+  faMap,
+} from "@fortawesome/pro-solid-svg-icons";
 
-import { faHandshakeSimple, faMap } from "@fortawesome/pro-solid-svg-icons";
 import Logo from "./Logo";
 import DesktopLink from "./DesktopLink";
 import { Link } from "react-router-dom";
@@ -19,13 +19,13 @@ import MobileLink from "./MobileLink";
 const products = [
   {
     name: "Concept",
-    description: "Get a better understanding of your traffic",
+    description: "The abstract concept underlying Pixelmine",
     path: "concept",
     icon: faLightbulbOn,
   },
   {
     name: "Design & Implementation",
-    description: "Speak directly to your customers",
+    description: "Proof of concept and execution",
     path: "design-implementation",
     icon: faPuzzlePiece,
   },
@@ -37,41 +37,45 @@ const products = [
   },
   {
     name: "Democratic System",
-    description: "Connect with third-party tools",
+    description: "Something of everyone",
     path: "democratic-system",
     icon: faHandshakeSimple,
   },
   {
     name: "Roadmap",
-    description: "Build strategic funnels that will convert",
+    description: "Freedom and automony",
     path: "roadmap",
     icon: faMap,
   },
 ];
 
 const links = [
-  {
-    name: "About Us",
-    path: "about-us",
-  },
-  {
-    name: "News & Events",
-    path: "news-events",
-  },
-  {
-    name: "Careers",
-    path: "careers",
-  },
+  { name: "About Us", path: "about-us" },
+  { name: "News & Events", path: "news-events" },
+  { name: "Careers", path: "careers" },
 ];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="bg-white">
+    <header
+      className={`sticky top-0 z-50 bg-white shadow transition-all duration-300 ${
+        scrolled ? "py-2" : "py-6"
+      }`}
+    >
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between lg:px-8 px-6"
       >
         <Logo />
 
