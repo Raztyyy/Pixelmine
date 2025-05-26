@@ -1,9 +1,9 @@
 import googleBadge from "../../assets/google-play-badge.png";
 import appleBadge from "../../assets/apple-store-badge.svg";
 
-function DownloadButtons() {
+function DownloadButtons({ direction = "row" }) {
   return (
-    <div className="flex gap-4 mt-6">
+    <div className={`flex flex-${direction} gap-4 mt-5"`}>
       <a
         href="https://play.google.com/store/apps/details?id=org.pixelminejapan.pixelmine"
         target="_blank"
@@ -12,7 +12,7 @@ function DownloadButtons() {
         <img
           src={googleBadge}
           alt="Get it on Google Play"
-          className="h-12  flex-shrink-0"
+          className="flex-shrink-0 h-12"
         />
       </a>
       <a
@@ -23,7 +23,7 @@ function DownloadButtons() {
         <img
           src={appleBadge}
           alt="Download on the App Store"
-          className="h-12  flex-shrink-0"
+          className="flex-shrink-0 h-12"
         />
       </a>
     </div>
