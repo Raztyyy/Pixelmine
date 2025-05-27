@@ -12,6 +12,10 @@ import NewsEvents from "./pages/NewsEvents";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
 import SignUp from "./ui/storer/SignUp";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import ChildSexualAbusePolicy from "./pages/ChildSexualAbusePolicy";
+import CommercialLaw from "./pages/CommercialLaw";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   return (
@@ -43,6 +47,17 @@ function App() {
             <Route path="careers" element={<Careers />}></Route>
             <Route path="contact-us" element={<Contact />}></Route>
             <Route path="sign-up" element={<SignUp />}></Route>
+
+            <Route
+              path="terms-and-conditions"
+              element={<TermsAndConditions />}
+            ></Route>
+            <Route
+              path="child-sexual-abuse-policy"
+              element={<ChildSexualAbusePolicy />}
+            ></Route>
+            <Route path="commercial-law" element={<CommercialLaw />}></Route>
+            <Route path="privacy-policy" element={<PrivacyPolicy />}></Route>
           </Route>
 
           <Route path="*" element={<PageNotFound />}></Route>

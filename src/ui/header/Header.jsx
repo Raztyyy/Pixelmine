@@ -61,7 +61,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY !== 0);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -75,7 +75,7 @@ export default function Header() {
     >
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between lg:px-8 px-6"
+        className="flex items-center justify-between px-6 mx-auto max-w-7xl"
       >
         <Logo />
 
@@ -88,7 +88,7 @@ export default function Header() {
             <span className="sr-only">Open main menu</span>
             <FontAwesomeIcon
               icon={faBars}
-              className="size-6 text-gray-600 group-hover:text-indigo-600"
+              className="text-gray-600 size-6 group-hover:text-indigo-600"
             />
           </button>
         </div>

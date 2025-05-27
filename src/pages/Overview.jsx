@@ -1,4 +1,3 @@
-import Footer from "../ui/footer/Footer";
 import Hero from "../ui/hero/Hero";
 import NewsUpdates from "../ui/news/NewsUpdates";
 import Newsletter from "../ui/newsletter/Newsletter";
@@ -13,7 +12,6 @@ function Overview() {
       <Product />
       <NewsUpdates />
       <Newsletter />
-      <Footer />
     </>
   );
 }
