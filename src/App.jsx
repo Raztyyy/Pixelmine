@@ -11,7 +11,7 @@ import About from "./pages/About";
 import NewsEvents from "./pages/NewsEvents";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
-import SignUp from "./ui/storer/SignUp";
+import SignUp from "./pages/SignUp";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import ChildSexualAbusePolicy from "./pages/ChildSexualAbusePolicy";
 import CommercialLaw from "./pages/CommercialLaw";
