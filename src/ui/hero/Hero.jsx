@@ -12,7 +12,7 @@ function Hero() {
             <StackedAvatars />
             <div className="stats">
               <p className="p-0 m-0 text-lg font-bold">300+</p>
-              <p className="p-0 m-0 text-sm text-gray-400">Downloads</p>
+              <p className="p-0 m-0 text-sm text-gray-600">Downloads</p>
             </div>
           </div>
           <h1 className="text-4xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-auto sm:max-w-[30rem]">

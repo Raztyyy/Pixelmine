@@ -10,6 +10,9 @@ function Newsletter() {
           developements.
         </p>
         <div className="flex flex-col md:flex-row items-center gap-5 max-w-[30rem] w-full pt-5">
+          <label htmlFor="email" className="sr-only">
+            Email address
+          </label>
           <input
             type="email"
             id="email"

@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import DownloadButtons from "../hero/DownloadButtons";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLocationDot,
+  faEnvelope,
+  faPhone,
+} from "@fortawesome/pro-solid-svg-icons";
 const company = [
   {
     name: "About Us",
@@ -59,6 +65,38 @@ function Footer() {
             empowerment by decentralizing control and governance across multiple
             nodes or servers.
           </p>
+          {/* Contact Details */}
+          <div className="flex flex-col mt-4">
+            <div className="flex flex-row items-center gap-3">
+              <span>
+                <FontAwesomeIcon
+                  icon={faLocationDot}
+                  className="text-gray-600 size-4 "
+                />
+              </span>
+              <p className="leading-loose text-gray-600 text-sm/10 ">
+                1-27-8 Higashi-Azabu, Minato-ku, Tokyo 106-0044, Japan
+              </p>
+            </div>
+            <div className="flex flex-row items-center gap-3">
+              <span>
+                <FontAwesomeIcon
+                  icon={faEnvelope}
+                  className="text-gray-600 size-4 "
+                />
+              </span>
+              <p className="text-gray-600 text-sm/10 ">pixie@pixelmine.org</p>
+            </div>
+            <div className="flex flex-row items-center gap-3">
+              <span>
+                <FontAwesomeIcon
+                  icon={faPhone}
+                  className="text-gray-600 size-4 "
+                />
+              </span>
+              <p className="text-gray-600 text-sm/10">+81-3-6401-4100</p>
+            </div>
+          </div>
         </div>
 
         {/* Column 2: Company */}

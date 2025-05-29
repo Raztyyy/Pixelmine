@@ -17,7 +17,7 @@ function NewsCard({ news, idx }) {
         </Link>
         <div className="flex flex-col">
           <div className="flex flex-wrap items-center gap-3">
-            <p className="text-gray-400 text-sm/6">{news.date}</p>
+            <p className="text-gray-600 text-sm/6">{news.date}</p>
             <Link
               to={`news-events/${news.category}`}
               className="relative z-10 px-3 py-1 text-gray-600 transition-all duration-300 ease-in-out rounded-full bg-gray-50 hover:bg-gray-100 text-sm/6"

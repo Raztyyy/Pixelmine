@@ -24,7 +24,7 @@ function Featured() {
         </Link>
 
         <div className="flex items-center gap-3">
-          <p className="text-gray-400 text-sm/6">April 7, 2025</p>
+          <p className="text-gray-600 text-sm/6">April 7, 2025</p>
           <Link
             to="news-events/category"
             className="relative z-10 px-3 py-1 text-gray-600 transition-all duration-300 ease-in-out rounded-full bg-gray-50 hover:bg-gray-100 text-sm/6"

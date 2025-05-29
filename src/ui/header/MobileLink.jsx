@@ -1,18 +1,11 @@
-import {
-  Dialog,
-  DialogPanel,
-  Disclosure,
-  DisclosureButton,
-  DisclosurePanel,
-} from "@headlessui/react";
+import { Dialog, DialogPanel } from "@headlessui/react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { faChevronDown } from "@fortawesome/pro-solid-svg-icons"; // Importing from pro-solid-svg-icons
 import { faXmark } from "@fortawesome/pro-regular-svg-icons";
 import { Link } from "react-router-dom";
 
-function MobileLink({ products, links, mobileMenuOpen, setMobileMenuOpen }) {
+function MobileLink({ links, mobileMenuOpen, setMobileMenuOpen }) {
   return (
     <Dialog
       open={mobileMenuOpen}
@@ -45,29 +38,6 @@ function MobileLink({ products, links, mobileMenuOpen, setMobileMenuOpen }) {
         <div className="flow-root mt-6">
           <div className="-my-6 divide-y divide-gray-500/10">
             <div className="py-6 space-y-2">
-              <Disclosure as="div" className="-mx-3">
-                <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                  Product
-                  <FontAwesomeIcon
-                    icon={faChevronDown}
-                    className="text-gray-900 size-4 group-hover:text-indigo-600"
-                  />
-                </DisclosureButton>
-                <DisclosurePanel className="mt-2 space-y-2">
-                  {products.map((item) => (
-                    <DisclosureButton
-                      key={item.name}
-                      as={Link} // Use React Router Link component here
-                      to={item.path} // Use "to" prop instead of "href"
-                      className="block py-2 pl-6 pr-3 font-semibold text-gray-900 rounded-lg text-sm/7 hover:bg-gray-50"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </DisclosureButton>
-                  ))}
-                </DisclosurePanel>
-              </Disclosure>
-
               {links.map((link) => {
                 return (
                   <Link
@@ -80,15 +50,6 @@ function MobileLink({ products, links, mobileMenuOpen, setMobileMenuOpen }) {
                   </Link>
                 );
               })}
-            </div>
-            <div className="py-6">
-              <Link
-                to="contact-us"
-                className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contact Us
-              </Link>
             </div>
           </div>
         </div>

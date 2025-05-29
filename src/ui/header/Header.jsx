@@ -2,57 +2,38 @@
 
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faLightbulbOn,
-  faPuzzlePiece,
-  faBars,
-  faHandHoldingCircleDollar,
-  faHandshakeSimple,
-  faMap,
-} from "@fortawesome/pro-solid-svg-icons";
+import { faBars } from "@fortawesome/pro-solid-svg-icons";
 
 import Logo from "./Logo";
 import DesktopLink from "./DesktopLink";
 import { Link } from "react-router-dom";
 import MobileLink from "./MobileLink";
 
-const products = [
+const links = [
+  {
+    name: "Overview",
+    path: "/",
+  },
   {
     name: "Concept",
-    description: "The abstract concept underlying Pixelmine",
     path: "concept",
-    icon: faLightbulbOn,
   },
   {
     name: "Design & Implementation",
-    description: "Proof of concept and execution",
     path: "design-implementation",
-    icon: faPuzzlePiece,
   },
   {
     name: "Network Incentives",
-    description: "Your customers’ data will be safe and secure",
     path: "network-incentives",
-    icon: faHandHoldingCircleDollar,
   },
   {
     name: "Democratic System",
-    description: "Something of everyone",
     path: "democratic-system",
-    icon: faHandshakeSimple,
   },
   {
     name: "Roadmap",
-    description: "Freedom and automony",
     path: "roadmap",
-    icon: faMap,
   },
-];
-
-const links = [
-  { name: "About Us", path: "about-us" },
-  { name: "News & Events", path: "news-events" },
-  { name: "Careers", path: "careers" },
 ];
 
 export default function Header() {
@@ -93,23 +74,13 @@ export default function Header() {
           </button>
         </div>
 
-        <DesktopLink products={products} links={links} />
+        <DesktopLink links={links} />
 
         <MobileLink
-          products={products}
           links={links}
           mobileMenuOpen={mobileMenuOpen}
           setMobileMenuOpen={setMobileMenuOpen}
         />
-
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            to="contact-us"
-            className="rounded-md bg-primary hover:border-solid hover:border-2 hover:border-primary hover:bg-transparent px-3.5 py-2.5 text-sm font-semibold text-slate-50 hover:text-slate-900 shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white border-2 border-transparent transition-all duration-300 ease-in-out"
-          >
-            Contact Us <span aria-hidden="true">&rarr;</span>
-          </Link>
-        </div>
       </nav>
     </header>
   );
