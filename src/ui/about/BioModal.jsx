@@ -32,7 +32,7 @@ function BioModal({ memberDetails, children }) {
               <img
                 src={memberDetails.image}
                 alt={`${memberDetails.name}'s image`}
-                className="w-48 h-48 rounded-full"
+                className="w-48 h-48 border-4 rounded-full border-primary/70"
               />
               <h2 className="mt-4 text-xl font-semibold text-gray-900">
                 {memberDetails.name}
@@ -40,7 +40,9 @@ function BioModal({ memberDetails, children }) {
               <p className="text-gray-600">{memberDetails.title}</p>
               <hr className="mx-auto mt-2 mb-4 border-b-4 w-14 border-primary" />
 
-              <p className="mt-4 text-sm text-gray-700">{memberDetails.bio}</p>
+              <div className="px-2 mt-4 overflow-y-auto text-sm text-gray-700 max-h-72">
+                {memberDetails.bio}
+              </div>
 
               <Button
                 className="flex items-center justify-center w-full mt-5 "

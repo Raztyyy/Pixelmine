@@ -1,6 +1,7 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Concept from "./pages/Concept";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import Overview from "./pages/Overview";
+import Concept from "./pages/Concept";
 import DesignImplementation from "./pages/DesignImplementation";
 import NetworkIncentives from "./pages/NetworkIncentives";
 import DemocraticSystem from "./pages/DemocraticSystem";
@@ -17,54 +18,41 @@ import ChildSexualAbusePolicy from "./pages/ChildSexualAbusePolicy";
 import CommercialLaw from "./pages/CommercialLaw";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      { index: true, element: <Overview /> },
+      { path: "concept", element: <Concept /> },
+      { path: "design-implementation", element: <DesignImplementation /> },
+      { path: "network-incentives", element: <NetworkIncentives /> },
+      { path: "democratic-system", element: <DemocraticSystem /> },
+      { path: "roadmap", element: <Roadmap /> },
+
+      { path: "about-us", element: <About /> },
+      { path: "news-events", element: <NewsEvents /> },
+      { path: "careers", element: <Careers /> },
+      { path: "contact-us", element: <Contact /> },
+      { path: "sign-up", element: <SignUp /> },
+
+      { path: "terms-and-conditions", element: <TermsAndConditions /> },
+      {
+        path: "child-sexual-abuse-policy",
+        element: <ChildSexualAbusePolicy />,
+      },
+      { path: "commercial-law", element: <CommercialLaw /> },
+      { path: "privacy-policy", element: <PrivacyPolicy /> },
+    ],
+  },
+  {
+    path: "*",
+    element: <PageNotFound />,
+  },
+]);
+
 function App() {
-  return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route element={<AppLayout />}>
-            {/* <Route index element={<Navigate replace to="overview" />}></Route>
-            <Route path="overview" element={<Overview />}></Route> */}
-
-            <Route index element={<Overview />}></Route>
-            <Route path="concept" element={<Concept />}></Route>
-            <Route
-              path="design-implementation"
-              element={<DesignImplementation />}
-            ></Route>
-            <Route
-              path="network-incentives"
-              element={<NetworkIncentives />}
-            ></Route>
-            <Route
-              path="democratic-system"
-              element={<DemocraticSystem />}
-            ></Route>
-            <Route path="roadmap" element={<Roadmap />}></Route>
-
-            <Route path="about-us" element={<About />}></Route>
-            <Route path="news-events" element={<NewsEvents />}></Route>
-            <Route path="careers" element={<Careers />}></Route>
-            <Route path="contact-us" element={<Contact />}></Route>
-            <Route path="sign-up" element={<SignUp />}></Route>
-
-            <Route
-              path="terms-and-conditions"
-              element={<TermsAndConditions />}
-            ></Route>
-            <Route
-              path="child-sexual-abuse-policy"
-              element={<ChildSexualAbusePolicy />}
-            ></Route>
-            <Route path="commercial-law" element={<CommercialLaw />}></Route>
-            <Route path="privacy-policy" element={<PrivacyPolicy />}></Route>
-          </Route>
-
-          <Route path="*" element={<PageNotFound />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
