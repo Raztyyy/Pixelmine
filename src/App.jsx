@@ -18,6 +18,8 @@ import ChildSexualAbusePolicy from "./pages/ChildSexualAbusePolicy";
 import CommercialLaw from "./pages/CommercialLaw";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 
+import { networkIncentivesLoader } from "./loaders/networkIncentives";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,7 +28,11 @@ const router = createBrowserRouter([
       { index: true, element: <Overview /> },
       { path: "concept", element: <Concept /> },
       { path: "design-implementation", element: <DesignImplementation /> },
-      { path: "network-incentives", element: <NetworkIncentives /> },
+      {
+        path: "network-incentives",
+        element: <NetworkIncentives />,
+        loader: networkIncentivesLoader,
+      },
       { path: "democratic-system", element: <DemocraticSystem /> },
       { path: "roadmap", element: <Roadmap /> },
 
@@ -52,7 +58,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <RouterProvider
+      router={router}
+      fallbackElement={<div>Loading app...</div>} // optional, for loading fallback
+    />
+  );
 }
 
 export default App;
