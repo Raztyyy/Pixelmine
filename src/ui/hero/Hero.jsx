@@ -1,6 +1,9 @@
 // import StackedAvatars from "./StackedAvatars";
+import { Link } from "react-router-dom";
 import heroImg from "../../assets/placeholder.png";
 import DownloadButtons from "./DownloadButtons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/pro-solid-svg-icons";
 
 function Hero() {
   return (
@@ -15,7 +18,20 @@ function Hero() {
               <p className="p-0 m-0 text-sm text-gray-600">Downloads</p>
             </div>
           </div> */}
-          <hr className="w-10 mb-4 border-b-4 border-primary" />
+          {/* <hr className="w-10 mb-4 border-b-4 border-primary" /> */}
+          <Link
+            className="inline-flex items-center gap-3 pr-3 mb-5 rounded bg-white/70 group"
+            to="/concept"
+          >
+            <div className="inline-flex items-center gap-2 px-2 py-1 transition-all duration-300 ease-in-out rounded bg-primary group-hover:bg-primary/85">
+              <FontAwesomeIcon icon={faPlay} className="text-white size-3 " />
+              <p className="text-xs text-white">Watch</p>
+            </div>
+
+            <p className="text-xs font-semibold transition-all duration-300 ease-in-out group-hover:text-primary/85">
+              The Concept behind Pixelmine
+            </p>
+          </Link>
 
           <h1 className="text-4xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-auto sm:max-w-[30rem]">
             Free to use for everyone always

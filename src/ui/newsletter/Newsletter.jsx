@@ -18,7 +18,7 @@ function Newsletter() {
             id="email"
             placeholder="Enter your email"
             required
-            className="w-full md:w-[80%] p-2.5 mt-1 border rounded-lg text-sm bg-gray-50 dark:bg-gray-600 dark:text-white"
+            className="w-full md:w-[80%] p-2.5 mt-1 border rounded-lg text-sm bg-gray-50  dark:text-white"
           />
           <button className="w-full md:w-[30%] text-sm text-center transition-all duration-300 ease-in-out border rounded-lg group  md:me-2 p-2.5 bg-primary text-white border-primary hover:bg-primary/80">
             Subscribe now

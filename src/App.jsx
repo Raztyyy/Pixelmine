@@ -7,7 +7,6 @@ import NetworkIncentives from "./pages/NetworkIncentives";
 import DemocraticSystem from "./pages/DemocraticSystem";
 import Roadmap from "./pages/Roadmap";
 import PageNotFound from "./pages/PageNotFound";
-import AppLayout from "./ui/AppLayout";
 import About from "./pages/About";
 import NewsEvents from "./pages/NewsEvents";
 import Careers from "./pages/Careers";
@@ -17,6 +16,9 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import ChildSexualAbusePolicy from "./pages/ChildSexualAbusePolicy";
 import CommercialLaw from "./pages/CommercialLaw";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+
+import AppLayout from "./ui/AppLayout";
+import Spinner from "./ui/spinner/Spinner";
 
 import { networkIncentivesLoader } from "./loaders/networkIncentives";
 
@@ -61,7 +63,7 @@ function App() {
   return (
     <RouterProvider
       router={router}
-      fallbackElement={<div>Loading app...</div>} // optional, for loading fallback
+      fallbackElement={<Spinner></Spinner>} // optional, for loading fallback
     />
   );
 }

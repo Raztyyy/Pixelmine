@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/pro-solid-svg-icons";
 
@@ -38,22 +38,18 @@ const links = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  // const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY !== 0);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setScrolled(window.scrollY !== 0);
+  //   };
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
 
   return (
-    <header
-      className={`sticky top-0 z-50 bg-white shadow transition-all duration-300 ${
-        scrolled ? "py-2" : "py-6"
-      }`}
-    >
+    <header className="sticky top-0 z-50 py-6 transition-all duration-300 bg-white shadow ">
       <nav
         aria-label="Global"
         className="flex items-center justify-between px-6 mx-auto max-w-7xl"
