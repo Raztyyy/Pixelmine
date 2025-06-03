@@ -25,10 +25,10 @@ function NetworkIncentives() {
 
   return (
     <>
-      <section className="pt-16 pb-16 sm:pt-28 sm:pb-28 bg-green-50">
-        <div className="flex flex-col items-center gap-10 p-6 mx-auto lg:flex-row sm:items-start lg:items-center max-w-7xl">
+      <section className="pt-16 pb-16 sm:pt-28 sm:pb-28 bg-green-50/50">
+        <div className="flex flex-col items-start gap-10 p-6 mx-auto lg:flex-row sm:items-start lg:items-center max-w-7xl">
           {/* Left Column - Text */}
-          <div className="flex-1 text-center sm:text-left">
+          <div className="flex-1 text-left">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem]">
               Network Incentives
             </h1>

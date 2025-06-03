@@ -30,11 +30,11 @@ function LoginModal({ children }) {
         >
           <div
             ref={modalRef}
-            className="relative w-full max-w-md p-6 bg-white rounded-lg shadow dark:bg-gray-700"
+            className="relative w-full max-w-md p-6 bg-white rounded-lg shadow "
           >
             {/* Header */}
             <div className="flex items-center justify-between pb-2 mb-4 border-b">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-xl font-semibold text-gray-900 ">
                 Sign in to our platform
               </h3>
               <button
@@ -50,7 +50,7 @@ function LoginModal({ children }) {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 dark:text-white"
+                  className="block text-sm font-medium text-gray-700 "
                 >
                   Your email
                 </label>
@@ -59,14 +59,14 @@ function LoginModal({ children }) {
                   id="email"
                   placeholder="Enter your email"
                   required
-                  className="w-full p-2.5 mt-1 border rounded-lg text-sm bg-gray-50 dark:bg-gray-600 dark:text-white"
+                  className="w-full p-2.5 mt-1 border rounded-lg text-sm bg-gray-50"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-gray-700 dark:text-white"
+                  className="block text-sm font-medium text-gray-700 "
                 >
                   Your password
                 </label>
@@ -75,14 +75,14 @@ function LoginModal({ children }) {
                   id="password"
                   placeholder="Enter your password"
                   required
-                  className="w-full p-2.5 mt-1 border rounded-lg text-sm bg-gray-50 dark:bg-gray-600 dark:text-white"
+                  className="w-full p-2.5 mt-1 border rounded-lg text-sm bg-gray-50 "
                 />
               </div>
 
               <div className="flex items-center justify-between text-sm">
                 <label className="flex items-center gap-2">
                   <input type="checkbox" required />
-                  <span className="dark:text-gray-300">Remember me</span>
+                  <span>Remember me</span>
                 </label>
                 <a
                   href="#"
@@ -99,7 +99,7 @@ function LoginModal({ children }) {
                 Login to your account
               </button>
 
-              <div className="text-sm text-gray-500 dark:text-gray-300">
+              <div className="text-sm text-gray-500 ">
                 Not registered?{" "}
                 <Link to="sign-up" className="text-primary hover:underline ">
                   Create account
