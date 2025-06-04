@@ -10,6 +10,7 @@ import placeholderImg from "../assets/placeholder.png";
 
 import Dropdown from "../ui/networkIncentives/Dropdown";
 import Accordion from "../ui/Accordion";
+import SEOHelmet from "../ui/SEOHelmet";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
@@ -27,6 +28,13 @@ function NetworkIncentives() {
 
   return (
     <>
+      <SEOHelmet
+        title="Network Incentives | Pixelmine Japan OPC"
+        description="Understand how Pixelmine rewards user participation and contribution through a decentralized incentive structure designed to promote fairness and engagement."
+        url="https://www.pixelmine.org/network-incentives"
+        image="/social-sharing.jpg"
+      />
+
       <section className="pt-16 pb-16 sm:pt-28 sm:pb-28 bg-green-50/50">
         <div className="flex flex-col items-start gap-10 p-6 mx-auto lg:flex-row sm:items-start lg:items-center max-w-7xl">
           {/* Left Column - Text */}

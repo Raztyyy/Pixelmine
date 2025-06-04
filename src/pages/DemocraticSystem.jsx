@@ -3,9 +3,18 @@ import placeholderImg from "../assets/placeholder.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
 
+import SEOHelmet from "../ui/SEOHelmet";
+
 function DemocraticSystem() {
   return (
     <>
+      <SEOHelmet
+        title="Democratic System | Pixelmine Japan OPC"
+        description="Explore how Pixelmine’s democratic governance empowers users to shape the platform through decentralized decision-making and transparent voting mechanisms."
+        url="https://www.pixelmine.org/democratic-system"
+        image="/social-sharing.jpg"
+      />
+
       <section className="pt-16 pb-16 sm:pt-28 sm:pb-28 bg-green-50/50">
         <div className="flex flex-col items-start gap-10 p-6 mx-auto md:flex-row sm:items-start lg:items-center max-w-7xl md:items-center">
           {/* Left Column */}

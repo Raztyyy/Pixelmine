@@ -15,7 +15,7 @@ function Contact() {
         title="Contact Us | Pixelmine Japan OPC"
         description="Get in touch with Pixelmine for inquiries, support, or partnership opportunities. We're here to help!"
         url="https://www.pixelmine.org/contact-us"
-        image="/contact-social-sharing.jpg" // update if you have a specific contact image
+        image="/contact-social-sharing.jpg"
       />
 
       <section className="pt-[3rem] pb-[6rem] sm:pb-[4rem]">

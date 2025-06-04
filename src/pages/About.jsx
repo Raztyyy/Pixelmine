@@ -1,5 +1,6 @@
 import BioCard from "../ui/about/BioCard";
 import heroImg from "../assets/placeholder-fullwidth.jpg";
+import SEOHelmet from "../ui/SEOHelmet";
 
 const teamMember = [
   {
@@ -24,63 +25,75 @@ const teamMember = [
 
 function About() {
   return (
-    <section className="pt-[3rem] pb-[6rem] sm:pb-[4rem]">
-      {/* Hero Section */}
-      <div className="flex flex-col items-center p-6 mx-auto text-center max-w-7xl">
-        <h1 className="text-lg font-medium uppercase">About Us</h1>
-        <hr className="mx-auto mt-2 mb-4 border-b-4 w-14 border-primary" />
-        <p className="text-4xl font-semibold max-w-7xl sm:text-4xl lg:text-5xl">
-          The Organization and the people behind Pixelmine
-        </p>
+    <>
+      <SEOHelmet
+        title="About Us | Pixelmine Japan OPC"
+        description="Learn more about Pixelmine Japan OPC — our mission, team, and commitment to building a transparent, fair, and decentralized social network."
+        url="https://www.pixelmine.org/about-us"
+        image="/social-sharing.jpg"
+      />
 
-        <img
-          src={heroImg}
-          alt="Hero image"
-          className="object-cover rounded mt-14"
-        />
-      </div>
+      <section className="pt-[3rem] pb-[6rem] sm:pb-[4rem]">
+        {/* Hero Section */}
+        <div className="flex flex-col items-center p-6 mx-auto text-center max-w-7xl">
+          <h1 className="text-lg font-medium uppercase">About Us</h1>
+          <hr className="mx-auto mt-2 mb-4 border-b-4 w-14 border-primary" />
+          <p className="text-4xl font-semibold max-w-7xl sm:text-4xl lg:text-5xl">
+            The Organization and the people behind Pixelmine
+          </p>
 
-      <div className="flex flex-col gap-10 p-6 mx-auto max-w-7xl ">
-        <div className="flex-1 text-center lg:text-start">
-          <h2 className="text-4xl leading-tight text-center sm:text-4xl lg:text-5xl max-w-auto lg:text-start">
-            About Pixelmine Japan
-          </h2>
-          <p className="mt-4 text-gray-600 text-sm/6">
-            Pixelmine Japan was established in 2021 with the objective of
-            transforming social networking through decentralization. In response
-            to the increasing concerns surrounding data privacy and centralized
-            control, the founders sought to develop a platform that enables
-            users to retain ownership of their data while engaging in a
-            transparent and secure environment.
-          </p>
-          <p className="mt-4 text-gray-600 text-sm/6">
-            The company broadened its offerings to encompass a variety of tools
-            for creators, including customizable profiles and enhanced
-            engagement metrics. Embracing a community-driven approach, Pixelmine
-            consistently solicits feedback from users and implements
-            modifications based on their suggestions. The platform is dedicated
-            to the principles of user empowerment, privacy, and transparency,
-            thereby establishing new benchmarks for the operation of social
-            networks in the digital era.
-          </p>
-          <p className="mt-4 text-gray-600 text-sm/6">
-            Through its unwavering commitment to innovation and community
-            engagement, Pixelmine aspires to redefine the social media landscape
-            for the foreseeable future.
-          </p>
+          <img
+            src={heroImg}
+            alt="Hero image"
+            className="object-cover rounded mt-14"
+          />
         </div>
-        <div className="flex-1">
-          <h2 className="text-4xl leading-tight text-center sm:text-4xl lg:text-5xl max-w-auto lg:text-start">
-            Meet Our Team
-          </h2>
-          <div className="flex flex-col justify-between gap-16 mt-10 lg:gap-2 lg:flex-row">
-            {teamMember.map((memberDetails) => (
-              <BioCard memberDetails={memberDetails} key={memberDetails.name} />
-            ))}
+
+        <div className="flex flex-col gap-10 p-6 mx-auto max-w-7xl ">
+          <div className="flex-1 text-center lg:text-start">
+            <h2 className="text-4xl leading-tight text-center sm:text-4xl lg:text-5xl max-w-auto lg:text-start">
+              About Pixelmine Japan
+            </h2>
+            <p className="mt-4 text-gray-600 text-sm/6">
+              Pixelmine Japan was established in 2021 with the objective of
+              transforming social networking through decentralization. In
+              response to the increasing concerns surrounding data privacy and
+              centralized control, the founders sought to develop a platform
+              that enables users to retain ownership of their data while
+              engaging in a transparent and secure environment.
+            </p>
+            <p className="mt-4 text-gray-600 text-sm/6">
+              The company broadened its offerings to encompass a variety of
+              tools for creators, including customizable profiles and enhanced
+              engagement metrics. Embracing a community-driven approach,
+              Pixelmine consistently solicits feedback from users and implements
+              modifications based on their suggestions. The platform is
+              dedicated to the principles of user empowerment, privacy, and
+              transparency, thereby establishing new benchmarks for the
+              operation of social networks in the digital era.
+            </p>
+            <p className="mt-4 text-gray-600 text-sm/6">
+              Through its unwavering commitment to innovation and community
+              engagement, Pixelmine aspires to redefine the social media
+              landscape for the foreseeable future.
+            </p>
+          </div>
+          <div className="flex-1">
+            <h2 className="text-4xl leading-tight text-center sm:text-4xl lg:text-5xl max-w-auto lg:text-start">
+              Meet Our Team
+            </h2>
+            <div className="flex flex-col justify-between gap-16 mt-10 lg:gap-2 lg:flex-row">
+              {teamMember.map((memberDetails) => (
+                <BioCard
+                  memberDetails={memberDetails}
+                  key={memberDetails.name}
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 
