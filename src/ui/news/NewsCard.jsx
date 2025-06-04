@@ -25,12 +25,14 @@ function NewsCard({ news, idx }) {
               {news.category}
             </Link>
           </div>
-          <h2 className="py-2 font-medium transition-all duration-300 ease-in-out group-hover:text-primary">
-            {news.title}
-          </h2>
-          <p className="text-gray-500 text-sm/6">
-            {truncateWords(news.preview, 20)}
-          </p>
+          <Link to={`news/events/${news.id}`}>
+            <h2 className="py-2 font-medium transition-all duration-300 ease-in-out group-hover:text-primary">
+              {news.title}
+            </h2>
+            <p className="text-gray-500 text-sm/6">
+              {truncateWords(news.preview, 20)}
+            </p>
+          </Link>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import {
   faEnvelope,
   faPhone,
 } from "@fortawesome/pro-solid-svg-icons";
+
 const company = [
   {
     name: "About Us",

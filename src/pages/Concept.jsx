@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
 
 import { items } from "../data/concept/conceptData";
+import SEOHelmet from "../ui/SEOHelmet";
 
 function Concept() {
   const [playingId, setPlayingId] = useState(null);
@@ -43,6 +44,13 @@ function Concept() {
 
   return (
     <>
+      <SEOHelmet
+        title="Concept | Pixelmine Japan OPC"
+        description="Explore the core concept behind Pixelmine — a decentralized social network focused on transparency, fairness, and empowering users."
+        url="https://www.pixelmine.org/concept"
+        image="/concept-social-sharing.jpg"
+      />
+
       <section className="pt-16 pb-16 sm:pt-28 sm:pb-28 bg-green-50/50">
         <div className="flex flex-col items-start gap-10 p-6 mx-auto md:flex-row sm:items-start lg:items-center max-w-7xl md:items-center">
           {/* Left Column */}
