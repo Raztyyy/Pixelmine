@@ -1,21 +1,64 @@
+import placeholderImg from "../assets/placeholder.png";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
+
 function DemocraticSystem() {
   return (
-    <section class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
-      <div class="text-center">
-        <img
-          src="../../logo.png"
-          alt="Pixelmine Logo"
-          className="mx-auto h-5"
-        />
-        <p class="text-2xl font-semibold text-primary pt-10 ">Coming Soon!</p>
-        <h1 class="mt-4 text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
-          This page is under construction
-        </h1>
-        <p class="mt-6 text-pretty text-lg font-regular text-gray-500 sm:text-xl/8">
-          We're getting ready to launch this page!
-        </p>
-      </div>
-    </section>
+    <>
+      <section className="pt-16 pb-16 sm:pt-28 sm:pb-28 bg-green-50/50">
+        <div className="flex flex-col items-start gap-10 p-6 mx-auto md:flex-row sm:items-start lg:items-center max-w-7xl md:items-center">
+          {/* Left Column */}
+          <div className="flex-1">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem]">
+              Democratic System
+            </h1>
+            <p className="pt-5 pb-2 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-gray-600">
+              Enhance user participation and engagement.
+            </p>
+          </div>
+          {/* Right Column */}
+          <div className="flex-1">
+            <img src={placeholderImg} alt="Placeholder Image" />
+          </div>
+        </div>
+      </section>
+
+      <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]">
+        <div className="flex flex-col-reverse gap-10 p-6 mx-auto lg:flex-row max-w-7xl">
+          <div className="flex-1">
+            <img src={placeholderImg} alt="Placeholder Image" />
+          </div>
+          <div className="flex-1">
+            <FontAwesomeIcon
+              icon={faLightbulbOn}
+              className="p-2 mt-4 mb-4 rounded bg-primary/80 text-slate-100 size-5"
+            />
+            <p className="mb-2 text-sm text-gray-600 sm:text-base">
+              Pixelmine focuses on user participation, transparency, and the
+              fair distribution of information. By empowering users to express
+              their opinions, Pixelmine facilitates meaningful discussions
+              around social, political, and cultural issues.
+            </p>
+            <p className="mb-2 text-sm text-gray-600 sm:text-base">
+              A key feature of Pixelmine is its commitment to inclusivity. The
+              platform employs algorithms that promote diverse viewpoints
+              instead of just trending content, creating a richer dialogue.
+              Users can engage in discussions, organize community initiatives,
+              and amplify marginalized voices, contributing to a more informed
+              and active citizenry.
+            </p>
+            <p className="mb-2 text-sm text-gray-600 sm:text-base">
+              Ultimately, Pixelmine serves as a powerful tool for participatory
+              democracy, enabling individuals to connect, collaborate, and
+              advocate for change on a larger scale. However, its success
+              depends on ongoing efforts to keep the platform free from
+              manipulation and to promote genuine dialogue among users.
+            </p>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 

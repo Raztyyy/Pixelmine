@@ -1,15 +1,23 @@
-function AccordionItemIncentives({ id, title, content, isOpen, toggle }) {
+function AccordionItem({ id, title, content, isOpen, toggle }) {
   return (
     <div>
       <h2 id={`accordion-heading-${id}`}>
         <button
           type="button"
-          className="flex items-center justify-between w-full gap-3 py-5 text-sm text-gray-600 border-b border-gray-300 rtl:text-right "
+          className={`flex items-center justify-between w-full gap-3 py-5 text-sm text-gray-600 ${
+            isOpen ? "" : "border-b border-gray-300"
+          } rtl:text-right `}
           aria-expanded={isOpen}
           aria-controls={`accordion-body-${id}`}
           onClick={toggle}
         >
-          <span>{title}</span>
+          <span
+            className={`text-sm  sm:text-base text-start ${
+              isOpen ? "text-primary font-semibold" : "text-gray-600"
+            }`}
+          >
+            {title}
+          </span>
           <svg
             className={`w-3 h-3 text-primary shrink-0 transition-transform ${
               isOpen ? "rotate-0" : "rotate-180"
@@ -32,7 +40,7 @@ function AccordionItemIncentives({ id, title, content, isOpen, toggle }) {
       {isOpen && (
         <div
           id={`accordion-body-${id}`}
-          className="py-5 border-b border-gray-300 "
+          className="py-5 border-b-4 border-primary "
           aria-labelledby={`accordion-heading-${id}`}
         >
           {content}
@@ -42,4 +50,4 @@ function AccordionItemIncentives({ id, title, content, isOpen, toggle }) {
   );
 }
 
-export default AccordionItemIncentives;
+export default AccordionItem;

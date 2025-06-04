@@ -9,10 +9,12 @@ import cardBg from "../assets/incentives-card-bg.jpg";
 import placeholderImg from "../assets/placeholder.png";
 
 import Dropdown from "../ui/networkIncentives/Dropdown";
-import AccordionIncentives from "../ui/networkIncentives/AccordionIncentives";
+import Accordion from "../ui/Accordion";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
+
+import { items } from "../data/networkincentives/networkIncentivesData";
 
 function NetworkIncentives() {
   const [{ converted_incentives, activity_points, pixelpoint, updated_at }] =
@@ -121,7 +123,7 @@ function NetworkIncentives() {
                 In Pixelmine, two factors contribute to the total incentive a
                 user can receive: Activity Points and PXL Points.
               </p>
-              <AccordionIncentives />
+              <Accordion items={items} />
             </div>
           </div>
         </div>

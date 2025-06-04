@@ -5,7 +5,7 @@ function Contact() {
         <img
           src="../../logo.png"
           alt="Pixelmine Logo"
-          className="mx-auto h-5"
+          className="h-5 mx-auto"
         />
         <p class="text-2xl font-semibold text-primary pt-10 ">Coming Soon!</p>
         <h1 class="mt-4 text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">

@@ -24,7 +24,7 @@ export default function Example() {
 
                 <div className="max-lg:text-center">
                   <Link
-                    to="design-implementation"
+                    to="concept"
                     className="text-sm transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold"
                   >
                     Read More <span aria-hidden="true">&rarr;</span>
@@ -88,7 +88,7 @@ export default function Example() {
                 </p>
                 <div className="max-lg:text-center">
                   <Link
-                    to="design-implementation"
+                    to="network-incentives"
                     className="text-sm transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold"
                   >
                     Read More <span aria-hidden="true">&rarr;</span>
@@ -121,7 +121,7 @@ export default function Example() {
                 </p>
                 <div className="max-lg:text-center">
                   <Link
-                    to="design-implementation"
+                    to="democratic-system"
                     className="text-sm transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold"
                   >
                     Read More <span aria-hidden="true">&rarr;</span>

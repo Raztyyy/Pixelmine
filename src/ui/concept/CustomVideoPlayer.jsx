@@ -27,7 +27,7 @@ export default function CustomVideoPlayer({ src, isPlaying, onPlay, id }) {
       <video
         ref={videoRef}
         src={src}
-        className="w-full rounded"
+        className="w-full rounded "
         preload="metadata"
         controls={showControls} // ✅ only show when state says so
       />
