@@ -21,6 +21,7 @@ import AppLayout from "./ui/AppLayout";
 import Spinner from "./ui/spinner/Spinner";
 
 import { networkIncentivesLoader } from "./loaders/networkIncentives";
+import CareerRole from "./pages/CareerRole";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
       { path: "about-us", element: <About /> },
       { path: "news-events", element: <NewsEvents /> },
       { path: "careers", element: <Careers /> },
+      { path: "careers/:role_slug", element: <CareerRole /> },
       { path: "contact-us", element: <Contact /> },
       { path: "sign-up", element: <SignUp /> },
 

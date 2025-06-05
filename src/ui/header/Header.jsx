@@ -6,7 +6,6 @@ import { faBars } from "@fortawesome/pro-solid-svg-icons";
 
 import Logo from "./Logo";
 import DesktopLink from "./DesktopLink";
-import { Link } from "react-router-dom";
 import MobileLink from "./MobileLink";
 
 const links = [
