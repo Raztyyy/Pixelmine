@@ -107,7 +107,7 @@ export default function ContactUsForm() {
                 name="phone-number"
                 type="text"
                 placeholder="123-456-7890"
-                className="flex-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                className="flex-1 text-base text-gray-900 bg-transparent placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
               />
             </div>
           </div>
