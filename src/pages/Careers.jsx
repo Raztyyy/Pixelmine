@@ -81,7 +81,7 @@ function Careers() {
                       </div>
                       <div>
                         <p className="py-3 text-base">
-                          {truncateWords(job.roleDescription, 25)}
+                          {truncateWords(job.roleDescription, 150)}
                         </p>
                       </div>
 

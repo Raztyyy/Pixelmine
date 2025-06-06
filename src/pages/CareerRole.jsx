@@ -183,7 +183,7 @@ function CareerRole() {
             )}
           </div>
           <div className="flex-1 hidden lg:block ">
-            <h2 className="mb-4 text-xl font-semibold leading-tight">
+            <h2 className="mb-4 text-xl leading-tight">
               Other Jobs from Pixelmine OPC
             </h2>
 
@@ -201,7 +201,7 @@ function CareerRole() {
                     </div>
                     <div>
                       <p className="py-3 text-sm text-gray-600">
-                        {truncateWords(job.roleDescription, 15)}
+                        {truncateWords(job.roleDescription, 120)}
                       </p>
                     </div>
 

@@ -22,6 +22,7 @@ import Spinner from "./ui/spinner/Spinner";
 
 import { networkIncentivesLoader } from "./loaders/networkIncentives";
 import CareerRole from "./pages/CareerRole";
+import NewsDetails from "./pages/NewsDetails";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
 
       { path: "about-us", element: <About /> },
       { path: "news-events", element: <NewsEvents /> },
+      { path: "news-events/:news_slug", element: <NewsDetails /> },
       { path: "careers", element: <Careers /> },
       { path: "careers/:role_slug", element: <CareerRole /> },
       { path: "contact-us", element: <Contact /> },

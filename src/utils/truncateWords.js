@@ -1,6 +1,3 @@
-export function truncateWords(text, wordLimit) {
-  const words = text.trim().split(" ");
-  return words.length > wordLimit
-    ? words.slice(0, wordLimit).join(" ") + "..."
-    : text;
+export function truncateWords(text, charLimit) {
+  return text.length > charLimit ? text.slice(0, charLimit) + "..." : text;
 }

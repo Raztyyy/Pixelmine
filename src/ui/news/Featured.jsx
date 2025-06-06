@@ -1,42 +1,57 @@
 import { Link } from "react-router-dom";
-import featuredNews from "../../assets/featured-news.png";
+import { newsData } from "../../data/news/newsData";
 
 function Featured() {
+  const featuredNews = newsData.find((news) => news.isFeatured === true);
+
+  if (!featuredNews) {
+    return null;
+  }
+
+  const isInternal = !!featuredNews.slug;
+  const url = isInternal
+    ? `/news-events/${featuredNews.slug}`
+    : featuredNews.link;
+
+  const Wrapper = ({ children }) =>
+    isInternal ? (
+      <Link to={url}>{children}</Link>
+    ) : (
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    );
+
   return (
     <div className="w-full group lg:flex-1">
       <div>
-        <Link to="news-events/id">
+        <Wrapper>
           <img
             className="object-cover object-left w-full h-48 transition-all duration-300 ease-in-out rounded md:h-auto group-hover:brightness-75"
-            src={featuredNews}
+            src={featuredNews.img}
             alt="Featured Image"
           />
-        </Link>
+        </Wrapper>
       </div>
       <div className="flex flex-col gap-2 py-3 text-sl">
-        <Link
-          to="news-events/id"
-          className="transition-all duration-300 ease-in-out group-hover:text-primary"
-        >
-          <h2 className="font-medium">
-            世界を驚かす次代のエンジニア常識をつくり変える分散型SNS「Pixelmine」を開発
+        <Wrapper>
+          <h2 className="font-medium transition-all duration-300 ease-in-out group-hover:text-primary">
+            {featuredNews.title}
           </h2>
-        </Link>
+        </Wrapper>
 
         <div className="flex items-center gap-3">
-          <p className="text-gray-600 text-sm/6">April 7, 2025</p>
+          <p className="text-gray-600 text-sm/6">{featuredNews.date}</p>
           <Link
-            to="news-events/category"
+            to={`/news-events/${featuredNews.category}`}
             className="relative z-10 px-3 py-1 text-gray-600 transition-all duration-300 ease-in-out rounded-full bg-gray-50 hover:bg-gray-100 text-sm/6"
           >
-            Event
+            {featuredNews.category}
           </Link>
         </div>
+
         <p className="mt-2 mb-2 text-gray-500 max-w-auto text-sm/6">
-          「社長の名は」立ち上げから3年、出演者100名超。
-          社長が感じた悔しさや葛藤を超えていく挑戦ストーリーを伝え、働く人に勇気を与えてきました。
-          その挑戦の想いは広がり、舞台は、TikTokから東京ビッグサイトへ。
-          Climbers2025への出場権を手にする社長は誰だ...。
+          {featuredNews.preview}
         </p>
       </div>
     </div>
