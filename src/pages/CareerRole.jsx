@@ -8,8 +8,12 @@ import {
   faMoneyBill,
   faBuilding,
   faLocationDot,
+  faArrowLeft,
 } from "@fortawesome/pro-regular-svg-icons";
 import { truncateWords } from "../utils/truncateWords";
+
+import Button from "../ui/Button";
+import { useMoveBack } from "../hooks/useMoveBack";
 
 function CareerRole() {
   const { role_slug } = useParams();
@@ -39,7 +43,7 @@ function CareerRole() {
                 <span className="mr-2">
                   <FontAwesomeIcon
                     icon={faLocationDot}
-                    className="text-gray-600 size-4 group-hover:text-indigo-600"
+                    className="text-gray-600 size-4"
                   />
                 </span>
                 {job.location}
@@ -48,7 +52,7 @@ function CareerRole() {
                 <span className="mr-2">
                   <FontAwesomeIcon
                     icon={faBuilding}
-                    className="text-gray-600 size-4 group-hover:text-indigo-600"
+                    className="text-gray-600 size-4"
                   />
                 </span>
                 {job.category}
@@ -57,7 +61,7 @@ function CareerRole() {
                 <span className="mr-2">
                   <FontAwesomeIcon
                     icon={faTimer}
-                    className="text-gray-600 size-4 group-hover:text-indigo-600"
+                    className="text-gray-600 size-4"
                   />
                 </span>
                 {job.type}
@@ -66,19 +70,30 @@ function CareerRole() {
                 <span className="mr-2">
                   <FontAwesomeIcon
                     icon={faMoneyBill}
-                    className="text-gray-600 size-4 group-hover:text-indigo-600"
+                    className="text-gray-600 size-4"
                   />
                 </span>
                 {job.salary}
               </p>
-              <a
-                className="gap-2 group border rounded-lg text-sm text-center items-center me-2 mb-2 transition-all duration-300 ease-in-out px-6 py-3.5 bg-primary text-white border-primary hover:bg-primary/80 mt-4"
-                href={job.link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Apply Now
-              </a>
+              <div className="flex flex-wrap items-start justify-start gap-3 mt-4 md:items-center md:justify-center">
+                <a
+                  className="gap-2 group border rounded-lg text-sm text-center items-center me-2 mb-2 transition-all duration-300 ease-in-out px-6 py-3.5 bg-primary text-white border-primary hover:bg-primary/80"
+                  href={job.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Apply Now
+                </a>
+                <Button variant="secondary" size="md" onClick={useMoveBack()}>
+                  <span className="mr-1">
+                    <FontAwesomeIcon
+                      icon={faArrowLeft}
+                      className="text-gray-600 size-4"
+                    />
+                  </span>
+                  Go Back
+                </Button>
+              </div>
             </div>
 
             {/* About Company */}
@@ -195,7 +210,7 @@ function CareerRole() {
                         <span className="mr-2">
                           <FontAwesomeIcon
                             icon={faTimer}
-                            className="text-gray-600 size-4 group-hover:text-indigo-600"
+                            className="text-gray-600 size-4"
                           />
                         </span>
                         {job.type}
@@ -204,7 +219,7 @@ function CareerRole() {
                         <span className="mr-2">
                           <FontAwesomeIcon
                             icon={faMoneyBill}
-                            className="text-gray-600 size-4 group-hover:text-indigo-600"
+                            className="text-gray-600 size-4"
                           />
                         </span>
                         {job.salary}
