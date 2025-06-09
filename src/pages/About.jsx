@@ -1,6 +1,7 @@
 import BioCard from "../ui/about/BioCard";
 import heroImg from "../assets/placeholder-fullwidth.jpg";
 import SEOHelmet from "../ui/SEOHelmet";
+import AnimatedSection from "../animations/AnimatedSection";
 
 const teamMember = [
   {
@@ -15,12 +16,12 @@ const teamMember = [
     title: "Entrepreneur / Investor / Co-Founder of Pixelmine",
     bio: "Born in 1995. Questioning the conventional structures of advertising and data, Kai co-founded the decentralized social platform Pixelmine SNS” with developer Yutaro Sodei. Kai has led various ventures including real estate, IT consulting, custom system development, nano-coating technologies, the management of a group of four restaurants, and licensing businesses. He excels in team building and oversees internal operations at Pixelmine, leveraging his broad expertise in finance and legal affairs. Through Pixelmine, Kai is taking on the challenge of redefining the internet society",
   },
-  {
-    name: "Satoshi Chihara",
-    image: "/team/satoshi-chihara-img.jpg",
-    title: "Quality Assurance (QA) Manager",
-    bio: "Born in 1990. After working in finance at a securities firm and in corporate planning at a business enterprise, he became independent in 2019. Since then, he has built a diverse career spanning SNS marketing, influencer marketing, IT/IoT development, and business design consulting. He has led projects such as SaaS development for professional sports teams, IoT implementation for major infrastructure firms, and R&D of eco-friendly technologies. At Pixelmine SNS, he joined through his collaboration with Yutaro Sodei and now leads debugging efforts. More than just a technical contributor, he is driven by a strong sense of purpose to help build a decentralized, user-first internet. With a deep commitment to freedom and transparency, he supports the foundational infrastructure of Pixelmine, aiming to make it a trusted platform for the digital age.",
-  },
+  // {
+  //   name: "Satoshi Chihara",
+  //   image: "/team/satoshi-chihara-img.jpg",
+  //   title: "Quality Assurance (QA) Manager",
+  //   bio: "Born in 1990. After working in finance at a securities firm and in corporate planning at a business enterprise, he became independent in 2019. Since then, he has built a diverse career spanning SNS marketing, influencer marketing, IT/IoT development, and business design consulting. He has led projects such as SaaS development for professional sports teams, IoT implementation for major infrastructure firms, and R&D of eco-friendly technologies. At Pixelmine SNS, he joined through his collaboration with Yutaro Sodei and now leads debugging efforts. More than just a technical contributor, he is driven by a strong sense of purpose to help build a decentralized, user-first internet. With a deep commitment to freedom and transparency, he supports the foundational infrastructure of Pixelmine, aiming to make it a trusted platform for the digital age.",
+  // },
 ];
 
 function About() {
@@ -33,7 +34,10 @@ function About() {
         image="/social-sharing.jpg"
       />
 
-      <section className="pt-[3rem] pb-[6rem] sm:pb-[4rem]">
+      <AnimatedSection
+        element="section"
+        className="pt-[3rem] pb-[6rem] sm:pb-[4rem]"
+      >
         {/* Hero Section */}
         <div className="flex flex-col items-center p-6 mx-auto text-center max-w-7xl">
           <h1 className="text-lg font-medium uppercase">About Us</h1>
@@ -82,7 +86,7 @@ function About() {
             <h2 className="text-4xl leading-tight text-center sm:text-4xl lg:text-5xl max-w-auto lg:text-start">
               Meet Our Team
             </h2>
-            <div className="flex flex-col justify-between gap-16 mt-10 lg:gap-2 lg:flex-row">
+            <div className="flex flex-col gap-16 mt-10 lg:gap-28 lg:flex-row">
               {teamMember.map((memberDetails) => (
                 <BioCard
                   memberDetails={memberDetails}
@@ -92,7 +96,7 @@ function About() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
     </>
   );
 }

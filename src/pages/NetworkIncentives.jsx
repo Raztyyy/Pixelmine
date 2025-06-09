@@ -16,6 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
 
 import { items } from "../data/networkincentives/networkIncentivesData";
+import AnimatedSection from "../animations/AnimatedSection";
 
 function NetworkIncentives() {
   const [{ converted_incentives, activity_points, pixelpoint, updated_at }] =
@@ -35,7 +36,10 @@ function NetworkIncentives() {
         image="/social-sharing.jpg"
       />
 
-      <section className="pt-16 pb-16 sm:pt-28 sm:pb-28 bg-green-50/50">
+      <AnimatedSection
+        element="section"
+        className="pt-16 pb-16 sm:pt-28 sm:pb-28 bg-green-50/50"
+      >
         <div className="flex flex-col items-start gap-10 p-6 mx-auto lg:flex-row sm:items-start lg:items-center max-w-7xl">
           {/* Left Column - Text */}
           <div className="flex-1 text-left">
@@ -112,10 +116,13 @@ function NetworkIncentives() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Accordion for Network Incentive Page */}
-      <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]">
+      <AnimatedSection
+        element="section"
+        className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]"
+      >
         <div className="px-6 mx-auto max-w-auto lg:max-w-7xl lg:px-8">
           <div className="flex flex-col items-start gap-10 md:items-center md:flex-row">
             <div className="flex-1">
@@ -135,7 +142,7 @@ function NetworkIncentives() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
     </>
   );
 }

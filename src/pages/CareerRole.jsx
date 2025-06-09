@@ -8,12 +8,12 @@ import {
   faMoneyBill,
   faBuilding,
   faLocationDot,
-  faArrowLeft,
+  faAngleLeft,
 } from "@fortawesome/pro-regular-svg-icons";
 import { truncateWords } from "../utils/truncateWords";
 
-import Button from "../ui/Button";
 import { useMoveBack } from "../hooks/useMoveBack";
+import AnimatedSection from "../animations/AnimatedSection";
 
 function CareerRole() {
   const { role_slug } = useParams();
@@ -29,14 +29,28 @@ function CareerRole() {
         image="/social-sharing.jpg"
       />
 
-      <section
+      <AnimatedSection
+        element="section"
         className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]"
         id="job-openings"
       >
         <div className="flex flex-col gap-10 p-6 mx-auto max-w-7xl lg:flex-row ">
           <div className="max-w-2xl">
             <div className="flex flex-col flex-wrap items-start gap-2">
-              <h1 className="mb-3 text-3xl font-bold leading-tight lg:text-4xl">
+              {/* Moveback */}
+              <button
+                className="flex items-center justify-center text-lg text-gray-500 transition-all duration-300 ease-in-out group hover:text-primary"
+                onClick={useMoveBack()}
+              >
+                <span className="flex items-center justify-center mr-1">
+                  <FontAwesomeIcon
+                    icon={faAngleLeft}
+                    className="text-gray-500 transition-all duration-300 ease-in-out size-5 group-hover:text-primary"
+                  />
+                </span>
+                Go Back
+              </button>
+              <h1 className="mt-5 mb-3 text-3xl font-bold leading-tight lg:text-4xl">
                 {job.title}
               </h1>
               <p className="text-sm text-gray-600">
@@ -84,15 +98,6 @@ function CareerRole() {
                 >
                   Apply Now
                 </a>
-                <Button variant="secondary" size="md" onClick={useMoveBack()}>
-                  <span className="mr-1">
-                    <FontAwesomeIcon
-                      icon={faArrowLeft}
-                      className="text-gray-600 size-4"
-                    />
-                  </span>
-                  Go Back
-                </Button>
               </div>
             </div>
 
@@ -232,7 +237,7 @@ function CareerRole() {
             })}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
     </>
   );
 }

@@ -7,6 +7,7 @@ import {
   faEnvelope,
   faPhone,
 } from "@fortawesome/pro-solid-svg-icons";
+import AnimatedSection from "../animations/AnimatedSection";
 
 function Contact() {
   return (
@@ -18,7 +19,10 @@ function Contact() {
         image="/contact-social-sharing.jpg"
       />
 
-      <section className="pt-[3rem] pb-[6rem] sm:pb-[4rem]">
+      <AnimatedSection
+        element="section"
+        className="pt-[3rem] pb-[6rem] sm:pb-[4rem]"
+      >
         {/* Hero Section */}
         <div className="flex flex-col items-center p-6 mx-auto text-center max-w-7xl">
           <h1 className="text-lg font-medium uppercase">Contact Us</h1>
@@ -84,7 +88,7 @@ function Contact() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
     </>
   );
 }

@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimer, faMoneyBill } from "@fortawesome/pro-regular-svg-icons";
 
 import { jobData } from "../data/careers/jobData";
+import AnimatedSection from "../animations/AnimatedSection";
 
 function Careers() {
   return (
@@ -23,7 +24,10 @@ function Careers() {
         image="/social-sharing.jpg"
       />
 
-      <section className="pt-[5rem] pb-[5rem] sm:pt-[2rem] sm:pb-[2rem] bg-green-50/50">
+      <AnimatedSection
+        element="section"
+        className="pt-[5rem] pb-[5rem] sm:pt-[2rem] sm:pb-[2rem] bg-green-50/50"
+      >
         <div className="flex flex-col items-center gap-10 p-6 mx-auto ">
           <div className="flex flex-col items-center justify-center flex-1 ">
             <StackedAvatars></StackedAvatars>
@@ -47,8 +51,9 @@ function Careers() {
             />
           </div>
         </div>
-      </section>
-      <section
+      </AnimatedSection>
+      <AnimatedSection
+        element="section"
         className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]"
         id="job-openings"
       >
@@ -113,7 +118,7 @@ function Careers() {
             </div>
           </div>
         </div>
-      </section>
+      </AnimatedSection>
     </>
   );
 }

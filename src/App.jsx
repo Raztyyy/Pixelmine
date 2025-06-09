@@ -24,12 +24,15 @@ import { networkIncentivesLoader } from "./loaders/networkIncentives";
 import CareerRole from "./pages/CareerRole";
 import NewsDetails from "./pages/NewsDetails";
 
+import { action as newsletterAction } from "./features/newsletter/newsletterAction";
+import { Toaster } from "react-hot-toast";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
     children: [
-      { index: true, element: <Overview /> },
+      { index: true, element: <Overview />, action: newsletterAction },
       { path: "concept", element: <Concept /> },
       { path: "design-implementation", element: <DesignImplementation /> },
       {
@@ -65,10 +68,32 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <RouterProvider
-      router={router}
-      fallbackElement={<Spinner></Spinner>} // optional, for loading fallback
-    />
+    <>
+      <RouterProvider
+        router={router}
+        fallbackElement={<Spinner></Spinner>} // optional, for loading fallback
+      />
+      <Toaster
+        position="top-center"
+        gutter={12}
+        containerStyle={{ margin: "8px" }}
+        toastOptions={{
+          success: {
+            duration: 3000,
+          },
+          error: {
+            duration: 5000,
+          },
+          style: {
+            fontSize: "16px",
+            maxWidth: "500px",
+            padding: "16px 24px",
+            backgroundColor: "white",
+            color: "#22222",
+          },
+        }}
+      />{" "}
+    </>
   );
 }
 

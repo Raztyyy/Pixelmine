@@ -1,3 +1,4 @@
+import AnimatedSection from "../animations/AnimatedSection";
 import SEOHelmet from "../ui/SEOHelmet";
 
 function TermsAndConditions() {

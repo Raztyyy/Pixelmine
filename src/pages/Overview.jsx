@@ -1,9 +1,11 @@
 import Hero from "../ui/hero/Hero";
 import NewsUpdates from "../ui/news/NewsUpdates";
-import Newsletter from "../ui/newsletter/Newsletter";
+import Newsletter from "../features/newsletter/Newsletter";
 import Product from "../ui/product/Product";
 import SEOHelmet from "../ui/SEOHelmet";
 import StorerEngine from "../ui/storer/StorerEngine";
+
+import AnimatedSection from "../animations/AnimatedSection";
 
 function Overview() {
   return (
@@ -15,11 +17,27 @@ function Overview() {
         image="/social-sharing.jpg"
       />
 
-      <Hero />
+      <AnimatedSection>
+        <Hero />
+      </AnimatedSection>
+      <AnimatedSection>
+        <StorerEngine />
+      </AnimatedSection>
+      <AnimatedSection>
+        <Product />
+      </AnimatedSection>
+      <AnimatedSection>
+        <NewsUpdates />
+      </AnimatedSection>
+      <AnimatedSection>
+        <Newsletter />
+      </AnimatedSection>
+
+      {/* <Hero />
       <StorerEngine />
       <Product />
       <NewsUpdates />
-      <Newsletter />
+      <Newsletter /> */}
     </>
   );
 }

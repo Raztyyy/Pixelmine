@@ -8,6 +8,7 @@ import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
 
 import { items } from "../data/concept/conceptData";
 import SEOHelmet from "../ui/SEOHelmet";
+import AnimatedSection from "../animations/AnimatedSection";
 
 function Concept() {
   const [playingId, setPlayingId] = useState(null);
@@ -51,7 +52,10 @@ function Concept() {
         image="/concept-social-sharing.jpg"
       />
 
-      <section className="pt-16 pb-16 sm:pt-28 sm:pb-28 bg-green-50/50">
+      <AnimatedSection
+        element="section"
+        className="pt-16 pb-16 sm:pt-28 sm:pb-28 bg-green-50/50"
+      >
         <div className="flex flex-col items-start gap-10 p-6 mx-auto md:flex-row sm:items-start lg:items-center max-w-7xl md:items-center">
           {/* Left Column */}
           <div className="flex-1">
@@ -115,9 +119,12 @@ function Concept() {
             ))}
           </div>
         </div>
-      </section>
+      </AnimatedSection>
 
-      <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]">
+      <AnimatedSection
+        element="section"
+        className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]"
+      >
         <div className="items-center gap-10 p-6 mx-auto max-w-7xl sm:flex-row ">
           <FontAwesomeIcon
             icon={faLightbulbOn}
@@ -139,7 +146,7 @@ function Concept() {
             the social networking landscape.
           </p>
         </div>
-      </section>
+      </AnimatedSection>
     </>
   );
 }

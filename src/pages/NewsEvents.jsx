@@ -57,14 +57,14 @@ function NewsEvents() {
               {filteredNews.length > 0 ? (
                 filteredNews.map((news) => (
                   <Link key={news.slug} to={`/news-events/${news.slug}`}>
-                    <div>
+                    <div className="group">
                       <img
                         src={news.img}
                         alt={`${news.title} Image`}
                         className="object-cover object-center w-full rounded-lg h-72 md:h-96"
                       />
                       <div className="flex flex-col items-start">
-                        <h2 className="mt-3 text-xl font-semibold">
+                        <h2 className="mt-3 text-xl font-semibold transition-all duration-300 ease-in-out group-hover:text-primary">
                           {news.title}
                         </h2>
 
@@ -86,7 +86,7 @@ function NewsEvents() {
               )}
             </div>
           </div>
-          <div className="flex-1 md:mt-16">
+          <div className="flex-1 lg:mt-16">
             {/* Search */}
             <div>
               <h2 className="mb-4 text-xl leading-tight ">Search</h2>
@@ -195,14 +195,16 @@ function NewsEvents() {
               <div className="flex flex-col gap-4">
                 {recentPosts.map((news) => {
                   const postContent = (
-                    <div className="flex flex-row gap-2" key={news.id}>
+                    <div className="flex flex-row gap-2 group" key={news.id}>
                       <img
                         src={news.img}
                         alt={`${news.title} Image`}
                         className="object-cover w-32 h-24 rounded-md"
                       />
                       <div>
-                        <p className="text-xs font-semibold ">{news.title}</p>
+                        <p className="text-xs font-semibold transition-all duration-300 ease-in-out group-hover:text-primary">
+                          {news.title}
+                        </p>
                         <p className="mt-2 text-xs text-gray-600">
                           {truncateWords(news.preview, 90)}
                         </p>
