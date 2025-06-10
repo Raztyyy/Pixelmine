@@ -102,21 +102,21 @@ function Concept() {
           {/* Right Column */}
           <div className="flex-1">
             {/* All videos mounted, only one visible */}
-            {videos.map((video) => (
-              <div
-                key={video.id}
-                className={`  shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] lg:w-fit w-full h-auto object-cover ${
-                  video.id === activeVideoId ? "block" : "hidden"
-                }`}
-              >
-                <CustomVideoPlayer
-                  id={video.id}
-                  src={video.src}
-                  isPlaying={playingId === video.id}
-                  onPlay={() => handlePlay(video.id)}
-                />
-              </div>
-            ))}
+            {videos.map((video) =>
+              video.id === activeVideoId ? (
+                <div
+                  key={video.id}
+                  className="shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] w-full lg:w-fit h-auto"
+                >
+                  <CustomVideoPlayer
+                    id={video.id}
+                    src={video.src}
+                    isPlaying={playingId === video.id}
+                    onPlay={() => handlePlay(video.id)}
+                  />
+                </div>
+              ) : null
+            )}
           </div>
         </div>
       </AnimatedSection>

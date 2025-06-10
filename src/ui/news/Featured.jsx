@@ -43,7 +43,7 @@ function Featured() {
         <div className="flex items-center gap-3">
           <p className="text-gray-600 text-sm/6">{featuredNews.date}</p>
           <Link
-            to={`/news-events/${featuredNews.category}`}
+            to={`/news-events/`}
             className="relative z-10 px-3 py-1 text-gray-600 transition-all duration-300 ease-in-out rounded-full bg-gray-50 hover:bg-gray-100 text-sm/6"
           >
             {featuredNews.category}

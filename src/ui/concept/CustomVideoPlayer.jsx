@@ -28,9 +28,12 @@ export default function CustomVideoPlayer({ src, isPlaying, onPlay, id }) {
         ref={videoRef}
         src={src}
         className="w-full rounded "
-        preload="metadata"
-        controls={showControls} // ✅ only show when state says so
+        preload="auto"
+        muted
+        playsInline
+        controls={showControls}
       />
+
       {!isPlaying && (
         <button
           onClick={handlePlayClick}

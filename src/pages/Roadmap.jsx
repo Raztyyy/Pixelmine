@@ -1,15 +1,14 @@
 import AnimatedSection from "../animations/AnimatedSection";
 import SEOHelmet from "../ui/SEOHelmet";
 
-import placeholderImg from "../assets/placeholder.png";
 import Timeline from "../ui/roadmap/Timeline";
 
 function Roadmap() {
   return (
     <>
       <SEOHelmet
-        title="Page Under Construction | Pixelmine Japan OPC"
-        description="This page is currently under construction. Please check back soon for updates from Pixelmine Japan OPC."
+        title="Roadmap | Pixelmine Japan OPC"
+        description="Explore the future of Pixelmine Japan OPC. Discover upcoming features, creator tools, and our vision for empowering digital innovation across Japan and beyond."
         url="https://www.pixelmine.org"
         image="/social-sharing.jpg"
       />

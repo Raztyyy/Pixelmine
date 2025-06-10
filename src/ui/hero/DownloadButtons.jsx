@@ -3,7 +3,7 @@ import appleBadge from "../../assets/apple-store-badge.svg";
 
 function DownloadButtons({ direction = "row" }) {
   return (
-    <div className={`flex flex-${direction} gap-4 mt-5`}>
+    <div className={`flex flex-${direction} gap-4 mt-1 md:mt-5`}>
       <a
         href="https://play.google.com/store/apps/details?id=org.pixelminejapan.pixelmine"
         target="_blank"

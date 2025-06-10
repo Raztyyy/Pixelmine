@@ -39,7 +39,7 @@ function NewsCard({ news, idx }) {
 
             {/* Category usually links internally, so we assume it's always internal */}
             <Link
-              to={`/news-events/${news.category}`}
+              to={`/news-events`}
               className="relative z-10 px-3 py-1 text-gray-600 transition-all duration-300 ease-in-out rounded-full bg-gray-50 hover:bg-gray-100 text-sm/6"
             >
               {news.category}

@@ -16,7 +16,7 @@ function PageNotFound() {
           Page not found!
         </h1>
         <p class="mt-6 text-pretty text-lg font-regular text-gray-500 sm:text-xl/8">
-          We're getting ready to launch this page!
+          Sorry, we couldn’t find the page you’re looking for.
         </p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
           <Link
