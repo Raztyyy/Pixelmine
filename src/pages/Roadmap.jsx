@@ -1,4 +1,8 @@
+import AnimatedSection from "../animations/AnimatedSection";
 import SEOHelmet from "../ui/SEOHelmet";
+
+import placeholderImg from "../assets/placeholder.png";
+import Timeline from "../ui/roadmap/Timeline";
 
 function Roadmap() {
   return (
@@ -10,24 +14,29 @@ function Roadmap() {
         image="/social-sharing.jpg"
       />
 
-      <section className="grid min-h-full px-6 py-24 bg-white place-items-center sm:py-32 lg:px-8">
-        <div className="text-center">
-          <img
-            src="../../logo.png"
-            alt="Pixelmine Logo"
-            className="h-5 mx-auto"
-          />
-          <p className="pt-10 text-2xl font-semibold text-primary ">
-            Coming Soon!
-          </p>
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight text-gray-900 text-balance sm:text-7xl">
-            This page is under construction
-          </h1>
-          <p className="mt-6 text-lg text-gray-500 text-pretty font-regular sm:text-xl/8">
-            We're getting ready to launch this page!
-          </p>
+      <AnimatedSection
+        element="section"
+        className="pt-16 pb-16 sm:pt-28 sm:pb-28 bg-green-50/50"
+      >
+        <div className="flex flex-col items-start gap-10 p-6 mx-auto lg:flex-row sm:items-start max-w-7xl">
+          {/* Left Column - Text */}
+          <div className="flex-1 text-left">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem]">
+              Roadmap
+            </h1>
+            <p className="pt-5 pb-5 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-gray-600">
+              Our strategic roadmap outlines the evolution of Pixelmine OPC
+              Japan, focusing on innovative technology, creator empowerment, and
+              global expansion.
+            </p>
+          </div>
+
+          {/* Right Column - Cards */}
+          <div className="flex-1 w-full">
+            <Timeline></Timeline>
+          </div>
         </div>
-      </section>
+      </AnimatedSection>
     </>
   );
 }

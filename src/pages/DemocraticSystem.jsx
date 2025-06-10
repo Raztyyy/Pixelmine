@@ -32,7 +32,11 @@ function DemocraticSystem() {
           </div>
           {/* Right Column */}
           <div className="flex-1">
-            <img src={placeholderImg} alt="Placeholder Image" />
+            <img
+              src={placeholderImg}
+              alt="Placeholder Image"
+              className="object-cover w-full h-auto"
+            />
           </div>
         </div>
       </AnimatedSection>

@@ -105,7 +105,7 @@ function Concept() {
             {videos.map((video) => (
               <div
                 key={video.id}
-                className={`w-fit h-full shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]  ${
+                className={`  shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] lg:w-fit w-full h-auto object-cover ${
                   video.id === activeVideoId ? "block" : "hidden"
                 }`}
               >

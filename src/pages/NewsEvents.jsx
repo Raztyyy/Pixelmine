@@ -61,7 +61,7 @@ function NewsEvents() {
                       <img
                         src={news.img}
                         alt={`${news.title} Image`}
-                        className="object-cover object-center w-full rounded-lg h-72 md:h-96"
+                        className="object-cover object-center w-full transition-all duration-300 ease-in-out rounded-lg h-72 md:h-96 group-hover:brightness-75"
                       />
                       <div className="flex flex-col items-start">
                         <h2 className="mt-3 text-xl font-semibold transition-all duration-300 ease-in-out group-hover:text-primary">
@@ -199,7 +199,7 @@ function NewsEvents() {
                       <img
                         src={news.img}
                         alt={`${news.title} Image`}
-                        className="object-cover w-32 h-24 rounded-md"
+                        className="object-cover w-32 h-24 transition-all duration-300 ease-in-out rounded-md group-hover:brightness-75"
                       />
                       <div>
                         <p className="text-xs font-semibold transition-all duration-300 ease-in-out group-hover:text-primary">
