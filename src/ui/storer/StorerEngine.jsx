@@ -10,34 +10,34 @@ import LoginModal from "./LoginModal";
 
 function StorerEngine() {
   return (
-    <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]">
-      <div className="flex gap-10 items-center mx-auto  max-w-7xl p-6 flex-col sm:flex-row ">
+    <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem] dark:bg-stone-800">
+      <div className="flex flex-col items-center gap-10 p-6 mx-auto max-w-7xl sm:flex-row ">
         <div className="flex-1">
           <img src={StorerImg} alt="Storer Image" className="h-md" />
         </div>
         <div className="flex-1 ">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold leading-snug max-w-auto sm:max-w-[20rem]">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold leading-snug max-w-auto sm:max-w-[20rem] dark:text-stone-50">
             Run and host user data in our Storer Engine{" "}
           </h2>
-          <p className="pt-5 pb-8 text-sm/6 text-gray-600">
+          <p className="pt-5 pb-8 text-gray-600 text-sm/6 dark:text-stone-50">
             Storer engine is a command line interface configuration-less
             application that serves as the host of public data from the
             Pixelmine mobile application
           </p>
           {/* Buttons */}
-          <div className="flex gap-3">
+          <div className="flex gap-3 ">
             <LoginModal variant="outline">
               <FontAwesomeIcon
                 icon={faArrowRightToBracket}
-                className="size-4 text-gray-900 xs transition-all duration-300 ease-in-out"
+                className="text-gray-900 transition-all duration-300 ease-in-out size-4 dark:text-stone-50 "
               />
-              Login
+              <span className="dark:text-stone-50">Login</span>
             </LoginModal>
 
             <Button variant="primary" size="md" path="sign-up">
               <FontAwesomeIcon
                 icon={faUserCheck}
-                className="size-4 text-white  transition-all duration-300 ease-in-out"
+                className="text-white transition-all duration-300 ease-in-out size-4"
               />
               Create Account
             </Button>

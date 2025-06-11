@@ -7,18 +7,9 @@ import { faPlay } from "@fortawesome/pro-solid-svg-icons";
 
 function Hero() {
   return (
-    <section className="pt-[6rem] pb-[6rem] sm:pt-[11rem] sm:pb-[11rem] bg-green-50/50">
+    <section className="pt-[6rem] pb-[6rem] sm:pt-[11rem] sm:pb-[11rem] bg-green-50/50 dark:bg-stone-800">
       <div className="flex flex-col items-center gap-10 p-6 mx-auto max-w-7xl sm:flex-row ">
         <div className="flex-1">
-          {/* Stacked Avatars */}
-          {/* <div className="flex items-center gap-3 pb-5">
-            <StackedAvatars />
-            <div className="stats">
-              <p className="p-0 m-0 text-lg font-bold">300+</p>
-              <p className="p-0 m-0 text-sm text-gray-600">Downloads</p>
-            </div>
-          </div> */}
-          {/* <hr className="w-10 mb-4 border-b-4 border-primary" /> */}
           <Link
             className="inline-flex items-center gap-3 pr-3 mb-5 rounded bg-white/70 group"
             to="/concept"
@@ -33,10 +24,10 @@ function Hero() {
             </p>
           </Link>
 
-          <h1 className="text-4xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-auto sm:max-w-[30rem]">
+          <h1 className="text-4xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-auto sm:max-w-[30rem] dark:text-stone-50">
             Free to use for everyone always
           </h1>
-          <p className="pt-5 pb-5 max-w-[30rem] text-sm/6 text-gray-600">
+          <p className="pt-5 pb-5 max-w-[30rem] text-sm/6 text-gray-600 dark:text-stone-50">
             Pixelmine is a social networking system that enhances user
             empowerment by decentralizing control and governance across multiple
             nodes or servers.

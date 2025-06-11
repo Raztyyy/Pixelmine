@@ -17,12 +17,12 @@ function Newsletter() {
   }, [actionData]);
 
   return (
-    <section className="pt-8 pb-8 bg-gray-200 sm:pt-10 sm:pb-10">
+    <section className="pt-8 pb-8 bg-gray-200 sm:pt-10 sm:pb-10 dark:bg-stone-950">
       <div className="flex flex-col items-center px-6 py-20 mx-auto max-w-auto lg:max-w-7xl lg:px-8">
-        <h2 className="text-xl font-semibold leading-snug text-center sm:text-2xl lg:text-3xl">
+        <h2 className="text-xl font-semibold leading-snug text-center sm:text-2xl lg:text-3xl dark:text-stone-50">
           Stay up to date with our newsletter.
         </h2>
-        <p className="pt-4 text-sm text-center text-gray-600 sm:text-base">
+        <p className="pt-4 text-sm text-center text-gray-600 sm:text-base dark:text-stone-50">
           Get the latest updates, news, and trends in Pixelmine research and
           development.
         </p>

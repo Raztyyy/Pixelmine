@@ -8,12 +8,12 @@ function NewsUpdates() {
   const otherNews = newsData.filter((news) => news.isFeatured !== true);
 
   return (
-    <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]">
+    <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem] dark:bg-stone-800">
       <div className="px-6 mx-auto max-w-auto lg:max-w-7xl lg:px-8">
-        <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold leading-snug max-w-auto sm:max-w-[20rem]">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold leading-snug max-w-auto sm:max-w-[20rem] dark:text-stone-50">
           News and Events
         </h2>
-        <p className="pt-5 pb-8 text-gray-600 text-sm/6">
+        <p className="pt-5 pb-8 text-gray-600 text-sm/6 dark:text-stone-50">
           Updates, news and trends in Pixelmine research and developements.
         </p>
         <div className="flex flex-col gap-7 lg:flex-row">

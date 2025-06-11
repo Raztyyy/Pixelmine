@@ -16,7 +16,11 @@ function LoginModal({ children }) {
   return (
     <>
       {/* Toggle Button */}
-      <Button variant="outline" onClick={() => setIsOpen(true)}>
+      <Button
+        variant="outline"
+        onClick={() => setIsOpen(true)}
+        className="dark:hover:bg-primary"
+      >
         {children}
       </Button>
 
@@ -30,16 +34,16 @@ function LoginModal({ children }) {
         >
           <div
             ref={modalRef}
-            className="relative w-full max-w-md p-6 bg-white rounded-lg shadow "
+            className="relative w-full max-w-md p-6 bg-white rounded-lg shadow dark:bg-stone-800"
           >
             {/* Header */}
             <div className="flex items-center justify-between pb-2 mb-4 border-b">
-              <h3 className="text-xl font-semibold text-gray-900 ">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-stone-50">
                 Sign in to our platform
               </h3>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-gray-400 hover:text-gray-900"
+                className="text-gray-400 hover:text-gray-900 dark:text-stone-50"
               >
                 ✕
               </button>
@@ -50,7 +54,7 @@ function LoginModal({ children }) {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 "
+                  className="block text-sm font-medium text-gray-700 dark:text-stone-50"
                 >
                   Your email
                 </label>
@@ -66,7 +70,7 @@ function LoginModal({ children }) {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-gray-700 "
+                  className="block text-sm font-medium text-gray-700 dark:text-stone-50"
                 >
                   Your password
                 </label>
@@ -82,11 +86,11 @@ function LoginModal({ children }) {
               <div className="flex items-center justify-between text-sm">
                 <label className="flex items-center gap-2">
                   <input type="checkbox" required />
-                  <span>Remember me</span>
+                  <span className="dark:text-stone-50">Remember me</span>
                 </label>
                 <a
                   href="#"
-                  className="transition-all duration-300 ease-in-out text-primary hover:underline"
+                  className="transition-all duration-300 ease-in-out text-primary dark:text-green-400 hover:underline"
                 >
                   Lost password?
                 </a>
@@ -99,9 +103,12 @@ function LoginModal({ children }) {
                 Login to your account
               </button>
 
-              <div className="text-sm text-gray-500 ">
+              <div className="text-sm text-gray-500 dark:text-stone-50">
                 Not registered?{" "}
-                <Link to="sign-up" className="text-primary hover:underline ">
+                <Link
+                  to="sign-up"
+                  className="text-primary hover:underline dark:text-green-400"
+                >
                   Create account
                 </Link>
               </div>

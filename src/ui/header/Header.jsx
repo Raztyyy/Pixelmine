@@ -48,7 +48,7 @@ export default function Header() {
   // }, []);
 
   return (
-    <header className="sticky top-0 z-50 py-6 transition-all duration-300 bg-white shadow ">
+    <header className="sticky top-0 z-50 py-6 transition-all duration-300 bg-white shadow dark:bg-stone-900 dark:shadow-none">
       <nav
         aria-label="Global"
         className="flex items-center justify-between px-6 mx-auto max-w-7xl"
@@ -64,7 +64,7 @@ export default function Header() {
             <span className="sr-only">Open main menu</span>
             <FontAwesomeIcon
               icon={faBars}
-              className="text-gray-600 size-6 group-hover:text-indigo-600"
+              className="text-gray-600 size-6 group-hover:text-primary dark:text-stone-300"
             />
           </button>
         </div>

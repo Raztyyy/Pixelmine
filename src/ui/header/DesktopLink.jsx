@@ -11,8 +11,10 @@ function DesktopLink({ links }) {
             to={link.path}
             key={link.name}
             className={({ isActive }) =>
-              `text-sm/6 font-semibold text-gray-900 hover:text-primary transition-all duration-300 ease-in-out ${
-                isActive ? "text-primary" : ""
+              `text-sm/6 font-semibold  hover:text-primary transition-all duration-300 ease-in-out  dark:hover:text-green-400 ${
+                isActive
+                  ? "text-primary dark:text-green-400"
+                  : "text-gray-900 dark:text-stone-50"
               }`
             }
           >

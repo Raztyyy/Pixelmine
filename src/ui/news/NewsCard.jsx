@@ -35,7 +35,9 @@ function NewsCard({ news, idx }) {
 
         <div className="flex flex-col">
           <div className="flex flex-wrap items-center gap-3">
-            <p className="text-gray-600 text-sm/6">{news.date}</p>
+            <p className="text-gray-600 text-sm/6 dark:text-stone-50">
+              {news.date}
+            </p>
 
             {/* Category usually links internally, so we assume it's always internal */}
             <Link
@@ -47,10 +49,10 @@ function NewsCard({ news, idx }) {
           </div>
 
           <Wrapper>
-            <h2 className="py-2 font-medium transition-all duration-300 ease-in-out group-hover:text-primary">
+            <h2 className="py-2 font-medium transition-all duration-300 ease-in-out group-hover:text-primary dark:group-hover:text-green-400 dark:text-stone-50">
               {news.title}
             </h2>
-            <p className="text-gray-500 text-sm/6">
+            <p className="text-gray-500 text-sm/6 dark:text-stone-50">
               {truncateWords(news.preview, 150)}
             </p>
           </Wrapper>

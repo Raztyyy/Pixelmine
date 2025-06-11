@@ -35,22 +35,24 @@ function Featured() {
       </div>
       <div className="flex flex-col gap-2 py-3 text-sl">
         <Wrapper>
-          <h2 className="font-medium transition-all duration-300 ease-in-out group-hover:text-primary">
+          <h2 className="font-medium transition-all duration-300 ease-in-out group-hover:text-primary dark:group-hover:text-green-400 dark:text-stone-50">
             {featuredNews.title}
           </h2>
         </Wrapper>
 
         <div className="flex items-center gap-3">
-          <p className="text-gray-600 text-sm/6">{featuredNews.date}</p>
+          <p className="text-gray-600 text-sm/6 dark:text-stone-50">
+            {featuredNews.date}
+          </p>
           <Link
             to={`/news-events/`}
-            className="relative z-10 px-3 py-1 text-gray-600 transition-all duration-300 ease-in-out rounded-full bg-gray-50 hover:bg-gray-100 text-sm/6"
+            className="relative z-10 px-3 py-1 text-gray-600 transition-all duration-300 ease-in-out rounded-full bg-gray-50 hover:bg-gray-100 text-sm/6 "
           >
             {featuredNews.category}
           </Link>
         </div>
 
-        <p className="mt-2 mb-2 text-gray-500 max-w-auto text-sm/6">
+        <p className="mt-2 mb-2 text-gray-500 max-w-auto text-sm/6 dark:text-stone-50">
           {featuredNews.preview}
         </p>
       </div>

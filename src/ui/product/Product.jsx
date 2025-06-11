@@ -6,18 +6,18 @@ import roadmapPlaceholder from "../../assets/roadmap-placeholder.png";
 
 export default function Example() {
   return (
-    <section className="py-24 bg-gray-50 sm:py-32">
+    <section className="py-24 bg-gray-50 sm:py-32 dark:bg-stone-800">
       <div className="px-6 mx-auto max-w-7xl lg:px-8">
         <div className="grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
           {/* Concept */}
           <div className="relative lg:row-span-2">
-            <div className="absolute bg-white rounded-lg inset-1 lg:rounded-l-3xl"></div>
-            <div className="relative flex h-full flex-col overflow-hidden rounded-lg lg:rounded-l-[2rem] shadow ring-1 ring-black/5">
+            <div className="absolute bg-white rounded-lg inset-1 lg:rounded-l-3xl dark:bg-stone-500/20"></div>
+            <div className="relative flex h-full flex-col overflow-hidden rounded-lg lg:rounded-l-[2rem] shadow ring-1 ring-black/5 dark:ring-stone-600">
               <div className="px-8 pt-8 pb-3 sm:px-10 sm:pb-0 sm:pt-10">
-                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center dark:text-stone-50">
                   Concept
                 </p>
-                <p className="mt-2 mb-2 text-sm text-gray-600 max-lg:text-center">
+                <p className="mt-2 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50">
                   Pixelmine's approach promotes a more democratic online
                   environment, allowing users more significant influence over
                   their interactions and community standards. By distributing
@@ -26,14 +26,14 @@ export default function Example() {
                 <div className="max-lg:text-center">
                   <Link
                     to="concept"
-                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold"
+                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold dark:text-green-400"
                   >
                     Read More <span aria-hidden="true">&rarr;</span>
                   </Link>
                 </div>
               </div>
               <div className="relative w-full flex-1 min-h-[20rem] sm:min-h-[30rem]">
-                <div className="absolute overflow-hidden bg-gray-900 inset-4 sm:inset-8 rounded-t-2xl">
+                <div className="absolute overflow-hidden inset-4 sm:inset-8 rounded-t-2xl">
                   <img
                     className="object-cover object-top w-full h-full"
                     src={conceptImg}
@@ -46,13 +46,13 @@ export default function Example() {
 
           {/* Design & Implementation */}
           <div className="relative max-lg:row-start-1">
-            <div className="absolute bg-white rounded-lg inset-1 max-lg:rounded-t-3xl"></div>
-            <div className="relative flex h-full flex-col overflow-hidden rounded-lg max-lg:rounded-t-[2rem] shadow ring-1 ring-black/5">
+            <div className="absolute bg-white rounded-lg inset-1 max-lg:rounded-t-3xl dark:bg-stone-500/20"></div>
+            <div className="relative flex h-full flex-col overflow-hidden rounded-lg max-lg:rounded-t-[2rem] shadow ring-1 ring-black/5 dark:ring-stone-600">
               <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center dark:text-stone-50">
                   Design & Implementation
                 </p>
-                <p className="mt-2 mb-2 text-sm text-gray-600 max-lg:text-center">
+                <p className="mt-2 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50">
                   Three key characters are integral to the network: the User,
                   the Storer, and the PXL Server. Users are simply individuals
                   who engage with the SNS mobile application...
@@ -60,7 +60,7 @@ export default function Example() {
                 <div className="max-lg:text-center">
                   <Link
                     to="design-implementation"
-                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold"
+                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold dark:text-green-400"
                   >
                     Read More <span aria-hidden="true">&rarr;</span>
                   </Link>
@@ -78,13 +78,13 @@ export default function Example() {
 
           {/* Network Incentives */}
           <div className="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
-            <div className="absolute bg-white rounded-lg inset-1"></div>
-            <div className="relative flex flex-col h-full overflow-hidden rounded-lg shadow ring-1 ring-black/5">
+            <div className="absolute bg-white rounded-lg inset-1 dark:bg-stone-500/20"></div>
+            <div className="relative flex flex-col h-full overflow-hidden rounded-lg shadow ring-1 ring-black/5 dark:ring-stone-600">
               <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center dark:text-stone-50">
                   Network Incentives
                 </p>
-                <p className="mt-2 mb-2 text-sm text-gray-600 max-lg:text-center">
+                <p className="mt-2 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50">
                   What distinguishes Pixelmine from other decentralized systems
                   is our unique approach to incentivizing the network by
                   awarding points to both users and storers...
@@ -92,7 +92,7 @@ export default function Example() {
                 <div className="max-lg:text-center">
                   <Link
                     to="network-incentives"
-                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold"
+                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold dark:text-green-400"
                   >
                     Read More <span aria-hidden="true">&rarr;</span>
                   </Link>
@@ -110,13 +110,13 @@ export default function Example() {
 
           {/* Democratic System */}
           <div className="relative max-lg:row-start-4 lg:col-start-3 lg:row-start-2">
-            <div className="absolute bg-white rounded-lg inset-1"></div>
-            <div className="relative flex flex-col h-full overflow-hidden rounded-lg shadow ring-1 ring-black/5">
-              <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+            <div className="absolute bg-white rounded-lg inset-1 dark:bg-stone-500/20 dark:text-stone-50"></div>
+            <div className="relative flex flex-col h-full overflow-hidden rounded-lg shadow ring-1 ring-black/5 dark:ring-stone-600">
+              <div className="px-8 py-8 sm:px-10 sm:pt-10">
+                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center dark:text-stone-50">
                   Democratic System
                 </p>
-                <p className="mt-2 mb-2 text-sm text-gray-600 max-lg:text-center">
+                <p className="mt-2 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50">
                   Pixelmines's decentralization plays a crucial role in
                   strengthening democracy by reducing the concentration of power
                   over information. In traditional centralized systems, a few
@@ -126,7 +126,7 @@ export default function Example() {
                 <div className="max-lg:text-center">
                   <Link
                     to="democratic-system"
-                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold"
+                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold dark:text-green-400"
                   >
                     Read More <span aria-hidden="true">&rarr;</span>
                   </Link>
@@ -144,13 +144,13 @@ export default function Example() {
 
           {/* Roadmap */}
           <div className="relative max-lg:row-start-2 lg:col-start-3 lg:row-start-1">
-            <div className="absolute bg-white rounded-lg inset-1"></div>
-            <div className="relative flex flex-col h-full overflow-hidden rounded-lg shadow ring-1 ring-black/5">
+            <div className="absolute bg-white rounded-lg inset-1 dark:bg-stone-500/20"></div>
+            <div className="relative flex flex-col h-full overflow-hidden rounded-lg shadow ring-1 ring-black/5 dark:ring-stone-600">
               <div className="px-8 pt-8 sm:px-10 sm:pt-10">
-                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center">
+                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center dark:text-stone-50">
                   Roadmap
                 </p>
-                <p className="mt-2 mb-2 text-sm text-gray-600 max-lg:text-center">
+                <p className="mt-2 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50">
                   Our strategic roadmap outlines the evolution of Pixelmine OPC
                   Japan, focusing on innovative technology, creator empowerment,
                   and global expansion.
@@ -158,7 +158,7 @@ export default function Example() {
                 <div className="max-lg:text-center">
                   <Link
                     to="roadmap"
-                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold"
+                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold dark:text-green-400"
                   >
                     Read More <span aria-hidden="true">&rarr;</span>
                   </Link>
