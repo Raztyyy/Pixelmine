@@ -26,15 +26,15 @@ function Careers() {
 
       <AnimatedSection
         element="section"
-        className="pt-[5rem] pb-[5rem] sm:pt-[2rem] sm:pb-[2rem] bg-green-50/50"
+        className="pt-[5rem] pb-[5rem] sm:pt-[2rem] sm:pb-[2rem] bg-green-50/50 dark:bg-stone-900"
       >
         <div className="flex flex-col items-center gap-10 p-6 mx-auto ">
-          <div className="flex flex-col items-center justify-center flex-1 ">
+          <div className="flex flex-col items-center justify-center flex-1 dark:text-stone-50">
             <StackedAvatars></StackedAvatars>
             <h1 className="text-4xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-auto sm:max-w-[40rem] text-center pt-5">
               Be a Part of Our Team and Help Shape the Future
             </h1>
-            <p className="pt-5 pb-7 max-w-[40rem] text-sm/6 text-gray-600 text-center">
+            <p className="pt-5 pb-7 max-w-[40rem] text-sm/6 text-gray-600 text-center dark:text-stone-50">
               At Pixelmine OPC, we’re not just shaping technology—we’re crafting
               experiences that drive progress. Whether you're an innovator,
               designer, or problem-solver, you'll find a place here to grow,
@@ -59,20 +59,20 @@ function Careers() {
       >
         <div className="flex flex-col gap-10 p-6 mx-auto max-w-7xl lg:flex-row ">
           <div className="flex-[0.5]">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold leading-snug max-w-auto sm:max-w-[20rem]">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold leading-snug max-w-auto sm:max-w-[20rem] dark:text-stone-50">
               Current Opportunities
             </h2>
-            <p className="pt-3 text-gray-600 md:pt-5 text-sm/6 ">
+            <p className="pt-3 text-gray-600 md:pt-5 text-sm/6 dark:text-stone-50">
               Explore open roles and join our growing team.
             </p>
           </div>
           <div className="flex-1">
-            <div className="flex flex-col">
+            <div className="flex flex-col ">
               {/* Job Posting */}
               {jobData.map((job) => {
                 return (
                   <Link to={`/careers/${job.slug}`} key={job.id}>
-                    <div className="p-5 mb-4 border border-b-2 rounded">
+                    <div className="p-5 mb-4 border border-b-2 rounded dark:bg-stone-50">
                       <div className="flex flex-col items-start justify-between lg:items-center lg:flex-row">
                         <div className="flex flex-col items-start lg:items-center lg:flex-row">
                           <p className="font-semibold">{job.title}</p>

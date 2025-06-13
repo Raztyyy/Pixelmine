@@ -49,7 +49,7 @@ function NewsEvents() {
       <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]">
         <div className="flex flex-col-reverse gap-10 p-6 mx-auto max-w-7xl lg:flex-row ">
           <div className="flex-[2]">
-            <h1 className="mb-5 text-3xl font-bold leading-tight lg:text-4xl">
+            <h1 className="mb-5 text-3xl font-bold leading-tight lg:text-4xl dark:text-stone-50">
               Pixelmine News & Events
             </h1>
             {/* News & Events */}
@@ -64,17 +64,17 @@ function NewsEvents() {
                         className="object-cover object-center w-full transition-all duration-300 ease-in-out rounded-lg h-72 md:h-96 group-hover:brightness-75"
                       />
                       <div className="flex flex-col items-start">
-                        <h2 className="mt-3 text-xl font-semibold transition-all duration-300 ease-in-out group-hover:text-primary">
+                        <h2 className="mt-3 text-xl font-semibold transition-all duration-300 ease-in-out group-hover:text-primary dark:text-stone-50 dark:group-hover:text-green-400">
                           {news.title}
                         </h2>
 
-                        <p className="mt-2 text-gray-600">
+                        <p className="mt-2 text-gray-600 dark:text-stone-50">
                           By {news.author} - {news.date}
                         </p>
                         <p className="my-3 text-sm font-normal rounded-lg  bg-green-100 text-green-800 px-2.5 py-0.5">
                           {news.category}
                         </p>
-                        <p className="text-gray-600 text-sm/6">
+                        <p className="text-gray-600 text-sm/6 dark:text-stone-50">
                           {truncateWords(news.preview, 250)}
                         </p>
                       </div>
@@ -82,14 +82,18 @@ function NewsEvents() {
                   </Link>
                 ))
               ) : (
-                <p className="text-gray-500 ">No results found.</p>
+                <p className="text-gray-500 dark:text-stone-50 ">
+                  No results found.
+                </p>
               )}
             </div>
           </div>
           <div className="flex-1 lg:mt-16">
             {/* Search */}
             <div>
-              <h2 className="mb-4 text-xl leading-tight ">Search</h2>
+              <h2 className="mb-4 text-xl leading-tight dark:text-stone-50">
+                Search
+              </h2>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -107,7 +111,7 @@ function NewsEvents() {
                   required
                   placeholder="Search for any news & events"
                   autoComplete="search"
-                  className="min-w-0 flex-auto rounded-md bg-white/5 px-3.5 py-2 text-base text-gray-600 outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6 border border-b-2 rounded-r-none"
+                  className="min-w-0 flex-auto rounded-md bg-white/5 px-3.5 py-2 text-base text-gray-600 outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 dark:placeholder:text-stone-900 dark:bg-stone-50 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-primary dark:focus:outline-green-400 sm:text-sm/6 border border-b-2 rounded-r-none"
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                 />
@@ -147,7 +151,9 @@ function NewsEvents() {
 
             {/* Category Filter */}
             <div className="mt-8">
-              <h2 className="mb-4 text-xl leading-tight">Category</h2>
+              <h2 className="mb-4 text-xl leading-tight dark:text-stone-50">
+                Category
+              </h2>
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => (
                   <button
@@ -167,7 +173,9 @@ function NewsEvents() {
 
             {/* Follow Us */}
             <div className="hidden mt-8 lg:block">
-              <h2 className="mb-4 text-xl leading-tight">Follow Us</h2>
+              <h2 className="mb-4 text-xl leading-tight dark:text-stone-50">
+                Follow Us
+              </h2>
               <div className="flex gap-4">
                 {socialData.map((social) => {
                   return (
@@ -191,7 +199,9 @@ function NewsEvents() {
 
             {/* Recent Posts */}
             <div className="hidden mt-8 lg:block">
-              <h2 className="mb-4 text-xl leading-tight">Recent Posts</h2>
+              <h2 className="mb-4 text-xl leading-tight dark:text-stone-50">
+                Recent Posts
+              </h2>
               <div className="flex flex-col gap-4">
                 {recentPosts.map((news) => {
                   const postContent = (
@@ -202,10 +212,10 @@ function NewsEvents() {
                         className="object-cover w-32 h-24 transition-all duration-300 ease-in-out rounded-md group-hover:brightness-75"
                       />
                       <div>
-                        <p className="text-xs font-semibold transition-all duration-300 ease-in-out group-hover:text-primary">
+                        <p className="text-xs font-semibold transition-all duration-300 ease-in-out group-hover:text-primary dark:group-hover:text-green-400 dark:text-stone-50">
                           {news.title}
                         </p>
-                        <p className="mt-2 text-xs text-gray-600">
+                        <p className="mt-2 text-xs text-gray-600 dark:text-stone-50">
                           {truncateWords(news.preview, 90)}
                         </p>
                       </div>

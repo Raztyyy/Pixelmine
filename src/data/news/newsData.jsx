@@ -9,19 +9,19 @@ export const newsData = [
     category: "Event",
     content: (
       <>
-        <p className="mb-2 text-gray-600 text-sm/6">
+        <p className="mb-2 ">
           During our recent participation in the{" "}
           <strong>Global Web3 Expo</strong>, Pixelmine's decentralized content
           delivery network recorded a <strong>37% increase</strong> in
           conversion rates.
         </p>
-        <p className="mb-2 text-gray-600 text-sm/6">
+        <p className="mb-2 ">
           This milestone confirms the effectiveness of community-first
           architecture in real-world use. By decentralizing authority and
           reducing bottlenecks, we’ve created an ecosystem where users and
           creators engage with greater trust and speed.
         </p>
-        <p className="mb-2 text-gray-600 text-sm/6">
+        <p className="mb-2 ">
           We continue to iterate on this foundation to improve performance
           across multiple verticals.
         </p>
@@ -42,22 +42,22 @@ export const newsData = [
     category: "Announcement",
     content: (
       <>
-        <p className="mb-2 text-gray-600 text-sm/6">
+        <p className="mb-2 ">
           We’re thrilled to announce the launch of{" "}
           <strong>Pixelmine 2.0</strong> — a significant update that reimagines
           decentralized collaboration.
         </p>
-        <p className="mb-2 text-gray-600 text-sm/6">
+        <p className="mb-2 ">
           Featuring a sleek, modernized interface and lightning-fast
           peer-to-peer protocols, Pixelmine 2.0 brings powerful new tools for
           creators, communities, and developers.
         </p>
-        <ol className="mt-2 mb-2 ml-5 text-gray-600 list-disc list-inside text-sm/6">
+        <ol className="mt-2 mb-2 ml-5 list-disc list-inside text-sm/6">
           <li>Real-time collaborative publishing</li>
           <li>Improved wallet integrations</li>
           <li>Enhanced identity control</li>
         </ol>
-        <p className="mb-2 text-gray-600 text-sm/6">
+        <p className="mb-2 ">
           This launch marks a major step toward our goal of a more equitable and
           creator-led internet.
         </p>

@@ -32,18 +32,18 @@ function NewsDetails() {
         <div className="flex flex-col-reverse gap-10 p-6 mx-auto max-w-7xl lg:flex-row ">
           <div className="flex-[2]">
             <button
-              className="flex items-center justify-center text-lg text-gray-500 transition-all duration-300 ease-in-out group hover:text-primary"
+              className="flex items-center justify-center text-lg text-gray-500 transition-all duration-300 ease-in-out group hover:text-primary dark:text-stone-50 dark:hover:text-green-400"
               onClick={useMoveBack()}
             >
               <span className="flex items-center justify-center mr-1">
                 <FontAwesomeIcon
                   icon={faAngleLeft}
-                  className="text-gray-500 transition-all duration-300 ease-in-out size-5 group-hover:text-primary"
+                  className="text-gray-500 transition-all duration-300 ease-in-out size-5 group-hover:text-primary dark:text-stone-50 dark:group-hover:text-green-400"
                 />
               </span>
               Go Back
             </button>
-            <h1 className="mt-5 mb-5 text-3xl font-bold leading-tight lg:text-4xl">
+            <h1 className="mt-5 mb-5 text-3xl font-bold leading-tight lg:text-4xl dark:text-stone-50">
               Pixelmine News & Events
             </h1>
             {/* News & Events */}
@@ -54,26 +54,28 @@ function NewsDetails() {
                 className="object-cover object-center w-full rounded-lg h-72 md:h-96 "
               />
               <div className="flex flex-col items-start">
-                <h2 className="mt-3 text-xl font-semibold ">
+                <h2 className="mt-3 text-xl font-semibold dark:text-stone-50">
                   {selectedNews.title}
                 </h2>
 
-                <p className="mt-2 text-gray-600">
+                <p className="mt-2 text-gray-600 dark:text-stone-50">
                   By {selectedNews.author} - {selectedNews.date}
                 </p>
                 <p className="my-3 text-sm font-normal rounded-lg  bg-green-100 text-green-800 px-2.5 py-0.5">
                   {selectedNews.category}
                 </p>
-                <p className="text-gray-600 text-sm/6">
+                <div className="text-gray-600 text-sm/6 dark:text-stone-50">
                   {selectedNews.content}
-                </p>
+                </div>
               </div>
             </div>
           </div>
           <div className="flex-1 hidden lg:mt-16 lg:block">
             {/* Follow Us */}
             <div className="hidden mt-8 lg:block">
-              <h2 className="mb-4 text-xl leading-tight">Follow Us</h2>
+              <h2 className="mb-4 text-xl leading-tight dark:text-stone-50">
+                Follow Us
+              </h2>
               <div className="flex gap-4">
                 {socialData.map((social) => {
                   return (
@@ -97,7 +99,9 @@ function NewsDetails() {
 
             {/* Recent Posts */}
             <div className="hidden mt-8 lg:block">
-              <h2 className="mb-4 text-xl leading-tight">Recent Posts</h2>
+              <h2 className="mb-4 text-xl leading-tight dark:text-stone-50">
+                Recent Posts
+              </h2>
               <div className="flex flex-col gap-4">
                 {recentPosts.map((news) => {
                   if (selectedNews.id === news.id) return null;
@@ -110,10 +114,10 @@ function NewsDetails() {
                         className="object-cover w-32 h-24 transition-all duration-300 ease-in-out rounded-md group-hover:brightness-75"
                       />
                       <div>
-                        <p className="text-xs font-semibold transition-all duration-300 ease-in-out group-hover:text-primary">
+                        <p className="text-xs font-semibold transition-all duration-300 ease-in-out group-hover:text-primary dark:text-stone-50 dark:group-hover:text-green-400">
                           {news.title}
                         </p>
-                        <p className="mt-2 text-xs text-gray-600">
+                        <p className="mt-2 text-xs text-gray-600 dark:text-stone-50">
                           {truncateWords(news.preview, 90)}
                         </p>
                       </div>

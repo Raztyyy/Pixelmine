@@ -32,10 +32,10 @@ export default function Example() {
                   </Link>
                 </div>
               </div>
-              <div className="relative w-full flex-1 min-h-[20rem] sm:min-h-[30rem]">
-                <div className="absolute overflow-hidden inset-4 sm:inset-8 rounded-t-2xl">
+              <div className="flex-1 w-full px-5 pt-5 ">
+                <div className="overflow-hidden rounded-t-2xl ">
                   <img
-                    className="object-cover object-top w-full h-full"
+                    className="object-cover object-top w-full h-full lg:h-full md:h-[37rem] "
                     src={conceptImg}
                     alt="Concept Img"
                   />
@@ -98,9 +98,9 @@ export default function Example() {
                   </Link>
                 </div>
               </div>
-              <div className="flex items-center justify-center flex-1 max-lg:py-6 lg:pb-2">
+              <div className="flex items-center justify-center flex-1 max-lg:py-6 lg:pb-2 ">
                 <img
-                  className="object-cover w-full h-40"
+                  className="object-cover w-full h-30"
                   src={placeholderImg3}
                   alt="Network Incentives"
                 />

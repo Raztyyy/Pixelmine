@@ -163,12 +163,12 @@ function Footer() {
         </div>
         <ul className="flex flex-wrap divide-x">
           <li className="px-3 ">
-            <Link
-              to="#"
+            <a
+              href="/sitemap.xml"
               className="transition-all duration-300 ease-in-out hover:text-primary dark:hover:text-green-400"
             >
               Sitemap
-            </Link>
+            </a>
           </li>
           <li className="px-3">
             <Link
