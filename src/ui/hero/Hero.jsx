@@ -7,7 +7,7 @@ import { faPlay } from "@fortawesome/pro-solid-svg-icons";
 
 function Hero() {
   return (
-    <section className="pt-[6rem] pb-[6rem] sm:pt-[11rem] sm:pb-[11rem] bg-green-50/50 dark:bg-stone-800">
+    <section className="pt-[3rem] pb-[3rem] sm:pt-[11rem] sm:pb-[11rem] bg-green-50/50 dark:bg-stone-900">
       <div className="flex flex-col items-center gap-10 p-6 mx-auto max-w-7xl sm:flex-row ">
         <div className="flex-1">
           <Link

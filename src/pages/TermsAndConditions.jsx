@@ -13,12 +13,12 @@ function TermsAndConditions() {
 
       <section>
         {/* Hero Section */}
-        <div className="pt-[3rem] pb-[3rem] sm:pt-[4em] sm:pb-[4rem] bg-green-50">
+        <div className="pt-[3rem] pb-[3rem] sm:pt-[4em] sm:pb-[4rem] bg-green-50 dark:bg-stone-900">
           <div className="max-w-full px-6 mx-auto lg:max-w-7xl lg:px-8">
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem]">
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem] dark:text-stone-50">
               Terms & Conditions
             </h1>
-            <p className="pt-5 pb-5 max-w-[30rem] text-sm/6 text-gray-600">
+            <p className="pt-5 pb-5 max-w-[30rem] text-sm/6 text-gray-600 dark:text-stone-50">
               Pixelmine delineates the rights and responsibilities of all
               parties involved, establishing clear expectations and guidelines
               for utilization.
@@ -29,10 +29,10 @@ function TermsAndConditions() {
         {/* Terms Sections */}
         <div className="pt-[3rem] pb-[3rem] px-6 mx-auto max-w-full lg:max-w-7xl lg:px-8">
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               1. Your Relationship With Us
             </h2>
-            <p className="text-gray-600 text-sm/6">
+            <p className="text-gray-600 text-sm/6 dark:text-stone-50">
               These Terms of Service (or "Terms") apply to all actions of
               persons (“you” or “User(s)”, depending upon the context) using the
               social networking service "Pixelmine" provided by Pixelmine Japan
@@ -43,10 +43,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               2. About Our Services
             </h2>
-            <p className="text-gray-600 text-sm/6">
+            <p className="text-gray-600 text-sm/6 dark:text-stone-50">
               We provide a platform that enables Users to post and receive
               evaluations from other Users across our platform. Users must show
               respect toward other Users, their posts, and their votes when
@@ -56,9 +56,11 @@ function TermsAndConditions() {
             </p>
           </section>
 
-          <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">3. Our Agreement</h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+          <section className="mb-8 ">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
+              3. Our Agreement
+            </h2>
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 These Terms set forth the conditions for the use of this
                 Service. In order to use the Services, you need to agree to
@@ -72,10 +74,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               4. Accepting the Terms
             </h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 In this service, we may set forth the terms of use besides these
                 Terms as the case may be. Notwithstanding any name, these terms
@@ -90,10 +92,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               5. Changes to the Terms
             </h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 We amend these Terms at any time and for any reason, based on
                 our discretion and judgment.
@@ -108,10 +110,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               6. Who can use Pixelmine
             </h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 We amend these Terms at any time and for any reason, based on
                 our discretion and judgment.
@@ -126,10 +128,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               7. Your Account with Us (Request for account creation)
             </h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 If you wish to hold an account, you need to agree to these Terms
                 and apply so according to the method designated by us.
@@ -147,7 +149,7 @@ function TermsAndConditions() {
               <li>
                 If we determine that any of the following items apply, we do not
                 approve of granting an account.
-                <ol className="mt-2 ml-5 text-gray-600 list-disc list-inside text-sm/6">
+                <ol className="mt-2 ml-5 text-gray-600 list-disc list-inside text-sm/6 dark:text-stone-50">
                   <li>
                     If the applicant submits an application by a method other
                     than that specified in paragraph 1.
@@ -164,10 +166,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               8. Request for account deletion
             </h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 If you wish to delete an account, you need to submit a request
                 for account deletion to us according to the method designated by
@@ -186,10 +188,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               9. Control of email address and password registration
             </h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 An account holder is required to register an email address that
                 endures reliable communication.
@@ -227,10 +229,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               10. Usage Environment
             </h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 Users are responsible for preparing the necessary devices,
                 software, communication methods, and other environments required
@@ -247,10 +249,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               11. User's Responsibility
             </h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 Users are responsible for using our service at their own risk
                 and are fully accountable for all actions taken and their
@@ -272,10 +274,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               12. Contribution to Our Service
             </h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 In the event that a User engages in actions such as posting and
                 voting that contribute to the Service, the User can receive
@@ -293,10 +295,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               13. Posted Content Storage
             </h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 We do not assure that the content posted on our service will be
                 preserved. Posts may be demoted or hidden based on votes from
@@ -314,17 +316,17 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               14. Prohibited Actions
             </h2>
-            <p className="mb-4 text-gray-600 text-sm/6">
+            <p className="mb-4 text-gray-600 text-sm/6 dark:text-stone-50">
               Users are prohibited from performing the following actions while
               using this service. In the event that we determine a violation of
               prohibited activities, or a potential violation, we may implement
               measures such as account cancellation, restrictions on service
               use, or other unfavorable actions.
             </p>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 Actions that infringe upon the rights or legal interests of our
                 company or others, or actions that may pose a risk of such
@@ -402,18 +404,20 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               15. Changes to the Services
             </h2>
-            <p className="text-gray-600 text-sm/6">
+            <p className="text-gray-600 text-sm/6 dark:text-stone-50">
               We reserve the right to add, change, suspend, or terminate the
               services at any time for any reason.
             </p>
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">16. Service fees</h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
+              16. Service fees
+            </h2>
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>The use of the Service shall be provided free of charge.</li>
               <li>
                 We may set forth paid services, paid options, and other related
@@ -424,10 +428,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               17. Rights related to content
             </h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 Except as otherwise provided by us, nothing is changing about
                 your rights in your content. We do not claim ownership of your
@@ -448,13 +452,13 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               18. Exclusion of organized crime groups
             </h2>
-            <p className="text-gray-600 text-sm/6">
+            <p className="text-gray-600 text-sm/6 dark:text-stone-50">
               The user shall warrant the following to our company.
             </p>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 The user warrants that they are not and have not been within the
                 last five years a member of an organized crime group, a member
@@ -485,8 +489,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">19. Disclaimer</h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
+              19. Disclaimer
+            </h2>
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 We do not engage in users' communications or activities. In the
                 event of a dispute between users or between a user and a third
@@ -535,10 +541,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               20. Validity of these Terms and other terms and conditions of use
             </h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 Even if any provision of these Terms and other terms and
                 conditions of use is deemed invalid based on laws and
@@ -555,10 +561,10 @@ function TermsAndConditions() {
           </section>
 
           <section className="mb-8">
-            <h2 className="mb-4 text-lg font-semibold">
+            <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               21. Governing law and jurisdiction
             </h2>
-            <ol className="text-gray-600 list-decimal list-inside text-sm/6">
+            <ol className="text-gray-600 list-decimal list-inside text-sm/6 dark:text-stone-50">
               <li>
                 The Japanese version of these Terms of Use shall be the official
                 text, and the establishment, coming into force, and

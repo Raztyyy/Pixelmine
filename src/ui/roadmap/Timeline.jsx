@@ -43,13 +43,13 @@ function Timeline() {
           key={index}
           className={`ms-6 ${index !== roadmapData.length - 1 ? "mb-10" : ""}`}
         >
-          <span className="absolute flex items-center justify-center w-6 h-6 rounded-full bg-primary -start-3 ring-8 ring-white ">
+          <span className="absolute flex items-center justify-center w-6 h-6 rounded-full bg-primary -start-3 ring-2 ring-white dark:ring-stone-200">
             <FontAwesomeIcon icon={item.icon} className="text-white size-3 " />
           </span>
-          <h3 className="mb-1 text-lg font-semibold text-gray-900 ">
+          <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-stone-50">
             {item.title}
           </h3>
-          <p className="lg:max-w-[30rem] text-sm sm:text-base text-gray-600 ">
+          <p className="lg:max-w-[30rem] text-sm sm:text-base text-gray-600 dark:text-stone-50">
             {item.description}
           </p>
         </li>

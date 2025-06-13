@@ -43,7 +43,7 @@ function MobileLink({ links, mobileMenuOpen, setMobileMenuOpen }) {
                   <Link
                     to={link.path}
                     key={link.name}
-                    className="block px-3 py-2 -mx-3 font-semibold text-gray-900 rounded-lg text-base/7 hover:bg-gray-50 dark:text-stone-50"
+                    className="block px-3 py-2 -mx-3 font-semibold text-gray-900 rounded-lg text-base/7 hover:bg-gray-50 dark:text-stone-50 dark:hover:bg-green-400/20"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.name}

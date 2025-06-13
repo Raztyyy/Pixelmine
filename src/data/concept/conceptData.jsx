@@ -3,7 +3,7 @@ export const items = [
     title: "Enhanced User Control",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           Numerous decentralized social networking services (SNS) are developed
           utilizing open protocols, such as ActivityPub or Matrix, which promote
           enhanced communication among various services. This interoperability
@@ -20,7 +20,7 @@ export const items = [
     title: "Censorship Resistance",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           In a decentralized social networking system, users are afforded
           substantial control over their data. This empowerment enables
           individuals to define the extent of their data usage, identify the
@@ -37,7 +37,7 @@ export const items = [
     title: "Interoperability",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           One of the defining characteristics of decentralized social networks
           is their inherent resistance to censorship. In the absence of a
           centralized governing authority, these platforms are less susceptible
@@ -53,7 +53,7 @@ export const items = [
     title: "Points Economics and Incentives",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           Numerous decentralized social networking services (SNSs) are
           constructed utilizing open protocols, such as ActivityPub or Matrix,
           which enhance communication between different services. This
@@ -70,7 +70,7 @@ export const items = [
     title: "Community Governance",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           Several decentralized social networking services (SNSs) utilize
           blockchain technology to implement economic models that reward users
           for their contributions and engagement. This may involve
@@ -80,7 +80,7 @@ export const items = [
           of high-quality content and enable users to possess a stake in the
           overall success of the network.
         </p>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           In conclusion, decentralized social networking services (SNSs) signify
           a considerable departure from traditional social networks. These
           services prioritize principles such as user autonomy, enhanced
@@ -92,7 +92,7 @@ export const items = [
           to decentralization while striving to cultivate healthier online
           communities.
         </p>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           We acknowledge that decentralized social networking services currently
           lack widespread social acceptance. The team is actively engaged in
           ongoing research and development to enhance the system's acceptability
@@ -106,7 +106,7 @@ export const items = [
     title: "Define Decentralized Social Networking Services (SNS)",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           Investigate the fundamental principles and architectural frameworks of
           decentralized social networking services (SNS), with an emphasis on
           their essential characteristics.
@@ -118,7 +118,7 @@ export const items = [
     title: "Investigate User Control",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           Examine the ways in which decentralized social networking services
           empower users by affording them greater control over their personal
           data and privacy settings. This examination should incorporate
@@ -132,7 +132,7 @@ export const items = [
     title: "Examine Censorship Resistance",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           This analysis will explore the mechanisms through which decentralized
           platforms effectively resist censorship, promote a variety of
           viewpoints, and uphold free speech. Additionally, it will compare
@@ -147,7 +147,7 @@ export const items = [
     title: "Research Interoperability",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           This document explores the impact of open protocols, on enhancing
           interoperability among decentralized social networking services (SNS).
           It is essential to examine specific examples of cross-platform
@@ -160,7 +160,7 @@ export const items = [
     title: "Explore Token / Points Economics",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           This paper investigates the influence of open protocols, on enhancing
           interoperability among decentralized social networking services (SNS).
           It will provide examples of cross-platform interactions to demonstrate
@@ -173,7 +173,7 @@ export const items = [
     title: "Assess Community Governance",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           Examine the governance models utilized by decentralized social
           networking sites, with a particular focus on democratic
           decision-making processes and the active involvement of users in the
@@ -186,7 +186,7 @@ export const items = [
     title: "Identify Notable Platforms",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           Compile a comprehensive list of notable decentralized social
           networking platforms. Additionally, provide an in-depth analysis of
           each platform's distinctive approach to decentralization.
@@ -198,7 +198,7 @@ export const items = [
     title: "Highlight Benefits and Challenges",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           Evaluate the advantages of decentralized social networking services in
           enhancing user autonomy and privacy, while also discussing the
           potential challenges associated with scalability and user adoption.
@@ -210,7 +210,7 @@ export const items = [
     title: "Gather Expert Opinions",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           Engage with researchers and practitioners who specialize in
           decentralized technology in order to obtain comprehensive insights
           regarding the future trajectory of social networking.
@@ -222,7 +222,7 @@ export const items = [
     title: "Prepare for Ethical Considerations",
     content: (
       <>
-        <p className="mb-2 text-sm text-gray-600 sm:text-base">
+        <p className="mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
           Examine the ethical implications associated with decentralized social
           networking services, focusing on issues of data ownership, the right
           to freedom of expression, and the essential need to balance security

@@ -26,7 +26,7 @@ function BioModal({ memberDetails, children }) {
         >
           <div
             ref={modalRef}
-            className="relative w-full max-w-md p-6 bg-white rounded-lg shadow dark:bg-gray-700 "
+            className="relative w-full max-w-md p-6 bg-white rounded-lg shadow dark:bg-stone-50 "
           >
             <div className="flex flex-col items-center text-center">
               <img
@@ -38,7 +38,7 @@ function BioModal({ memberDetails, children }) {
                 {memberDetails.name}
               </h2>
               <p className="text-gray-600">{memberDetails.title}</p>
-              <hr className="mx-auto mt-2 mb-4 border-b-4 w-14 border-primary" />
+              <hr className="mx-auto mt-2 mb-4 border-b-4 w-14 border-primary " />
 
               <div className="px-2 mt-4 overflow-y-auto text-sm text-gray-700 max-h-72">
                 {memberDetails.bio}

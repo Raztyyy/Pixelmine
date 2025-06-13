@@ -25,8 +25,10 @@ function Contact() {
       >
         {/* Hero Section */}
         <div className="flex flex-col items-center p-6 mx-auto text-center max-w-7xl">
-          <h1 className="text-lg font-medium uppercase">Contact Us</h1>
-          <hr className="mx-auto mt-2 mb-4 border-b-4 w-14 border-primary" />
+          <h1 className="text-lg font-medium uppercase dark:text-stone-50">
+            Contact Us
+          </h1>
+          <hr className="mx-auto mt-2 mb-4 border-b-4 w-14 border-primary dark:border-green-400" />
         </div>
 
         <div className="flex flex-col gap-10 p-6 mx-auto lg:flex-row max-w-7xl ">
@@ -34,16 +36,18 @@ function Contact() {
             {/* Contact Details */}
             <div className="flex flex-col mt-4 ">
               <div className="flex flex-row items-center gap-3">
-                <p className="text-3xl font-medium">Pixelmine Japan</p>
+                <p className="text-3xl font-medium dark:text-stone-50">
+                  Pixelmine Japan
+                </p>
               </div>
               <div className="flex flex-row items-center gap-3 mt-5 text-start">
                 <span>
                   <FontAwesomeIcon
                     icon={faLocationDot}
-                    className="text-primary size-4 "
+                    className="text-primary size-4 dark:text-green-400 "
                   />
                 </span>
-                <p className="text-base leading-loose text-slate-950 ">
+                <p className="text-base leading-loose text-slate-950 dark:text-stone-50">
                   1-27-8 Higashi-Azabu, Minato-ku, Tokyo 106-0044, Japan
                 </p>
               </div>
@@ -51,19 +55,23 @@ function Contact() {
                 <span>
                   <FontAwesomeIcon
                     icon={faEnvelope}
-                    className="text-primary size-4 "
+                    className="text-primary size-4 dark:text-green-400"
                   />
                 </span>
-                <p className="text-base text-slate-950 ">pixie@pixelmine.org</p>
+                <p className="text-base text-slate-950 dark:text-stone-50">
+                  pixie@pixelmine.org
+                </p>
               </div>
               <div className="flex flex-row items-center gap-3 mt-5 text-start">
                 <span>
                   <FontAwesomeIcon
                     icon={faPhone}
-                    className="text-primary size-4 "
+                    className="text-primary size-4 dark:text-green-400"
                   />
                 </span>
-                <p className="text-base text-slate-950">+81-3-6401-4100</p>
+                <p className="text-base text-slate-950 dark:text-stone-50">
+                  +81-3-6401-4100
+                </p>
               </div>
             </div>
 
