@@ -11,7 +11,7 @@ import LoginModal from "./LoginModal";
 function StorerEngine() {
   return (
     <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem] dark:bg-stone-800">
-      <div className="flex flex-col items-center gap-10 p-6 mx-auto max-w-7xl sm:flex-row ">
+      <div className="flex flex-col-reverse items-center gap-10 p-6 mx-auto max-w-7xl sm:flex-row ">
         <div className="flex-1">
           <img src={StorerImg} alt="Storer Image" className="h-md" />
         </div>
