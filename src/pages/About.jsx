@@ -85,9 +85,9 @@ function About() {
             </p>
           </div>
           <div className="flex-1">
-            <h2 className="text-4xl leading-tight text-center sm:text-4xl lg:text-5xl max-w-auto lg:text-start dark:text-stone-50">
+            {/* <h2 className="text-4xl leading-tight text-center sm:text-4xl lg:text-5xl max-w-auto lg:text-start dark:text-stone-50">
               Meet Our Team
-            </h2>
+            </h2> */}
             <div className="flex flex-col gap-16 mt-10 lg:gap-28 lg:flex-row">
               {teamMember.map((memberDetails) => (
                 <BioCard

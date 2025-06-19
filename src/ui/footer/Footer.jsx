@@ -161,8 +161,8 @@ function Footer() {
         <div>
           &copy; {new Date().getFullYear()} Pixelmine. All rights reserved.
         </div>
-        <ul className="flex flex-wrap divide-x">
-          <li className="px-3 ">
+        <ul className="flex flex-col gap-3 lg:divide-x md:flex-row">
+          <li className="pr-3 ">
             <a
               href="/sitemap.xml"
               className="transition-all duration-300 ease-in-out hover:text-primary dark:hover:text-green-400"
@@ -170,7 +170,7 @@ function Footer() {
               Sitemap
             </a>
           </li>
-          <li className="px-3">
+          <li className="lg:px-3">
             <Link
               to="terms-and-conditions"
               className="transition-all duration-300 ease-in-out hover:text-primary dark:hover:text-green-400"
@@ -178,7 +178,7 @@ function Footer() {
               Terms & Conditions
             </Link>
           </li>
-          <li className="px-3">
+          <li className="lg:px-3">
             <Link
               to="child-sexual-abuse-policy"
               className="transition-all duration-300 ease-in-out hover:text-primary dark:hover:text-green-400"
@@ -186,7 +186,7 @@ function Footer() {
               Child Sexual Abuse Policy
             </Link>
           </li>
-          <li className="px-3">
+          <li className="lg:px-3">
             <Link
               to="commercial-law"
               className="transition-all duration-300 ease-in-out hover:text-primary dark:hover:text-green-400"
@@ -194,7 +194,7 @@ function Footer() {
               特定商取引法
             </Link>
           </li>
-          <li className="px-3">
+          <li className="lg:px-3">
             <Link
               to="privacy-policy"
               className="transition-all duration-300 ease-in-out hover:text-primary dark:hover:text-green-400"
