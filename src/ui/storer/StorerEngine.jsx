@@ -1,5 +1,5 @@
 import Button from "../Button";
-import StorerImg from "../../assets/placeholder.png";
+import StorerImg from "../../assets/storer-img.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,8 +12,12 @@ function StorerEngine() {
   return (
     <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem] dark:bg-stone-800">
       <div className="flex flex-col-reverse items-center gap-10 p-6 mx-auto max-w-7xl sm:flex-row ">
-        <div className="flex-1">
-          <img src={StorerImg} alt="Storer Image" className="h-md" />
+        <div className="items-center justify-center flex-1">
+          <img
+            src={StorerImg}
+            alt="Storer Image"
+            className="h-md w-[80%] mx-auto"
+          />
         </div>
         <div className="flex-1 ">
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold leading-snug max-w-auto sm:max-w-[20rem] dark:text-stone-50">

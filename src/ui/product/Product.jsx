@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import conceptImg from "../../assets/concept-placeholder.png";
-import placeholderImg from "../../assets/placeholder-2.png";
-import placeholderImg3 from "../../assets/placeholder-3.png";
-import roadmapPlaceholder from "../../assets/roadmap-placeholder.png";
+import conceptImg from "../../assets/concept.png";
+import designImplementation from "../../assets/design-and-implementation.png";
+import networkIncentives from "../../assets/network-incentives.png";
+import roadmap from "../../assets/roadmap.png";
 
 export default function Example() {
   return (
@@ -69,7 +69,7 @@ export default function Example() {
               <div className="flex items-center justify-center flex-1 px-8 max-lg:pb-12 max-lg:pt-10 sm:px-10 lg:pb-2">
                 <img
                   className="w-full max-lg:max-w-xs"
-                  src={placeholderImg}
+                  src={designImplementation}
                   alt="Design and Implementation Image"
                 />
               </div>
@@ -100,8 +100,8 @@ export default function Example() {
               </div>
               <div className="flex items-center justify-center flex-1 max-lg:py-6 lg:pb-2 ">
                 <img
-                  className="object-cover w-full h-30"
-                  src={placeholderImg3}
+                  className="object-cover w-full "
+                  src={networkIncentives}
                   alt="Network Incentives"
                 />
               </div>
@@ -164,12 +164,8 @@ export default function Example() {
                   </Link>
                 </div>
               </div>
-              <div className="flex items-center justify-center flex-1">
-                <img
-                  className="w-full"
-                  src={roadmapPlaceholder}
-                  alt="Roadmap"
-                />
+              <div className="flex items-center justify-center flex-1 max-lg:py-6 lg:pb-2">
+                <img className="w-full" src={roadmap} alt="Roadmap" />
               </div>
             </div>
           </div>
