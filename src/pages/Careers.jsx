@@ -44,11 +44,11 @@ function Careers() {
             <ScrollLink to="job-openings">Job Openings</ScrollLink>
           </div>
           <div className="flex justify-center flex-1 max-w-7xl">
-            <img
+            {/* <img
               src={heroImg}
               alt="Hero Image"
               className="object-cover object-center rounded-3xl h-[20rem] md:h-[30rem] w-[80rem]"
-            />
+            /> */}
           </div>
         </div>
       </AnimatedSection>

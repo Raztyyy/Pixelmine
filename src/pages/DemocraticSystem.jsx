@@ -1,4 +1,5 @@
-import placeholderImg from "../assets/placeholder.png";
+import democraticSystem from "../assets/democratic-system.png";
+import democraticSystem2 from "../assets/democratic-system-2.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
@@ -33,8 +34,8 @@ function DemocraticSystem() {
           {/* Right Column */}
           <div className="flex-1 ">
             <img
-              src={placeholderImg}
-              alt="Placeholder Image"
+              src={democraticSystem}
+              alt="Democratic System Image"
               className="object-cover w-full h-auto"
             />
           </div>
@@ -48,8 +49,8 @@ function DemocraticSystem() {
         <div className="flex flex-col-reverse gap-10 p-6 mx-auto lg:flex-row max-w-7xl">
           <div className="flex-1 ">
             <img
-              src={placeholderImg}
-              alt="Placeholder Image"
+              src={democraticSystem2}
+              alt="Democratic System Image"
               className="w-full h-auto"
             />
           </div>

@@ -44,20 +44,20 @@ function About() {
             About Us
           </h1>
           <hr className="mx-auto mt-2 mb-4 border-b-4 w-14 border-primary dark:border-green-400" />
-          <p className="text-4xl font-semibold max-w-7xl sm:text-4xl lg:text-5xl dark:text-stone-50">
+          {/* <p className="text-4xl font-semibold max-w-7xl sm:text-4xl lg:text-5xl dark:text-stone-50">
             The Organization and the people behind Pixelmine
-          </p>
-
+          </p> */}
+          {/* 
           <img
             src={heroImg}
             alt="Hero image"
             className="object-cover rounded mt-14"
-          />
+          /> */}
         </div>
 
         <div className="flex flex-col gap-10 p-6 mx-auto max-w-7xl ">
           <div className="flex-1 text-center lg:text-start">
-            <h2 className="text-4xl leading-tight text-center sm:text-4xl lg:text-5xl max-w-auto lg:text-start dark:text-stone-50">
+            <h2 className="text-3xl font-medium dark:text-stone-50">
               About Pixelmine Japan
             </h2>
             <p className="mt-4 text-gray-600 text-sm/6 dark:text-stone-50">
