@@ -1,4 +1,6 @@
-import placeholder from "../../assets/placeholder.png";
+import placeholder from "../../assets/news-placeholder-1.jpg";
+import placeholder2 from "../../assets/news-placeholder-2.jpg";
+
 import featuredNews from "../../assets/featured-news.png";
 
 export const newsData = [
@@ -65,7 +67,7 @@ export const newsData = [
     ),
     preview:
       "Pixelmine 2.0 introduces a completely redesigned interface, new collaborative tools, and faster decentralized protocols, marking a major leap in our mission to build the next-generation social web.",
-    img: placeholder,
+    img: placeholder2,
     isFeatured: false,
     link: "",
     slug: "launch-of-pixelmine-2",

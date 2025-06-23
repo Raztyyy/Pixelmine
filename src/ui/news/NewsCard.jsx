@@ -29,7 +29,7 @@ function NewsCard({ news, idx }) {
           <img
             src={news.img}
             alt={`Preview image for ${news.title}`}
-            className="object-cover w-full h-48 transition-all duration-300 ease-in-out rounded md:h-auto group-hover:brightness-75"
+            className="object-cover w-full h-full transition-all duration-300 ease-in-out rounded group-hover:brightness-75"
           />
         </Wrapper>
 
