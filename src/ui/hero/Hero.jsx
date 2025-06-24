@@ -1,6 +1,6 @@
 // import StackedAvatars from "./StackedAvatars";
 import { Link } from "react-router-dom";
-import heroImg from "../../assets/hero-image.png";
+import heroImg from "../../assets/hero-img.jpg";
 import DownloadButtons from "./DownloadButtons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/pro-solid-svg-icons";
@@ -38,7 +38,7 @@ function Hero() {
           <img
             src={heroImg}
             alt="Hero Image"
-            className="object-contain w-full"
+            className="object-contain w-full rounded-xl"
           />
         </div>
       </div>

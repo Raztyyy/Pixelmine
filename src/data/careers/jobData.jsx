@@ -8,7 +8,7 @@ export const jobData = [
     salary: "₱28,000 – ₱30,000 per month",
     category: "Technology",
     companyDescription:
-      "As a QA Tester at PixelMine OPC, you will play a key role in ensuring our mobile app is functional, user-friendly, and free of bugs before and after launch. You’ll work closely with our executive assistant, senior developer, and design team to identify and resolve issues, ensuring a smooth and stable user experience across both Android and iOS.",
+      "PixelMine OPC is a tech startup operating in the Philippines with strategic ties to Japan. We are building a revolutionary decentralized Social Networking Service (SNS) mobile app focused on privacy, freedom of expression, and authentic digital interaction. After years of development, we’re preparing to launch a platform that challenges traditional social media—and we need a dedicated QA Tester to help us deliver a world-class user experience.",
     roleDescription:
       "As a QA Tester at PixelMine OPC, you will play a key role in ensuring our mobile app is functional, user-friendly, and free of bugs before and after launch. You’ll work closely with our executive assistant, senior developer, and design team to identify and resolve issues, ensuring a smooth and stable user experience across both Android and iOS.",
     responsibilities: [
@@ -26,9 +26,13 @@ export const jobData = [
       "Understanding of software QA processes and test case writing.",
       "Hands-on experience with mobile testing tools (e.g., TestRail, Postman, Appium is a plus).",
       "Familiarity with Android Studio and/or Xcode for build testing.",
+      "Proficient in writing and executing test cases and test plans.",
+      "Hands-on experience with Selenium WebDriver for automated testing.",
+      "Familiarity with Selenium Grid for cross-browser and parallel testing.",
+      "Knowledge of scripting languages such as Python, Java, or JavaScript.",
+      "Experience with bug tracking tools (e.g., JIRA, Bugzilla).",
+      "Understanding of SDLC, Agile, and Scrum methodologies.",
       "Strong attention to detail, critical thinking, and communication skills.",
-      "Ability to work independently and collaborate remotely.",
-      "Based in the Philippines, with availability to attend virtual meetings or occasional on-site reviews if needed.",
     ],
     niceToHave: [
       "Experience with SNS, messaging, or community-based platforms.",
@@ -60,8 +64,6 @@ export const jobData = [
     type: "Full-time",
     salary: "₱17,000 – ₱19,000 per month",
     category: "Administration",
-    companyDescription:
-      "Provide clerical and administrative support to ensure smooth day-to-day operations and assist in coordinating internal activities at PixelMine OPC. Fresh graduates are welcome to apply.",
     roleDescription:
       "Provide clerical and administrative support to ensure smooth day-to-day operations and assist in coordinating internal activities at PixelMine OPC. Fresh graduates are welcome to apply.",
     responsibilities: [
@@ -79,7 +81,6 @@ export const jobData = [
       "Proficient in Google Workspace (Docs, Sheets, Calendar).",
       "Excellent communication and interpersonal skills.",
       "Self-motivated, trustworthy, and detail-oriented.",
-      "Comfortable working remotely and independently.",
     ],
     niceToHave: [
       "Internship experience in admin, HR, or support roles.",

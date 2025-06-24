@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import conceptImg from "../../assets/concept.png";
+import conceptImg from "../../assets/concept.jpg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,17 +19,20 @@ export default function Example() {
         <div className="grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
           {/* Concept */}
           <div className="relative lg:row-span-2">
-            <div className="absolute bg-white rounded-lg inset-1 lg:rounded-l-3xl dark:bg-stone-500/20"></div>
             <div className="relative flex h-full flex-col overflow-hidden rounded-lg lg:rounded-l-[2rem] shadow ring-1 ring-black/5 dark:ring-stone-600">
               <div className="px-8 pt-8 pb-3 sm:px-10 sm:pb-0 sm:pt-10">
                 <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center dark:text-stone-50">
                   Concept
                 </p>
                 <p className="mt-2 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50">
-                  Pixelmine's approach promotes a more democratic online
-                  environment, allowing users more significant influence over
-                  their interactions and community standards. By distributing
-                  authority rather than concentrating it...
+                  The idea behind Pixelmine is to create a platform that
+                  empowers users by removing the need for a central authority or
+                  server to control user data and interactions. Instead, these
+                  platforms distribute information across interconnected nodes,
+                  allowing users to communicate directly with one another
+                  without intermediaries. The following are essential factors to
+                  consider in order to fully comprehend the concept of the
+                  system.
                 </p>
                 <div className="max-lg:text-center">
                   <Link
@@ -40,10 +43,10 @@ export default function Example() {
                   </Link>
                 </div>
               </div>
-              <div className="flex-1 w-full px-5 pt-5 ">
-                <div className="overflow-hidden rounded-t-2xl ">
+              <div className="flex-1 w-full px-5 py-5 lg:mt-16">
+                <div className="overflow-hidden ">
                   <img
-                    className="object-cover object-top w-full h-full lg:h-full md:h-[37rem] "
+                    className="object-cover object-top w-full h-full rounded-xl"
                     src={conceptImg}
                     alt="Concept Img"
                   />

@@ -6,7 +6,7 @@ import { formatCurrencyWithSymbol } from "../utils/formatCurrencyWithSymbol";
 import { formatCurrency } from "../utils/formatCurrency";
 
 import cardBg from "../assets/incentives-card-bg.jpg";
-import networkIncentives from "../assets/network-incentives.png";
+import networkIncentives from "../assets/network-incentives.jpg";
 
 import Dropdown from "../ui/networkIncentives/Dropdown";
 import Accordion from "../ui/Accordion";
@@ -129,7 +129,7 @@ function NetworkIncentives() {
               <img
                 src={networkIncentives}
                 alt="Placeholder Image"
-                className="w-full h-auto"
+                className="w-full h-auto rounded-xl"
               />
             </div>
             <div className="flex-1">

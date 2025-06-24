@@ -1,5 +1,5 @@
 import Button from "../Button";
-import StorerImg from "../../assets/storer-img.png";
+import StorerImg from "../../assets/storer-img.jpg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,7 +16,7 @@ function StorerEngine() {
           <img
             src={StorerImg}
             alt="Storer Image"
-            className="h-md w-[80%] mx-auto"
+            className="h-md w-[80%] mx-auto rounded-xl"
           />
         </div>
         <div className="flex-1 ">

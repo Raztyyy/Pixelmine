@@ -1,5 +1,5 @@
-import democraticSystem from "../assets/democratic-system.png";
-import democraticSystem2 from "../assets/democratic-system-2.png";
+import democraticSystem from "../assets/democratic-system.jpg";
+import democraticSystem2 from "../assets/democratic-system-2.jpg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
@@ -36,7 +36,7 @@ function DemocraticSystem() {
             <img
               src={democraticSystem}
               alt="Democratic System Image"
-              className="object-cover w-full h-auto"
+              className="object-cover w-full h-auto rounded-xl"
             />
           </div>
         </div>
@@ -51,7 +51,7 @@ function DemocraticSystem() {
             <img
               src={democraticSystem2}
               alt="Democratic System Image"
-              className="w-full h-auto"
+              className="w-full h-auto rounded-xl"
             />
           </div>
           <div className="flex-1">

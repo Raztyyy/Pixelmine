@@ -102,14 +102,16 @@ function CareerRole() {
             </div>
 
             {/* About Company */}
-            <div className="mt-10">
-              <h2 className="mb-4 text-xl font-semibold leading-tight dark:text-stone-50">
-                About PixelMine OPC
-              </h2>
-              <p className="text-sm text-gray-600 dark:text-stone-50">
-                {job.companyDescription}
-              </p>
-            </div>
+            {job.companyDescription?.trim() && (
+              <div className="mt-10">
+                <h2 className="mb-4 text-xl font-semibold leading-tight dark:text-stone-50">
+                  About PixelMine OPC
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-stone-50">
+                  {job.companyDescription}
+                </p>
+              </div>
+            )}
 
             {/* Role Overview */}
             <div className="mt-10">
