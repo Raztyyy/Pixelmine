@@ -1,6 +1,6 @@
 // import StackedAvatars from "./StackedAvatars";
 import { Link } from "react-router-dom";
-import heroImg from "../../assets/hero-img.jpg";
+// import heroImg from "../../assets/placeholder.png";
 import DownloadButtons from "./DownloadButtons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/pro-solid-svg-icons";
@@ -35,11 +35,11 @@ function Hero() {
           <DownloadButtons />
         </div>
         <div className="flex-1 ">
-          <img
+          {/* <img
             src={heroImg}
             alt="Hero Image"
             className="object-contain w-full rounded-xl"
-          />
+          /> */}
         </div>
       </div>
     </section>

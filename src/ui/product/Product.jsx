@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import conceptImg from "../../assets/concept.jpg";
+import conceptImg from "../../assets/placeholder.png";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,6 +7,7 @@ import {
   faMap,
   faCoins,
   faHandshakeSimple,
+  faLightbulbOn,
 } from "@fortawesome/pro-solid-svg-icons";
 // import designImplementation from "../../assets/design-and-implementation.png";
 // import networkIncentives from "../../assets/network-incentives.png";
@@ -19,12 +20,18 @@ export default function Example() {
         <div className="grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
           {/* Concept */}
           <div className="relative lg:row-span-2">
-            <div className="relative flex h-full flex-col overflow-hidden rounded-lg lg:rounded-l-[2rem] shadow ring-1 ring-black/5 dark:ring-stone-600">
+            <div className="relative bg-white flex h-full flex-col overflow-hidden rounded-lg lg:rounded-l-[2rem] shadow ring-1 ring-black/5 dark:ring-stone-600">
               <div className="px-8 pt-8 pb-3 sm:px-10 sm:pb-0 sm:pt-10">
-                <p className="mt-2 text-lg font-medium tracking-tight text-gray-950 max-lg:text-center dark:text-stone-50">
-                  Concept
-                </p>
-                <p className="mt-2 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50">
+                <div className="flex flex-col items-center justify-center gap-4 lg:justify-start lg:flex-row">
+                  <FontAwesomeIcon
+                    icon={faLightbulbOn}
+                    className="p-2 rounded bg-primary/80 text-slate-100 size-5"
+                  />
+                  <p className="text-lg font-medium tracking-tight text-gray-950 max-lg:text-center dark:text-stone-50">
+                    Concept
+                  </p>
+                </div>
+                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50">
                   The idea behind Pixelmine is to create a platform that
                   empowers users by removing the need for a central authority or
                   server to control user data and interactions. Instead, these
@@ -43,13 +50,13 @@ export default function Example() {
                   </Link>
                 </div>
               </div>
-              <div className="flex-1 w-full px-5 py-5 lg:mt-16">
+              <div className="flex-1 w-full px-5 py-5 lg:mt-10">
                 <div className="overflow-hidden ">
-                  <img
+                  {/* <img
                     className="object-cover object-top w-full h-full rounded-xl"
                     src={conceptImg}
                     alt="Concept Img"
-                  />
+                  /> */}
                 </div>
               </div>
             </div>

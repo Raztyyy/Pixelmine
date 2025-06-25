@@ -6,7 +6,7 @@ import { formatCurrencyWithSymbol } from "../utils/formatCurrencyWithSymbol";
 import { formatCurrency } from "../utils/formatCurrency";
 
 import cardBg from "../assets/incentives-card-bg.jpg";
-import networkIncentives from "../assets/network-incentives.jpg";
+// import networkIncentives from "../assets/placeholder.png";
 
 import Dropdown from "../ui/networkIncentives/Dropdown";
 import Accordion from "../ui/Accordion";
@@ -126,11 +126,11 @@ function NetworkIncentives() {
         <div className="px-6 mx-auto max-w-auto lg:max-w-7xl lg:px-8">
           <div className="flex flex-col-reverse items-start gap-10 md:items-center md:flex-row">
             <div className="flex-1">
-              <img
+              {/* <img
                 src={networkIncentives}
                 alt="Placeholder Image"
                 className="w-full h-auto rounded-xl"
-              />
+              /> */}
             </div>
             <div className="flex-1">
               <FontAwesomeIcon
