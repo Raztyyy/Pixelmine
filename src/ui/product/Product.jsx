@@ -20,7 +20,9 @@ export default function Example() {
         <div className="grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
           {/* Concept */}
           <div className="relative lg:row-span-2">
-            <div className="relative bg-white flex h-full flex-col overflow-hidden rounded-lg lg:rounded-l-[2rem] shadow ring-1 ring-black/5 dark:ring-stone-600">
+            <div className="absolute bg-white rounded-lg lg:rounded-l-[2rem] inset-1 dark:bg-stone-500/20"></div>
+
+            <div className="relative  flex h-full flex-col overflow-hidden rounded-lg lg:rounded-l-[2rem] shadow ring-1 ring-black/5 dark:ring-stone-600">
               <div className="px-8 pt-8 pb-3 sm:px-10 sm:pb-0 sm:pt-10">
                 <div className="flex flex-col items-center justify-center gap-4 lg:justify-start lg:flex-row">
                   <FontAwesomeIcon
@@ -65,7 +67,7 @@ export default function Example() {
           {/* Design & Implementation */}
           <div className="relative max-lg:row-start-1">
             <div className="absolute bg-white rounded-lg inset-1 max-lg:rounded-t-3xl dark:bg-stone-500/20"></div>
-            <div className="relative flex h-full flex-col overflow-hidden rounded-lg max-lg:rounded-t-[2rem] shadow ring-1 ring-black/5 dark:ring-stone-600 ">
+            <div className="relative flex flex-col h-full overflow-hidden rounded-lg shadow max-lg:rounded-t-3xl ring-1 ring-black/5 dark:ring-stone-600 ">
               <div className="px-8 py-8 text-center lg:text-start sm:px-10 sm:pt-10">
                 <div className="flex flex-col items-center justify-center gap-4 lg:justify-start lg:flex-row">
                   <FontAwesomeIcon

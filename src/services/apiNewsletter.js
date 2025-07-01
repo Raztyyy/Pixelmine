@@ -1,15 +1,29 @@
-import supabase from "./supabase";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export async function subscribe(email) {
-  const { data, error } = await supabase
-    .from("newsletter")
-    .insert([{ email }])
-    .select(); // Optional: returns the inserted row(s)
+  try {
+    const response = await fetch(`${API_URL}/api/newsletter`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
 
-  if (error) {
+    const data = await response.json(); // Read this early to use in both paths
+
+    if (!response.ok) {
+      throw new Error(data.error || "Subscription failed.");
+    }
+
+    return data; // { message: "Subscribed successfully", id: ... }
+  } catch (error) {
     console.error(error);
-    throw new Error("Subscription failed. Please try again.");
+    // Ensure message is a string
+    throw new Error(
+      typeof error.message === "string"
+        ? error.message
+        : "Subscription failed. Please try again."
+    );
   }
-
-  return data;
 }

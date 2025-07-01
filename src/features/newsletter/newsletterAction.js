@@ -1,40 +1,44 @@
-import supabase from "../../services/supabase";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export async function action({ request }) {
   const formData = await request.formData();
-  const email = formData.get("email").toLowerCase();
+  const email = formData.get("email")?.toLowerCase();
 
-  // Check if the email already exists (ignore is_active)
-  const { data: existing, error: fetchError } = await supabase
-    .from("newsletter")
-    .select("id")
-    .eq("email", email)
-    .maybeSingle();
-
-  if (fetchError) {
-    console.error(fetchError);
-    return { error: "Something went wrong. Please try again." };
+  if (!email) {
+    return {
+      message: "Email is required.",
+      type: "error",
+    };
   }
 
-  if (existing) {
-    return { error: "You're already subscribed to Pixelmine." };
-  }
+  try {
+    const response = await fetch(`${API_URL}/api/newsletter`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
 
-  // Insert new subscriber
-  const { error: insertError } = await supabase
-    .from("newsletter")
-    .insert([{ email, is_active: true }]);
+    const result = await response.json();
 
-  if (insertError) {
-    // Handle unique constraint violation
-    if (insertError.code === "23505") {
-      return { error: "You're already subscribed to Pixelmine." };
+    if (!response.ok) {
+      return {
+        message: result.error || "Subscription failed. Please try again.",
+        type: "error",
+      };
     }
-    return { error: "Subscription failed. Please try again later." };
-  }
 
-  return {
-    success:
-      "Thanks for signing up! We’ll keep you in the loop with the latest updates, insights, and announcements.",
-  };
+    return {
+      message:
+        "Thanks for signing up! We’ll keep you in the loop with the latest updates, insights, and announcements.",
+      type: "success",
+    };
+  } catch (err) {
+    console.error(err);
+    return {
+      message: "Something went wrong. Please try again later.",
+      type: "error",
+    };
+  }
 }

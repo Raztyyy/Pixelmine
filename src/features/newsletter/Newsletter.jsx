@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Form, useActionData, useNavigation } from "react-router-dom";
+import { showToast } from "../../utils/Toast";
 
 function Newsletter() {
   const actionData = useActionData();
@@ -10,9 +11,9 @@ function Newsletter() {
   // 🔥 Use toast based on action result
   useEffect(() => {
     if (actionData?.error) {
-      toast.error(actionData.error);
-    } else if (actionData?.success) {
-      toast.success(actionData.success);
+      showToast(actionData.error, "error");
+    } else if (actionData?.message) {
+      showToast(actionData.message, actionData.type || "success");
     }
   }, [actionData]);
 

@@ -67,7 +67,7 @@ function NetworkIncentives() {
                   <h2 className="inline-flex flex-col text-base font-semibold md:text-lg">
                     Total Distributable Incentive
                     <span className="w-fit bg-slate-50 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-md  dark:text-green-400 border border-green-400 mt-2">
-                      Last updated: {formatDate(updated_at)}
+                      Value as of {formatDate(updated_at)}
                     </span>
                   </h2>
                   <Dropdown
@@ -91,10 +91,10 @@ function NetworkIncentives() {
                   backgroundRepeat: "no-repeat",
                 }}
               >
-                <h2 className="text-base font-semibold md:text-lg">
-                  Activity Points
+                <h2 className="text-base font-semibold text-center lg:text-start ">
+                  Total User Activity Points
                 </h2>
-                <p className="mt-4 text-xl font-light">
+                <p className="mt-4 text-xl font-light text-center">
                   {formatCurrency(activity_points)}
                 </p>
               </div>
@@ -106,11 +106,11 @@ function NetworkIncentives() {
                   backgroundRepeat: "no-repeat",
                 }}
               >
-                <h2 className="text-base font-semibold md:text-lg">
-                  PXL Points
+                <h2 className="text-base font-semibold text-center lg:text-start">
+                  PXL Points Conversion
                 </h2>
-                <p className="mt-4 text-xl font-light">
-                  {formatCurrency(pixelpoint)}
+                <p className="mt-4 text-xl font-light text-center">
+                  1 PXL = {formatCurrencyWithSymbol(pixelpoint, "JPY")}
                 </p>
               </div>
             </div>

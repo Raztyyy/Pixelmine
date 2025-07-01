@@ -16,6 +16,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import ChildSexualAbusePolicy from "./pages/ChildSexualAbusePolicy";
 import CommercialLaw from "./pages/CommercialLaw";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import ErrorPage from "./pages/ErrorPage";
 
 import AppLayout from "./ui/AppLayout";
 import Spinner from "./ui/spinner/Spinner";
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Overview />, action: newsletterAction },
       { path: "concept", element: <Concept /> },
