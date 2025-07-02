@@ -20,14 +20,14 @@ export default function Dropdown({ selected, setSelected, options }) {
         </MenuButton>
       </div>
 
-      <MenuItems className="absolute left-0 z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg lg:right-0 ring-1 ring-black/5 focus:outline-none">
+      <MenuItems className="absolute left-0 z-10 w-32 mt-2 origin-top-right bg-white rounded-md shadow-lg lg:right-0 ring-1 ring-black/5 focus:outline-none">
         <div className="py-1">
           {options.map((option) => (
             <MenuItem key={option.value}>
               {({ active }) => (
                 <button
                   onClick={() => handleSelect(option)}
-                  className={`block w-auto px-4 py-2 text-left text-xs md:text-sm ${
+                  className={` w-full px-4 py-2 text-left text-xs md:text-sm ${
                     active ? "bg-gray-100 text-gray-900" : "text-gray-700"
                   }`}
                 >
