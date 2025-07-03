@@ -2,8 +2,7 @@ import { useState, useRef } from "react";
 import Button from "../Button";
 import { Link } from "react-router-dom";
 
-function LoginModal({ children }) {
-  const [isOpen, setIsOpen] = useState(false);
+function LoginModal({ children, isOpen, setIsOpen, switchToLogin }) {
   const modalRef = useRef(null);
 
   const handleBackdropClick = (e) => {
@@ -83,11 +82,7 @@ function LoginModal({ children }) {
                 />
               </div>
 
-              <div className="flex items-center justify-between text-sm">
-                <label className="flex items-center gap-2">
-                  <input type="checkbox" required />
-                  <span className="dark:text-stone-50">Remember me</span>
-                </label>
+              <div className="flex items-center justify-end text-sm">
                 <a
                   href="#"
                   className="transition-all duration-300 ease-in-out text-primary dark:text-green-400 hover:underline"
@@ -105,12 +100,13 @@ function LoginModal({ children }) {
 
               <div className="text-sm text-gray-500 dark:text-stone-50">
                 Not registered?{" "}
-                <Link
-                  to="sign-up"
+                <button
+                  type="button"
+                  onClick={switchToLogin}
                   className="text-primary hover:underline dark:text-green-400"
                 >
                   Create account
-                </Link>
+                </button>
               </div>
             </form>
           </div>

@@ -31,7 +31,7 @@ export async function action({ request }) {
 
     return {
       message:
-        "Thanks for signing up! We’ll keep you in the loop with the latest updates, insights, and announcements.",
+        "Thanks for subscribing! We’ll keep you in the loop with the latest updates, insights, and announcements.",
       type: "success",
     };
   } catch (err) {

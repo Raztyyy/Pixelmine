@@ -11,7 +11,6 @@ import About from "./pages/About";
 import NewsEvents from "./pages/NewsEvents";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
-import SignUp from "./pages/SignUp";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import ChildSexualAbusePolicy from "./pages/ChildSexualAbusePolicy";
 import CommercialLaw from "./pages/CommercialLaw";
@@ -27,6 +26,7 @@ import NewsDetails from "./pages/NewsDetails";
 
 import { action as newsletterAction } from "./features/newsletter/newsletterAction";
 import { Toaster } from "react-hot-toast";
+import { signupAction } from "./features/signup/signupAction";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +34,12 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Overview />, action: newsletterAction },
+      { index: true, element: <Overview /> },
+
+      // Action-only form handlers (no UI rendered for these routes)
+      { path: "newsletter", action: newsletterAction },
+      { path: "signup", action: signupAction },
+
       { path: "concept", element: <Concept /> },
       { path: "design-implementation", element: <DesignImplementation /> },
       {
@@ -51,8 +56,6 @@ const router = createBrowserRouter([
       { path: "careers", element: <Careers /> },
       { path: "careers/:role_slug", element: <CareerRole /> },
       { path: "contact-us", element: <Contact /> },
-      { path: "sign-up", element: <SignUp /> },
-
       { path: "terms-and-conditions", element: <TermsAndConditions /> },
       {
         path: "child-sexual-abuse-policy",

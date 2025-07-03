@@ -1,21 +1,20 @@
 import { useEffect } from "react";
-import toast from "react-hot-toast";
-import { Form, useActionData, useNavigation } from "react-router-dom";
+import { useFetcher } from "react-router-dom";
 import { showToast } from "../../utils/Toast";
 
 function Newsletter() {
-  const actionData = useActionData();
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === "submitting";
+  const fetcher = useFetcher();
+  const isSubmitting = fetcher.state === "submitting";
+  const data = fetcher.data;
 
-  // 🔥 Use toast based on action result
+  // Show toast on success or error
   useEffect(() => {
-    if (actionData?.error) {
-      showToast(actionData.error, "error");
-    } else if (actionData?.message) {
-      showToast(actionData.message, actionData.type || "success");
+    if (data?.type === "success") {
+      showToast(data.message, "success");
+    } else if (data?.type === "error") {
+      showToast(data.message, "error");
     }
-  }, [actionData]);
+  }, [data]);
 
   return (
     <section className="pt-8 pb-8 bg-green-50/50 sm:pt-10 sm:pb-10 dark:bg-stone-950">
@@ -28,8 +27,9 @@ function Newsletter() {
           development.
         </p>
 
-        <Form
+        <fetcher.Form
           method="post"
+          action="/newsletter"
           className="flex flex-col items-center w-full max-w-md gap-4 pt-6 md:flex-row"
         >
           <label htmlFor="email" className="sr-only">
@@ -44,29 +44,19 @@ function Newsletter() {
             disabled={isSubmitting}
             className="w-full md:flex-1 p-2.5 border rounded-lg text-sm bg-gray-50 text-gray-800"
           />
+
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-full md:w-auto px-6 py-2.5 text-sm font-medium text-white border rounded-lg transition
-              ${
-                isSubmitting
-                  ? "bg-gray-400 border-gray-400"
-                  : "bg-primary border-primary hover:bg-primary/80"
-              }`}
+            className={`w-full md:w-auto px-6 py-2.5 text-sm font-medium text-white border rounded-lg transition ${
+              isSubmitting
+                ? "bg-gray-400 border-gray-400"
+                : "bg-primary border-primary hover:bg-primary/80"
+            }`}
           >
             {isSubmitting ? "Submitting..." : "Subscribe now"}
           </button>
-        </Form>
-
-        {/* Show success or error message below the form */}
-        {/* <div className="mt-4 min-h-[1.5rem]">
-          {actionData?.error && (
-            <p className="text-center text-red-600">{actionData.error}</p>
-          )}
-          {actionData?.success && (
-            <p className="text-center text-green-600">{actionData.success}</p>
-          )}
-        </div> */}
+        </fetcher.Form>
       </div>
     </section>
   );
