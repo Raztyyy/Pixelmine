@@ -25,8 +25,13 @@ import CareerRole from "./pages/CareerRole";
 import NewsDetails from "./pages/NewsDetails";
 
 import { action as newsletterAction } from "./features/newsletter/newsletterAction";
+import { signupAction } from "./features/authentication/signupAction";
+
 import { Toaster } from "react-hot-toast";
-import { signupAction } from "./features/signup/signupAction";
+import Login from "./ui/login/Login";
+import Signup from "./ui/signup/Signup";
+import Dashboard from "./ui/dashboard/Dashboard";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +43,6 @@ const router = createBrowserRouter([
 
       // Action-only form handlers (no UI rendered for these routes)
       { path: "newsletter", action: newsletterAction },
-      { path: "signup", action: signupAction },
 
       { path: "concept", element: <Concept /> },
       { path: "design-implementation", element: <DesignImplementation /> },
@@ -63,8 +67,24 @@ const router = createBrowserRouter([
       },
       { path: "commercial-law", element: <CommercialLaw /> },
       { path: "privacy-policy", element: <PrivacyPolicy /> },
+
+      // Authentication for Dashboard
+      { path: "login", element: <Login /> },
+      { path: "signup", element: <Signup />, action: signupAction },
     ],
   },
+  // 🚧 Dashboard: outside of AppLayout
+  {
+    path: "/dashboard",
+    element: (
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
+    errorElement: <ErrorPage />,
+  },
+
+  // Fallback
   {
     path: "*",
     element: <PageNotFound />,
