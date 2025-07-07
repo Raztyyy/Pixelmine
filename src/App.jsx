@@ -30,8 +30,11 @@ import { signupAction } from "./features/authentication/signupAction";
 import { Toaster } from "react-hot-toast";
 import Login from "./ui/login/Login";
 import Signup from "./ui/signup/Signup";
-import Dashboard from "./ui/dashboard/Dashboard";
+import DashboardLayout from "./ui/dashboard/DashboardLayout";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import DashboardOverview from "./ui/dashboard/DashboardOverview";
+import DashboardAnalytics from "./ui/dashboard/DashboardAnalytics";
+import DashboardSettings from "./ui/dashboard/DashboardSettings";
 
 const router = createBrowserRouter([
   {
@@ -78,10 +81,15 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       <ProtectedRoute>
-        <Dashboard />
+        <DashboardLayout />
       </ProtectedRoute>
     ),
     errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <DashboardOverview /> },
+      { path: "/dashboard/analytics", element: <DashboardAnalytics /> },
+      { path: "/dashboard/settings", element: <DashboardSettings /> },
+    ],
   },
 
   // Fallback
@@ -117,7 +125,7 @@ function App() {
             color: "#22222",
           },
         }}
-      />{" "}
+      />
     </>
   );
 }

@@ -12,7 +12,7 @@ function Login() {
   const navigate = useNavigate();
   const { login, isAuthenticated } = useAuth();
 
-  // ✅ Redirect if already authenticated
+  // // ✅ Redirect if already authenticated
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/dashboard");
@@ -39,12 +39,13 @@ function Login() {
       }
 
       login(data.token); // Save token & fetch user
-      showToast("Login successful!", "success");
 
       // ✅ Add slight delay before navigating
       setTimeout(() => {
         navigate("/dashboard");
       }, 1000); // 1 second delay
+
+      showToast("Login successful!", "success");
     } catch (err) {
       console.error("Login error:", err);
       showToast("Server error. Please try again.", "error");
