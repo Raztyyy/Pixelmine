@@ -24,7 +24,7 @@ function CommercialLaw() {
         <div className="pt-[3rem] pb-[3rem] px-6 mx-auto max-w-full lg:max-w-7xl lg:px-8 space-y-8 text-gray-700 text-sm/6 dark:text-stone-50">
           <section>
             <h2 className="mb-2 text-lg font-semibold">販売者情報</h2>
-            <p>販売者名: PIXELMINEJAPAN 株式会社</p>
+            <p>販売者名: Ｐｉｘｅｌｍｉｎｅ　Ｊａｐａｎ株式会社</p>
             <p>代表責任者: 袖井 雄太郎</p>
             <p>
               所在地: 〒106-0044 東京都港区東麻布 1-27-8 関東厨房機器会館 6F

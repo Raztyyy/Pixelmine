@@ -5,8 +5,10 @@ import {
   faX,
   faArrowRightFromBracket,
 } from "@fortawesome/pro-solid-svg-icons";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
+import Logo from "../header/Logo";
 
 const menuItems = [
   { name: "Dashboard", path: "/dashboard", icon: faTableColumns },
@@ -21,8 +23,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:shadow-none`}
     >
-      <div className="flex items-center justify-between p-4 border-b">
-        <h2 className="text-lg font-bold">Pixelmine OPC</h2>
+      <div className="flex items-center justify-between px-4 py-[30px]">
+        {/* Logo */}
+        <Logo paddingX={"3rem"} />
         <button className="lg:hidden" onClick={() => setSidebarOpen(false)}>
           <FontAwesomeIcon icon={faX} className="w-5 h-5" />
         </button>
@@ -47,7 +50,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         ))}
       </nav>
       {/* Logout Button */}
-      <div className="absolute bottom-0 w-full p-4 border-t">
+      <div className="absolute bottom-0 w-full p-4 ">
         <button
           onClick={() => {
             // 🧠 Clear token or auth state here

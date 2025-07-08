@@ -35,6 +35,7 @@ import ProtectedRoute from "./ui/ProtectedRoute";
 import DashboardOverview from "./ui/dashboard/DashboardOverview";
 import DashboardAnalytics from "./ui/dashboard/DashboardAnalytics";
 import DashboardSettings from "./ui/dashboard/DashboardSettings";
+import DashboardProfile from "./ui/dashboard/DashboardProfile";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +90,7 @@ const router = createBrowserRouter([
       { index: true, element: <DashboardOverview /> },
       { path: "/dashboard/analytics", element: <DashboardAnalytics /> },
       { path: "/dashboard/settings", element: <DashboardSettings /> },
+      { path: "/dashboard/profile", element: <DashboardProfile /> },
     ],
   },
 
