@@ -22,16 +22,15 @@ function Signup({ switchToLogin }) {
       showToast(data.message, data.type || "success");
 
       if (data.type === "success") {
-        // ✅ Redirect to a thank you / verification notice page, or show a modal
         setTimeout(() => {
-          navigate("/verify-email"); // 👈 create this page, or show message
-        }, 1500);
+          navigate("/dashboard");
+        }, 1000);
       }
     }
   }, [fetcher.data, navigate]);
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-5rem)] px-4 py-12 bg-gray-100 dark:bg-stone-900">
+    <div className="flex items-center justify-center min-h-screen px-4 py-12 bg-gray-100 dark:bg-stone-900">
       <div className="w-full max-w-2xl p-8 bg-white rounded-lg shadow-md dark:bg-stone-800">
         <div className="mb-6 text-center">
           <h1 className="text-2xl font-semibold text-gray-900 dark:text-stone-50">

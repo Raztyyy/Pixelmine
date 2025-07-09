@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { showToast } from "../../utils/Toast";
 import { useAuth } from "../../context/AuthContext";
+import { useRef } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -12,7 +13,17 @@ function Login() {
   const navigate = useNavigate();
   const { login, isAuthenticated } = useAuth();
 
-  // // ✅ Redirect if already authenticated
+  const [searchParams] = useSearchParams();
+  const isVerified = searchParams.get("verified") === "true";
+  const hasShownToast = useRef(false); // ✅ prevents double toast
+
+  useEffect(() => {
+    if (isVerified && !hasShownToast.current) {
+      showToast("Your email has been verified. You can now log in.", "success");
+      hasShownToast.current = true; // ✅ only show once
+    }
+  }, [isVerified]);
+
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/dashboard");
@@ -38,14 +49,11 @@ function Login() {
         return;
       }
 
-      login(data.token); // Save token & fetch user
-
-      // ✅ Add slight delay before navigating
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 1000); // 1 second delay
-
+      login(data.token); // ✅ Save token and update auth context
       showToast("Login successful!", "success");
+
+      // ✅ optional: delay or navigate manually if needed
+      setTimeout(() => navigate("/dashboard"), 1000);
     } catch (err) {
       console.error("Login error:", err);
       showToast("Server error. Please try again.", "error");
@@ -55,7 +63,7 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen px-4 bg-gray-100 dark:bg-stone-900">
+    <div className="flex items-center justify-center min-h-[calc(100vh-5rem)] px-4 bg-gray-100 dark:bg-stone-900">
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow dark:bg-stone-800">
         {/* Header */}
         <div className="pb-2 mb-4 border-b">

@@ -37,6 +37,9 @@ import DashboardAnalytics from "./ui/dashboard/DashboardAnalytics";
 import DashboardSettings from "./ui/dashboard/DashboardSettings";
 import DashboardProfile from "./ui/dashboard/DashboardProfile";
 
+import VerifyEmail from "./ui/signup/VerifyEmail";
+import VerifyEmailConfirm from "./ui/signup/VerifyEmailConfirm";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -75,6 +78,16 @@ const router = createBrowserRouter([
       // Authentication for Dashboard
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup />, action: signupAction },
+
+      {
+        path: "verify-email",
+        element: <VerifyEmail />,
+      },
+
+      {
+        path: "verify-email/confirm",
+        element: <VerifyEmailConfirm />,
+      },
     ],
   },
   // 🚧 Dashboard: outside of AppLayout
