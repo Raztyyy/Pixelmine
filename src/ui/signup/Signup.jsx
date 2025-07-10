@@ -21,11 +21,9 @@ function Signup({ switchToLogin }) {
     if (data?.message) {
       showToast(data.message, data.type || "success");
 
-      if (data.type === "success") {
-        // ✅ Redirect to a thank you / verification notice page, or show a modal
-        setTimeout(() => {
-          navigate("/verify-email"); // 👈 create this page, or show message
-        }, 1500);
+      if (data.type === "success" && data.email) {
+        localStorage.setItem("pending_email", data.email);
+        setTimeout(() => navigate("/verify-email"), 1500);
       }
     }
   }, [fetcher.data, navigate]);

@@ -31,7 +31,11 @@ export async function signupAction({ request }) {
       return { message: data.error || "Signup failed", type: "error" };
     }
 
-    return { message: "Account created successfully!", type: "success" };
+    return {
+      message: data.message,
+      type: data.type,
+      email: data.email,
+    };
   } catch (err) {
     console.error(err);
     return { message: "Server error. Please try again.", type: "error" };

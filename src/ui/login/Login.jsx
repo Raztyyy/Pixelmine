@@ -25,6 +25,13 @@ function Login() {
   }, [isVerified]);
 
   useEffect(() => {
+    if (isVerified) {
+      // Remove pending_email from localStorage after successful verification
+      localStorage.removeItem("pending_email");
+    }
+  }, [isVerified]);
+
+  useEffect(() => {
     if (isAuthenticated) {
       navigate("/dashboard");
     }
