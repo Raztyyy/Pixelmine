@@ -39,6 +39,8 @@ import DashboardProfile from "./ui/dashboard/DashboardProfile";
 
 import VerifyEmail from "./ui/signup/VerifyEmail";
 import VerifyEmailConfirm from "./ui/signup/VerifyEmailConfirm";
+import ForgotPassword from "./ui/login/ForgotPassword";
+import ResetPassword from "./ui/login/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -77,13 +79,14 @@ const router = createBrowserRouter([
 
       // Authentication for Dashboard
       { path: "login", element: <Login /> },
-      { path: "signup", element: <Signup />, action: signupAction },
+      { path: "forgot-password", element: <ForgotPassword /> },
+      { path: "reset-password", element: <ResetPassword /> },
 
+      { path: "signup", element: <Signup />, action: signupAction },
       {
         path: "verify-email",
         element: <VerifyEmail />,
       },
-
       {
         path: "verify-email/confirm",
         element: <VerifyEmailConfirm />,

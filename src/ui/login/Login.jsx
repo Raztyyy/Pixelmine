@@ -122,12 +122,12 @@ function Login() {
           </div>
 
           <div className="flex items-center justify-end text-sm">
-            <a
-              href="#"
+            <Link
+              to="/forgot-password"
               className="transition-all duration-300 ease-in-out text-primary dark:text-green-400 hover:underline"
             >
               Lost password?
-            </a>
+            </Link>
           </div>
 
           <button
