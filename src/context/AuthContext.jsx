@@ -1,43 +1,41 @@
+// context/AuthContext.js
 import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(null);
-  const [user, setUser] = useState(null); // store decoded user
+  const [user, setUser] = useState(null);
 
-  // On mount: load token from localStorage and fetch user data
   useEffect(() => {
     const stored = localStorage.getItem("token");
     if (stored) {
       setToken(stored);
-      fetchProfile(stored); // decode/verify token via backend
+      fetchProfile(stored);
     }
   }, []);
 
-  // Fetch user data from backend using token
   const fetchProfile = async (jwt) => {
     try {
-      const res = await fetch("https://pixelmine.org:3001/api/profile", {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile`, {
+        headers: { Authorization: `Bearer ${jwt}` },
       });
-
       const data = await res.json();
       if (res.ok) {
-        setUser(data.user); // store decoded user object
+        setUser(data);
+        return data;
       } else {
         console.error("Failed to fetch profile:", data.error);
-        logout(); // token might be expired/invalid
+        logout();
+        return null;
       }
     } catch (err) {
       console.error("Error fetching profile:", err);
       logout();
+      return null;
     }
   };
 
-  // On login: save token and fetch profile
   const login = (jwt) => {
     localStorage.setItem("token", jwt);
     setToken(jwt);
@@ -50,14 +48,16 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
-  const isAuthenticated = !!token;
+  const refreshProfile = async () => (token ? await fetchProfile(token) : null);
 
   return (
     <AuthContext.Provider
       value={{
         token,
-        isAuthenticated,
-        user, // 👈 now available everywhere
+        user,
+        isAuthenticated: !!token,
+        refreshProfile,
+        setUser,
         login,
         logout,
       }}

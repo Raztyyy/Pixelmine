@@ -19,7 +19,7 @@ const menuItems = [
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-40 w-64 bg-white border-r shadow-md transform ${
+      className={`fixed inset-y-0 left-0 z-40 w-64 bg-white border-r shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] transform ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:shadow-none`}
     >
