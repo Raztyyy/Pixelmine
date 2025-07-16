@@ -19,7 +19,7 @@ function DashboardHeader({ sidebarOpen, setSidebarOpen }) {
   return (
     <div className="flex flex-col flex-1 overflow-hidden">
       {/* Header */}
-      <header className="flex items-center justify-between px-4 py-[20px] bg-white border border-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+      <header className="flex items-center justify-between px-4 py-[12px] lg:py-[20px] bg-white border border-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
         <button
           className="lg:hidden"
           onClick={() => setSidebarOpen(!sidebarOpen)}

@@ -12,6 +12,7 @@ import {
   faUpload,
   faPlus,
   faTimes,
+  faLinkSimple,
 } from "@fortawesome/pro-solid-svg-icons";
 import {
   faLinkedin,
@@ -22,6 +23,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { showToast } from "../../utils/Toast";
 import { useAuth } from "../../context/AuthContext";
+import SEOHelmet from "../SEOHelmet";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -163,212 +165,238 @@ export default function DashboardProfile() {
   }
 
   return (
-    <div className="z-0 px-4 mx-auto space-y-4 max-w-7xl">
-      <div className="flex flex-col items-center gap-4 p-4 bg-white shadow md:flex-row md:items-start sm:gap-6 sm:p-6 dark:bg-gray-800 rounded-2xl">
-        <div className="relative">
-          <div
-            onClick={handleAvatarClick}
-            className="flex items-center justify-center w-24 h-24 overflow-hidden bg-gray-200 rounded-full cursor-pointer dark:bg-gray-700 hover:opacity-80"
-          >
-            <img
-              src={editedProfile.avatar_blob || placeholderAvatar}
-              alt="User Avatar"
-              className="object-cover w-full h-full"
-            />
-            {uploading && (
-              <div className="absolute inset-0 flex items-center justify-center text-xs text-white bg-black bg-opacity-50">
-                Uploading...
-              </div>
-            )}
-          </div>
-          <input
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            onChange={handleAvatarChange}
-            className="hidden"
-          />
-        </div>
-        <div className="flex-[1.1] w-full">
-          <div className="flex flex-col items-start justify-between gap-3 md:flex-row sm:gap-5">
-            <div className="flex flex-col w-full gap-2 md:w-96">
-              {editing ? (
-                <>
-                  <Input
-                    label="First Name"
-                    value={editedProfile.first_name}
-                    onChange={(v) => handleChange("first_name", v)}
-                  />
-                  <Input
-                    label="Last Name"
-                    value={editedProfile.last_name}
-                    onChange={(v) => handleChange("last_name", v)}
-                  />
-                  <Input
-                    label="Position Title"
-                    value={editedProfile.position_title}
-                    onChange={(v) => handleChange("position_title", v)}
-                  />
-                  <Textarea
-                    label="Bio"
-                    value={editedProfile.bio}
-                    onChange={(v) => handleChange("bio", v)}
-                  />
-                </>
-              ) : (
-                <>
-                  <h2 className="text-xl font-semibold break-all sm:text-2xl">
-                    {user.first_name} {user.last_name}
-                  </h2>
-                  <p className="text-gray-500 dark:text-gray-400">
-                    {user.position_title || "Position Title"}
-                  </p>
-                  <p className="mt-1 text-gray-600 break-all dark:text-gray-300">
-                    {user.bio || "Bio"}
-                  </p>
-                </>
+    <>
+      <SEOHelmet
+        title="Profile | Pixelmine Japan OPC"
+        description="Monitor real-time storer activity, available slots, and operational metrics with the Pixelmine OPC Dashboard. Stay updated and manage your network efficiently."
+        url="https://www.pixelmine.org/dashboard"
+        image="/social-sharing.jpg"
+      />
+
+      <div className="z-0 mx-auto space-y-4 max-w-7xl">
+        <div className="flex flex-col items-center gap-4 p-4 bg-white shadow md:flex-row md:items-start sm:gap-6 sm:p-6 dark:bg-gray-800 rounded-2xl">
+          <div className="relative">
+            <div
+              onClick={handleAvatarClick}
+              className="flex items-center justify-center w-24 h-24 overflow-hidden bg-gray-200 rounded-full cursor-pointer dark:bg-gray-700 hover:opacity-80"
+            >
+              <img
+                src={editedProfile.avatar_blob || placeholderAvatar}
+                alt="User Avatar"
+                className="object-cover w-full h-full"
+              />
+              {uploading && (
+                <div className="absolute inset-0 flex items-center justify-center text-xs text-white bg-black bg-opacity-50">
+                  Uploading...
+                </div>
               )}
             </div>
-            <button
-              className="flex items-center mt-2 text-primary dark:text-white hover:underline md:mt-0"
-              onClick={() => (editing ? handleSave() : setEditing(true))}
-            >
-              <FontAwesomeIcon
-                icon={editing ? faUpload : faPen}
-                className="mr-2"
-              />
-              {editing ? "Save Changes" : "Edit Profile"}
-            </button>
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              onChange={handleAvatarChange}
+              className="hidden"
+            />
           </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 sm:gap-6">
-        <div className="p-4 space-y-3 bg-white shadow sm:p-6 sm:space-y-4 dark:bg-gray-800 rounded-2xl">
-          <EditableInfoItem
-            icon={faEnvelope}
-            text={editedProfile.email}
-            fallback="Email"
-            field="email"
-            isEditing={false}
-            onChange={handleChange}
-          />
-          <EditableInfoItem
-            icon={faPhone}
-            text={editedProfile.contact_person_number}
-            fallback="Contact Number"
-            field="contact_person_number"
-            isEditing={editing}
-            onChange={handleChange}
-          />
-          <EditableInfoItem
-            icon={faBuilding}
-            text={editedProfile.company_name}
-            fallback="Company Name"
-            field="company_name"
-            isEditing={editing}
-            onChange={handleChange}
-          />
-          <EditableInfoItem
-            icon={faMapMarkerAlt}
-            text={editedProfile.company_address}
-            fallback="Company Address"
-            field="company_address"
-            isEditing={editing}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="p-4 space-y-3 bg-white shadow sm:p-6 sm:space-y-4 dark:bg-gray-800 rounded-2xl">
-          <EditableInfoItem
-            icon={faBriefcase}
-            text={editedProfile.department}
-            fallback="Department"
-            field="department"
-            isEditing={editing}
-            onChange={handleChange}
-          />
-          <EditableInfoItem
-            icon={faGlobe}
-            text={editedProfile.website_url}
-            fallback="Website"
-            field="website_url"
-            isEditing={editing}
-            onChange={handleChange}
-          />
-          <div>
-            <h4 className="mb-2 text-sm font-semibold text-gray-500">
-              Social Links
-            </h4>
-            {editing ? (
-              <div className="space-y-5">
-                {socialLinks.map((link, idx) => (
-                  <div
-                    key={idx}
-                    className="flex flex-col flex-wrap gap-2 sm:flex-row"
-                  >
-                    <select
-                      className="flex-1 px-2 py-1 text-gray-700 border rounded dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
-                      value={link.platform}
-                      onChange={(e) =>
-                        handleSocialLinkChange(idx, "platform", e.target.value)
-                      }
-                    >
-                      <option value="">Select Platform</option>
-                      {SOCIAL_PLATFORMS.map((p) => (
-                        <option key={p.name} value={p.name}>
-                          {p.name}
-                        </option>
-                      ))}
-                    </select>
-                    <input
-                      className="flex-1 px-2 py-1 text-gray-700 break-all border rounded dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
-                      placeholder="URL"
-                      value={link.url}
-                      onChange={(e) =>
-                        handleSocialLinkChange(idx, "url", e.target.value)
-                      }
+          <div className="flex-[1.1] w-full">
+            <div className="flex flex-col items-center justify-between gap-3 md:items-start md:flex-row sm:gap-5">
+              <div className="flex flex-col w-full gap-2 text-center md:w-96 md:text-start">
+                {editing ? (
+                  <>
+                    <Input
+                      label="First Name"
+                      value={editedProfile.first_name}
+                      onChange={(v) => handleChange("first_name", v)}
                     />
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveSocialLink(idx)}
-                      className="p-1 text-white bg-red-500 rounded-sm md:text-red-500 md:hover:text-red-700 md:bg-transparent "
-                      title="Remove"
-                    >
-                      <FontAwesomeIcon icon={faTimes} />
-                    </button>
-                  </div>
-                ))}
-                <button
-                  type="button"
-                  onClick={handleAddSocialLink}
-                  className="flex items-center gap-1 px-2 py-2 mt-2 text-xs border rounded text-primary border-primary hover:bg-primary hover:text-white"
-                >
-                  <FontAwesomeIcon icon={faPlus} /> Add Social Link
-                </button>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-2 overflow-auto max-h-auto">
-                {socialLinks.map((link, idx) => (
-                  <a
-                    key={idx}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-gray-600 break-all hover:text-primary dark:text-gray-300"
-                  >
-                    <FontAwesomeIcon icon={getSocialIcon(link.platform)} />{" "}
-                    {formatSocialDisplay(link)}
-                  </a>
-                ))}
-                {socialLinks.length === 0 && (
-                  <span className="italic text-gray-400">No social links</span>
+                    <Input
+                      label="Last Name"
+                      value={editedProfile.last_name}
+                      onChange={(v) => handleChange("last_name", v)}
+                    />
+                    <Input
+                      label="Position Title"
+                      value={editedProfile.position_title}
+                      onChange={(v) => handleChange("position_title", v)}
+                    />
+                    <Textarea
+                      label="Bio"
+                      value={editedProfile.bio}
+                      onChange={(v) => handleChange("bio", v)}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <h2 className="text-xl font-semibold break-all sm:text-2xl">
+                      {user.first_name} {user.last_name}
+                    </h2>
+                    <p className="text-gray-500 dark:text-gray-400">
+                      {user.position_title || "Position Title"}
+                    </p>
+                    <p className="mt-1 text-gray-600 break-all dark:text-gray-300">
+                      {user.bio || "Bio"}
+                    </p>
+                  </>
                 )}
               </div>
-            )}
+              <button
+                className="flex items-center gap-2 px-4 py-2 mb-2 text-sm text-center text-white transition-all duration-300 ease-in-out border rounded-lg group me-2 bg-primary border-primary hover:bg-primary/80"
+                onClick={() => (editing ? handleSave() : setEditing(true))}
+              >
+                <FontAwesomeIcon
+                  icon={editing ? faUpload : faPen}
+                  className="mr-2"
+                />
+                {editing ? "Save Changes" : "Edit Profile"}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 sm:gap-4">
+          <div className="p-4 space-y-3 bg-white shadow sm:p-6 sm:space-y-4 dark:bg-gray-800 rounded-2xl">
+            <EditableInfoItem
+              icon={faEnvelope}
+              text={editedProfile.email}
+              fallback="Email"
+              field="email"
+              isEditing={false}
+              onChange={handleChange}
+            />
+            <EditableInfoItem
+              icon={faPhone}
+              text={editedProfile.contact_person_number}
+              fallback="Contact Number"
+              field="contact_person_number"
+              isEditing={editing}
+              onChange={handleChange}
+            />
+            <EditableInfoItem
+              icon={faBuilding}
+              text={editedProfile.company_name}
+              fallback="Company Name"
+              field="company_name"
+              isEditing={editing}
+              onChange={handleChange}
+            />
+            <EditableInfoItem
+              icon={faMapMarkerAlt}
+              text={editedProfile.company_address}
+              fallback="Company Address"
+              field="company_address"
+              isEditing={editing}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="p-4 space-y-3 bg-white shadow sm:p-6 sm:space-y-4 dark:bg-gray-800 rounded-2xl">
+            <EditableInfoItem
+              icon={faBriefcase}
+              text={editedProfile.department}
+              fallback="Department"
+              field="department"
+              isEditing={editing}
+              onChange={handleChange}
+            />
+            <EditableInfoItem
+              icon={faGlobe}
+              text={editedProfile.website_url}
+              fallback="Website"
+              field="website_url"
+              isEditing={editing}
+              onChange={handleChange}
+              clickable
+            />
+            <div>
+              <h4 className="flex items-center mb-3 space-x-3 text-gray-700">
+                <FontAwesomeIcon
+                  icon={faLinkSimple}
+                  className="mr-2 text-stone-600"
+                />
+                Social Links
+              </h4>
+              {editing ? (
+                <div className="space-y-4">
+                  {socialLinks.map((link, idx) => (
+                    <div
+                      key={idx}
+                      className="flex flex-col flex-wrap gap-2 sm:flex-row"
+                    >
+                      <select
+                        className="flex-1 px-2 py-1 text-gray-700 border rounded dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
+                        value={link.platform}
+                        onChange={(e) =>
+                          handleSocialLinkChange(
+                            idx,
+                            "platform",
+                            e.target.value
+                          )
+                        }
+                      >
+                        <option value="">Select Platform</option>
+                        {SOCIAL_PLATFORMS.map((p) => (
+                          <option key={p.name} value={p.name}>
+                            {p.name}
+                          </option>
+                        ))}
+                      </select>
+                      <input
+                        className="flex-1 px-2 py-1 text-gray-700 break-all border rounded dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
+                        placeholder="URL"
+                        value={link.url}
+                        onChange={(e) =>
+                          handleSocialLinkChange(idx, "url", e.target.value)
+                        }
+                      />
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveSocialLink(idx)}
+                        className="flex items-center justify-center gap-3 p-1 text-white bg-red-500 rounded md:text-red-500 md:hover:text-red-700 md:bg-transparent"
+                        title="Remove"
+                      >
+                        <FontAwesomeIcon
+                          icon={faTimes}
+                          className="hidden md:block"
+                        />
+                        <span className="block md:hidden">
+                          Remove {link.platform}
+                        </span>
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={handleAddSocialLink}
+                    className="flex items-center gap-2 px-4 py-2 mb-2 text-sm text-center text-white transition-all duration-300 ease-in-out border rounded-lg group me-2 bg-primary border-primary hover:bg-primary/80"
+                  >
+                    <FontAwesomeIcon icon={faPlus} /> Add Social Link
+                  </button>
+                </div>
+              ) : (
+                <div className="inline-flex flex-col gap-2 overflow-auto max-h-auto">
+                  {socialLinks.map((link, idx) => (
+                    <a
+                      key={idx}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 text-gray-600 break-all hover:text-primary dark:text-gray-300"
+                    >
+                      <FontAwesomeIcon icon={getSocialIcon(link.platform)} />{" "}
+                      {formatSocialDisplay(link)}
+                    </a>
+                  ))}
+                  {socialLinks.length === 0 && (
+                    <span className="italic text-gray-400">
+                      No social links
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -379,13 +407,16 @@ function EditableInfoItem({
   field,
   isEditing,
   onChange,
+  clickable,
 }) {
+  const displayText = text?.trim() || fallback;
+
   return (
     <div className="flex items-start space-x-3">
       <FontAwesomeIcon icon={icon} className="mt-1 text-stone-600" />
       {isEditing ? (
         <div className="flex flex-col flex-1">
-          <label className="mb-1 text-xs text-gray-500 capitalize">
+          <label className="mb-1 text-xs text-gray-500 capitalize text-start">
             {fallback}
           </label>
           <input
@@ -395,16 +426,23 @@ function EditableInfoItem({
             onChange={(e) => onChange(field, e.target.value)}
           />
         </div>
+      ) : text?.trim() ? (
+        clickable ? (
+          <a
+            href={text}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 text-gray-700 break-all hover:text-primary dark:text-gray-300"
+          >
+            {displayText}
+          </a>
+        ) : (
+          <span className="flex-1 text-gray-700 break-all dark:text-gray-300">
+            {displayText}
+          </span>
+        )
       ) : (
-        <span
-          className={
-            text?.trim()
-              ? "flex-1 text-gray-700 dark:text-gray-300 break-all"
-              : "flex-1 text-gray-400"
-          }
-        >
-          {text?.trim() || fallback}
-        </span>
+        <span className="flex-1 text-gray-400">{fallback}</span>
       )}
     </div>
   );
@@ -413,7 +451,7 @@ function EditableInfoItem({
 function Input({ label, value, onChange }) {
   return (
     <>
-      <label className="text-xs text-gray-500">{label}</label>
+      <label className="text-xs text-gray-500 text-start">{label}</label>
       <input
         className="w-full px-2 py-1 mb-2 text-gray-700 border rounded dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
         value={value || ""}
