@@ -1,6 +1,6 @@
-function DashboardAnalytics() {
+function ComingSoon() {
   return (
-    <section className="grid min-h-full px-6 py-24 bg-white rounded-lg place-items-center sm:py-32 lg:px-8">
+    <section className="grid min-h-full px-6 py-24 bg-white place-items-center sm:py-32 lg:px-8">
       <div className="text-center">
         <img
           src="../../logo.png"
@@ -21,4 +21,4 @@ function DashboardAnalytics() {
   );
 }
 
-export default DashboardAnalytics;
+export default ComingSoon;
