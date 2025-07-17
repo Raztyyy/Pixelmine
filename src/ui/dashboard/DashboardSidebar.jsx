@@ -19,14 +19,17 @@ const menuItems = [
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-40 w-64 bg-white border-r shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] transform ${
+      className={`fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-zinc-950/95 border-r dark:border-r-stone-400/50 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] transform backdrop-blur-md ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:shadow-none`}
     >
       <div className="flex items-center justify-between px-4 py-[30px]">
         {/* Logo */}
-        <Logo paddingX={"3rem"} />
-        <button className="lg:hidden" onClick={() => setSidebarOpen(false)}>
+        <Logo paddingX={"3rem"} mode="dark" />
+        <button
+          className="lg:hidden dark:text-white"
+          onClick={() => setSidebarOpen(false)}
+        >
           <FontAwesomeIcon icon={faX} className="w-5 h-5" />
         </button>
       </div>
@@ -39,13 +42,24 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
                 isActive
-                  ? "bg-primary/10 text-primary font-semibold"
-                  : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-primary/10 dark:bg-zinc-500/30 dark:text-white  text-stone-900"
+                  : "text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-500/30"
               }`
             }
           >
-            <FontAwesomeIcon icon={item.icon} className="w-5 h-5" />
-            <span>{item.name}</span>
+            {({ isActive }) => (
+              <>
+                <FontAwesomeIcon
+                  icon={item.icon}
+                  className={`w-5 h-5 ${
+                    isActive
+                      ? "dark:text-green-500 text-primary"
+                      : "dark:text-zinc-500"
+                  }`}
+                />
+                <span>{item.name}</span>
+              </>
+            )}
           </NavLink>
         ))}
       </nav>
@@ -57,7 +71,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             localStorage.removeItem("token");
             window.location.href = "/login"; // or use navigate("/login")
           }}
-          className="flex items-center w-full gap-3 px-3 py-2 text-red-600 transition-colors rounded-md hover:bg-red-50"
+          className="flex items-center w-full gap-3 px-3 py-2 text-red-600 transition-colors rounded-md dark:text-red-400 hover:bg-red-50 dark:hover:bg-zinc-500/30"
         >
           <FontAwesomeIcon icon={faArrowRightFromBracket} className="w-5 h-5" />
           <span>Logout</span>

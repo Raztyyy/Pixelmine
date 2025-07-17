@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useEffect } from "react";
 
 import Overview from "./pages/Overview";
 import Concept from "./pages/Concept";
@@ -41,6 +42,8 @@ import VerifyEmail from "./ui/signup/VerifyEmail";
 import VerifyEmailConfirm from "./ui/signup/VerifyEmailConfirm";
 import ForgotPassword from "./ui/login/ForgotPassword";
 import ResetPassword from "./ui/login/ResetPassword";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const router = createBrowserRouter([
   {
@@ -118,6 +121,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  useEffect(() => {
+    // ✅ log visitor IP on first mount
+    fetch(`${API_URL}/api/log-visit`).catch(console.error);
+  }, []); // empty dependency → fires once
+
   return (
     <>
       <RouterProvider

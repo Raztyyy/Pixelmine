@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Logo({ paddingX = "0" }) {
+function Logo({ paddingX = "0", mode }) {
   return (
     <div className="flex lg:flex-1">
       <Link to="/">
@@ -8,7 +8,9 @@ function Logo({ paddingX = "0" }) {
         <img
           alt="Pixelmine Logo"
           src="/logo.png"
-          className={`h-[18px] w-auto ${paddingX}`}
+          className={`h-[18px] w-auto ${paddingX} ${
+            mode === "dark" ? "dark:invert dark:brightness-0" : ""
+          }`}
         />
       </Link>
     </div>
