@@ -10,7 +10,6 @@ import {
   Legend,
 } from "chart.js";
 
-// Register components (required)
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -21,13 +20,16 @@ ChartJS.register(
   Legend
 );
 
-const OnlineHoursLineChart = () => {
-  const data = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+const OnlineHoursLineChart = ({ data }) => {
+  const labels = data.map((item) => item.month);
+  const values = data.map((item) => item.hours);
+
+  const chartData = {
+    labels,
     datasets: [
       {
         label: "Online Hours",
-        data: [35, 42, 27, 55, 48, 60],
+        data: values,
         fill: false,
         borderColor: "#15803d",
         tension: 0.3,
@@ -40,29 +42,23 @@ const OnlineHoursLineChart = () => {
     plugins: {
       legend: {
         display: true,
-        position: "top", // top, left, right, bottom
+        position: "top",
         labels: {
-          color: "#000000", // text color (gray-500)
-          font: {
-            family: "Inter, sans-serif",
-            size: 14,
-            weight: "500",
-          },
-          padding: 20, // space around legend items
-          boxWidth: 12, // size of legend color box
+          color: "#000",
+          font: { size: 14, weight: "500" },
+          padding: 20,
+          boxWidth: 12,
         },
       },
-      title: { display: false, text: "User Online Hours per Month" },
+      title: { display: false },
     },
-    scales: {
-      y: { beginAtZero: true },
-    },
+    scales: { y: { beginAtZero: true } },
   };
 
   return (
-    <div className="w-full mx-auto max-w-7xl lg:h-[600px] flex justify-center items-center flex-col lg:p-8">
+    <div className="flex flex-col items-center justify-center w-full mx-auto max-w-7xl lg:p-8">
       <h2 className="mb-5 font-semibold">User Online Hours per Month</h2>
-      <Line data={data} options={options} />
+      <Line data={chartData} options={options} />
     </div>
   );
 };
