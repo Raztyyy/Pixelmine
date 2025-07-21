@@ -44,24 +44,21 @@ function DashboardOverview() {
   useEffect(() => {
     const fetchLocationStatus = async () => {
       try {
-        const res = await fetch(`${API_URL}/api/global-storer-status`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: "application/json",
-          },
-        });
+        const res = await fetch(`${API_URL}/api/global-storer-status`);
         const data = await res.json();
-        // data.location_status should be array
-        setLocationStatus(data.location_status ?? []);
+
+        // data.location_status[0]?.location_status is JSON string
+        const raw = data.location_status?.[0]?.location_status;
+        const parsed = raw ? JSON.parse(raw) : [];
+
+        setLocationStatus(parsed);
       } catch (err) {
         console.error("Error fetching global location status:", err);
       }
     };
 
-    if (token) {
-      fetchLocationStatus();
-    }
-  }, [token, API_URL]);
+    fetchLocationStatus();
+  }, [API_URL]);
 
   const countryNames = Object.keys(
     locationStatus.reduce((acc, city) => {
