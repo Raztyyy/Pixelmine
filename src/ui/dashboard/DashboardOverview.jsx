@@ -10,8 +10,10 @@ function DashboardOverview() {
     activity_points: 0,
     pxl_points: 0,
     online_hours_per_month: [],
-    location_status: [],
   });
+
+  const [locationStatus, setLocationStatus] = useState([]);
+
   const API_URL = import.meta.env.VITE_API_URL;
   const { token } = useAuth();
 
@@ -39,8 +41,30 @@ function DashboardOverview() {
     }
   }, [token, API_URL]);
 
+  useEffect(() => {
+    const fetchLocationStatus = async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/global-storer-status`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          },
+        });
+        const data = await res.json();
+        // data.location_status should be array
+        setLocationStatus(data.location_status ?? []);
+      } catch (err) {
+        console.error("Error fetching global location status:", err);
+      }
+    };
+
+    if (token) {
+      fetchLocationStatus();
+    }
+  }, [token, API_URL]);
+
   const countryNames = Object.keys(
-    statistics.location_status.reduce((acc, city) => {
+    locationStatus.reduce((acc, city) => {
       const country = city.country || "Unknown";
       acc[country] = true;
       return acc;
@@ -48,9 +72,7 @@ function DashboardOverview() {
   );
 
   const cityOptions = selectedCountry
-    ? statistics.location_status.filter(
-        (city) => city.country === selectedCountry
-      )
+    ? locationStatus.filter((city) => city.country === selectedCountry)
     : [];
 
   const selectedCityData =
@@ -76,7 +98,7 @@ function DashboardOverview() {
             Total Running Storer
           </h2>
           <p className="text-5xl font-bold dark:text-white">
-            {(statistics.location_status ?? []).reduce(
+            {(locationStatus ?? []).reduce(
               (sum, city) => sum + (city.running || 0),
               0
             )}
