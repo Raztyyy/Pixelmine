@@ -174,7 +174,7 @@ export default function DashboardProfile() {
       />
 
       <div className="z-0 mx-auto space-y-4 max-w-7xl">
-        <div className="flex flex-col items-center gap-4 p-4 bg-white shadow md:flex-row md:items-start sm:gap-6 sm:p-6 dark:bg-gray-800 rounded-2xl">
+        <div className="flex flex-col items-center gap-4 p-4 bg-white shadow md:flex-row md:items-start sm:gap-6 sm:p-6 dark:bg-zinc-600/20 dark:border dark:border-stone-400/30 rounded-2xl">
           <div className="relative">
             <div
               onClick={handleAvatarClick}
@@ -200,8 +200,8 @@ export default function DashboardProfile() {
             />
           </div>
           <div className="flex-[1.1] w-full">
-            <div className="flex flex-col items-center justify-between gap-3 md:items-start md:flex-row sm:gap-5">
-              <div className="flex flex-col w-full gap-2 text-center md:w-96 md:text-start">
+            <div className="flex flex-col items-center justify-between gap-3 md:items-start md:flex-row sm:gap-5 ">
+              <div className="flex flex-col w-full gap-2 text-center md:w-96 md:text-start ">
                 {editing ? (
                   <>
                     <Input
@@ -227,10 +227,10 @@ export default function DashboardProfile() {
                   </>
                 ) : (
                   <>
-                    <h2 className="text-xl font-semibold break-all sm:text-2xl">
+                    <h2 className="text-xl font-semibold break-all sm:text-2xl dark:text-white">
                       {user.first_name} {user.last_name}
                     </h2>
-                    <p className="text-gray-500 dark:text-gray-400">
+                    <p className="text-gray-500 dark:text-gray-300">
                       {user.position_title || "Position Title"}
                     </p>
                     <p className="mt-1 text-gray-600 break-all dark:text-gray-300">
@@ -254,7 +254,7 @@ export default function DashboardProfile() {
         </div>
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 sm:gap-4">
-          <div className="p-4 space-y-3 bg-white shadow sm:p-6 sm:space-y-4 dark:bg-gray-800 rounded-2xl">
+          <div className="p-4 space-y-3 bg-white shadow sm:p-6 sm:space-y-4 dark:bg-zinc-600/20 dark:border dark:border-stone-400/30 rounded-2xl">
             <EditableInfoItem
               icon={faEnvelope}
               text={editedProfile.email}
@@ -288,7 +288,7 @@ export default function DashboardProfile() {
               onChange={handleChange}
             />
           </div>
-          <div className="p-4 space-y-3 bg-white shadow sm:p-6 sm:space-y-4 dark:bg-gray-800 rounded-2xl">
+          <div className="p-4 space-y-3 bg-white shadow sm:p-6 sm:space-y-4 dark:bg-zinc-600/20 dark:border dark:border-stone-400/30 rounded-2xl">
             <EditableInfoItem
               icon={faBriefcase}
               text={editedProfile.department}
@@ -307,10 +307,10 @@ export default function DashboardProfile() {
               clickable
             />
             <div>
-              <h4 className="flex items-center mb-3 space-x-3 text-gray-700">
+              <h4 className="flex items-center mb-3 space-x-3 text-gray-700 dark:text-stone-50/80">
                 <FontAwesomeIcon
                   icon={faLinkSimple}
-                  className="mr-2 text-stone-600"
+                  className="mr-2 text-stone-600 dark:text-stone-50/80"
                 />
                 Social Links
               </h4>
@@ -322,7 +322,7 @@ export default function DashboardProfile() {
                       className="flex flex-col flex-wrap gap-2 sm:flex-row"
                     >
                       <select
-                        className="flex-1 px-2 py-1 text-gray-700 border rounded dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
+                        className="flex-1 px-2 py-1 text-gray-700 border rounded dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200 dark:bg-gray-600/30 dark:border-gray-600"
                         value={link.platform}
                         onChange={(e) =>
                           handleSocialLinkChange(
@@ -340,7 +340,7 @@ export default function DashboardProfile() {
                         ))}
                       </select>
                       <input
-                        className="flex-1 px-2 py-1 text-gray-700 break-all border rounded dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
+                        className="flex-1 px-2 py-1 text-gray-700 break-all border rounded dark:bg-gray-600/30 dark:border-gray-600 dark:text-gray-200"
                         placeholder="URL"
                         value={link.url}
                         onChange={(e) =>
@@ -379,7 +379,7 @@ export default function DashboardProfile() {
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 text-gray-600 break-all hover:text-primary dark:text-gray-300"
+                      className="flex items-center gap-3 text-gray-600 break-all hover:text-primary dark:hover:text-green-400 dark:text-gray-300"
                     >
                       <FontAwesomeIcon icon={getSocialIcon(link.platform)} />{" "}
                       {formatSocialDisplay(link)}
@@ -413,14 +413,17 @@ function EditableInfoItem({
 
   return (
     <div className="flex items-start space-x-3">
-      <FontAwesomeIcon icon={icon} className="mt-1 text-stone-600" />
+      <FontAwesomeIcon
+        icon={icon}
+        className="mt-1 text-stone-600 dark:text-stone-50/80"
+      />
       {isEditing ? (
         <div className="flex flex-col flex-1">
-          <label className="mb-1 text-xs text-gray-500 capitalize text-start">
+          <label className="mb-1 text-xs text-gray-500 capitalize text-start dark:text-stone-50/80">
             {fallback}
           </label>
           <input
-            className="w-full px-2 py-1 text-gray-700 border rounded dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
+            className="w-full px-2 py-1 text-gray-700 border rounded dark:bg-gray-600/30 dark:border-gray-600 dark:text-gray-200"
             value={text || ""}
             placeholder={fallback}
             onChange={(e) => onChange(field, e.target.value)}
@@ -432,7 +435,9 @@ function EditableInfoItem({
             href={text}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 text-gray-700 break-all hover:text-primary dark:text-gray-300"
+            className={`flex-1 text-gray-700 break-all hover:text-primary dark:text-gray-300 ${
+              clickable ? "dark:hover:text-green-400" : ""
+            }`}
           >
             {displayText}
           </a>
@@ -451,9 +456,11 @@ function EditableInfoItem({
 function Input({ label, value, onChange }) {
   return (
     <>
-      <label className="text-xs text-gray-500 text-start">{label}</label>
+      <label className="text-xs text-gray-500 text-start dark:text-white">
+        {label}
+      </label>
       <input
-        className="w-full px-2 py-1 mb-2 text-gray-700 border rounded dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
+        className="w-full px-2 py-1 mb-2 text-gray-700 border rounded dark:bg-gray-600/30 dark:border-gray-600 dark:text-gray-200"
         value={value || ""}
         onChange={(e) => onChange(e.target.value)}
       />
@@ -474,7 +481,7 @@ function Textarea({ label, value, onChange }) {
         </span>
       </label>
       <textarea
-        className="w-full px-2 py-1 text-gray-700 border rounded dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200"
+        className="w-full px-2 py-1 text-gray-700 border rounded dark:bg-gray-600/30 dark:border-gray-600 dark:text-gray-200"
         value={value || ""}
         maxLength={maxLength}
         onChange={(e) => onChange(e.target.value)}

@@ -47,9 +47,16 @@ function DashboardOverview() {
         const res = await fetch(`${API_URL}/api/global-storer-status`);
         const data = await res.json();
 
-        // data.location_status[0]?.location_status is JSON string
         const raw = data.location_status?.[0]?.location_status;
-        const parsed = raw ? JSON.parse(raw) : [];
+
+        // raw should be a JSON string; parse it
+        let parsed = [];
+        if (typeof raw === "string") {
+          parsed = JSON.parse(raw);
+        } else if (Array.isArray(raw)) {
+          // just in case backend auto-parses in future
+          parsed = raw;
+        }
 
         setLocationStatus(parsed);
       } catch (err) {
@@ -152,7 +159,7 @@ function DashboardOverview() {
 
           {selectedCity && (
             <div className="flex flex-col justify-between gap-5 mt-5 lg:flex-row">
-              <div className="w-full p-5 text-center rounded-md shadow text-stone-900 dark:bg-zinc-600 dark:border dark:border-stone-400/30">
+              <div className="w-full p-5 text-center rounded-md shadow text-stone-900 dark:bg-zinc-600/20 dark:border dark:border-stone-400/30">
                 <FontAwesomeIcon
                   icon={faBolt}
                   className="w-4 h-4 p-2 rounded-full bg-primary text-stone-50"
@@ -164,7 +171,7 @@ function DashboardOverview() {
                   {selectedCityData.running ?? "--"}
                 </p>
               </div>
-              <div className="w-full p-5 text-center rounded-md shadow text-stone-900 dark:bg-zinc-600 dark:border dark:border-stone-400/30">
+              <div className="w-full p-5 text-center rounded-md shadow text-stone-900 dark:bg-zinc-600/20 dark:border dark:border-stone-400/30">
                 <FontAwesomeIcon
                   icon={faBoxOpen}
                   className="w-4 h-4 p-2 rounded-full bg-primary text-stone-50"
@@ -187,24 +194,24 @@ function DashboardOverview() {
           <div className="flex flex-col items-center justify-center h-full p-6 bg-white rounded-md shadow dark:bg-zinc-700 dark:border dark:border-stone-400/25 text-stone-900">
             <FontAwesomeIcon
               icon={faBolt}
-              className="w-4 h-4 p-2 rounded-full bg-primary text-stone-50"
+              className="w-5 h-5 p-4 rounded-full bg-primary text-stone-50"
             />
-            <h2 className="mt-2 mb-1 text-sm font-medium dark:text-white">
+            <h2 className="mt-5 mb-2 text-md dark:text-stone-300">
               Activity Points
             </h2>
-            <p className="text-2xl font-bold dark:text-white">
+            <p className="text-3xl font-bold dark:text-white">
               {statistics.activity_points ?? "--"}
             </p>
           </div>
           <div className="flex flex-col items-center justify-center h-full p-6 bg-white rounded-md shadow dark:bg-zinc-700 dark:border dark:border-stone-400/25 text-stone-900">
             <FontAwesomeIcon
               icon={faBolt}
-              className="w-4 h-4 p-2 rounded-full bg-primary text-stone-50"
+              className="w-5 h-5 p-4 rounded-full bg-primary text-stone-50"
             />
-            <h2 className="mt-2 mb-1 text-sm font-medium dark:text-white">
+            <h2 className="mt-5 mb-2 text-md dark:text-stone-300">
               PXL Points
             </h2>
-            <p className="text-2xl font-bold dark:text-white">
+            <p className="text-3xl font-bold dark:text-white">
               {statistics.pxl_points ?? "--"} PXL
             </p>
           </div>
