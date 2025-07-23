@@ -46,7 +46,7 @@ const OnlineHoursLineChart = ({ data }) => {
         label: "Online Hours",
         data: values,
         fill: false,
-        borderColor: isDark ? "#22c55e" : "#86efac", // Tailwind green-500 or green-800
+        borderColor: isDark ? "#86efac" : "#22c55e", // Tailwind green-500 or green-800
         tension: 0.3,
       },
     ],
