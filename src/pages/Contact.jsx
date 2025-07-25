@@ -89,8 +89,7 @@ function Contact() {
           </div>
           <div className="flex-1">
             <div className="flex flex-col items-center justify-center ">
-              <div className="p-10 bg-white rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] flex justify-center flex-col items-center">
-                <h2 className="mb-10 text-3xl">Get Connected</h2>
+              <div className="p-10 bg-white rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] flex justify-center flex-col items-center ">
                 <ContactUsForm />
               </div>
             </div>

@@ -26,6 +26,7 @@ import CareerRole from "./pages/CareerRole";
 import NewsDetails from "./pages/NewsDetails";
 
 import { action as newsletterAction } from "./features/newsletter/newsletterAction";
+import { action as contactAction } from "./features/contact/contactAction";
 import { signupAction } from "./features/authentication/signupAction";
 
 import { Toaster } from "react-hot-toast";
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
       { path: "news-events/:news_slug", element: <NewsDetails /> },
       { path: "careers", element: <Careers /> },
       { path: "careers/:role_slug", element: <CareerRole /> },
-      { path: "contact-us", element: <Contact /> },
+      { path: "contact-us", element: <Contact />, action: contactAction },
       { path: "terms-and-conditions", element: <TermsAndConditions /> },
       {
         path: "child-sexual-abuse-policy",

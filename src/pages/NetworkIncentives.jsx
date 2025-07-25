@@ -110,7 +110,12 @@ function NetworkIncentives() {
                   PXL Points Conversion
                 </h2>
                 <p className="mt-4 text-xl font-light text-center">
-                  1 PXL = {formatCurrencyWithSymbol(pixelpoint, "JPY")}
+                  {/* 1 PXL = {formatCurrencyWithSymbol(pixelpoint, "JPY")} */}1
+                  PXL ={" "}
+                  {formatCurrencyWithSymbol(
+                    pixelpoint[selected.currency],
+                    selected.currency
+                  )}
                 </p>
               </div>
             </div>
