@@ -18,13 +18,15 @@ function NewsUpdates() {
         </p>
         <div className="flex flex-col gap-7 lg:flex-row">
           <Featured />
-          <div className="w-full lg:flex-1">
-            <div className="flex flex-col space-y-5 divide-y">
-              {otherNews.map((item, idx) => (
-                <NewsCard news={item} key={item.title} idx={idx} />
-              ))}
+          {otherNews.length > 0 && (
+            <div className="w-full lg:flex-1">
+              <div className="flex flex-col space-y-5 divide-y">
+                {otherNews.map((item, idx) => (
+                  <NewsCard news={item} key={item.title} idx={idx} />
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
         <div className="flex justify-center pt-10 md:justify-end">
           <Button variant="primary" path="news-events">
