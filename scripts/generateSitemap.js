@@ -9,6 +9,11 @@ export const jobData = [
     slug: "testing-quality-assurance",
   },
   {
+    id: 1,
+    title: "Administrative Assistant",
+    slug: "administrative-assistant",
+  },
+  {
     id: 3,
     title: "React Native Developer",
     slug: "react-native-developer",
@@ -16,18 +21,18 @@ export const jobData = [
 ];
 
 export const newsData = [
-  {
-    id: "001",
-    title: "Best conversion rate",
-    slug: "best-conversion-rate",
-    author: "Pixelmine OPC",
-  },
-  {
-    id: "002",
-    title: "Launch of Pixelmine 2.0",
-    slug: "launch-of-pixelmine-2",
-    author: "Pixelmine OPC",
-  },
+  // {
+  //   id: "001",
+  //   title: "Best conversion rate",
+  //   slug: "best-conversion-rate",
+  //   author: "Pixelmine OPC",
+  // },
+  // {
+  //   id: "002",
+  //   title: "Launch of Pixelmine 2.0",
+  //   slug: "launch-of-pixelmine-2",
+  //   author: "Pixelmine OPC",
+  // },
   {
     id: "003",
     title:
