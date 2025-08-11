@@ -13,10 +13,13 @@ import {
 // import networkIncentives from "../../assets/network-incentives.png";
 // import roadmap from "../../assets/roadmap.png";
 
-export default function Example() {
+// Import animation wrapper
+import { FadeSlideUp } from "../../animations/AnimatedWrappers";
+
+export default function Product() {
   return (
     <section className="py-24 bg-gray-50 sm:py-32 dark:bg-stone-800">
-      <div className="px-6 mx-auto max-w-7xl lg:px-8">
+      <FadeSlideUp className="px-6 mx-auto max-w-7xl lg:px-8">
         <div className="grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
           {/* Concept */}
           <div className="relative lg:row-span-2">
@@ -227,7 +230,7 @@ export default function Example() {
             </div>
           </div>
         </div>
-      </div>
+      </FadeSlideUp>
     </section>
   );
 }

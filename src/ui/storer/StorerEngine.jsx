@@ -8,6 +8,9 @@ import {
 } from "@fortawesome/pro-regular-svg-icons";
 import { useAuth } from "../../context/AuthContext";
 
+// Import animation wrapper
+import { FadeSlideUp } from "../../animations/AnimatedWrappers";
+
 function StorerEngine() {
   const { isAuthenticated } = useAuth();
   return (
@@ -20,7 +23,7 @@ function StorerEngine() {
             className="h-md w-[80%] mx-auto rounded-xl"
           /> */}
         </div>
-        <div className="flex-1 ">
+        <FadeSlideUp className="flex-1 ">
           <h2 className="text-4xl font-bold leading-tight sm:text-4xl lg:text-5xl max-w-auto dark:text-stone-50">
             Run and host user data in our Storer Engine
           </h2>
@@ -71,7 +74,7 @@ function StorerEngine() {
               </>
             )}
           </div>
-        </div>
+        </FadeSlideUp>
       </div>
     </section>
   );

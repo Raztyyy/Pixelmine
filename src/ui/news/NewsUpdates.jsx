@@ -4,12 +4,15 @@ import Button from "../Button";
 
 import { newsData } from "../../data/news/newsData";
 
+// Import animation wrapper
+import { FadeSlideUp } from "../../animations/AnimatedWrappers";
+
 function NewsUpdates() {
   const otherNews = newsData.filter((news) => news.isFeatured !== true);
 
   return (
     <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem] dark:bg-stone-800">
-      <div className="px-6 mx-auto max-w-auto lg:max-w-7xl lg:px-8">
+      <FadeSlideUp className="px-6 mx-auto max-w-auto lg:max-w-7xl lg:px-8">
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold leading-snug max-w-auto sm:max-w-[20rem] dark:text-stone-50">
           News and Events
         </h2>
@@ -33,7 +36,7 @@ function NewsUpdates() {
             More Articles <span aria-hidden="true">&rarr;</span>
           </Button>
         </div>
-      </div>
+      </FadeSlideUp>
     </section>
   );
 }

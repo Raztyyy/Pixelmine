@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { useFetcher } from "react-router-dom";
 import { showToast } from "../../utils/Toast";
 
+// Import animation wrapper
+import { FadeSlideUp } from "../../animations/AnimatedWrappers";
+
 function Newsletter() {
   const fetcher = useFetcher();
   const isSubmitting = fetcher.state === "submitting";
@@ -18,7 +21,7 @@ function Newsletter() {
 
   return (
     <section className="pt-8 pb-8 bg-green-50/50 sm:pt-10 sm:pb-10 dark:bg-stone-950">
-      <div className="flex flex-col items-center px-6 py-20 mx-auto max-w-auto lg:max-w-7xl lg:px-8">
+      <FadeSlideUp className="flex flex-col items-center px-6 py-20 mx-auto max-w-auto lg:max-w-7xl lg:px-8">
         <h2 className="text-xl font-semibold leading-snug text-center sm:text-2xl lg:text-3xl dark:text-stone-50">
           Stay up to date with our newsletter.
         </h2>
@@ -42,7 +45,7 @@ function Newsletter() {
             placeholder="Enter your email"
             required
             disabled={isSubmitting}
-            className="w-full md:flex-1 p-2.5 border rounded-lg text-sm bg-gray-50 text-gray-800"
+            className="w-full md:flex-1 p-2.5 border rounded-lg text-sm bg-white text-gray-800"
           />
 
           <button
@@ -57,7 +60,7 @@ function Newsletter() {
             {isSubmitting ? "Submitting..." : "Subscribe now"}
           </button>
         </fetcher.Form>
-      </div>
+      </FadeSlideUp>
     </section>
   );
 }

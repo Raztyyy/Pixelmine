@@ -17,21 +17,11 @@ function Overview() {
         image="/social-sharing.jpg"
       />
 
-      <AnimatedSection>
-        <Hero />
-      </AnimatedSection>
-      <AnimatedSection>
-        <StorerEngine />
-      </AnimatedSection>
-      <AnimatedSection>
-        <Product />
-      </AnimatedSection>
-      <AnimatedSection>
-        <NewsUpdates />
-      </AnimatedSection>
-      <AnimatedSection>
-        <Newsletter />
-      </AnimatedSection>
+      <Hero />
+      <StorerEngine />
+      <Product />
+      <NewsUpdates />
+      <Newsletter />
 
       {/* <Hero />
       <StorerEngine />

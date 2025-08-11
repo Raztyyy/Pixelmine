@@ -1,27 +1,38 @@
-// import StackedAvatars from "./StackedAvatars";
 import { Link } from "react-router-dom";
-// import heroImg from "../../assets/placeholder.png";
+import heroImg from "../../assets/placeholder.png";
 import DownloadButtons from "./DownloadButtons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/pro-solid-svg-icons";
 
+// Import animation wrapper
+import {
+  FadeSlideLeft,
+  FadeSlideRight,
+} from "../../animations/AnimatedWrappers";
+
 function Hero() {
   return (
     <section className="pt-[3rem] pb-[3rem] sm:pt-[11rem] sm:pb-[11rem] bg-green-50/50 dark:bg-stone-900">
-      <div className="flex flex-col gap-0 px-6 mx-auto md:gap-10 max-w-7xl sm:flex-row ">
+      <FadeSlideLeft className="flex flex-col gap-0 px-6 mx-auto md:gap-10 max-w-7xl sm:flex-row ">
         <div className="flex-1">
           <Link
-            className="inline-flex items-center gap-3 pr-3 mb-5 rounded bg-white/70 group"
+            className="inline-flex items-center gap-3 pr-3 mb-5 group"
             to="/concept"
           >
-            <div className="inline-flex items-center gap-2 px-2 py-1 transition-all duration-300 ease-in-out rounded bg-primary group-hover:bg-primary/85">
-              <FontAwesomeIcon icon={faPlay} className="text-white size-3 " />
-              <p className="text-xs text-white">Watch</p>
+            <div className="relative inline-flex items-center gap-2 py-1 pl-1 pr-6 overflow-hidden transition-colors duration-300 ease-in-out bg-white border rounded-full before:absolute before:top-0 before:left-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-300 before:ease-in-out group-hover:before:w-full group-hover:text-white">
+              <FontAwesomeIcon
+                icon={faPlay}
+                className="relative z-10 p-2 text-white rounded-full size-3 bg-primary"
+              />
+              <div className="relative z-10 flex items-center gap-2">
+                <p className="text-xs font-bold transition-all duration-300 ease-in-out">
+                  Watch:
+                </p>
+                <p className="text-xs transition-all duration-300 ease-in-out">
+                  The Concept behind Pixelmine
+                </p>
+              </div>
             </div>
-
-            <p className="text-xs font-semibold transition-all duration-300 ease-in-out group-hover:text-primary/85">
-              The Concept behind Pixelmine
-            </p>
           </Link>
 
           <h1 className="text-4xl sm:text-4xl lg:text-4xl font-bold leading-tight max-w-auto sm:max-w-[35rem] dark:text-stone-50">
@@ -34,14 +45,14 @@ function Hero() {
           </p>
           <DownloadButtons />
         </div>
-        <div className="flex-1 ">
+        <FadeSlideRight className="flex-1 ">
           {/* <img
             src={heroImg}
             alt="Hero Image"
             className="object-contain w-full rounded-xl"
           /> */}
-        </div>
-      </div>
+        </FadeSlideRight>
+      </FadeSlideLeft>
     </section>
   );
 }
