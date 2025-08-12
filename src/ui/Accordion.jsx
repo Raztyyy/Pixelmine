@@ -2,7 +2,7 @@ import { useState } from "react";
 import AccordionItem from "./AccordionItem";
 
 function Accordion({ items }) {
-  const [openIndex, setOpenIndex] = useState(null); // default open: first item
+  const [openIndex, setOpenIndex] = useState(null);
 
   const toggleAccordion = (index) => {
     setOpenIndex(openIndex === index ? null : index);

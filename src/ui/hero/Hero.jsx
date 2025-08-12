@@ -5,15 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/pro-solid-svg-icons";
 
 // Import animation wrapper
-import {
-  FadeSlideLeft,
-  FadeSlideRight,
-} from "../../animations/AnimatedWrappers";
+import { FadeSlideUp } from "../../animations/AnimatedWrappers";
 
 function Hero() {
   return (
     <section className="pt-[3rem] pb-[3rem] sm:pt-[11rem] sm:pb-[11rem] bg-green-50/50 dark:bg-stone-900">
-      <FadeSlideLeft className="flex flex-col gap-0 px-6 mx-auto md:gap-10 max-w-7xl sm:flex-row ">
+      <FadeSlideUp className="flex flex-col gap-0 px-6 mx-auto md:gap-10 max-w-7xl sm:flex-row ">
         <div className="flex-1">
           <Link
             className="inline-flex items-center gap-3 pr-3 mb-5 group"
@@ -45,14 +42,14 @@ function Hero() {
           </p>
           <DownloadButtons />
         </div>
-        <FadeSlideRight className="flex-1 ">
+        <FadeSlideUp className="flex-1 ">
           {/* <img
             src={heroImg}
             alt="Hero Image"
             className="object-contain w-full rounded-xl"
           /> */}
-        </FadeSlideRight>
-      </FadeSlideLeft>
+        </FadeSlideUp>
+      </FadeSlideUp>
     </section>
   );
 }

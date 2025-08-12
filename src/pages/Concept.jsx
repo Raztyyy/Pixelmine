@@ -1,18 +1,25 @@
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 import CustomVideoPlayer from "../ui/concept/CustomVideoPlayer";
 import Accordion from "../ui/Accordion";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
-
 import { items } from "../data/concept/conceptData";
 import SEOHelmet from "../ui/SEOHelmet";
-import AnimatedSection from "../animations/AnimatedSection";
+
+import { FadeSlideUp } from "../animations/AnimatedWrappers";
+
+// Slide-up animation variants
+const slideUpVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -40 },
+};
 
 function Concept() {
   const [playingId, setPlayingId] = useState(null);
-  const [activeVideoId, setActiveVideoId] = useState(1); // Default visible video
+  const [activeVideoId, setActiveVideoId] = useState(1);
 
   const videos = [
     {
@@ -21,7 +28,6 @@ function Concept() {
       title:
         "【静かに世界を揺るがす！？】20代若き挑戦-真の分散型SNSピクセルマインの爆誕！",
     },
-
     {
       id: 2,
       src: "/videos/concept-video-1.mp4",
@@ -40,7 +46,7 @@ function Concept() {
 
   const handleSwitch = (id) => {
     setActiveVideoId(id);
-    setPlayingId(null); // Pause any playing video
+    setPlayingId(null);
   };
 
   return (
@@ -52,11 +58,8 @@ function Concept() {
         image="/concept-social-sharing.jpg"
       />
 
-      <AnimatedSection
-        element="section"
-        className="pt-[3rem] pb-[3rem] sm:pt-28 sm:pb-28 bg-green-50/50 dark:bg-stone-900 "
-      >
-        <div className="flex flex-col items-start gap-10 p-6 mx-auto md:flex-row sm:items-start lg:items-center max-w-7xl md:items-center">
+      <section className="pt-[3rem] pb-[3rem] sm:pt-28 sm:pb-28 bg-green-50/50 dark:bg-stone-900">
+        <FadeSlideUp className="flex flex-col items-start gap-10 p-6 mx-auto md:flex-row sm:items-start lg:items-center max-w-7xl md:items-center">
           {/* Left Column */}
           <div className="flex-1">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem] dark:text-stone-50">
@@ -73,8 +76,9 @@ function Concept() {
               comprehensive overview of the system and asserts its significant
               potential impact on the social networking service (SNS) market
             </p>
+
             {/* Switch Buttons */}
-            <div className="flex flex-col gap-5 ">
+            <div className="flex flex-col gap-5">
               {videos.map((video) => (
                 <button
                   key={video.id}
@@ -99,33 +103,40 @@ function Concept() {
               ))}
             </div>
           </div>
-          {/* Right Column */}
-          <div className="flex-1">
-            {/* All videos mounted, only one visible */}
-            {videos.map((video) =>
-              video.id === activeVideoId ? (
-                <div
-                  key={video.id}
-                  className="shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] w-full lg:w-fit h-auto"
-                >
-                  <CustomVideoPlayer
-                    id={video.id}
-                    src={video.src}
-                    isPlaying={playingId === video.id}
-                    onPlay={() => handlePlay(video.id)}
-                  />
-                </div>
-              ) : null
-            )}
-          </div>
-        </div>
-      </AnimatedSection>
 
-      <AnimatedSection
+          {/* Right Column with sliding animation */}
+          <div className="flex-1">
+            <AnimatePresence mode="wait">
+              {videos
+                .filter((video) => video.id === activeVideoId)
+                .map((video) => (
+                  <motion.div
+                    key={video.id}
+                    variants={slideUpVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    className="shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] w-full lg:w-fit h-auto"
+                  >
+                    <CustomVideoPlayer
+                      id={video.id}
+                      src={video.src}
+                      isPlaying={playingId === video.id}
+                      onPlay={() => handlePlay(video.id)}
+                    />
+                  </motion.div>
+                ))}
+            </AnimatePresence>
+          </div>
+        </FadeSlideUp>
+      </section>
+
+      <FadeSlideUp
         element="section"
         className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]"
       >
-        <div className="items-center gap-10 p-6 mx-auto max-w-7xl sm:flex-row ">
+        <div className="items-center gap-10 p-6 mx-auto max-w-7xl sm:flex-row">
           <FontAwesomeIcon
             icon={faLightbulbOn}
             className="p-2 mt-4 rounded bg-primary/80 text-slate-100 size-5"
@@ -133,11 +144,7 @@ function Concept() {
           <p className="mt-5 text-sm text-gray-600 sm:text-base dark:text-stone-50">
             The idea behind Pixelmine is to create a platform that empowers
             users by removing the need for a central authority or server to
-            control user data and interactions. Instead, these platforms
-            distribute information across interconnected nodes, allowing users
-            to communicate directly with one another without intermediaries. The
-            following are essential factors to consider in order to fully
-            comprehend the concept of the system.
+            control user data and interactions...
           </p>
           <Accordion items={items} />
           <p className="mt-5 text-sm text-gray-600 sm:text-base dark:text-stone-50">
@@ -146,7 +153,7 @@ function Concept() {
             the social networking landscape.
           </p>
         </div>
-      </AnimatedSection>
+      </FadeSlideUp>
     </>
   );
 }
