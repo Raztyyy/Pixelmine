@@ -8,7 +8,11 @@ import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
 import { items } from "../data/concept/conceptData";
 import SEOHelmet from "../ui/SEOHelmet";
 
-import { FadeSlideUp } from "../animations/AnimatedWrappers";
+import {
+  FadeSlideUp,
+  StaggerContainer,
+  StaggerItem,
+} from "../animations/AnimatedWrappers";
 
 // Slide-up animation variants
 const slideUpVariants = {
@@ -78,30 +82,32 @@ function Concept() {
             </p>
 
             {/* Switch Buttons */}
-            <div className="flex flex-col gap-5">
+            <StaggerContainer className="flex flex-col gap-5">
               {videos.map((video) => (
-                <button
-                  key={video.id}
-                  onClick={() => handleSwitch(video.id)}
-                  className={`inline-flex transition-all duration-300 ease-in-out text-xs text-start ${
-                    video.id === activeVideoId
-                      ? "text-primary font-semibold dark:text-green-400"
-                      : "text-gray-900 dark:text-stone-50"
-                  }`}
-                >
-                  <span
-                    className={`flex items-center justify-center ${
+                <StaggerItem>
+                  <button
+                    key={video.id}
+                    onClick={() => handleSwitch(video.id)}
+                    className={`inline-flex transition-all duration-300 ease-in-out text-xs text-start ${
                       video.id === activeVideoId
-                        ? "bg-green-100 text-green-800"
-                        : "bg-gray-100 text-gray-800"
-                    } text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm`}
+                        ? "text-primary font-semibold dark:text-green-400"
+                        : "text-gray-900 dark:text-stone-50"
+                    }`}
                   >
-                    {video.id}
-                  </span>
-                  {video.title}
-                </button>
+                    <span
+                      className={`flex items-center justify-center ${
+                        video.id === activeVideoId
+                          ? "bg-green-100 text-green-800"
+                          : "bg-gray-100 text-gray-800"
+                      } text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm`}
+                    >
+                      {video.id}
+                    </span>
+                    {video.title}
+                  </button>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerContainer>
           </div>
 
           {/* Right Column with sliding animation */}
