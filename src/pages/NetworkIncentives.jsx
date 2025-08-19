@@ -54,7 +54,7 @@ function NetworkIncentives() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {/* Top Full Width Card */}
               <div
-                className="h-64 col-span-1 p-5 md:p-10 text-white rounded-lg bg-green-950 sm:col-span-2 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]"
+                className="h-64 col-span-1 p-5 md:p-10 text-white rounded-lg bg-green-950 sm:col-span-2 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
                 style={{
                   backgroundImage: `url(${cardBg})`,
                   backgroundSize: "cover",
@@ -88,7 +88,7 @@ function NetworkIncentives() {
 
               {/* Other Cards */}
               <div
-                className="flex flex-col px-5 py-4 md:px-10  md:py-4 text-white rounded-lg bg-green-950 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]"
+                className="flex flex-col px-5 py-4 md:px-10  md:py-4 text-white rounded-lg bg-green-950 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
                 style={{
                   backgroundImage: `url(${cardBg})`,
                   backgroundSize: "cover",
@@ -107,7 +107,7 @@ function NetworkIncentives() {
                 </p>
               </div>
               <div
-                className="flex flex-col px-5 py-4 md:px-10  md:py-4 text-white rounded-lg bg-green-950 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]"
+                className="flex flex-col px-5 py-4 md:px-10  md:py-4 text-white rounded-lg bg-green-950 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
                 style={{
                   backgroundImage: `url(${cardBg})`,
                   backgroundSize: "cover",

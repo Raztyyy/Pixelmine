@@ -117,7 +117,7 @@ function Concept() {
                     animate="visible"
                     exit="exit"
                     transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] w-full lg:w-fit h-auto"
+                    className="shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full lg:w-fit h-auto"
                   >
                     <CustomVideoPlayer
                       id={video.id}
