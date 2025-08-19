@@ -322,7 +322,7 @@ export default function DashboardProfile() {
                       className="flex flex-col flex-wrap gap-2 sm:flex-row"
                     >
                       <select
-                        className="flex-1 px-2 py-1 text-gray-700 border rounded dark:bg-gray-900 dark:border-gray-700 dark:text-gray-200 dark:bg-gray-600/30 dark:border-gray-600"
+                        className="flex-1 px-2 py-1 text-gray-700 border rounded dark:bg-gray-900 dark:text-gray-200 dark:bg-gray-600/30 dark:border-gray-600"
                         value={link.platform}
                         onChange={(e) =>
                           handleSocialLinkChange(
