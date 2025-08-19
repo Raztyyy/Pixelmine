@@ -13,7 +13,7 @@ function TermsAndConditions() {
 
       <section>
         {/* Hero Section */}
-        <div className="pt-[3rem] pb-[3rem] sm:pt-[4em] sm:pb-[4rem] bg-green-50 dark:bg-stone-900">
+        <div className="pt-[2rem] pb-[2rem] bg-green-50 dark:bg-stone-900">
           <div className="max-w-full px-6 mx-auto lg:max-w-7xl lg:px-8">
             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem] dark:text-stone-50">
               Terms & Conditions
@@ -27,7 +27,7 @@ function TermsAndConditions() {
         </div>
 
         {/* Terms Sections */}
-        <div className="pt-[3rem] pb-[3rem] px-6 mx-auto max-w-full lg:max-w-7xl lg:px-8">
+        <div className="pt-[2rem] pb-[2rem] px-6 mx-auto max-w-full lg:max-w-7xl lg:px-8">
           <section className="mb-8">
             <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               1. Your Relationship With Us

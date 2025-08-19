@@ -14,7 +14,7 @@ import { FadeSlideUp } from "../../animations/AnimatedWrappers";
 function StorerEngine() {
   const { isAuthenticated } = useAuth();
   return (
-    <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem] dark:bg-stone-800">
+    <section className="pt-[2rem] pb-[2rem] dark:bg-stone-800">
       <div className="flex flex-col-reverse items-center gap-0 px-6 mx-auto md:gap-10 max-w-7xl sm:flex-row ">
         <div className="items-center justify-center flex-1">
           {/* <img

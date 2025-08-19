@@ -13,7 +13,7 @@ import {
 
 function Hero() {
   return (
-    <section className="pt-[3rem] pb-[3rem] sm:pt-[11rem] sm:pb-[11rem] bg-green-50/50 dark:bg-stone-900">
+    <section className="pt-[2rem] pb-[2rem] bg-green-50/50 dark:bg-stone-900">
       <StaggerContainer className="flex flex-col gap-0 px-6 mx-auto md:gap-10 max-w-7xl sm:flex-row ">
         <div className="flex-1">
           <Link

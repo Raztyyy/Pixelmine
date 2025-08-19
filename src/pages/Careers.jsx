@@ -29,7 +29,7 @@ function Careers() {
         image="/social-sharing.jpg"
       />
 
-      <section className="pt-[5rem] pb-[5rem] sm:pt-[2rem] sm:pb-[2rem] bg-green-50/50 dark:bg-stone-900">
+      <section className="pt-[2rem] pb-[2rem] bg-green-50/50 dark:bg-stone-900">
         <div className="flex flex-col items-center gap-10 p-6 mx-auto ">
           <FadeSlideUp className="flex flex-col items-center justify-center flex-1 dark:text-stone-50">
             <StackedAvatars></StackedAvatars>
@@ -56,7 +56,7 @@ function Careers() {
       </section>
       <StaggerContainer
         element="section"
-        className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]"
+        className="pt-[2rem] pb-[2rem]"
         id="job-openings"
       >
         <div className="flex flex-col gap-10 p-6 mx-auto max-w-7xl lg:flex-row ">

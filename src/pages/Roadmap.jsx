@@ -13,7 +13,7 @@ function Roadmap() {
         image="/social-sharing.jpg"
       />
 
-      <section className="pt-[3rem] pb-[3rem] sm:pt-28 sm:pb-28 bg-green-50/50 dark:bg-stone-800">
+      <section className="pt-[2rem] pb-[2rem] bg-green-50/50 dark:bg-stone-800">
         <StaggerContainer className="flex flex-col items-start gap-10 p-6 mx-auto lg:flex-row sm:items-start max-w-7xl">
           {/* Left Column - Text */}
           <StaggerItem className="flex-1 text-left">

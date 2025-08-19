@@ -12,7 +12,7 @@ function CommercialLaw() {
 
       <section>
         {/* Hero Section */}
-        <div className="pt-[3rem] pb-[3rem] sm:pt-[4em] sm:pb-[4rem] bg-green-50 dark:bg-stone-900">
+        <div className="pt-[2rem] pb-[2rem] bg-green-50 dark:bg-stone-900">
           <div className="max-w-full px-6 mx-auto lg:max-w-7xl lg:px-8">
             <h1 className="max-w-full text-2xl font-bold leading-tight sm:text-4xl lg:text-5xl dark:text-stone-50">
               特定商取引法に基づく表記
@@ -21,7 +21,7 @@ function CommercialLaw() {
         </div>
 
         {/* Content Section */}
-        <div className="pt-[3rem] pb-[3rem] px-6 mx-auto max-w-full lg:max-w-7xl lg:px-8 space-y-8 text-gray-700 text-sm/6 dark:text-stone-50">
+        <div className="pt-[2rem] pb-[2rem] px-6 mx-auto max-w-full lg:max-w-7xl lg:px-8 space-y-8 text-gray-700 text-sm/6 dark:text-stone-50">
           <section>
             <h2 className="mb-2 text-lg font-semibold">販売者情報</h2>
             <p>販売者名: Ｐｉｘｅｌｍｉｎｅ　Ｊａｐａｎ株式会社</p>

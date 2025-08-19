@@ -18,7 +18,7 @@ import { FadeSlideUp } from "../../animations/AnimatedWrappers";
 
 export default function Product() {
   return (
-    <section className="py-24 bg-gray-50 sm:py-32 dark:bg-stone-800">
+    <section className="pt-[2rem] pb-[2rem] bg-gray-50  dark:bg-stone-800">
       <FadeSlideUp className="px-6 mx-auto max-w-7xl lg:px-8">
         <div className="grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
           {/* Concept */}
