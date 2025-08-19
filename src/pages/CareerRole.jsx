@@ -14,6 +14,11 @@ import { truncateWords } from "../utils/truncateWords";
 
 import { useMoveBack } from "../hooks/useMoveBack";
 import AnimatedSection from "../animations/AnimatedSection";
+import {
+  FadeSlideUp,
+  StaggerContainer,
+  StaggerItem,
+} from "../animations/AnimatedWrappers";
 
 function CareerRole() {
   const { role_slug } = useParams();
@@ -29,13 +34,12 @@ function CareerRole() {
         image="/social-sharing.jpg"
       />
 
-      <AnimatedSection
-        element="section"
+      <section
         className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]"
         id="job-openings"
       >
         <div className="flex flex-col gap-10 p-6 mx-auto max-w-7xl lg:flex-row ">
-          <div className="max-w-2xl">
+          <FadeSlideUp className="max-w-2xl">
             <div className="flex flex-col flex-wrap items-start gap-2">
               {/* Moveback */}
               <button
@@ -195,58 +199,63 @@ function CareerRole() {
                 </ol>
               </div>
             )}
-          </div>
-          <div className="flex-1 hidden lg:block ">
-            <h2 className="mb-4 text-xl leading-tight dark:text-stone-50">
+          </FadeSlideUp>
+          <StaggerContainer className="flex-1 hidden lg:block ">
+            <StaggerItem
+              element="h2"
+              className="mb-4 text-xl leading-tight dark:text-stone-50"
+            >
               Other Jobs from Pixelmine OPC
-            </h2>
+            </StaggerItem>
 
             {otherJobs.map((job) => {
               return (
-                <Link to={`/careers/${job.slug}`} key={job.id}>
-                  <div className="p-5 mb-4 border border-b-2 rounded dark:bg-stone-50">
-                    <div className="flex flex-col items-start justify-between ">
-                      <div className="flex flex-col items-start ">
-                        <p className="font-semibold">{job.title}</p>
+                <StaggerItem>
+                  <Link to={`/careers/${job.slug}`} key={job.id}>
+                    <div className="p-5 mb-4 border border-b-2 rounded dark:bg-stone-50">
+                      <div className="flex flex-col items-start justify-between ">
+                        <div className="flex flex-col items-start ">
+                          <p className="font-semibold">{job.title}</p>
+                        </div>
+                        <p className="my-2 text-sm text-gray-600">
+                          {job.location}
+                        </p>
                       </div>
-                      <p className="my-2 text-sm text-gray-600">
-                        {job.location}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="py-3 text-sm text-gray-600">
-                        {truncateWords(job.roleDescription, 120)}
-                      </p>
-                    </div>
+                      <div>
+                        <p className="py-3 text-sm text-gray-600">
+                          {truncateWords(job.roleDescription, 120)}
+                        </p>
+                      </div>
 
-                    <div className="flex flex-wrap gap-3 mt-2 ">
-                      <p className="text-sm text-gray-600">
-                        <span className="mr-2">
-                          <FontAwesomeIcon
-                            icon={faTimer}
-                            className="text-gray-600 size-4"
-                          />
-                        </span>
-                        {job.type}
-                      </p>
-                      <p className="text-sm text-gray-600">
-                        <span className="mr-2">
-                          <FontAwesomeIcon
-                            icon={faMoneyBill}
-                            className="text-gray-600 size-4"
-                          />
-                        </span>
-                        {job.salary}
-                      </p>
+                      <div className="flex flex-wrap gap-3 mt-2 ">
+                        <p className="text-sm text-gray-600">
+                          <span className="mr-2">
+                            <FontAwesomeIcon
+                              icon={faTimer}
+                              className="text-gray-600 size-4"
+                            />
+                          </span>
+                          {job.type}
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          <span className="mr-2">
+                            <FontAwesomeIcon
+                              icon={faMoneyBill}
+                              className="text-gray-600 size-4"
+                            />
+                          </span>
+                          {job.salary}
+                        </p>
+                      </div>
+                      <div></div>
                     </div>
-                    <div></div>
-                  </div>
-                </Link>
+                  </Link>
+                </StaggerItem>
               );
             })}
-          </div>
+          </StaggerContainer>
         </div>
-      </AnimatedSection>
+      </section>
     </>
   );
 }

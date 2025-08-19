@@ -57,16 +57,23 @@ const staggerContainerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
+      staggerChildren: 0.25, // slower stagger between items
+      delayChildren: 0.2, // first child waits 0.2s
     },
   },
 };
 
 // Staggered items inside stagger container
-const staggerItemVariants = {
+export const staggerItemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3, // slow fade+slide
+      ease: "easeOut",
+    },
+  },
 };
 
 // Helper factory to create reusable animated components
@@ -131,4 +138,18 @@ export const StaggerContainer = ({
 };
 
 // Staggered child item wrapper (for individual list items)
-export const StaggerItem = createAnimatedComponent(staggerItemVariants);
+// export const StaggerItem = createAnimatedComponent(staggerItemVariants);
+
+export const StaggerItem = ({
+  children,
+  className = "",
+  element = "div",
+  id = "",
+}) => {
+  const MotionTag = motion[element] || motion.div;
+  return (
+    <MotionTag variants={staggerItemVariants} className={className} id={id}>
+      {children}
+    </MotionTag>
+  );
+};

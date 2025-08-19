@@ -7,7 +7,11 @@ import {
   faEnvelope,
   faPhone,
 } from "@fortawesome/pro-solid-svg-icons";
-import AnimatedSection from "../animations/AnimatedSection";
+import {
+  FadeSlideUp,
+  StaggerContainer,
+  StaggerItem,
+} from "../animations/AnimatedWrappers";
 
 function Contact() {
   return (
@@ -19,19 +23,16 @@ function Contact() {
         image="/contact-social-sharing.jpg"
       />
 
-      <AnimatedSection
-        element="section"
-        className="pt-[3rem] pb-[6rem] sm:pb-[4rem]"
-      >
+      <section className="pt-[3rem] pb-[6rem] sm:pb-[4rem]">
         {/* Hero Section */}
-        <div className="flex flex-col items-center p-6 mx-auto text-center max-w-7xl">
+        <FadeSlideUp className="flex flex-col items-center p-6 mx-auto text-center max-w-7xl">
           <h1 className="text-lg font-medium uppercase dark:text-stone-50">
             Contact Us
           </h1>
           <hr className="mx-auto mt-2 mb-4 border-b-4 w-14 border-primary dark:border-green-400" />
-        </div>
+        </FadeSlideUp>
 
-        <div className="flex flex-col gap-10 p-6 mx-auto lg:flex-row max-w-7xl ">
+        <FadeSlideUp className="flex flex-col gap-10 p-6 mx-auto lg:flex-row max-w-7xl ">
           <div className="flex-1 text-center lg:text-start">
             {/* Contact Details */}
             <div className="flex flex-col mt-4 ">
@@ -76,26 +77,28 @@ function Contact() {
             </div>
 
             {/* Map */}
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.8233129885016!2d139.73846327698587!3d35.65672457259517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ba2be66b0ad%3A0x5e5d80667b85f219!2sHigashiazabu%2C%20Minato%20City%2C%20Tokyo%20106-0044%2C%20Japan!5e0!3m2!1sen!2sph!4v1749013000148!5m2!1sen!2sph"
-              width="100%"
-              height="520"
-              style={{ border: "0" }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="mt-8 rounded"
-            />
+            <StaggerItem>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.8233129885016!2d139.73846327698587!3d35.65672457259517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ba2be66b0ad%3A0x5e5d80667b85f219!2sHigashiazabu%2C%20Minato%20City%2C%20Tokyo%20106-0044%2C%20Japan!5e0!3m2!1sen!2sph!4v1749013000148!5m2!1sen!2sph"
+                width="100%"
+                height="520"
+                style={{ border: "0" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="mt-8 rounded"
+              />
+            </StaggerItem>
           </div>
-          <div className="flex-1">
+          <FadeSlideUp className="flex-1">
             <div className="flex flex-col items-center justify-center ">
               <div className="p-10 bg-white rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] flex justify-center flex-col items-center ">
                 <ContactUsForm />
               </div>
             </div>
-          </div>
-        </div>
-      </AnimatedSection>
+          </FadeSlideUp>
+        </FadeSlideUp>
+      </section>
     </>
   );
 }

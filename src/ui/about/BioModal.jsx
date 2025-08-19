@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import Button from "../Button";
+import BioContent from "./BioContent";
 
 function BioModal({ memberDetails, children }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,9 +41,12 @@ function BioModal({ memberDetails, children }) {
               <p className="text-gray-600">{memberDetails.title}</p>
               <hr className="mx-auto mt-2 mb-4 border-b-4 w-14 border-primary " />
 
-              <div className="px-2 mt-4 overflow-y-auto text-sm text-gray-700 max-h-72">
+              {/* <div className="px-2 mt-4 overflow-y-auto text-sm text-gray-700 max-h-72">
                 {memberDetails.bio}
-              </div>
+              </div> */}
+
+              {/* Fade overlay at the bottom BIO Version */}
+              <BioContent bio={memberDetails.bio} />
 
               <Button
                 className="flex items-center justify-center w-full mt-5 "

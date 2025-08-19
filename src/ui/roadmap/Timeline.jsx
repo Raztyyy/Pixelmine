@@ -1,5 +1,4 @@
 import React from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGear,
@@ -7,6 +6,12 @@ import {
   faGlobe,
   faWandMagicSparkles,
 } from "@fortawesome/pro-solid-svg-icons";
+import {
+  StaggerContainer,
+  StaggerItem,
+  staggerItemVariants,
+} from "../../animations/AnimatedWrappers";
+import { motion } from "framer-motion";
 
 const roadmapData = [
   {
@@ -37,24 +42,40 @@ const roadmapData = [
 
 function Timeline() {
   return (
-    <ol className="relative border-gray-200 border-s ">
+    <StaggerContainer
+      element="ol"
+      className="relative border-gray-200 border-s "
+    >
       {roadmapData.map((item, index) => (
-        <li
+        <StaggerItem
+          element="li"
           key={index}
-          className={`ms-6 ${index !== roadmapData.length - 1 ? "mb-10" : ""}`}
+          className={`relative ms-6 ${
+            index !== roadmapData.length - 1 ? "mb-10" : ""
+          }`}
         >
-          <span className="absolute flex items-center justify-center w-6 h-6 rounded-full bg-primary -start-3 ring-2 ring-white dark:ring-stone-200">
+          {/* Animate the icon separately */}
+          <motion.span
+            className="absolute flex items-center justify-center w-6 h-6 rounded-full bg-primary -start-9 ring-2 ring-white dark:ring-stone-200"
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.2 }}
+          >
             <FontAwesomeIcon icon={item.icon} className="text-white size-3 " />
-          </span>
-          <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-stone-50">
-            {item.title}
-          </h3>
-          <p className="lg:max-w-[30rem] text-sm sm:text-base text-gray-600 dark:text-stone-50">
-            {item.description}
-          </p>
-        </li>
+          </motion.span>
+
+          {/* Animate the text content with stagger */}
+          <motion.div variants={staggerItemVariants} className="ml-10">
+            <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-stone-50">
+              {item.title}
+            </h3>
+            <p className="lg:max-w-[30rem] text-sm sm:text-base text-gray-600 dark:text-stone-50">
+              {item.description}
+            </p>
+          </motion.div>
+        </StaggerItem>
       ))}
-    </ol>
+    </StaggerContainer>
   );
 }
 

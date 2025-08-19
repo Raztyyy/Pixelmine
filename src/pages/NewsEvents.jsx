@@ -9,6 +9,7 @@ import { faXmark } from "@fortawesome/pro-solid-svg-icons";
 
 import { newsData } from "../data/news/newsData";
 import { socialData } from "../data/socials/socialData";
+import { StaggerContainer, StaggerItem } from "../animations/AnimatedWrappers";
 
 function NewsEvents() {
   const [searchInput, setSearchInput] = useState("");
@@ -48,15 +49,18 @@ function NewsEvents() {
 
       <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]">
         <div className="flex flex-col-reverse gap-10 p-6 mx-auto max-w-7xl lg:flex-row ">
-          <div className="flex-[2]">
-            <h1 className="mb-5 text-3xl font-bold leading-tight lg:text-4xl dark:text-stone-50">
+          <StaggerContainer className="flex-[2]">
+            <StaggerItem
+              element="h1"
+              className="mb-5 text-3xl font-bold leading-tight lg:text-4xl dark:text-stone-50"
+            >
               Pixelmine News & Events
-            </h1>
+            </StaggerItem>
             {/* News & Events */}
             <div className="flex flex-col gap-10 mt-6">
               {filteredNews.length > 0 ? (
-                filteredNews.map((news) => (
-                  <Link key={news.slug} to={`/news-events/${news.slug}`}>
+                filteredNews.map((news) => {
+                  const postContent = (
                     <div className="group">
                       <img
                         src={news.img}
@@ -67,11 +71,10 @@ function NewsEvents() {
                         <h2 className="mt-3 text-xl font-semibold transition-all duration-300 ease-in-out group-hover:text-primary dark:text-stone-50 dark:group-hover:text-green-400">
                           {news.title}
                         </h2>
-
                         <p className="mt-2 text-gray-600 dark:text-stone-50">
                           By {news.author} - {news.date}
                         </p>
-                        <p className="my-3 text-sm font-normal rounded-lg  bg-green-100 text-green-800 px-2.5 py-0.5">
+                        <p className="my-3 text-sm font-normal rounded-lg bg-green-100 text-green-800 px-2.5 py-0.5">
                           {news.category}
                         </p>
                         <p className="text-gray-600 text-sm/6 dark:text-stone-50">
@@ -79,15 +82,41 @@ function NewsEvents() {
                         </p>
                       </div>
                     </div>
-                  </Link>
-                ))
+                  );
+
+                  if (news.slug) {
+                    return (
+                      <StaggerItem key={news.slug}>
+                        <Link to={`/news-events/${news.slug}`}>
+                          {postContent}
+                        </Link>
+                      </StaggerItem>
+                    );
+                  } else if (news.link) {
+                    return (
+                      <StaggerItem key={news.link}>
+                        <a
+                          href={news.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {postContent}
+                        </a>
+                      </StaggerItem>
+                    );
+                  } else {
+                    return (
+                      <StaggerItem key={news.id}>{postContent}</StaggerItem>
+                    );
+                  }
+                })
               ) : (
-                <p className="text-gray-500 dark:text-stone-50 ">
+                <p className="text-gray-500 dark:text-stone-50">
                   No results found.
                 </p>
               )}
             </div>
-          </div>
+          </StaggerContainer>
           <div className="flex-1 lg:mt-16">
             {/* Search */}
             <div>

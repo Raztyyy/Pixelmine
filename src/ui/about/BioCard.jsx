@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/pro-regular-svg-icons";
 import BioModal from "./BioModal";
+import { StaggerItem } from "../../animations/AnimatedWrappers";
 
 function BioCard({ memberDetails }) {
   return (
-    <div className="flex flex-col items-center justify-center ">
+    <StaggerItem className="flex flex-col items-center justify-center ">
       <img
         src={memberDetails.image}
         alt={`${memberDetails.name}'s image`}
@@ -26,7 +27,7 @@ function BioCard({ memberDetails }) {
           className="text-white transition-all duration-300 ease-in-out size-4 xs"
         />
       </BioModal>
-    </div>
+    </StaggerItem>
   );
 }
 

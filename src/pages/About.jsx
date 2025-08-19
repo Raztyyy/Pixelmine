@@ -1,7 +1,7 @@
 import BioCard from "../ui/about/BioCard";
 import heroImg from "../assets/placeholder-fullwidth.jpg";
 import SEOHelmet from "../ui/SEOHelmet";
-import AnimatedSection from "../animations/AnimatedSection";
+import { FadeSlideUp, StaggerContainer } from "../animations/AnimatedWrappers";
 
 const teamMember = [
   {
@@ -34,12 +34,9 @@ function About() {
         image="/social-sharing.jpg"
       />
 
-      <AnimatedSection
-        element="section"
-        className="pt-[3rem] pb-[6rem] sm:pb-[4rem]"
-      >
+      <section className="pt-[3rem] pb-[6rem] sm:pb-[4rem]">
         {/* Hero Section */}
-        <div className="flex flex-col items-center p-6 mx-auto text-center max-w-7xl">
+        <FadeSlideUp className="flex flex-col items-center p-6 mx-auto text-center max-w-7xl">
           <h1 className="text-lg font-medium uppercase dark:text-stone-50">
             About Us
           </h1>
@@ -53,10 +50,10 @@ function About() {
             alt="Hero image"
             className="object-cover rounded mt-14"
           /> */}
-        </div>
+        </FadeSlideUp>
 
         <div className="flex flex-col gap-10 p-6 mx-auto max-w-7xl ">
-          <div className="flex-1 text-center lg:text-start">
+          <FadeSlideUp className="flex-1 text-center lg:text-start">
             <h2 className="text-3xl font-medium dark:text-stone-50">
               About Pixelmine Japan
             </h2>
@@ -83,22 +80,22 @@ function About() {
               engagement, Pixelmine aspires to redefine the social media
               landscape for the foreseeable future.
             </p>
-          </div>
+          </FadeSlideUp>
           <div className="flex-1">
             {/* <h2 className="text-4xl leading-tight text-center sm:text-4xl lg:text-5xl max-w-auto lg:text-start dark:text-stone-50">
               Meet Our Team
             </h2> */}
-            <div className="flex flex-col gap-16 mt-10 lg:gap-28 lg:flex-row">
+            <StaggerContainer className="flex flex-col gap-16 mt-10 lg:gap-28 lg:flex-row">
               {teamMember.map((memberDetails) => (
                 <BioCard
                   memberDetails={memberDetails}
                   key={memberDetails.name}
                 />
               ))}
-            </div>
+            </StaggerContainer>
           </div>
         </div>
-      </AnimatedSection>
+      </section>
     </>
   );
 }

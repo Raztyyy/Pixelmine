@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
 
 import SEOHelmet from "../ui/SEOHelmet";
-import AnimatedSection from "../animations/AnimatedSection";
+import { FadeSlideUp } from "../animations/AnimatedWrappers";
 
 function DemocraticSystem() {
   return (
@@ -17,11 +17,8 @@ function DemocraticSystem() {
         image="/social-sharing.jpg"
       />
 
-      <AnimatedSection
-        element="section"
-        className="pt-[3rem] pb-[3rem] sm:pt-28 sm:pb-28 bg-green-50/50 dark:text-stone-50 dark:bg-stone-900"
-      >
-        <div className="flex flex-col items-start gap-10 p-6 mx-auto md:flex-row sm:items-start lg:items-center max-w-7xl md:items-center">
+      <section className="pt-[3rem] pb-[3rem] sm:pt-28 sm:pb-28 bg-green-50/50 dark:text-stone-50 dark:bg-stone-900">
+        <FadeSlideUp className="flex flex-col items-start gap-10 p-6 mx-auto md:flex-row sm:items-start lg:items-center max-w-7xl md:items-center">
           {/* Left Column */}
           <div className="flex-1">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem]">
@@ -39,14 +36,11 @@ function DemocraticSystem() {
               className="object-cover w-full h-auto rounded-xl"
             /> */}
           </div>
-        </div>
-      </AnimatedSection>
+        </FadeSlideUp>
+      </section>
 
-      <AnimatedSection
-        element="section"
-        className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]"
-      >
-        <div className="flex flex-col-reverse gap-10 p-6 mx-auto lg:flex-row max-w-7xl">
+      <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]">
+        <FadeSlideUp className="flex flex-col-reverse gap-10 p-6 mx-auto lg:flex-row max-w-7xl">
           <div className="flex-1 ">
             {/* <img
               src={democraticSystem2}
@@ -81,8 +75,8 @@ function DemocraticSystem() {
               manipulation and to promote genuine dialogue among users.
             </p>
           </div>
-        </div>
-      </AnimatedSection>
+        </FadeSlideUp>
+      </section>
     </>
   );
 }

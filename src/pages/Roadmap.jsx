@@ -1,4 +1,4 @@
-import AnimatedSection from "../animations/AnimatedSection";
+import { StaggerContainer, StaggerItem } from "../animations/AnimatedWrappers";
 import SEOHelmet from "../ui/SEOHelmet";
 
 import Timeline from "../ui/roadmap/Timeline";
@@ -13,13 +13,10 @@ function Roadmap() {
         image="/social-sharing.jpg"
       />
 
-      <AnimatedSection
-        element="section"
-        className="pt-[3rem] pb-[3rem] sm:pt-28 sm:pb-28 bg-green-50/50 dark:bg-stone-800"
-      >
-        <div className="flex flex-col items-start gap-10 p-6 mx-auto lg:flex-row sm:items-start max-w-7xl">
+      <section className="pt-[3rem] pb-[3rem] sm:pt-28 sm:pb-28 bg-green-50/50 dark:bg-stone-800">
+        <StaggerContainer className="flex flex-col items-start gap-10 p-6 mx-auto lg:flex-row sm:items-start max-w-7xl">
           {/* Left Column - Text */}
-          <div className="flex-1 text-left">
+          <StaggerItem className="flex-1 text-left">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem] dark:text-stone-50">
               Roadmap
             </h1>
@@ -28,14 +25,14 @@ function Roadmap() {
               Japan, focusing on innovative technology, creator empowerment, and
               global expansion.
             </p>
-          </div>
+          </StaggerItem>
 
           {/* Right Column - Cards */}
           <div className="flex-1 w-full">
             <Timeline></Timeline>
           </div>
-        </div>
-      </AnimatedSection>
+        </StaggerContainer>
+      </section>
     </>
   );
 }

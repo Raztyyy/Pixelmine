@@ -1,3 +1,5 @@
+import { StaggerContainer, StaggerItem } from "../animations/AnimatedWrappers";
+
 const avatars = [
   {
     src: "user1.jpg",
@@ -19,16 +21,18 @@ const avatars = [
 
 function StackedAvatars() {
   return (
-    <div className="flex -space-x-3">
+    <StaggerContainer className="flex -space-x-3">
       {avatars.map((avatar) => (
-        <img
-          className="w-10 h-10 rounded-full border-2 border-white"
-          src={`/avatars/${avatar.src}`}
-          alt={avatar.alt}
-          key={avatar.alt}
-        />
+        <StaggerItem>
+          <img
+            className="w-10 h-10 border-2 border-white rounded-full"
+            src={`/avatars/${avatar.src}`}
+            alt={avatar.alt}
+            key={avatar.alt}
+          />
+        </StaggerItem>
       ))}
-    </div>
+    </StaggerContainer>
   );
 }
 

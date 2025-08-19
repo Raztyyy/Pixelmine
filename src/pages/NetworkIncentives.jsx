@@ -16,7 +16,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
 
 import { items } from "../data/networkincentives/networkIncentivesData";
-import AnimatedSection from "../animations/AnimatedSection";
+import { FadeSlideUp } from "../animations/AnimatedWrappers";
+import AnimatedNumber from "../animations/AnimatedNumber";
 
 function NetworkIncentives() {
   const [{ converted_incentives, activity_points, pixelpoint, updated_at }] =
@@ -26,7 +27,7 @@ function NetworkIncentives() {
     (item) => item.currency === "JPY"
   );
   const [selected, setSelected] = useState(initialSelected);
-
+  console.log(useLoaderData());
   return (
     <>
       <SEOHelmet
@@ -36,20 +37,17 @@ function NetworkIncentives() {
         image="/social-sharing.jpg"
       />
 
-      <AnimatedSection
-        element="section"
-        className="pt-[3rem] pb-[3rem] sm:pt-28 sm:pb-28 bg-green-50/50 dark:bg-stone-900"
-      >
+      <section className="pt-[3rem] pb-[3rem] sm:pt-28 sm:pb-28 bg-green-50/50 dark:bg-stone-900">
         <div className="flex flex-col items-start gap-10 p-6 mx-auto lg:flex-row sm:items-start lg:items-center max-w-7xl">
           {/* Left Column - Text */}
-          <div className="flex-1 text-left">
+          <FadeSlideUp className="flex-1 text-left">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem] dark:text-stone-50">
               Network Incentives
             </h1>
             <p className="pt-5 pb-5 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-gray-600 dark:text-stone-50">
               Allocation of incentives based on performance and Pixelmine.
             </p>
-          </div>
+          </FadeSlideUp>
 
           {/* Right Column - Cards */}
           <div className="flex-1 w-full">
@@ -78,7 +76,13 @@ function NetworkIncentives() {
                 </div>
 
                 <p className="flex mt-5 md:mt-16 lg:mt-16 text-4xl gap-x-1.5 font-light">
-                  {formatCurrencyWithSymbol(selected.value, selected.currency)}
+                  <AnimatedNumber
+                    value={selected.value}
+                    currency={selected.currency}
+                    formatter={formatCurrencyWithSymbol}
+                    decimals={selected.currency === "JPY" ? 0 : 2}
+                  />
+                  {/* {formatCurrencyWithSymbol(selected.value, selected.currency)} */}
                 </p>
               </div>
 
@@ -95,7 +99,11 @@ function NetworkIncentives() {
                   Total User Activity Points
                 </h2>
                 <p className="mt-4 text-xl font-light text-center">
-                  {formatCurrency(activity_points)}
+                  {/* {formatCurrency(activity_points)} */}
+                  <AnimatedNumber
+                    value={activity_points}
+                    formatter={formatCurrency}
+                  />
                 </p>
               </div>
               <div
@@ -112,19 +120,25 @@ function NetworkIncentives() {
                 <p className="mt-4 text-xl font-light text-center">
                   {/* 1 PXL = {formatCurrencyWithSymbol(pixelpoint, "JPY")} */}1
                   PXL ={" "}
-                  {formatCurrencyWithSymbol(
+                  {/* {formatCurrencyWithSymbol(
                     pixelpoint[selected.currency],
                     selected.currency
-                  )}
+                  )} */}
+                  <AnimatedNumber
+                    value={pixelpoint[selected.currency]}
+                    currency={selected.currency}
+                    formatter={formatCurrencyWithSymbol}
+                    decimals={selected.currency === "JPY" ? 0 : 2}
+                  />
                 </p>
               </div>
             </div>
           </div>
         </div>
-      </AnimatedSection>
+      </section>
 
       {/* Accordion for Network Incentive Page */}
-      <AnimatedSection
+      <FadeSlideUp
         element="section"
         className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]"
       >
@@ -151,7 +165,7 @@ function NetworkIncentives() {
             </div>
           </div>
         </div>
-      </AnimatedSection>
+      </FadeSlideUp>
     </>
   );
 }
