@@ -37,7 +37,7 @@ function Hero() {
           </Link>
 
           <StaggerItem>
-            <h1 className="text-4xl sm:text-4xl lg:text-4xl font-bold leading-tight max-w-auto sm:max-w-[35rem] dark:text-stone-50">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold leading-tight max-w-auto sm:max-w-[35rem] dark:text-stone-50">
               Free to use for everyone always
             </h1>
             <p className="pt-5 pb-5 max-w-[30rem] text-sm/6 text-gray-600 dark:text-stone-50">

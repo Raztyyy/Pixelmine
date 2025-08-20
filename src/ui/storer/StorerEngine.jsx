@@ -24,7 +24,7 @@ function StorerEngine() {
           /> */}
         </div>
         <FadeSlideUp className="flex-1 ">
-          <h2 className="text-4xl font-bold leading-tight sm:text-4xl lg:text-5xl max-w-auto dark:text-stone-50">
+          <h2 className="text-xl font-bold leading-tight sm:text-2xl lg:text-3xl max-w-auto dark:text-stone-50">
             Run and host user data in our Storer Engine
           </h2>
           <p className="pt-5 pb-8 text-gray-600 text-sm/6 dark:text-stone-50">
