@@ -3,9 +3,7 @@ import NewsUpdates from "../ui/news/NewsUpdates";
 import Newsletter from "../features/newsletter/Newsletter";
 import Product from "../ui/product/Product";
 import SEOHelmet from "../ui/SEOHelmet";
-import StorerEngine from "../ui/storer/StorerEngine";
-
-import AnimatedSection from "../animations/AnimatedSection";
+// import StorerEngine from "../ui/storer/StorerEngine";
 
 function Overview() {
   return (
@@ -18,7 +16,6 @@ function Overview() {
       />
 
       <Hero />
-      <StorerEngine />
       <Product />
       <NewsUpdates />
       <Newsletter />
