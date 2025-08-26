@@ -57,9 +57,11 @@ function Hero() {
               Free to use for everyone, always
             </h1>
             <p className="pt-5 pb-5 text-gray-600 text-sm/6 dark:text-stone-50">
-              Pixelmine is a social networking system that enhances user
-              empowerment by decentralizing control and governance across
-              multiple nodes or servers.
+              Pixelmine is an innovative social networking system designed to
+              empower users through the decentralization of control and
+              governance. By operating across multiple nodes or servers, it
+              ensures greater user autonomy and fosters a collaborative
+              environment.
             </p>
             <div className="flex justify-center md:justify-end">
               <DownloadButtons />
@@ -74,9 +76,11 @@ function Hero() {
               Run and host user data
             </h2>
             <p className="pt-5 pb-5 text-gray-600 text-sm/6 dark:text-stone-50">
-              Storer engine is a command line interface configuration-less
-              application that serves as the host of public data from the
-              Pixelmine mobile application
+              The Storer engine is a command-line interface application that
+              operates without the need for configuration settings. It acts as a
+              host for a variety of public data sourced from the Pixelmine
+              mobile application, enabling users to access and utilize that data
+              efficiently.
             </p>
             {/* Buttons */}
             <div className="flex justify-center gap-3 mt-3 md:mt-5 md:justify-start">
