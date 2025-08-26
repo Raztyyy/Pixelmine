@@ -21,14 +21,17 @@ function Hero() {
   const { isAuthenticated } = useAuth();
 
   return (
-    <section className="pt-[2rem] pb-[2rem]  dark:bg-stone-900">
+    <FadeSlideUp
+      element="section"
+      className="pt-[2rem] pb-[2rem]  dark:bg-stone-900"
+    >
       <div className="flex flex-col px-6 mx-auto text-center sm:text-start max-w-7xl ">
         <div className="flex justify-center w-full">
           <Link
             className="inline-flex items-center gap-3 pr-3 mb-7 group"
             to="/concept"
           >
-            <StaggerItem className="relative inline-flex items-center gap-2 py-1 pl-1 pr-6 overflow-hidden transition-colors duration-300 ease-in-out bg-white border rounded-full before:absolute before:top-0 before:left-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-300 before:ease-in-out group-hover:before:w-full group-hover:text-white">
+            <div className="relative inline-flex items-center gap-2 py-1 pl-1 pr-6 overflow-hidden transition-colors duration-300 ease-in-out bg-white border rounded-full before:absolute before:top-0 before:left-0 before:h-full before:w-0 before:bg-primary before:transition-all before:duration-300 before:ease-in-out group-hover:before:w-full group-hover:text-white">
               <FontAwesomeIcon
                 icon={faPlay}
                 className="relative z-10 p-2 text-white rounded-full size-3 bg-primary"
@@ -41,31 +44,29 @@ function Hero() {
                   The Concept behind Pixelmine
                 </p>
               </div>
-            </StaggerItem>
+            </div>
           </Link>
         </div>
         <div className="flex flex-col gap-12 lg:gap-0 md:flex-row">
           <div className="items-end flex-1 text-center lg:pr-5 md:text-end">
-            <StaggerItem>
-              <p className="mb-1 text-sm font-medium tracking-widest text-green-700 uppercase md:mb-3">
-                Mobile Application
-              </p>
+            <p className="mb-1 text-sm font-medium tracking-widest text-green-700 uppercase md:mb-3 dark:text-green-400">
+              Mobile Application
+            </p>
 
-              <h1 className="text-3xl font-bold leading-tight md:text-2xl lg:text-3xl dark:text-stone-50 ">
-                Free to use for everyone always
-              </h1>
-              <p className="pt-5 pb-5 text-gray-600 text-sm/6 dark:text-stone-50">
-                Pixelmine is a social networking system that enhances user
-                empowerment by decentralizing control and governance across
-                multiple nodes or servers.
-              </p>
-              <div className="flex justify-center md:justify-end">
-                <DownloadButtons />
-              </div>
-            </StaggerItem>
+            <h1 className="text-3xl font-bold leading-tight md:text-2xl lg:text-3xl dark:text-stone-50 ">
+              Free to use for everyone always
+            </h1>
+            <p className="pt-5 pb-5 text-gray-600 text-sm/6 dark:text-stone-50">
+              Pixelmine is a social networking system that enhances user
+              empowerment by decentralizing control and governance across
+              multiple nodes or servers.
+            </p>
+            <div className="flex justify-center md:justify-end">
+              <DownloadButtons />
+            </div>
           </div>
           <div className="flex-1 lg:pl-5 lg:border-l-[1px]  lg:border-gray-300   md:text-start text-center">
-            <p className="mb-1 text-sm font-medium tracking-widest text-green-700 uppercase md:mb-3 ">
+            <p className="mb-1 text-sm font-medium tracking-widest text-green-700 uppercase md:mb-3 dark:text-green-400">
               Storer Engine
             </p>
             <h2 className="text-3xl font-bold leading-tight md:text-2xl lg:text-3xl dark:text-stone-50">
@@ -95,19 +96,21 @@ function Hero() {
                 <>
                   <Button
                     variant="outline"
-                    className="bg-white dark:hover:bg-primary"
+                    className="bg-white dark:hover:bg-primary "
                     path="/login"
                   >
                     <FontAwesomeIcon
                       icon={faArrowRightToBracket}
-                      className="text-gray-900 transition-all duration-300 ease-in-out size-4 dark:text-stone-50"
+                      className="text-gray-900 transition-all duration-300 ease-in-out size-4 dark:text-stone-900 dark:group-hover:text-stone-50"
                     />
-                    <span className="dark:text-stone-50">Login</span>
+                    <span className="transition-all duration-300 ease-in-out dark:text-stone-900 dark:group-hover:text-stone-50">
+                      Login
+                    </span>
                   </Button>
 
                   <Button
                     variant="primary"
-                    className="dark:hover:bg-primary"
+                    className="dark:hover:bg-green-600"
                     path="/signup"
                   >
                     <FontAwesomeIcon
@@ -122,7 +125,7 @@ function Hero() {
           </div>
         </div>
       </div>
-    </section>
+    </FadeSlideUp>
   );
 }
 
