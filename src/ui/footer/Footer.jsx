@@ -186,14 +186,14 @@ function Footer() {
               Child Sexual Abuse Policy
             </Link>
           </li>
-          <li className="lg:px-3">
+          {/* <li className="lg:px-3">
             <Link
               to="commercial-law"
               className="transition-all duration-300 ease-in-out hover:text-primary dark:hover:text-green-400"
             >
               特定商取引法
             </Link>
-          </li>
+          </li> */}
           <li className="lg:px-3">
             <Link
               to="privacy-policy"
