@@ -54,7 +54,7 @@ function Hero() {
             </p>
 
             <h1 className="text-3xl font-bold leading-tight md:text-2xl lg:text-3xl dark:text-stone-50 ">
-              Free to use for everyone always
+              Free to use for everyone, always
             </h1>
             <p className="pt-5 pb-5 text-gray-600 text-sm/6 dark:text-stone-50">
               Pixelmine is a social networking system that enhances user
