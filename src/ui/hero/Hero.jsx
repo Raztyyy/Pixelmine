@@ -26,7 +26,7 @@ function Hero() {
       className="pt-[2rem] pb-[2rem]  dark:bg-stone-900"
     >
       <div className="flex flex-col px-6 mx-auto text-center sm:text-start max-w-7xl ">
-        <div className="flex justify-center w-full">
+        {/* <div className="flex justify-center w-full">
           <Link
             className="inline-flex items-center gap-3 pr-3 mb-7 group"
             to="/concept"
@@ -46,7 +46,7 @@ function Hero() {
               </div>
             </div>
           </Link>
-        </div>
+        </div> */}
         <div className="flex flex-col gap-12 lg:gap-0 md:flex-row">
           <div className="items-end flex-1 text-center lg:pr-5 md:text-end">
             <p className="mb-1 text-sm font-medium tracking-widest text-green-700 uppercase md:mb-3 dark:text-green-400">
