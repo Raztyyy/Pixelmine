@@ -24,12 +24,12 @@ export default function ProfileDropdown() {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 p-1 rounded-full hover:bg-gray-100"
+        className="flex items-center gap-2 p-1 transition-all duration-300 ease-in-out rounded-full hover:bg-gray-100 hover:ring-green-600/45 hover:ring-4 ring-4 ring-slate-900/5"
       >
         <img
           src={user?.avatar_blob || profilePlaceholder}
           alt={`${user?.first_name} Profile Image`}
-          className="object-cover w-12 h-12 rounded-full"
+          className="object-cover rounded-full w-11 h-11"
         />
       </button>
 

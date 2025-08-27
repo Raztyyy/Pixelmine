@@ -153,3 +153,43 @@ export const StaggerItem = ({
     </MotionTag>
   );
 };
+
+// Backdrop (dark overlay)
+export const Backdrop = ({ children }) => (
+  <motion.div
+    className="fixed inset-0 z-[60] bg-black/30"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{ duration: 0.2 }}
+  >
+    {children}
+  </motion.div>
+);
+
+// Drawer (slide-in panel)
+const drawerVariants = {
+  hidden: { x: "100%", opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: { duration: 0.3, ease: "easeOut" },
+  },
+  exit: {
+    x: "100%",
+    opacity: 0,
+    transition: { duration: 0.2, ease: "easeIn" },
+  },
+};
+
+export const Drawer = ({ children, className = "" }) => (
+  <motion.div
+    variants={drawerVariants}
+    initial="hidden"
+    animate="visible"
+    exit="exit"
+    className={className}
+  >
+    {children}
+  </motion.div>
+);

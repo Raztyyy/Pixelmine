@@ -36,7 +36,7 @@ export default function Product() {
                     Concept
                   </p>
                 </div>
-                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50">
+                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
                   The idea behind Pixelmine is to create a platform that
                   empowers users by removing the need for a central authority or
                   server to control user data and interactions. Instead, these
@@ -81,7 +81,7 @@ export default function Product() {
                     Design & Implementation
                   </p>
                 </div>
-                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50">
+                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
                   The network is built around three primary components: the
                   User, the Storer, and the PXL Server. The User is any
                   individual who interacts with the SNS mobile application,
@@ -123,7 +123,7 @@ export default function Product() {
                     Network Incentives
                   </p>
                 </div>
-                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50">
+                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
                   Activity Points represent the overall activity of a user,
                   which includes actions such as posting content, commenting on
                   posts, messaging, and reacting to content. PXL Points, on the
@@ -164,7 +164,7 @@ export default function Product() {
                     Democratic System
                   </p>
                 </div>
-                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50">
+                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
                   Pixelmine focuses on user participation, transparency, and the
                   fair distribution of information. By empowering users to
                   express their opinions, Pixelmine facilitates meaningful
@@ -206,7 +206,7 @@ export default function Product() {
                     Roadmap
                   </p>
                 </div>
-                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50">
+                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
                   Our strategic roadmap charts the future development of
                   Pixelmine OPC Japan, emphasizing a commitment to cutting-edge
                   technology, meaningful creator empowerment, and a vision for

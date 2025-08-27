@@ -10,11 +10,7 @@ import {
 import { useAuth } from "../../context/AuthContext";
 
 // Import animation wrapper
-import {
-  FadeSlideUp,
-  StaggerContainer,
-  StaggerItem,
-} from "../../animations/AnimatedWrappers";
+import { FadeSlideUp } from "../../animations/AnimatedWrappers";
 import Button from "../Button";
 
 function Hero() {

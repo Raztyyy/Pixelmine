@@ -53,9 +53,13 @@ export default function Header() {
         aria-label="Global"
         className="flex items-center justify-between px-6 mx-auto max-w-7xl"
       >
-        <Logo />
+        {/* Logo always on the left */}
+        <div className="flex-shrink-0">
+          <Logo />
+        </div>
 
-        <div className="flex lg:hidden">
+        {/* Hamburger (mobile only) */}
+        <div className="flex xl:hidden">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
@@ -69,8 +73,12 @@ export default function Header() {
           </button>
         </div>
 
-        <DesktopLink links={links} />
+        {/* Desktop links (right side only, no stretching) */}
+        <div className="hidden xl:flex lg:items-center xl:gap-x-8">
+          <DesktopLink links={links} />
+        </div>
 
+        {/* Mobile links (drawer) */}
         <MobileLink
           links={links}
           mobileMenuOpen={mobileMenuOpen}

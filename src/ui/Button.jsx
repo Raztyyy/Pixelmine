@@ -10,7 +10,7 @@ function Button({
   path = "",
 }) {
   const baseStyles =
-    "flex gap-2 group border rounded-lg text-sm text-center items-center me-2 mb-2 transition-all duration-300 ease-in-out";
+    "flex gap-2 group border rounded-lg text-sm text-center items-center transition-all duration-300 ease-in-out";
 
   const sizeStyles = {
     sm: "px-4 py-2 text-sm",
