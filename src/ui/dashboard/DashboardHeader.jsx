@@ -13,6 +13,8 @@ function DashboardHeader({ sidebarOpen, setSidebarOpen }) {
     if (location.pathname === "/dashboard/analytics") return "Analytics";
     if (location.pathname === "/dashboard/settings") return "Settings";
     if (location.pathname === "/dashboard/profile") return "Profile";
+    if (location.pathname === "/dashboard/documentation")
+      return "Documentation";
     if (location.pathname === "/dashboard/buy") return "Buy";
     if (location.pathname === "/dashboard/history") return "History";
     if (location.pathname === "/dashboard/payment-method")

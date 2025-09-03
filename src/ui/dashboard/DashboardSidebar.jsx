@@ -10,6 +10,7 @@ import {
   faCartShopping,
   faClockRotateLeft,
   faCreditCard,
+  faFile,
 } from "@fortawesome/pro-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,10 +24,11 @@ const menuItems = [
   { name: "Dashboard", path: "/dashboard", icon: faTableColumns },
   { name: "Analytics", path: "/dashboard/analytics", icon: faAnalytics },
   { name: "Settings", path: "/dashboard/settings", icon: faGear },
+  { name: "Documentation", path: "/dashboard/documentation", icon: faFile },
 ];
 
 // 👇 Example collapsible section
-const documentationAdPointsMenu = [
+const AdPointsMenu = [
   { name: "Buy", path: "/dashboard/buy", icon: faCartShopping },
   {
     name: "History",
@@ -101,7 +103,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 icon={faHundredPoints}
                 className="w-5 h-5 dark:text-zinc-500"
               />
-              <span>Documentation Ad Points</span>
+              <span>Ad Points</span>
             </div>
             <FontAwesomeIcon
               icon={isReportsOpen ? faChevronUp : faChevronDown}
@@ -110,7 +112,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
           <AnimatePresence>
             {isReportsOpen && (
               <Collapse className="mt-1 space-y-1 pl-9">
-                {documentationAdPointsMenu.map((sub) => (
+                {AdPointsMenu.map((sub) => (
                   <NavLink
                     key={sub.name}
                     to={sub.path}

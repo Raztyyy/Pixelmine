@@ -111,6 +111,7 @@ const router = createBrowserRouter([
       { path: "analytics", element: <DashboardAnalytics /> },
       { path: "settings", element: <DashboardSettings /> },
       { path: "profile", element: <DashboardProfile /> },
+      { path: "documentation", element: <DashboardAnalytics /> },
       { path: "buy", element: <DashboardAnalytics /> },
       { path: "history", element: <DashboardAnalytics /> },
       { path: "payment-method", element: <DashboardAnalytics /> },
