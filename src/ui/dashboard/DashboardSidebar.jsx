@@ -65,7 +65,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         </button>
       </div>
 
-      <nav className="p-4 ">
+      {/* Menu Items 1 Section */}
+
+      <nav className="flex flex-col p-4 gap-y-2">
         {menuItems.map((item) => (
           <NavLink
             key={item.name}
@@ -96,7 +98,9 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         ))}
 
         {/* Separator */}
-        <hr className="my-5" />
+        <hr className="my-3 border-0 border-t border-gray-300 dark:border-zinc-700" />
+
+        {/* Menu Items 2 Section */}
 
         {menuItems2.map((item) => (
           <NavLink
