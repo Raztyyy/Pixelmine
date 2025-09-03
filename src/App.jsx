@@ -108,12 +108,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <DashboardOverview /> },
-      { path: "/dashboard/analytics", element: <DashboardAnalytics /> },
-      { path: "/dashboard/settings", element: <DashboardSettings /> },
-      { path: "/dashboard/profile", element: <DashboardProfile /> },
-      { path: "/dashboard/buy", element: <DashboardAnalytics /> },
-      { path: "/dashboard/history", element: <DashboardAnalytics /> },
-      { path: "/dashboard/payment-method", element: <DashboardAnalytics /> },
+      { path: "analytics", element: <DashboardAnalytics /> },
+      { path: "settings", element: <DashboardSettings /> },
+      { path: "profile", element: <DashboardProfile /> },
+      { path: "buy", element: <DashboardAnalytics /> },
+      { path: "history", element: <DashboardAnalytics /> },
+      { path: "payment-method", element: <DashboardAnalytics /> },
     ],
   },
 

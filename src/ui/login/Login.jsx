@@ -1,8 +1,12 @@
-import { useState, useEffect } from "react";
-import { useNavigate, Link, useSearchParams } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import {
+  useNavigate,
+  Link,
+  useSearchParams,
+  useLocation,
+} from "react-router-dom";
 import { showToast } from "../../utils/Toast";
 import { useAuth } from "../../context/AuthContext";
-import { useRef } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -11,31 +15,29 @@ function Login() {
   const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const { login, isAuthenticated } = useAuth();
 
+  const from = location.state?.from?.pathname || "/dashboard"; // 👈 fallback
   const [searchParams] = useSearchParams();
   const isVerified = searchParams.get("verified") === "true";
-  const hasShownToast = useRef(false); // ✅ prevents double toast
+  const hasShownToast = useRef(false);
 
+  // Show verified toast once
   useEffect(() => {
     if (isVerified && !hasShownToast.current) {
       showToast("Your email has been verified. You can now log in.", "success");
-      hasShownToast.current = true; // ✅ only show once
-    }
-  }, [isVerified]);
-
-  useEffect(() => {
-    if (isVerified) {
-      // Remove pending_email from localStorage after successful verification
+      hasShownToast.current = true;
       localStorage.removeItem("pending_email");
     }
   }, [isVerified]);
 
+  // Auto redirect if already logged in
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/dashboard");
+      navigate(from, { replace: true }); // 👈 go back to original route
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, navigate, from]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,11 +58,10 @@ function Login() {
         return;
       }
 
-      login(data.token); // ✅ Save token and update auth context
+      login(data.token); // save token
       showToast("Login successful!", "success");
 
-      // ✅ optional: delay or navigate manually if needed
-      setTimeout(() => navigate("/dashboard"), 1000);
+      navigate(from, { replace: true }); // 👈 redirect back immediately
     } catch (err) {
       console.error("Login error:", err);
       showToast("Server error. Please try again.", "error");
@@ -68,7 +69,6 @@ function Login() {
       setIsSubmitting(false);
     }
   };
-
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-5rem)] px-4 bg-gray-100 dark:bg-stone-900">
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow dark:bg-stone-800">
