@@ -10,7 +10,7 @@ import {
   faCartShopping,
   faClockRotateLeft,
   faCreditCard,
-  faFile,
+  faFolder,
 } from "@fortawesome/pro-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,7 +24,7 @@ const menuItems = [
   { name: "Dashboard", path: "/dashboard", icon: faTableColumns },
   { name: "Analytics", path: "/dashboard/analytics", icon: faAnalytics },
   { name: "Settings", path: "/dashboard/settings", icon: faGear },
-  { name: "Documentation", path: "/dashboard/documentation", icon: faFile },
+  { name: "Documentation", path: "/dashboard/documentation", icon: faFolder },
 ];
 
 // 👇 Example collapsible section
