@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 // Fade in and slide up (common section entrance)
 const fadeSlideUpVariants = {
@@ -193,3 +193,39 @@ export const Drawer = ({ children, className = "" }) => (
     {children}
   </motion.div>
 );
+
+// Collapse (expand / collapse height + fade)
+const collapseVariants = {
+  hidden: { opacity: 0, height: 0 },
+  visible: {
+    opacity: 1,
+    height: "auto",
+    transition: { duration: 0.3, ease: "easeOut" },
+  },
+  exit: {
+    opacity: 0,
+    height: 0,
+    transition: { duration: 0.2, ease: "easeIn" },
+  },
+};
+
+export const Collapse = ({
+  children,
+  className = "",
+  element = "div",
+  id = "",
+}) => {
+  const MotionTag = motion[element] || motion.div;
+  return (
+    <MotionTag
+      variants={collapseVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className={className + " overflow-hidden"}
+      id={id}
+    >
+      {children}
+    </MotionTag>
+  );
+};
