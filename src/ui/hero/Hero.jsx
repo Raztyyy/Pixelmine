@@ -44,7 +44,7 @@ function Hero() {
           </Link>
         </div> */}
         <div className="flex flex-col gap-12 lg:gap-0 md:flex-row">
-          <div className="items-end flex-1 text-center lg:pr-5 md:text-end">
+          <div className="flex flex-col justify-between text-center lg:pr-5 md:text-end">
             <p className="mb-1 text-sm font-medium tracking-widest text-green-700 uppercase md:mb-3 dark:text-green-400">
               Mobile Application
             </p>
@@ -59,11 +59,11 @@ function Hero() {
               ensures greater user autonomy and fosters a collaborative
               environment.
             </p>
-            <div className="flex justify-center md:justify-end">
+            <div className="flex items-end justify-center mt-auto md:justify-end">
               <DownloadButtons />
             </div>
           </div>
-          <div className="flex-1 lg:pl-5 lg:border-l-[1px]  lg:border-gray-300   md:text-start text-center">
+          <div className="flex flex-col justify-between lg:pl-5 lg:border-l-[1px]  lg:border-gray-300   md:text-start text-center ">
             <p className="mb-1 text-sm font-medium tracking-widest text-green-700 uppercase md:mb-3 dark:text-green-400">
               Storer Engine
             </p>
