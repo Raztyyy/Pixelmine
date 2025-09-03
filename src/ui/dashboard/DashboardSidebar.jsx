@@ -24,6 +24,9 @@ const menuItems = [
   { name: "Dashboard", path: "/dashboard", icon: faTableColumns },
   { name: "Analytics", path: "/dashboard/analytics", icon: faAnalytics },
   { name: "Settings", path: "/dashboard/settings", icon: faGear },
+];
+
+const menuItems2 = [
   { name: "Documentation", path: "/dashboard/documentation", icon: faFolder },
 ];
 
@@ -62,8 +65,40 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         </button>
       </div>
 
-      <nav className="p-4 space-y-2">
+      <nav className="p-4 ">
         {menuItems.map((item) => (
+          <NavLink
+            key={item.name}
+            to={item.path}
+            end={item.path === "/dashboard"} // exact match for dashboard
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
+                isActive
+                  ? "bg-primary/10 dark:bg-zinc-500/30 dark:text-white text-stone-900"
+                  : "text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-500/30"
+              }`
+            }
+          >
+            {({ isActive }) => (
+              <>
+                <FontAwesomeIcon
+                  icon={item.icon}
+                  className={`w-5 h-5 ${
+                    isActive
+                      ? "dark:text-green-500 text-primary"
+                      : "dark:text-zinc-500"
+                  }`}
+                />
+                <span>{item.name}</span>
+              </>
+            )}
+          </NavLink>
+        ))}
+
+        {/* Separator */}
+        <hr className="my-5" />
+
+        {menuItems2.map((item) => (
           <NavLink
             key={item.name}
             to={item.path}
