@@ -43,6 +43,14 @@ import VerifyEmail from "./ui/signup/VerifyEmail";
 import VerifyEmailConfirm from "./ui/signup/VerifyEmailConfirm";
 import ForgotPassword from "./ui/login/ForgotPassword";
 import ResetPassword from "./ui/login/ResetPassword";
+import DocumentationOverview from "./ui/dashboard/documentation/DocumentationOverview";
+import DocumentationGettingStarted from "./ui/dashboard/documentation/DocumentationGettingStarted";
+import DocumentationApiReference from "./ui/dashboard/documentation/DocumentationApiReference";
+import DashboardDocumentationLayout from "./ui/dashboard/DashboardDocumentationLayout";
+import DocumentationConcept from "./ui/dashboard/documentation/DocumentationConcept";
+import DocumentationGuides from "./ui/dashboard/documentation/DocumentationGuides";
+import DocumentationFAQ from "./ui/dashboard/documentation/DocumentationFAQ";
+import DocumentationSupport from "./ui/dashboard/documentation/DocumentationSupport";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -111,7 +119,19 @@ const router = createBrowserRouter([
       { path: "analytics", element: <DashboardAnalytics /> },
       { path: "settings", element: <DashboardSettings /> },
       { path: "profile", element: <DashboardProfile /> },
-      { path: "documentation", element: <DashboardAnalytics /> },
+      {
+        path: "documentation",
+        element: <DashboardDocumentationLayout />,
+        children: [
+          { index: true, element: <DocumentationOverview /> }, // /dashboard/documentation
+          { path: "getting-started", element: <DocumentationGettingStarted /> },
+          { path: "concepts", element: <DocumentationConcept /> },
+          { path: "api-reference", element: <DocumentationApiReference /> },
+          { path: "guides", element: <DocumentationGuides /> },
+          { path: "faq", element: <DocumentationFAQ /> },
+          { path: "support", element: <DocumentationSupport /> },
+        ],
+      },
       { path: "buy", element: <DashboardAnalytics /> },
       { path: "history", element: <DashboardAnalytics /> },
       { path: "payment-method", element: <DashboardAnalytics /> },

@@ -26,11 +26,18 @@ const menuItems = [
   { name: "Settings", path: "/dashboard/settings", icon: faGear },
 ];
 
-const menuItems2 = [
-  { name: "Documentation", path: "/dashboard/documentation", icon: faFolder },
+// 👇 Documentation collapsible section
+const DocumentationMenu = [
+  { name: "Overview", path: "/dashboard/documentation" },
+  { name: "Getting Started", path: "/dashboard/documentation/getting-started" },
+  { name: "Core Concepts", path: "/dashboard/documentation/concepts" },
+  { name: "API Reference", path: "/dashboard/documentation/api-reference" },
+  { name: "Guides", path: "/dashboard/documentation/guides" },
+  { name: "FAQ", path: "/dashboard/documentation/faq" },
+  { name: "Support", path: "/dashboard/documentation/support" },
 ];
 
-// 👇 Example collapsible section
+// 👇 Ad Points collapsible section
 const AdPointsMenu = [
   { name: "Buy", path: "/dashboard/buy", icon: faCartShopping },
   {
@@ -47,6 +54,7 @@ const AdPointsMenu = [
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const [isReportsOpen, setIsReportsOpen] = useState(false);
+  const [isDocsOpen, setIsDocsOpen] = useState(false);
 
   return (
     <aside
@@ -101,35 +109,45 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         <hr className="my-3 border-0 border-t border-gray-300 dark:border-zinc-700" />
 
         {/* Menu Items 2 Section */}
-
-        {menuItems2.map((item) => (
-          <NavLink
-            key={item.name}
-            to={item.path}
-            end={item.path === "/dashboard"} // exact match for dashboard
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
-                isActive
-                  ? "bg-primary/10 dark:bg-zinc-500/30 dark:text-white text-stone-900"
-                  : "text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-500/30"
-              }`
-            }
+        {/* Documentation Collapsible Section */}
+        <div>
+          <button
+            onClick={() => setIsDocsOpen(!isDocsOpen)}
+            className="flex items-center justify-between w-full px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-500/30"
           >
-            {({ isActive }) => (
-              <>
-                <FontAwesomeIcon
-                  icon={item.icon}
-                  className={`w-5 h-5 ${
-                    isActive
-                      ? "dark:text-green-500 text-primary"
-                      : "dark:text-zinc-500"
-                  }`}
-                />
-                <span>{item.name}</span>
-              </>
+            <div className="flex items-center gap-3">
+              <FontAwesomeIcon
+                icon={faFolder}
+                className="w-5 h-5 dark:text-zinc-500"
+              />
+              <span>Documentation</span>
+            </div>
+            <FontAwesomeIcon icon={isDocsOpen ? faChevronUp : faChevronDown} />
+          </button>
+
+          <AnimatePresence>
+            {isDocsOpen && (
+              <Collapse className="mt-1 space-y-1 pl-9">
+                {DocumentationMenu.map((sub) => (
+                  <NavLink
+                    key={sub.name}
+                    to={sub.path}
+                    end={sub.path === "/dashboard/documentation"} // exact for Overview
+                    className={({ isActive }) =>
+                      `flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${
+                        isActive
+                          ? "bg-primary/10 dark:bg-zinc-500/30 text-primary dark:text-green-500"
+                          : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-zinc-500/30"
+                      }`
+                    }
+                  >
+                    <span>{sub.name}</span>
+                  </NavLink>
+                ))}
+              </Collapse>
             )}
-          </NavLink>
-        ))}
+          </AnimatePresence>
+        </div>
 
         {/* Collapsible Section */}
         <div>

@@ -18,7 +18,7 @@ function PageNotFound() {
         <p className="mt-6 text-lg text-gray-500 text-pretty font-regular sm:text-xl/8">
           Sorry, we couldn’t find the page you’re looking for.
         </p>
-        <div class="mt-10 flex items-center justify-center gap-x-6">
+        <div className="flex items-center justify-center mt-10 gap-x-6">
           <Link
             to="/"
             className="flex gap-2 group border rounded-lg text-center items-center me-2 mb-2 px-6 py-3.5 text-sm transition-all duration-300 ease-in-out bg-primary text-white border-primary hover:bg-primary/80"
