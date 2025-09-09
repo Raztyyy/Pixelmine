@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGem, faPlus, faTrash } from "@fortawesome/pro-solid-svg-icons";
+import { faGem, faPlus } from "@fortawesome/pro-solid-svg-icons";
 import { NavLink } from "react-router-dom";
-
 import gcashImg from "../../../assets/payment-method-icons/gcash.jpeg";
 import mastercardImg from "../../../assets/payment-method-icons/mastercard.png";
 import paypalImg from "../../../assets/payment-method-icons/paypal.svg";
+import { useAuth } from "../../../context/AuthContext";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const adPointPackages = [
   { id: 1, points: 500, price: 5 },
@@ -18,15 +20,13 @@ const adPointPackages = [
   { id: 8, points: 25000, price: 160 },
 ];
 
-const icons = {
-  mastercard: mastercardImg,
-  gcash: gcashImg,
-  paypal: paypalImg,
-};
+const icons = { card: mastercardImg, gcash: gcashImg, paypal: paypalImg };
 
-export default function AdPointsBuy({ userId }) {
+export default function AdPointsBuy() {
   const [activeTab, setActiveTab] = useState("purchase");
   const [selectedPackage, setSelectedPackage] = useState(null);
+  const { user } = useAuth();
+  const userId = user?.id;
 
   const tabs = [
     { key: "purchase", label: "Purchase Points" },
@@ -43,7 +43,6 @@ export default function AdPointsBuy({ userId }) {
         campaigns running smoothly.
       </p>
 
-      {/* Tabs */}
       <div className="flex justify-center gap-4 mt-10 mb-10">
         {tabs.map((tab) => (
           <button
@@ -63,8 +62,7 @@ export default function AdPointsBuy({ userId }) {
         ))}
       </div>
 
-      {/* Content */}
-      {activeTab === "purchase" && (
+      {activeTab === "purchase" && userId && (
         <PurchaseContent
           selectedPackage={selectedPackage}
           setSelectedPackage={setSelectedPackage}
@@ -80,42 +78,24 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, userId }) {
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [selectedMethod, setSelectedMethod] = useState(null);
 
-  // Fetch payment methods from backend
   useEffect(() => {
     const fetchMethods = async () => {
       try {
-        const res = await fetch(
-          `https://localhost:3001/api/payment-methods/${userId}`
-        );
+        const res = await fetch(`${API_URL}/api/payment-methods/${userId}`);
         const data = await res.json();
         setPaymentMethods(data);
+
+        const defaultMethod = data.find((m) => m.is_default);
+        if (defaultMethod) setSelectedMethod(defaultMethod.id);
       } catch (err) {
-        console.error("Failed to fetch payment methods", err);
+        console.error(err);
       }
     };
-
-    if (userId) {
-      fetchMethods();
-    }
+    if (userId) fetchMethods();
   }, [userId]);
-
-  // Delete payment method
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to remove this method?")) return;
-
-    try {
-      await fetch(`https://localhost:3001/api/payment-methods/${id}`, {
-        method: "DELETE",
-      });
-      setPaymentMethods((prev) => prev.filter((m) => m.id !== id));
-    } catch (err) {
-      console.error("Failed to delete payment method", err);
-    }
-  };
 
   return (
     <div>
-      {/* Packages */}
       <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4">
         {adPointPackages.map((pkg) => (
           <button
@@ -133,7 +113,6 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, userId }) {
         ))}
       </div>
 
-      {/* Payment Section */}
       {selectedPackage && (
         <div className="flex flex-col justify-start p-6 mt-10 text-left bg-white border rounded-lg shadow-sm">
           <h3 className="text-lg font-semibold text-gray-900">
@@ -142,21 +121,23 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, userId }) {
 
           <div className="grid grid-cols-1 gap-4 mt-5 xl:grid-cols-4 md:grid-cols-2">
             {paymentMethods.map((method) => {
+              const key = method.method_type?.toLowerCase().trim();
+              const icon = icons[key] || mastercardImg;
+
               let label = "";
-              if (method.method_type === "mastercard") {
+              if (key === "card")
                 label = `${method.card_brand || "Card"} (****${
                   method.card_last4
                 })`;
-              } else if (method.method_type === "gcash") {
-                label = `GCash (****${method.gcash_number.slice(-4)})`;
-              } else if (method.method_type === "paypal") {
+              else if (key === "gcash")
+                label = `GCash (****${String(method.gcash_number).slice(-4)})`;
+              else if (key === "paypal")
                 label = `PayPal (${method.paypal_email})`;
-              }
 
               return (
                 <div
                   key={method.id}
-                  className={`flex items-center justify-between px-4 py-2 border rounded-md transition min-h-24 gap-5 ${
+                  className={`flex items-center px-4 py-2 border rounded-md transition min-h-24 gap-5 ${
                     selectedMethod === method.id
                       ? "bg-green-200/15 ring-2 ring-primary"
                       : "bg-white hover:bg-green-200/15 hover:ring-2 hover:ring-primary"
@@ -164,26 +145,19 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, userId }) {
                 >
                   <button
                     onClick={() => setSelectedMethod(method.id)}
-                    className="flex items-center flex-1 gap-4 text-left"
+                    className="flex items-center flex-1 w-full gap-4 text-left"
                   >
                     <img
-                      src={icons[method.method_type]}
-                      alt={method.method_type}
+                      src={icon}
+                      alt={key}
                       className="object-contain w-12 h-12"
                     />
-                    {label}
-                  </button>
-                  <button
-                    onClick={() => handleDelete(method.id)}
-                    className="text-gray-400 hover:text-red-600"
-                  >
-                    <FontAwesomeIcon icon={faTrash} />
+                    <span>{label}</span>
                   </button>
                 </div>
               );
             })}
 
-            {/* Add new method */}
             <NavLink
               to="/dashboard/payment-method"
               className="flex items-center justify-center gap-4 px-4 py-2 text-sm transition border rounded-md min-h-24 hover:bg-green-200/15 hover:ring-2 hover:ring-primary"
@@ -193,7 +167,6 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, userId }) {
             </NavLink>
           </div>
 
-          {/* Buy Now Section */}
           <div className="flex justify-end gap-4 mt-10">
             {selectedMethod && (
               <div className="flex flex-col text-end">
@@ -206,16 +179,14 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, userId }) {
                     {selectedPackage.points.toLocaleString()}
                   </span>
                 </div>
-
-                <p className="text-gray-600 ">
+                <p className="text-gray-600">
                   Total: $ {selectedPackage.price}
                 </p>
               </div>
             )}
             <button
               disabled={!selectedMethod}
-              className={`flex gap-2 group border rounded-lg text-sm text-center items-center transition-all duration-300 ease-in-out px-6 py-3.5 bg-primary text-white border-primary hover:bg-primary/80
-    disabled:opacity-50 disabled:cursor-not-allowed`}
+              className="flex gap-2 group border rounded-lg text-sm text-center items-center transition-all duration-300 ease-in-out px-6 py-3.5 bg-primary text-white border-primary hover:bg-primary/80 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Buy Now
             </button>
@@ -233,7 +204,7 @@ function RedeemContent() {
       <p className="mt-2 mb-4 text-gray-600">
         Enter your voucher code to redeem Ad Points instantly.
       </p>
-      <div className="flex items-center justify-center gap-2 ">
+      <div className="flex items-center justify-center gap-2">
         <input
           type="text"
           placeholder="Enter voucher code"

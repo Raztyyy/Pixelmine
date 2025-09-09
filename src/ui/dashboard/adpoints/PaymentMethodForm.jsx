@@ -1,6 +1,8 @@
 import { useState } from "react";
 
-function PaymentMethodForm({ userId }) {
+const API_URL = import.meta.env.VITE_API_URL;
+
+function PaymentMethodForm({ userId, onAdd }) {
   const [formData, setFormData] = useState({
     methodType: "card",
     cardBrand: "",
@@ -21,25 +23,54 @@ function PaymentMethodForm({ userId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const payload = {
+      userId,
+      methodType: formData.methodType,
+      isDefault: formData.isDefault,
+    };
+
+    if (formData.methodType === "card") {
+      payload.cardBrand = formData.cardBrand;
+      payload.cardLast4 = formData.cardLast4;
+      payload.cardExpiry = formData.cardExpiry;
+    } else if (formData.methodType === "gcash") {
+      payload.gcashNumber = formData.gcashNumber;
+    } else if (formData.methodType === "paypal") {
+      payload.paypalEmail = formData.paypalEmail;
+    }
+
     try {
-      const res = await fetch("https://localhost:3001/api/payment-methods", {
+      const res = await fetch(`${API_URL}/api/payment-methods`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, userId }),
+        body: JSON.stringify(payload),
       });
+
       const data = await res.json();
-      alert(data.message);
+      if (!res.ok) throw new Error(data.message || "Unknown error");
+
+      alert("Payment method added successfully!");
+      if (onAdd && data.method) onAdd(data.method);
+
+      // Reset form
+      setFormData({
+        methodType: "card",
+        cardBrand: "",
+        cardLast4: "",
+        cardExpiry: "",
+        gcashNumber: "",
+        paypalEmail: "",
+        isDefault: false,
+      });
     } catch (err) {
-      console.error(err);
-      alert("Failed to add payment method.");
+      console.error("Add payment method failed:", err);
+      alert(err.message || "Failed to add payment method.");
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-md p-6 mx-auto space-y-5 bg-white shadow-lg rounded-2xl"
-    >
+    <form onSubmit={handleSubmit} className="max-w-md p-6 mx-auto space-y-5 ">
       {/* Payment Type */}
       <div>
         <label className="block mb-1 text-sm font-medium text-gray-700">
@@ -74,7 +105,6 @@ function PaymentMethodForm({ userId }) {
               required
             />
           </div>
-
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block mb-1 text-sm font-medium text-gray-700">
@@ -91,7 +121,6 @@ function PaymentMethodForm({ userId }) {
                 required
               />
             </div>
-
             <div>
               <label className="block mb-1 text-sm font-medium text-gray-700">
                 Expiry (MM/YYYY)
