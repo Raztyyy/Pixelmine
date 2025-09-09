@@ -52,6 +52,7 @@ import DocumentationGuides from "./ui/dashboard/documentation/DocumentationGuide
 import DocumentationFAQ from "./ui/dashboard/documentation/DocumentationFAQ";
 import DocumentationSupport from "./ui/dashboard/documentation/DocumentationSupport";
 import AdPointsBuy from "./ui/dashboard/adpoints/AdPointsBuy";
+import AdPointsHistory from "./ui/dashboard/adpoints/AdPointsHistory";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -134,7 +135,7 @@ const router = createBrowserRouter([
         ],
       },
       { path: "buy", element: <AdPointsBuy /> },
-      { path: "history", element: <DashboardAnalytics /> },
+      { path: "history", element: <AdPointsHistory /> },
       { path: "payment-method", element: <DashboardAnalytics /> },
     ],
   },

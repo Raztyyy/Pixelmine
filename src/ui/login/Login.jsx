@@ -18,7 +18,11 @@ function Login() {
   const location = useLocation();
   const { login, isAuthenticated } = useAuth();
 
-  const from = location.state?.from?.pathname || "/dashboard"; // 👈 fallback
+  // ✅ preserve both pathname + query string
+  const fromPath = location.state?.from?.pathname || "/dashboard";
+  const fromSearch = location.state?.from?.search || "";
+  const from = `${fromPath}${fromSearch}`;
+
   const [searchParams] = useSearchParams();
   const isVerified = searchParams.get("verified") === "true";
   const hasShownToast = useRef(false);
@@ -35,7 +39,7 @@ function Login() {
   // Auto redirect if already logged in
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(from, { replace: true }); // 👈 go back to original route
+      navigate(from, { replace: true });
     }
   }, [isAuthenticated, navigate, from]);
 
@@ -61,7 +65,8 @@ function Login() {
       login(data.token); // save token
       showToast("Login successful!", "success");
 
-      navigate(from, { replace: true }); // 👈 redirect back immediately
+      // ✅ go back to original route with query params intact
+      navigate(from, { replace: true });
     } catch (err) {
       console.error("Login error:", err);
       showToast("Server error. Please try again.", "error");
@@ -69,6 +74,7 @@ function Login() {
       setIsSubmitting(false);
     }
   };
+
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-5rem)] px-4 bg-gray-100 dark:bg-stone-900">
       <div className="w-full max-w-md p-6 bg-white rounded-lg shadow dark:bg-stone-800">
