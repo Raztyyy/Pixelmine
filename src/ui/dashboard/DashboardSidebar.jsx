@@ -62,158 +62,173 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:shadow-none`}
     >
-      <div className="flex items-center justify-between px-4 py-[30px]">
-        {/* Logo */}
-        <Logo paddingX={"3rem"} mode="dark" />
-        <button
-          className="lg:hidden dark:text-white"
-          onClick={() => setSidebarOpen(false)}
-        >
-          <FontAwesomeIcon icon={faX} className="w-5 h-5" />
-        </button>
-      </div>
-
-      {/* Menu Items 1 Section */}
-
-      <nav className="flex flex-col p-4 gap-y-2">
-        {menuItems.map((item) => (
-          <NavLink
-            key={item.name}
-            to={item.path}
-            end={item.path === "/dashboard"} // exact match for dashboard
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
-                isActive
-                  ? "bg-primary/10 dark:bg-zinc-500/30 dark:text-white text-stone-900"
-                  : "text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-500/30"
-              }`
-            }
+      <div className="flex flex-col h-full">
+        <div className="flex items-center justify-between px-4 py-[30px]">
+          {/* Logo */}
+          <Logo paddingX={"3rem"} mode="dark" />
+          <button
+            className="lg:hidden dark:text-white"
+            onClick={() => setSidebarOpen(false)}
           >
-            {({ isActive }) => (
-              <>
-                <FontAwesomeIcon
-                  icon={item.icon}
-                  className={`w-5 h-5 ${
+            <FontAwesomeIcon icon={faX} className="w-5 h-5" />
+          </button>
+        </div>
+
+        <div className="flex flex-col justify-between overflow-y-auto">
+          {/* Menu Items 1 Section */}
+
+          <nav className="flex flex-col p-4 gap-y-2">
+            {menuItems.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.path}
+                end={item.path === "/dashboard"} // exact match for dashboard
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
                     isActive
-                      ? "dark:text-green-500 text-primary"
-                      : "dark:text-zinc-500"
-                  }`}
+                      ? "bg-primary/10 dark:bg-zinc-500/30 dark:text-white text-stone-900"
+                      : "text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-500/30"
+                  }`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    <FontAwesomeIcon
+                      icon={item.icon}
+                      className={`w-5 h-5 ${
+                        isActive
+                          ? "dark:text-green-500 text-primary"
+                          : "dark:text-zinc-500"
+                      }`}
+                    />
+                    <span>{item.name}</span>
+                  </>
+                )}
+              </NavLink>
+            ))}
+
+            {/* Separator */}
+            <hr className="my-3 border-0 border-t border-gray-300 dark:border-zinc-700" />
+
+            {/* Menu Items 2 Section */}
+            {/* Documentation Collapsible Section */}
+            <div>
+              <button
+                onClick={() => setIsDocsOpen(!isDocsOpen)}
+                className="flex items-center justify-between w-full px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-500/30"
+              >
+                <div className="flex items-center gap-3">
+                  <FontAwesomeIcon
+                    icon={faFolder}
+                    className="w-5 h-5 dark:text-zinc-500"
+                  />
+                  <span>Documentation</span>
+                </div>
+                <FontAwesomeIcon
+                  icon={isDocsOpen ? faChevronUp : faChevronDown}
                 />
-                <span>{item.name}</span>
-              </>
-            )}
-          </NavLink>
-        ))}
+              </button>
 
-        {/* Separator */}
-        <hr className="my-3 border-0 border-t border-gray-300 dark:border-zinc-700" />
-
-        {/* Menu Items 2 Section */}
-        {/* Documentation Collapsible Section */}
-        <div>
-          <button
-            onClick={() => setIsDocsOpen(!isDocsOpen)}
-            className="flex items-center justify-between w-full px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-500/30"
-          >
-            <div className="flex items-center gap-3">
-              <FontAwesomeIcon
-                icon={faFolder}
-                className="w-5 h-5 dark:text-zinc-500"
-              />
-              <span>Documentation</span>
-            </div>
-            <FontAwesomeIcon icon={isDocsOpen ? faChevronUp : faChevronDown} />
-          </button>
-
-          <AnimatePresence>
-            {isDocsOpen && (
-              <Collapse className="mt-1 space-y-1 pl-9">
-                {DocumentationMenu.map((sub) => (
-                  <NavLink
-                    key={sub.name}
-                    to={sub.path}
-                    end={sub.path === "/dashboard/documentation"} // exact for Overview
-                    className={({ isActive }) =>
-                      `flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${
-                        isActive
-                          ? "bg-primary/10 dark:bg-zinc-500/30 text-primary dark:text-green-500"
-                          : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-zinc-500/30"
-                      }`
-                    }
+              <AnimatePresence>
+                {isDocsOpen && (
+                  <Collapse
+                    element="ul"
+                    className="mt-1 space-y-1 pl-9"
+                    id="docs-menu"
                   >
-                    <span>{sub.name}</span>
-                  </NavLink>
-                ))}
-              </Collapse>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* Collapsible Section */}
-        <div>
-          <button
-            onClick={() => setIsReportsOpen(!isReportsOpen)}
-            className="flex items-center justify-between w-full px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-500/30"
-          >
-            <div className="flex items-center gap-3">
-              <FontAwesomeIcon
-                icon={faHundredPoints}
-                className="w-5 h-5 dark:text-zinc-500"
-              />
-              <span>Ad Points</span>
+                    {DocumentationMenu.map((sub) => (
+                      <li key={sub.name}>
+                        <NavLink
+                          key={sub.name}
+                          to={sub.path}
+                          end={sub.path === "/dashboard/documentation"} // exact for Overview
+                          className={({ isActive }) =>
+                            `flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${
+                              isActive
+                                ? "bg-primary/10 dark:bg-zinc-500/30 text-primary dark:text-green-500"
+                                : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-zinc-500/30"
+                            }`
+                          }
+                        >
+                          <span>{sub.name}</span>
+                        </NavLink>
+                      </li>
+                    ))}
+                  </Collapse>
+                )}
+              </AnimatePresence>
             </div>
-            <FontAwesomeIcon
-              icon={isReportsOpen ? faChevronUp : faChevronDown}
-            />
-          </button>
-          <AnimatePresence>
-            {isReportsOpen && (
-              <Collapse className="mt-1 space-y-1 pl-9">
-                {AdPointsMenu.map((sub) => (
-                  <NavLink
-                    key={sub.name}
-                    to={sub.path}
-                    className={({ isActive }) =>
-                      `flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${
-                        isActive
-                          ? "bg-primary/10 dark:bg-zinc-500/30 text-primary dark:text-green-500"
-                          : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-zinc-500/30"
-                      }`
-                    }
-                  >
-                    {({ isActive }) => (
-                      <>
-                        <FontAwesomeIcon
-                          icon={sub.icon}
-                          className={`w-4 h-4 ${
+
+            {/* Collapsible Section */}
+            <div>
+              <button
+                onClick={() => setIsReportsOpen(!isReportsOpen)}
+                className="flex items-center justify-between w-full px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-500/30"
+              >
+                <div className="flex items-center gap-3">
+                  <FontAwesomeIcon
+                    icon={faHundredPoints}
+                    className="w-5 h-5 dark:text-zinc-500"
+                  />
+                  <span>Ad Points</span>
+                </div>
+                <FontAwesomeIcon
+                  icon={isReportsOpen ? faChevronUp : faChevronDown}
+                />
+              </button>
+              <AnimatePresence>
+                {isReportsOpen && (
+                  <Collapse className="mt-1 space-y-1 pl-9">
+                    {AdPointsMenu.map((sub) => (
+                      <NavLink
+                        key={sub.name}
+                        to={sub.path}
+                        className={({ isActive }) =>
+                          `flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${
                             isActive
-                              ? "text-primary dark:text-green-500"
-                              : "dark:text-zinc-500"
-                          }`}
-                        />
-                        <span>{sub.name}</span>
-                      </>
-                    )}
-                  </NavLink>
-                ))}
-              </Collapse>
-            )}
-          </AnimatePresence>
-        </div>
-      </nav>
+                              ? "bg-primary/10 dark:bg-zinc-500/30 text-primary dark:text-green-500"
+                              : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-zinc-500/30"
+                          }`
+                        }
+                      >
+                        {({ isActive }) => (
+                          <>
+                            <FontAwesomeIcon
+                              icon={sub.icon}
+                              className={`w-4 h-4 ${
+                                isActive
+                                  ? "text-primary dark:text-green-500"
+                                  : "dark:text-zinc-500"
+                              }`}
+                            />
+                            <span>{sub.name}</span>
+                          </>
+                        )}
+                      </NavLink>
+                    ))}
+                  </Collapse>
+                )}
+              </AnimatePresence>
+            </div>
+          </nav>
 
-      {/* Logout Button */}
-      <div className="absolute bottom-0 w-full p-4 ">
-        <button
-          onClick={() => {
-            localStorage.removeItem("token");
-            window.location.href = "/login";
-          }}
-          className="flex items-center w-full gap-3 px-3 py-2 text-red-600 transition-colors rounded-md dark:text-red-400 hover:bg-red-50 dark:hover:bg-zinc-500/30"
-        >
-          <FontAwesomeIcon icon={faArrowRightFromBracket} className="w-5 h-5" />
-          <span>Logout</span>
-        </button>
+          {/* Logout Button */}
+          <div className="w-full p-4 ">
+            <button
+              onClick={() => {
+                localStorage.removeItem("token");
+                window.location.href = "/login";
+              }}
+              className="flex items-center w-full gap-3 px-3 py-2 text-red-600 transition-colors rounded-md dark:text-red-400 hover:bg-red-50 dark:hover:bg-zinc-500/30"
+            >
+              <FontAwesomeIcon
+                icon={faArrowRightFromBracket}
+                className="w-5 h-5"
+              />
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
       </div>
     </aside>
   );

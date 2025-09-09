@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { mockTransactions } from "../../../data/historyMock/transactionHistoryData";
-import { faChevronDown } from "@fortawesome/pro-solid-svg-icons";
+import { faChevronDown, faChevronUp } from "@fortawesome/pro-solid-svg-icons";
 
 // Reusable select wrapper with FontAwesome chevron
 function SelectWithIcon({ value, onChange, children, className }) {
@@ -25,6 +25,7 @@ function SelectWithIcon({ value, onChange, children, className }) {
 
 function AdPointsHistory() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [filtersOpen, setFiltersOpen] = useState(false); // mobile toggle
 
   // Debounced search input
   const [searchInput, setSearchInput] = useState(
@@ -137,70 +138,150 @@ function AdPointsHistory() {
         <h2 className="text-lg font-semibold text-gray-800 dark:text-stone-50">
           Transaction History
         </h2>
+        {/* Mobile filter toggle */}
+        <button
+          className="flex items-center gap-2 px-3 py-1 text-sm border rounded-lg 2xl:hidden"
+          onClick={() => setFiltersOpen((prev) => !prev)}
+        >
+          Filters
+          <FontAwesomeIcon icon={filtersOpen ? faChevronUp : faChevronDown} />
+        </button>
       </div>
 
       {/* Filters */}
-      <div className="flex items-center justify-between gap-3 mb-6">
-        <input
-          type="text"
-          placeholder="Search by ID..."
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          className="p-2 border rounded-lg shadow-sm"
-        />
-        <div className="flex gap-4">
-          <SelectWithIcon
-            value={filterType}
-            onChange={(e) => updateParam("type", e.target.value)}
-          >
-            <option value="all">All Types</option>
-            <option value="buy">Buy</option>
-            <option value="reward">Reward</option>
-          </SelectWithIcon>
+      <div className="mb-6">
+        {/* Desktop filters (always visible) */}
+        <div className="items-center justify-between hidden gap-3 2xl:flex">
+          <input
+            type="text"
+            placeholder="Search by ID..."
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            className="p-2 border rounded-lg shadow-sm"
+          />
+          <div className="flex flex-wrap gap-4">
+            <SelectWithIcon
+              value={filterType}
+              onChange={(e) => updateParam("type", e.target.value)}
+            >
+              <option value="all">All Types</option>
+              <option value="buy">Buy</option>
+              <option value="reward">Reward</option>
+            </SelectWithIcon>
 
-          <SelectWithIcon
-            value={filterStatus}
-            onChange={(e) => updateParam("status", e.target.value)}
-          >
-            <option value="all">All Status</option>
-            <option value="Completed">Completed</option>
-            <option value="Pending">Pending</option>
-            <option value="Failed">Failed</option>
-          </SelectWithIcon>
+            <SelectWithIcon
+              value={filterStatus}
+              onChange={(e) => updateParam("status", e.target.value)}
+            >
+              <option value="all">All Status</option>
+              <option value="Completed">Completed</option>
+              <option value="Pending">Pending</option>
+              <option value="Failed">Failed</option>
+            </SelectWithIcon>
 
-          <SelectWithIcon
-            value={filterDate}
-            onChange={(e) => updateParam("date", e.target.value)}
-          >
-            <option value="all">All Dates</option>
-            <option value="30days">Last 30 Days</option>
-          </SelectWithIcon>
+            <SelectWithIcon
+              value={filterDate}
+              onChange={(e) => updateParam("date", e.target.value)}
+            >
+              <option value="all">All Dates</option>
+              <option value="30days">Last 30 Days</option>
+            </SelectWithIcon>
 
-          <SelectWithIcon
-            value={sortField}
-            onChange={(e) => updateParam("sortField", e.target.value)}
-          >
-            <option value="date">Sort by Date</option>
-            <option value="amount">Sort by Amount</option>
-            <option value="points">Sort by Points</option>
-            <option value="id">Sort by ID</option>
-          </SelectWithIcon>
+            <SelectWithIcon
+              value={sortField}
+              onChange={(e) => updateParam("sortField", e.target.value)}
+            >
+              <option value="date">Sort by Date</option>
+              <option value="amount">Sort by Amount</option>
+              <option value="points">Sort by Points</option>
+              <option value="id">Sort by ID</option>
+            </SelectWithIcon>
 
-          <SelectWithIcon
-            value={sortOrder}
-            onChange={(e) => updateParam("sortOrder", e.target.value)}
-          >
-            <option value="desc">Descending</option>
-            <option value="asc">Ascending</option>
-          </SelectWithIcon>
+            <SelectWithIcon
+              value={sortOrder}
+              onChange={(e) => updateParam("sortOrder", e.target.value)}
+            >
+              <option value="desc">Descending</option>
+              <option value="asc">Ascending</option>
+            </SelectWithIcon>
 
-          <button
-            onClick={exportCSV}
-            className="px-3 py-1 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700"
-          >
-            Export CSV
-          </button>
+            <button
+              onClick={exportCSV}
+              className="px-3 py-1 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700"
+            >
+              Export CSV
+            </button>
+          </div>
         </div>
+
+        {/* Mobile filters (collapsible) */}
+        {filtersOpen && (
+          <div className="flex flex-col gap-3 mt-4 2xl:hidden">
+            <input
+              type="text"
+              placeholder="Search by ID..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              className="p-2 border rounded-lg shadow-sm"
+            />
+            <SelectWithIcon
+              value={filterType}
+              onChange={(e) => updateParam("type", e.target.value)}
+              className="w-full"
+            >
+              <option value="all">All Types</option>
+              <option value="buy">Buy</option>
+              <option value="reward">Reward</option>
+            </SelectWithIcon>
+
+            <SelectWithIcon
+              value={filterStatus}
+              onChange={(e) => updateParam("status", e.target.value)}
+              className="w-full"
+            >
+              <option value="all">All Status</option>
+              <option value="Completed">Completed</option>
+              <option value="Pending">Pending</option>
+              <option value="Failed">Failed</option>
+            </SelectWithIcon>
+
+            <SelectWithIcon
+              value={filterDate}
+              onChange={(e) => updateParam("date", e.target.value)}
+              className="w-full"
+            >
+              <option value="all">All Dates</option>
+              <option value="30days">Last 30 Days</option>
+            </SelectWithIcon>
+
+            <SelectWithIcon
+              value={sortField}
+              onChange={(e) => updateParam("sortField", e.target.value)}
+              className="w-full"
+            >
+              <option value="date">Sort by Date</option>
+              <option value="amount">Sort by Amount</option>
+              <option value="points">Sort by Points</option>
+              <option value="id">Sort by ID</option>
+            </SelectWithIcon>
+
+            <SelectWithIcon
+              value={sortOrder}
+              onChange={(e) => updateParam("sortOrder", e.target.value)}
+              className="w-full"
+            >
+              <option value="desc">Descending</option>
+              <option value="asc">Ascending</option>
+            </SelectWithIcon>
+
+            <button
+              onClick={exportCSV}
+              className="px-3 py-2 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700"
+            >
+              Export CSV
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Table */}
@@ -265,7 +346,7 @@ function AdPointsHistory() {
 
       {/* Pagination */}
       {!!mockTransactions.length && (
-        <div className="flex items-center justify-between mt-6">
+        <div className="flex flex-col items-center gap-6 mt-6 lg:flex-row lg:justify-between">
           <div className="text-sm text-gray-500">
             Total: {filteredData.length}
           </div>
