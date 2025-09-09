@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGem, faPlus } from "@fortawesome/pro-solid-svg-icons";
+import { faGem, faPlus, faTrash } from "@fortawesome/pro-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 
 import gcashImg from "../../../assets/payment-method-icons/gcash.jpeg";
@@ -18,17 +18,13 @@ const adPointPackages = [
   { id: 8, points: 25000, price: 160 },
 ];
 
-const paymentMethods = [
-  {
-    id: "mastercard",
-    label: "Mastercard(************3256)",
-    icon: mastercardImg,
-  },
-  { id: "gcash", label: "Gcash(****3892)", icon: gcashImg },
-  { id: "paypal", label: "PayPal", icon: paypalImg },
-];
+const icons = {
+  mastercard: mastercardImg,
+  gcash: gcashImg,
+  paypal: paypalImg,
+};
 
-export default function AdPointsBuy() {
+export default function AdPointsBuy({ userId }) {
   const [activeTab, setActiveTab] = useState("purchase");
   const [selectedPackage, setSelectedPackage] = useState(null);
 
@@ -58,7 +54,7 @@ export default function AdPointsBuy() {
             }}
             className={`px-4 py-2 text-sm rounded-full bg-white shadow-sm ${
               activeTab === tab.key
-                ? "border-primary text-primary font-semibold ring-2 ring-primary bg-green-200/15 "
+                ? "border-primary text-primary font-semibold ring-2 ring-primary bg-green-200/15"
                 : "border-transparent text-gray-500 hover:text-primary"
             }`}
           >
@@ -72,6 +68,7 @@ export default function AdPointsBuy() {
         <PurchaseContent
           selectedPackage={selectedPackage}
           setSelectedPackage={setSelectedPackage}
+          userId={userId}
         />
       )}
       {activeTab === "redeem" && <RedeemContent />}
@@ -79,8 +76,42 @@ export default function AdPointsBuy() {
   );
 }
 
-function PurchaseContent({ selectedPackage, setSelectedPackage }) {
+function PurchaseContent({ selectedPackage, setSelectedPackage, userId }) {
+  const [paymentMethods, setPaymentMethods] = useState([]);
   const [selectedMethod, setSelectedMethod] = useState(null);
+
+  // Fetch payment methods from backend
+  useEffect(() => {
+    const fetchMethods = async () => {
+      try {
+        const res = await fetch(
+          `https://localhost:3001/api/payment-methods/${userId}`
+        );
+        const data = await res.json();
+        setPaymentMethods(data);
+      } catch (err) {
+        console.error("Failed to fetch payment methods", err);
+      }
+    };
+
+    if (userId) {
+      fetchMethods();
+    }
+  }, [userId]);
+
+  // Delete payment method
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to remove this method?")) return;
+
+    try {
+      await fetch(`https://localhost:3001/api/payment-methods/${id}`, {
+        method: "DELETE",
+      });
+      setPaymentMethods((prev) => prev.filter((m) => m.id !== id));
+    } catch (err) {
+      console.error("Failed to delete payment method", err);
+    }
+  };
 
   return (
     <div>
@@ -110,42 +141,59 @@ function PurchaseContent({ selectedPackage, setSelectedPackage }) {
           </h3>
 
           <div className="grid grid-cols-1 gap-4 mt-5 xl:grid-cols-4 md:grid-cols-2">
-            {paymentMethods.map((method) => (
-              <button
-                key={method.id}
-                onClick={() => setSelectedMethod(method.id)}
-                className={`px-4 py-2 text-sm border rounded-md transition min-h-24 gap-5  flex  items-center
-            ${
-              selectedMethod === method.id
-                ? "bg-green-200/15  ring-2 ring-primary"
-                : "bg-white hover:bg-green-200/15 hover:ring-2 hover:ring-primary"
-            }`}
-              >
-                <span className="inline-flex">
-                  <img
-                    src={method.icon}
-                    alt={method.label}
-                    className="object-contain w-12 h-12"
-                  />
-                </span>
-                {method.label}
-              </button>
-            ))}
+            {paymentMethods.map((method) => {
+              let label = "";
+              if (method.method_type === "mastercard") {
+                label = `${method.card_brand || "Card"} (****${
+                  method.card_last4
+                })`;
+              } else if (method.method_type === "gcash") {
+                label = `GCash (****${method.gcash_number.slice(-4)})`;
+              } else if (method.method_type === "paypal") {
+                label = `PayPal (${method.paypal_email})`;
+              }
 
+              return (
+                <div
+                  key={method.id}
+                  className={`flex items-center justify-between px-4 py-2 border rounded-md transition min-h-24 gap-5 ${
+                    selectedMethod === method.id
+                      ? "bg-green-200/15 ring-2 ring-primary"
+                      : "bg-white hover:bg-green-200/15 hover:ring-2 hover:ring-primary"
+                  }`}
+                >
+                  <button
+                    onClick={() => setSelectedMethod(method.id)}
+                    className="flex items-center flex-1 gap-4 text-left"
+                  >
+                    <img
+                      src={icons[method.method_type]}
+                      alt={method.method_type}
+                      className="object-contain w-12 h-12"
+                    />
+                    {label}
+                  </button>
+                  <button
+                    onClick={() => handleDelete(method.id)}
+                    className="text-gray-400 hover:text-red-600"
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </div>
+              );
+            })}
+
+            {/* Add new method */}
             <NavLink
               to="/dashboard/payment-method"
               className="flex items-center justify-center gap-4 px-4 py-2 text-sm transition border rounded-md min-h-24 hover:bg-green-200/15 hover:ring-2 hover:ring-primary"
             >
-              <span>
-                <FontAwesomeIcon
-                  icon={faPlus}
-                  className="size-5 text-primary"
-                />
-              </span>
+              <FontAwesomeIcon icon={faPlus} className="size-5 text-primary" />
               Add credit/debit card
             </NavLink>
           </div>
 
+          {/* Buy Now Section */}
           <div className="flex justify-end gap-4 mt-10">
             {selectedMethod && (
               <div className="flex flex-col text-end">
