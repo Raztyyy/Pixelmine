@@ -1,3 +1,5 @@
+// ------------------------
+// AdPointsModal.jsx
 import { createPortal } from "react-dom";
 
 export default function AdPointsModal({ children, onClose }) {

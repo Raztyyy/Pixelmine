@@ -1,6 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useEffect } from "react";
 
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
 import Overview from "./pages/Overview";
 import Concept from "./pages/Concept";
 import DesignImplementation from "./pages/DesignImplementation";
@@ -148,6 +151,9 @@ const router = createBrowserRouter([
   },
 ]);
 
+// ✅ Initialize Stripe with your publishable key
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
 function App() {
   useEffect(() => {
     // ✅ log visitor IP on first mount
@@ -156,10 +162,10 @@ function App() {
 
   return (
     <>
-      <RouterProvider
-        router={router}
-        fallbackElement={<Spinner></Spinner>} // optional, for loading fallback
-      />
+      <Elements stripe={stripePromise}>
+        <RouterProvider router={router} fallbackElement={<Spinner></Spinner>} />
+      </Elements>
+
       <Toaster
         position="top-center"
         gutter={12}
