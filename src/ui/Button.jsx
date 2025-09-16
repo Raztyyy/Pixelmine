@@ -23,6 +23,8 @@ function Button({
     primary: "bg-primary text-white border-primary hover:bg-primary/80",
     secondary: "bg-gray-100 text-black border-gray-200 hover:bg-gray-200",
     outline: "bg-transparent border-gray-300 text-black hover:bg-gray-100",
+    primary85:
+      "bg-green-500/85 dark:hover:bg-green-600 hover:bg-green-500 border-primary text-white",
   };
 
   return (

@@ -81,11 +81,7 @@ function Hero() {
             {/* Buttons */}
             <div className="flex justify-center gap-3 mt-3 md:mt-5 md:justify-start">
               {isAuthenticated ? (
-                <Button
-                  variant="primary"
-                  className="bg-green-500/85 dark:hover:bg-green-600 hover:bg-green-500"
-                  path="/dashboard"
-                >
+                <Button variant="primary85" path="/dashboard">
                   <FontAwesomeIcon
                     icon={faArrowRightToBracket}
                     className="text-white transition-all duration-300 ease-in-out size-4"
@@ -108,11 +104,7 @@ function Hero() {
                     </span>
                   </Button>
 
-                  <Button
-                    variant="primary"
-                    className="bg-green-500/85 dark:hover:bg-green-600 hover:bg-green-500"
-                    path="/signup"
-                  >
+                  <Button variant="primary85" path="/signup">
                     <FontAwesomeIcon
                       icon={faUserCheck}
                       className="text-white transition-all duration-300 ease-in-out size-4"
