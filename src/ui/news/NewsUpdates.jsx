@@ -16,7 +16,7 @@ function NewsUpdates() {
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold leading-snug max-w-auto sm:max-w-[20rem] dark:text-stone-50">
           News and Events
         </h2>
-        <p className="pt-5 pb-8 text-gray-600 text-sm/6 dark:text-stone-50">
+        <p className="pt-5 pb-8 text-base/6 text-stone-900 dark:text-stone-50">
           Updates, news and trends in Pixelmine research and developements.
         </p>
         <div className="flex flex-col gap-7 lg:flex-row">

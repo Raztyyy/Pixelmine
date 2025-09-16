@@ -64,7 +64,7 @@ function NewsDetails() {
                 <p className="my-3 text-sm font-normal rounded-lg  bg-green-100 text-green-800 px-2.5 py-0.5">
                   {selectedNews.category}
                 </p>
-                <div className="text-gray-600 text-sm/6 dark:text-stone-50">
+                <div className="text-base text-stone-900 dark:text-stone-50">
                   {selectedNews.content}
                 </div>
               </div>

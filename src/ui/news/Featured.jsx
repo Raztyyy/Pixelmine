@@ -52,7 +52,7 @@ function Featured() {
           </Link>
         </div>
 
-        <p className="mt-2 mb-2 text-gray-500 max-w-auto text-sm/6 dark:text-stone-50">
+        <p className="mt-2 mb-2 text-stone-900 max-w-auto text-sm/6 dark:text-stone-50">
           {featuredNews.preview}
         </p>
       </div>

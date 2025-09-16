@@ -48,7 +48,7 @@ function Contact() {
                     className="text-primary size-4 dark:text-green-400 "
                   />
                 </span>
-                <p className="text-base leading-loose text-slate-950 dark:text-stone-50">
+                <p className="text-base leading-loose text-stone-900 dark:text-stone-50">
                   1-27-8 Higashi-Azabu, Minato-ku, Tokyo 106-0044, Japan
                 </p>
               </div>
@@ -59,7 +59,7 @@ function Contact() {
                     className="text-primary size-4 dark:text-green-400"
                   />
                 </span>
-                <p className="text-base text-slate-950 dark:text-stone-50">
+                <p className="text-base text-stone-900 dark:text-stone-50">
                   pixie@pixelmine.org
                 </p>
               </div>
@@ -70,7 +70,7 @@ function Contact() {
                     className="text-primary size-4 dark:text-green-400"
                   />
                 </span>
-                <p className="text-base text-slate-950 dark:text-stone-50">
+                <p className="text-base text-stone-900 dark:text-stone-50">
                   +81-3-6401-4100
                 </p>
               </div>

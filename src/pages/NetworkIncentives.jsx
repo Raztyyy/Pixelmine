@@ -44,7 +44,7 @@ function NetworkIncentives() {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem] dark:text-stone-50">
               Network Incentives
             </h1>
-            <p className="pt-5 pb-5 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-gray-600 dark:text-stone-50">
+            <p className="pt-5 pb-5 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-stone-900 dark:text-stone-50">
               Allocation of incentives based on performance and Pixelmine.
             </p>
           </FadeSlideUp>
@@ -154,7 +154,7 @@ function NetworkIncentives() {
                 className="p-2 mt-4 rounded bg-primary/80 text-slate-100 size-5"
               />
 
-              <p className="mt-5 mb-2 text-sm text-gray-600 sm:text-base dark:text-stone-50">
+              <p className="mt-5 mb-2 text-sm text-stone-900 sm:text-base dark:text-stone-50">
                 In Pixelmine, two factors contribute to the total incentive a
                 user can receive: Activity Points and PXL Points.
               </p>

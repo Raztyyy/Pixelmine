@@ -18,7 +18,8 @@ import { FadeSlideUp } from "../../animations/AnimatedWrappers";
 
 export default function Product() {
   return (
-    <section className="pt-[2rem] pb-[2rem] bg-green-50/50  dark:bg-stone-800">
+    // bg-green-50/50
+    <section className="pt-[4rem] pb-[4rem]  dark:bg-stone-800">
       <FadeSlideUp className="px-6 mx-auto max-w-7xl lg:px-8">
         <div className="grid gap-4 lg:grid-cols-3 lg:grid-rows-2">
           {/* Concept */}
@@ -36,7 +37,7 @@ export default function Product() {
                     Concept
                   </p>
                 </div>
-                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
+                <p className="mt-5 mb-2 text-base/6 text-stone-900 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
                   The idea behind Pixelmine is to create a platform that
                   empowers users by removing the need for a central authority or
                   server to control user data and interactions. Instead, these
@@ -49,7 +50,7 @@ export default function Product() {
                 <div className="max-lg:text-center">
                   <Link
                     to="concept"
-                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold dark:text-green-400"
+                    className="font-medium transition-all duration-300 ease-in-out text-base/6 text-primary hover:text-primary hover:font-semibold dark:text-green-400"
                   >
                     Read More <span aria-hidden="true">&rarr;</span>
                   </Link>
@@ -81,7 +82,7 @@ export default function Product() {
                     Design & Implementation
                   </p>
                 </div>
-                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
+                <p className="mt-5 mb-2 text-base/6 text-stone-900 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
                   The network is built around three primary components: the
                   User, the Storer, and the PXL Server. The User is any
                   individual who interacts with the SNS mobile application,
@@ -93,7 +94,7 @@ export default function Product() {
                 <div className="max-lg:text-center">
                   <Link
                     to="design-implementation"
-                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold dark:text-green-400"
+                    className="font-medium transition-all duration-300 ease-in-out text-base/6 text-primary hover:text-primary hover:font-semibold dark:text-green-400"
                   >
                     Read More <span aria-hidden="true">&rarr;</span>
                   </Link>
@@ -123,7 +124,7 @@ export default function Product() {
                     Network Incentives
                   </p>
                 </div>
-                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
+                <p className="mt-5 mb-2 text-base/6 text-stone-900 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
                   Activity Points represent the overall activity of a user,
                   which includes actions such as posting content, commenting on
                   posts, messaging, and reacting to content. PXL Points, on the
@@ -134,7 +135,7 @@ export default function Product() {
                 <div className="max-lg:text-center">
                   <Link
                     to="network-incentives"
-                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold dark:text-green-400"
+                    className="font-medium transition-all duration-300 ease-in-out text-base/6 text-primary hover:text-primary hover:font-semibold dark:text-green-400"
                   >
                     Read More <span aria-hidden="true">&rarr;</span>
                   </Link>
@@ -164,7 +165,7 @@ export default function Product() {
                     Democratic System
                   </p>
                 </div>
-                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
+                <p className="mt-5 mb-2 text-base/6 text-stone-900 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
                   Pixelmine focuses on user participation, transparency, and the
                   fair distribution of information. By empowering users to
                   express their opinions, Pixelmine facilitates meaningful
@@ -176,7 +177,7 @@ export default function Product() {
                 <div className="max-lg:text-center">
                   <Link
                     to="democratic-system"
-                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold dark:text-green-400"
+                    className="font-medium transition-all duration-300 ease-in-out text-base/6 text-primary hover:text-primary hover:font-semibold dark:text-green-400"
                   >
                     Read More <span aria-hidden="true">&rarr;</span>
                   </Link>
@@ -206,7 +207,7 @@ export default function Product() {
                     Roadmap
                   </p>
                 </div>
-                <p className="mt-5 mb-2 text-sm text-gray-600 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
+                <p className="mt-5 mb-2 text-base/6 text-stone-900 max-lg:text-center dark:text-stone-50 leading-[1.5rem]">
                   Our strategic roadmap charts the future development of
                   Pixelmine OPC Japan, emphasizing a commitment to cutting-edge
                   technology, meaningful creator empowerment, and a vision for
@@ -218,7 +219,7 @@ export default function Product() {
                 <div className="max-lg:text-center">
                   <Link
                     to="roadmap"
-                    className="text-sm font-medium transition-all duration-300 ease-in-out text-primary hover:text-primary hover:font-semibold dark:text-green-400"
+                    className="font-medium transition-all duration-300 ease-in-out text-base/6 text-primary hover:text-primary hover:font-semibold dark:text-green-400"
                   >
                     Read More <span aria-hidden="true">&rarr;</span>
                   </Link>

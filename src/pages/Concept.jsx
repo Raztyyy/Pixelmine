@@ -69,12 +69,12 @@ function Concept() {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem] dark:text-stone-50">
               Concept
             </h1>
-            <p className="pt-5 pb-2 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-gray-600 dark:text-stone-50">
+            <p className="pt-5 pb-2 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-stone-900 dark:text-stone-50">
               The abstract concept underlying Pixelmine that serves as a crucial
               foundation for the system's development.
             </p>
 
-            <p className="mt-2 mb-5 pt-2 pb-2 max-w-full sm:max-w-[30rem] text-xs sm:text-[0.7rem] text-gray-600 border-l-4 border-primary pl-5 font-light dark:text-stone-50 dark:border-green-400">
+            <p className="mt-2 mb-5 pt-2 pb-2 max-w-full sm:max-w-[30rem] text-xs sm:text-xs text-stone-900 border-l-4 border-primary pl-5 font-light dark:text-stone-50 dark:border-green-400">
               Watch the presentation by Yutaro Sodei, the Chief Executive
               Officer of Pixelmine Japan. In this presentation, he delivers a
               comprehensive overview of the system and asserts its significant
@@ -144,13 +144,13 @@ function Concept() {
             icon={faLightbulbOn}
             className="p-2 mt-4 rounded bg-primary/80 text-slate-100 size-5"
           />
-          <p className="mt-5 text-sm text-gray-600 sm:text-base dark:text-stone-50">
+          <p className="mt-5 text-sm text-stone-900 sm:text-base dark:text-stone-50">
             The idea behind Pixelmine is to create a platform that empowers
             users by removing the need for a central authority or server to
             control user data and interactions...
           </p>
           <Accordion items={items} />
-          <p className="mt-5 text-sm text-gray-600 sm:text-base dark:text-stone-50">
+          <p className="mt-5 text-sm text-stone-900 sm:text-base dark:text-stone-50">
             We implement a series of substantial measures to ensure that the
             system effectively adapts to the continually evolving dynamics of
             the social networking landscape.

@@ -19,7 +19,7 @@ function Hero() {
   return (
     <FadeSlideUp
       element="section"
-      className="pt-[2rem] pb-[2rem]  dark:bg-stone-900"
+      className="pt-[4rem] pb-[4rem]  dark:bg-stone-900 bg-primary/100"
     >
       <div className="flex flex-col px-6 mx-auto text-center sm:text-start max-w-7xl ">
         {/* <div className="flex justify-center w-full">
@@ -45,14 +45,14 @@ function Hero() {
         </div> */}
         <div className="flex flex-col gap-12 lg:gap-0 md:flex-row">
           <div className="flex flex-col justify-between text-center lg:pr-5 md:text-end">
-            <p className="mb-1 text-sm font-medium tracking-widest text-green-700 uppercase md:mb-3 dark:text-green-400">
+            <p className="mb-1 text-sm font-medium tracking-widest text-white uppercase md:mb-3 dark:text-green-400 bg">
               Mobile Application
             </p>
 
-            <h1 className="text-3xl font-bold leading-tight md:text-2xl lg:text-3xl dark:text-stone-50 ">
+            <h1 className="text-3xl font-bold leading-tight text-white md:text-2xl lg:text-3xl dark:text-stone-50">
               Free to use for everyone, always
             </h1>
-            <p className="pt-5 pb-5 text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="pb-5 text-base pt-7 text-stone-50 dark:text-stone-50">
               Pixelmine is an innovative social networking system designed to
               empower users through the decentralization of control and
               governance. By operating across multiple nodes or servers, it
@@ -64,14 +64,14 @@ function Hero() {
             </div>
           </div>
           <div className="flex flex-col justify-between lg:pl-5 lg:border-l-[1px]  lg:border-gray-300   md:text-start text-center ">
-            <p className="mb-1 text-sm font-medium tracking-widest text-green-700 uppercase md:mb-3 dark:text-green-400">
+            <p className="mb-1 text-sm font-medium tracking-widest text-white uppercase md:mb-3 dark:text-green-400">
               Storer Engine
             </p>
-            <h2 className="text-3xl font-bold leading-tight md:text-2xl lg:text-3xl dark:text-stone-50">
+            <h2 className="text-3xl font-bold leading-tight text-white md:text-2xl lg:text-3xl dark:text-stone-50">
               {/* Run and host user data in our Storer Engine */}
               Run and host user data
             </h2>
-            <p className="pt-5 pb-5 text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="pb-5 text-base pt-7 text-stone-50 dark:text-stone-50">
               The Storer engine is a command-line interface application that
               operates without the need for configuration settings. It acts as a
               host for a variety of public data sourced from the Pixelmine
@@ -83,7 +83,7 @@ function Hero() {
               {isAuthenticated ? (
                 <Button
                   variant="primary"
-                  className="dark:hover:bg-primary"
+                  className="bg-green-500/85 dark:hover:bg-green-600 hover:bg-green-500"
                   path="/dashboard"
                 >
                   <FontAwesomeIcon
@@ -110,7 +110,7 @@ function Hero() {
 
                   <Button
                     variant="primary"
-                    className="dark:hover:bg-green-600"
+                    className="bg-green-500/85 dark:hover:bg-green-600 hover:bg-green-500"
                     path="/signup"
                   >
                     <FontAwesomeIcon

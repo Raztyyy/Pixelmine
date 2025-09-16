@@ -93,7 +93,6 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
         const data = await res.json();
         setSavedCards(data || []);
 
-        // Auto-select default card
         const defaultCard = (data || []).find((c) => c.is_default);
         if (defaultCard) setSelectedCard(defaultCard);
       } catch (err) {
@@ -121,6 +120,10 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
           paymentMethodId: selectedCard.stripe_payment_method_id,
         }),
       });
+
+      if (!res.ok) {
+        throw new Error("Failed to create payment intent");
+      }
 
       const { clientSecret } = await res.json();
 

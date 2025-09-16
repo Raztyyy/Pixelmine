@@ -11,10 +11,10 @@ function BioCard({ memberDetails }) {
         alt={`${memberDetails.name}'s image`}
         className="rounded h-72 w-72 "
       />
-      <h2 className="mt-4 text-lg font-medium tracking-tight text-gray-950 dark:text-stone-50">
+      <h2 className="mt-4 text-lg font-medium tracking-tight text-stone-900 dark:text-stone-50">
         {memberDetails.name}
       </h2>
-      <p className="mb-4 text-gray-600 text-sm/6 dark:text-stone-50/80">
+      <p className="mb-4 text-base text-stone-500 dark:text-stone-50/80">
         {memberDetails.title}
       </p>
 

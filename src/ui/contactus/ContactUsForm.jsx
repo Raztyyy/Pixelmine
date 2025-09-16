@@ -30,10 +30,10 @@ export default function ContactUsForm() {
           icon={faCheck}
           className="p-5 mt-4 rounded-full bg-primary text-slate-100 size-5"
         />
-        <h3 className="mt-4 mb-4 text-2xl font-semibold text-gray-900">
+        <h3 className="mt-4 mb-4 text-2xl font-semibold text-stone-900">
           Thank you!
         </h3>
-        <p className="text-gray-900">
+        <p className="text-stone-900">
           Your message has been successfully sent. We'll get back to you soon.
         </p>
       </div>
@@ -48,7 +48,7 @@ export default function ContactUsForm() {
           <div>
             <label
               htmlFor="first-name"
-              className="block font-semibold text-gray-900 text-sm/6"
+              className="block text-base font-semibold text-gray-900"
             >
               First name
             </label>
@@ -67,7 +67,7 @@ export default function ContactUsForm() {
           <div>
             <label
               htmlFor="last-name"
-              className="block font-semibold text-gray-900 text-sm/6"
+              className="block text-base font-semibold text-gray-900"
             >
               Last name
             </label>
@@ -86,7 +86,7 @@ export default function ContactUsForm() {
           <div className="sm:col-span-2">
             <label
               htmlFor="email"
-              className="block font-semibold text-gray-900 text-sm/6"
+              className="block text-base font-semibold text-gray-900"
             >
               Email
             </label>
@@ -105,7 +105,7 @@ export default function ContactUsForm() {
           <div className="sm:col-span-2">
             <label
               htmlFor="phone-number"
-              className="block font-semibold text-gray-900 text-sm/6"
+              className="block text-base font-semibold text-gray-900"
             >
               Phone number
             </label>
@@ -124,7 +124,7 @@ export default function ContactUsForm() {
           <div className="sm:col-span-2">
             <label
               htmlFor="message"
-              className="block font-semibold text-gray-900 text-sm/6"
+              className="block text-base font-semibold text-gray-900"
             >
               Message
             </label>
@@ -154,7 +154,7 @@ export default function ContactUsForm() {
                 />
               </Switch>
             </div>
-            <Label className="text-gray-600 text-sm/6">
+            <Label className="text-base text-stone-900">
               By selecting this, you agree to our{" "}
               <Link to="/privacy-policy" className="font-semibold text-primary">
                 privacy&nbsp;policy
@@ -168,10 +168,10 @@ export default function ContactUsForm() {
           <button
             type="submit"
             disabled={!agreed || isSubmitting}
-            className={`flex gap-2 group border rounded-lg w-full items-center justify-center text-center me-2 mb-2 transition-all duration-300 ease-in-out px-6 py-3.5 text-sm ${
+            className={`flex gap-2 group border rounded-lg w-full items-center justify-center text-center me-2 mb-2 transition-all duration-300 ease-in-out px-6 py-3.5 text-base ${
               agreed
                 ? "bg-primary text-white border-primary hover:bg-primary/80"
-                : "bg-gray-300 text-gray-500 border-gray-300 cursor-not-allowed"
+                : "bg-gray-300 text-stone-500 border-gray-300 cursor-not-allowed"
             }`}
           >
             {isSubmitting ? "Sending..." : "Let’s talk"}

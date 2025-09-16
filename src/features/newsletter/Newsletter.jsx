@@ -25,7 +25,7 @@ function Newsletter() {
         <h2 className="text-xl font-semibold leading-snug text-center sm:text-2xl lg:text-3xl dark:text-stone-50">
           Stay up to date with our newsletter.
         </h2>
-        <p className="pt-4 text-sm text-center text-gray-600 sm:text-base dark:text-stone-50">
+        <p className="pt-4 text-base text-center text-stone-900 dark:text-stone-50">
           Get the latest updates, news, and trends in Pixelmine research and
           development.
         </p>

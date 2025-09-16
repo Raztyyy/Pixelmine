@@ -66,10 +66,10 @@ function Timeline() {
 
           {/* Animate the text content with stagger */}
           <motion.div variants={staggerItemVariants} className="ml-10">
-            <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-stone-50">
+            <h3 className="mb-1 text-lg font-semibold text-stone-900 dark:text-stone-50">
               {item.title}
             </h3>
-            <p className="lg:max-w-[30rem] text-sm sm:text-base text-gray-600 dark:text-stone-50">
+            <p className="lg:max-w-[30rem] text-sm sm:text-base text-stone-800 dark:text-stone-50">
               {item.description}
             </p>
           </motion.div>

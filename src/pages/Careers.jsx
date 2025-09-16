@@ -36,7 +36,7 @@ function Careers() {
             <h1 className="text-4xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-auto sm:max-w-[40rem] text-center pt-5">
               Be a Part of Our Team and Help Shape the Future
             </h1>
-            <p className="pt-5 pb-7 max-w-[40rem] text-sm/6 text-gray-600 text-center dark:text-stone-50">
+            <p className="pt-5 pb-7 max-w-[45rem] text-base text-stone-900 text-center dark:text-stone-50">
               At Pixelmine OPC, we’re not just shaping technology—we’re crafting
               experiences that drive progress. Whether you're an innovator,
               designer, or problem-solver, you'll find a place here to grow,
@@ -64,7 +64,7 @@ function Careers() {
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold leading-snug max-w-auto sm:max-w-[20rem] dark:text-stone-50">
               Current Opportunities
             </h2>
-            <p className="pt-3 text-gray-600 md:pt-5 text-sm/6 dark:text-stone-50">
+            <p className="pt-3 text-base text-stone-900 md:pt-5 dark:text-stone-50">
               Explore open roles and join our growing team.
             </p>
           </StaggerItem>
@@ -83,31 +83,31 @@ function Careers() {
                               &#x2022; {job.category}
                             </p>
                           </div>
-                          <p className="my-2 text-sm text-gray-600">
+                          <p className="my-2 text-sm text-stone-900">
                             {job.location}
                           </p>
                         </div>
                         <div>
-                          <p className="py-3 text-base">
+                          <p className="py-3 text-base text-stone-700">
                             {truncateWords(job.roleDescription, 150)}
                           </p>
                         </div>
 
                         <div className="flex flex-col gap-3 mt-5 lg:flex-row">
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-stone-900">
                             <span className="mr-2">
                               <FontAwesomeIcon
                                 icon={faTimer}
-                                className="text-gray-600 size-4 group-hover:text-indigo-600"
+                                className="text-stone-900 size-4 group-hover:text-indigo-600"
                               />
                             </span>
                             {job.type}
                           </p>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-stone-900">
                             <span className="mr-2">
                               <FontAwesomeIcon
                                 icon={faMoneyBill}
-                                className="text-gray-600 size-4 group-hover:text-indigo-600"
+                                className="text-stone-900 size-4 group-hover:text-indigo-600"
                               />
                             </span>
                             {job.salary}

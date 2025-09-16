@@ -57,7 +57,7 @@ function About() {
             <h2 className="text-3xl font-medium dark:text-stone-50">
               About Pixelmine Japan
             </h2>
-            <p className="mt-4 text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mt-4 text-base text-stone-900 dark:text-stone-50">
               Pixelmine Japan was established in 2021 with the objective of
               transforming social networking through decentralization. In
               response to the increasing concerns surrounding data privacy and
@@ -65,7 +65,7 @@ function About() {
               that enables users to retain ownership of their data while
               engaging in a transparent and secure environment.
             </p>
-            <p className="mt-4 text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mt-4 text-base text-stone-900 dark:text-stone-50">
               The company broadened its offerings to encompass a variety of
               tools for creators, including customizable profiles and enhanced
               engagement metrics. Embracing a community-driven approach,
@@ -75,7 +75,7 @@ function About() {
               transparency, thereby establishing new benchmarks for the
               operation of social networks in the digital era.
             </p>
-            <p className="mt-4 text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mt-4 text-base text-stone-900 dark:text-stone-50">
               Through its unwavering commitment to innovation and community
               engagement, Pixelmine aspires to redefine the social media
               landscape for the foreseeable future.

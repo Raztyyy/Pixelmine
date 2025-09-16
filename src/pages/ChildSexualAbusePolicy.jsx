@@ -16,7 +16,7 @@ function ChildSexualAbusePolicy() {
             <h1 className="max-w-full text-2xl font-bold leading-tight sm:text-4xl lg:text-5xl dark:text-stone-50">
               Child Sexual Abuse Policy
             </h1>
-            <p className="pt-5 pb-5 max-w-[30rem] text-sm/6 text-gray-600 dark:text-stone-50">
+            <p className="pt-5 pb-5 max-w-[30rem] text-base/6 text-stone-900 dark:text-stone-50">
               Policy on Preventing, Identifying, and Addressing Child Sexual
               Abuse Materials (CSAM)
             </p>
@@ -29,7 +29,7 @@ function ChildSexualAbusePolicy() {
             <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               Purpose
             </h2>
-            <p className="text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="text-base text-stone-900 dark:text-stone-50">
               To establish and enforce rigorous standards and procedures that
               unequivocally prevent, identify, and address child sexual abuse
               materials (CSAM) within Pixelmine Japan.
@@ -39,7 +39,7 @@ function ChildSexualAbusePolicy() {
             <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               Scope
             </h2>
-            <p className="text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="text-base text-stone-900 dark:text-stone-50">
               This policy applies to all employees, volunteers, contractors, and
               stakeholders associated with Pixelmine Japan.
             </p>
@@ -48,7 +48,7 @@ function ChildSexualAbusePolicy() {
             <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               Commitment to Child Safety
             </h2>
-            <p className="text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="text-base text-stone-900 dark:text-stone-50">
               Pixelmine Japan is firmly committed to the highest standards of
               child safety and protection. We categorically condemn all forms of
               child sexual abuse and recognize the urgent necessity of
@@ -61,19 +61,19 @@ function ChildSexualAbusePolicy() {
             <h2 className="mb-4 text-lg font-semibold dark:text-stone-50">
               Standards and Procedures
             </h2>
-            <p className="mb-4 font-semibold text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mb-4 text-base font-semibold text-stone-900 dark:text-stone-50">
               1. Zero-Tolerance Policy
             </p>
-            <p className="mb-4 text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mb-4 text-base text-stone-900 dark:text-stone-50">
               Pixelmine Japan enforces a strict zero-tolerance policy regarding
               CSAM. Any involvement in the creation, distribution, or possession
               of CSAM will lead to immediate disciplinary action, including
               termination and mandatory reporting to law enforcement.
             </p>
-            <p className="mb-4 font-semibold text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mb-4 text-base font-semibold text-stone-900 dark:text-stone-50">
               2. Training and Awareness
             </p>
-            <ol className="mb-4 ml-5 text-gray-600 list-disc list-inside text-sm/6 dark:text-stone-50">
+            <ol className="mb-4 ml-5 list-disc list-inside text-stone-900 text-base/6 dark:text-stone-50">
               <li>
                 All employees and volunteers are required to undergo mandatory
                 training on recognizing, reporting, and preventing CSAM.
@@ -84,10 +84,10 @@ function ChildSexualAbusePolicy() {
               </li>
             </ol>
 
-            <p className="mb-4 font-semibold text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mb-4 text-base font-semibold text-stone-900 dark:text-stone-50">
               3. Reporting Mechanisms
             </p>
-            <ol className="mb-4 ml-5 text-gray-600 list-disc list-inside text-sm/6 dark:text-stone-50">
+            <ol className="mb-4 ml-5 list-disc list-inside text-stone-900 text-base/6 dark:text-stone-50">
               <li>
                 Clear and effective procedures for reporting suspected CSAM will
                 be established. All staff members must report any suspicions
@@ -99,10 +99,10 @@ function ChildSexualAbusePolicy() {
               </li>
             </ol>
 
-            <p className="mb-4 font-semibold text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mb-4 text-base font-semibold text-stone-900 dark:text-stone-50">
               4. Digital Safety Measures
             </p>
-            <ol className="mb-4 ml-5 text-gray-600 list-disc list-inside text-sm/6 dark:text-stone-50">
+            <ol className="mb-4 ml-5 list-disc list-inside text-stone-900 text-base/6 dark:text-stone-50">
               <li>
                 We will implement state-of-the-art technology solutions to
                 monitor and filter online content, preventing access to CSAM on
@@ -114,10 +114,10 @@ function ChildSexualAbusePolicy() {
               </li>
             </ol>
 
-            <p className="mb-4 font-semibold text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mb-4 text-base font-semibold text-stone-900 dark:text-stone-50">
               5. Support for Victims
             </p>
-            <ol className="mb-4 ml-5 text-gray-600 list-disc list-inside text-sm/6 dark:text-stone-50">
+            <ol className="mb-4 ml-5 list-disc list-inside text-stone-900 text-base/6 dark:text-stone-50">
               <li>
                 We will provide comprehensive resources and support for victims
                 of child sexual abuse, including access to counseling and legal
@@ -129,23 +129,23 @@ function ChildSexualAbusePolicy() {
               </li>
             </ol>
 
-            <p className="mb-4 font-semibold text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mb-4 text-base font-semibold text-stone-900 dark:text-stone-50">
               6. Compliance with Laws
             </p>
-            <p className="mb-4 text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mb-4 text-base text-stone-900 dark:text-stone-50">
               Pixelmine Japan will strictly adhere to all local, state, and
               federal laws concerning child protection and the handling of CSAM.
             </p>
 
-            <p className="mb-4 font-semibold text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mb-4 text-base font-semibold text-stone-900 dark:text-stone-50">
               7. Review and Amendments
             </p>
-            <p className="mb-4 text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mb-4 text-base text-stone-900 dark:text-stone-50">
               This policy will be reviewed annually and amended as necessary to
               ensure compliance with legal requirements and the adoption of best
               practices in child safety.
             </p>
-            <p className="mb-4 text-gray-600 text-sm/6 dark:text-stone-50">
+            <p className="mb-4 text-base text-stone-900 dark:text-stone-50">
               Pixelmine Japan is resolutely dedicated to creating a safe
               environment for children and will take all necessary actions to
               protect them from sexual exploitation and abuse. We will not

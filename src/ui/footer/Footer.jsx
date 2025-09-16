@@ -55,27 +55,27 @@ const products = [
 function Footer() {
   return (
     <footer className="px-0 py-10 bg-white border-t border-gray-150 dark:bg-stone-900 dark:border-none">
-      <div className="grid grid-cols-1 gap-8 px-6 mx-auto max-w-auto max-w-7xl sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:max-w-7xl lg:px-8">
+      <div className="grid grid-cols-1 gap-8 px-6 mx-auto max-w-auto max-w-7xl sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 lg:max-w-7xl lg:px-8">
         {/* Column 1: Brand & Description */}
-        <div className="md:col-span-4 lg:col-span-2">
+        <div className="sm:col-span-4 xl:col-span-2">
           <h3 className="mb-4 text-xl font-bold">
             <img className="w-40" src="/logo.png" alt="Pixelmine Logo" />
           </h3>
-          <p className="text-gray-600 text-sm/6 w-auto lg:w-[24rem] dark:text-stone-50">
+          <p className="text-stone-900 text-base/6 w-auto lg:w-[30rem] dark:text-stone-50">
             Pixelmine is a social networking system that enhances user
             empowerment by decentralizing control and governance across multiple
             nodes or servers.
           </p>
           {/* Contact Details */}
-          <div className="flex flex-col mt-4">
+          <div className="flex flex-col gap-2 mt-4">
             <div className="flex flex-row items-center gap-3">
               <span>
                 <FontAwesomeIcon
                   icon={faLocationDot}
-                  className="text-gray-600 size-4 dark:text-stone-50"
+                  className="text-stone-900 size-4 dark:text-stone-50"
                 />
               </span>
-              <p className="leading-loose text-gray-600 text-sm/10 dark:text-stone-50">
+              <p className="text-base leading-loose text-stone-900 dark:text-stone-50">
                 1-27-8 Higashi-Azabu, Minato-ku, Tokyo 106-0044, Japan
               </p>
             </div>
@@ -83,10 +83,10 @@ function Footer() {
               <span>
                 <FontAwesomeIcon
                   icon={faEnvelope}
-                  className="text-gray-600 size-4 dark:text-stone-50"
+                  className="text-stone-900 size-4 dark:text-stone-50"
                 />
               </span>
-              <p className="text-gray-600 text-sm/10 dark:text-stone-50">
+              <p className="text-base text-stone-900 dark:text-stone-50">
                 pixie@pixelmine.org
               </p>
             </div>
@@ -94,10 +94,10 @@ function Footer() {
               <span>
                 <FontAwesomeIcon
                   icon={faPhone}
-                  className="text-gray-600 size-4 dark:text-stone-50"
+                  className="text-stone-900 size-4 dark:text-stone-50"
                 />
               </span>
-              <p className="text-gray-600 text-sm/10 dark:text-stone-50">
+              <p className="text-base text-stone-900 dark:text-stone-50">
                 +81-3-6401-4100
               </p>
             </div>
@@ -109,13 +109,13 @@ function Footer() {
           <h4 className="mb-4 text-lg font-semibold dark:text-stone-50">
             Company
           </h4>
-          <ul className="space-y-2 text-gray-600 text-sm/6 ">
+          <ul className="space-y-2 text-base text-stone-900 ">
             {company.map((item) => {
               return (
                 <li key={item.name}>
                   <Link
                     to={item.path}
-                    className="text-gray-600 transition-all duration-300 ease-in-out text-sm/6 hover:text-primary dark:text-stone-50 dark:hover:text-green-400"
+                    className="text-base transition-all duration-300 ease-in-out text-stone-900 hover:text-primary dark:text-stone-50 dark:hover:text-green-400"
                   >
                     {item.name}
                   </Link>
@@ -130,13 +130,13 @@ function Footer() {
           <h4 className="mb-4 text-lg font-semibold dark:text-stone-50">
             Product
           </h4>
-          <ul className="space-y-2 text-gray-600 text-sm/6">
+          <ul className="space-y-2 text-base text-stone-900">
             {products.map((item) => {
               return (
                 <li key={item.name}>
                   <Link
                     to={item.path}
-                    className="text-gray-600 transition-all duration-300 ease-in-out text-sm/6 hover:text-primary dark:text-stone-50 dark:hover:text-green-400"
+                    className="text-base transition-all duration-300 ease-in-out text-stone-900 hover:text-primary dark:text-stone-50 dark:hover:text-green-400"
                   >
                     {item.name}
                   </Link>
@@ -157,7 +157,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="flex flex-col justify-between gap-3 px-6 mx-auto mt-10 text-sm text-gray-500 lg:px-8 lg:flex-row max-w-7xl dark:text-stone-50">
+      <div className="flex flex-col justify-between gap-3 px-6 mx-auto mt-10 text-base text-gray-500 lg:px-8 lg:flex-row max-w-7xl dark:text-stone-50">
         <div>
           &copy; {new Date().getFullYear()} Pixelmine. All rights reserved.
         </div>

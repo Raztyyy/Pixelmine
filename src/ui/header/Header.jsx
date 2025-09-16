@@ -51,7 +51,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 py-6 transition-all duration-300 bg-white shadow dark:bg-stone-900 dark:shadow-none">
       <nav
         aria-label="Global"
-        className="flex items-center justify-between px-6 mx-auto max-w-7xl"
+        className="flex items-center justify-between max-w-full px-6 mx-auto"
       >
         {/* Logo always on the left */}
         <div className="flex-shrink-0">

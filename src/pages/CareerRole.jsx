@@ -57,45 +57,45 @@ function CareerRole() {
               <h1 className="mt-5 mb-3 text-3xl font-bold leading-tight lg:text-4xl dark:text-stone-50">
                 {job.title}
               </h1>
-              <p className="text-sm text-gray-600 dark:text-stone-50">
+              <p className="text-base text-stone-600 dark:text-stone-50">
                 <span className="mr-2">
                   <FontAwesomeIcon
                     icon={faLocationDot}
-                    className="text-gray-600 size-4 dark:text-stone-50"
+                    className="text-stone-600 size-4 dark:text-stone-50"
                   />
                 </span>
                 {job.location}
               </p>
-              <p className="text-sm text-gray-600 dark:text-stone-50">
+              <p className="text-base text-stone-600 dark:text-stone-50">
                 <span className="mr-2">
                   <FontAwesomeIcon
                     icon={faBuilding}
-                    className="text-gray-600 size-4 dark:text-stone-50"
+                    className="text-stone-600 size-4 dark:text-stone-50"
                   />
                 </span>
                 {job.category}
               </p>
-              <p className="text-sm text-gray-600 dark:text-stone-50">
+              <p className="text-base text-stone-600 dark:text-stone-50">
                 <span className="mr-2">
                   <FontAwesomeIcon
                     icon={faTimer}
-                    className="text-gray-600 size-4 dark:text-stone-50"
+                    className="text-stone-600 size-4 dark:text-stone-50"
                   />
                 </span>
                 {job.type}
               </p>
-              <p className="text-sm text-gray-600 dark:text-stone-50">
+              <p className="text-base text-stone-600 dark:text-stone-50">
                 <span className="mr-2">
                   <FontAwesomeIcon
                     icon={faMoneyBill}
-                    className="text-gray-600 size-4 dark:text-stone-50"
+                    className="text-stone-600 size-4 dark:text-stone-50"
                   />
                 </span>
                 {job.salary}
               </p>
               <div className="flex flex-wrap items-start justify-start gap-3 mt-4 md:items-center md:justify-center">
                 <a
-                  className="gap-2 group border rounded-lg text-sm text-center items-center me-2 mb-2 transition-all duration-300 ease-in-out px-6 py-3.5 bg-primary text-white border-primary hover:bg-primary/80"
+                  className="gap-2 group border rounded-lg text-base text-center items-center me-2 mb-2 transition-all duration-300 ease-in-out px-6 py-3.5 bg-primary text-white border-primary hover:bg-primary/80"
                   href={job.link}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -111,7 +111,7 @@ function CareerRole() {
                 <h2 className="mb-4 text-xl font-semibold leading-tight dark:text-stone-50">
                   About PixelMine OPC
                 </h2>
-                <p className="text-sm text-gray-600 dark:text-stone-50">
+                <p className="text-base text-stone-900 dark:text-stone-50">
                   {job.companyDescription}
                 </p>
               </div>
@@ -122,7 +122,7 @@ function CareerRole() {
               <h2 className="mb-4 text-xl font-semibold leading-tight dark:text-stone-50">
                 Role Overview
               </h2>
-              <p className="text-sm text-gray-600 dark:text-stone-50">
+              <p className="text-base text-stone-900 dark:text-stone-50">
                 {job.roleDescription}
               </p>
             </div>
@@ -132,7 +132,7 @@ function CareerRole() {
               <h2 className="mb-4 text-xl font-semibold leading-tight dark:text-stone-50">
                 Responsibilities
               </h2>
-              <ol className="mt-2 ml-0 text-gray-600 list-disc list-inside md:ml-5 text-sm/6 dark:text-stone-50">
+              <ol className="mt-2 ml-0 text-base list-disc list-inside text-stone-900 md:ml-5 dark:text-stone-50">
                 {job.responsibilities.map((data, index) => {
                   return <li key={index}>{data}</li>;
                 })}
@@ -144,7 +144,7 @@ function CareerRole() {
               <h2 className="mb-4 text-xl font-semibold leading-tight dark:text-stone-50">
                 Qualifications
               </h2>
-              <ol className="mt-2 ml-0 text-gray-600 list-disc list-inside md:ml-5 text-sm/6 dark:text-stone-50">
+              <ol className="mt-2 ml-0 text-base list-disc list-inside text-stone-900 md:ml-5 dark:text-stone-50">
                 {job.qualifications.map((data, index) => {
                   return <li key={index}>{data}</li>;
                 })}
@@ -157,7 +157,7 @@ function CareerRole() {
                 <h2 className="mb-4 text-xl font-semibold leading-tight dark:text-stone-50">
                   Nice to Have
                 </h2>
-                <ol className="mt-2 ml-0 text-gray-600 list-disc list-inside md:ml-5 text-sm/6 dark:text-stone-50">
+                <ol className="mt-2 ml-0 text-base list-disc list-inside text-stone-900 md:ml-5 dark:text-stone-50">
                   {job.niceToHave.map((data, index) => {
                     return <li key={index}>{data}</li>;
                   })}
@@ -175,7 +175,7 @@ function CareerRole() {
                   {" "}
                   Exciting Perks Await!
                 </p>
-                <ol className="mt-2 ml-0 text-gray-600 list-disc list-inside md:ml-5 text-sm/6 dark:text-stone-50">
+                <ol className="mt-2 ml-0 text-base list-disc list-inside text-stone-900 md:ml-5 dark:text-stone-50">
                   {job.perks.map((data, index) => {
                     return <li key={index}>{data}</li>;
                   })}
@@ -192,7 +192,7 @@ function CareerRole() {
                 <p className="mb-4 dark:text-stone-50">
                   Your application will include the following questions:
                 </p>
-                <ol className="mt-2 ml-0 text-gray-600 list-disc list-inside md:ml-5 text-sm/6 dark:text-stone-50">
+                <ol className="mt-2 ml-0 text-base list-disc list-inside text-stone-900 md:ml-5 dark:text-stone-50">
                   {job.questions.map((data, index) => {
                     return <li key={index}>{data}</li>;
                   })}
@@ -217,31 +217,31 @@ function CareerRole() {
                         <div className="flex flex-col items-start ">
                           <p className="font-semibold">{job.title}</p>
                         </div>
-                        <p className="my-2 text-sm text-gray-600">
+                        <p className="my-2 text-sm text-stone-600">
                           {job.location}
                         </p>
                       </div>
                       <div>
-                        <p className="py-3 text-sm text-gray-600">
+                        <p className="py-3 text-sm text-stone-600">
                           {truncateWords(job.roleDescription, 120)}
                         </p>
                       </div>
 
                       <div className="flex flex-wrap gap-3 mt-2 ">
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-stone-600">
                           <span className="mr-2">
                             <FontAwesomeIcon
                               icon={faTimer}
-                              className="text-gray-600 size-4"
+                              className="text-stone-600 size-4"
                             />
                           </span>
                           {job.type}
                         </p>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-stone-600">
                           <span className="mr-2">
                             <FontAwesomeIcon
                               icon={faMoneyBill}
-                              className="text-gray-600 size-4"
+                              className="text-stone-600 size-4"
                             />
                           </span>
                           {job.salary}

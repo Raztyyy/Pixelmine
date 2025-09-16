@@ -6,7 +6,7 @@ function AccordionItem({ id, title, content, isOpen, toggle }) {
       <h2 id={`accordion-heading-${id}`}>
         <button
           type="button"
-          className={`flex items-center justify-between w-full gap-3 py-5 text-sm text-gray-600 dark:text-stone-50 ${
+          className={`flex items-center justify-between w-full gap-3 py-5 text-sm text-stone-900 dark:text-stone-50 ${
             isOpen ? "" : "border-b border-gray-300"
           } rtl:text-right`}
           aria-expanded={isOpen}
@@ -17,7 +17,7 @@ function AccordionItem({ id, title, content, isOpen, toggle }) {
             className={`text-sm sm:text-base text-start ${
               isOpen
                 ? "text-primary font-semibold dark:text-green-400"
-                : "text-gray-600 dark:text-stone-50"
+                : "text-stone-900 dark:text-stone-50"
             }`}
           >
             {title}
@@ -54,7 +54,7 @@ function AccordionItem({ id, title, content, isOpen, toggle }) {
           >
             <div
               id={`accordion-body-${id}`}
-              className="py-5 border-b-4 border-primary dark:border-green-400 dark:text-stone-50"
+              className="py-5 border-b-4 border-primary dark:border-green-400 dark:text-stone-50 text-stone-900"
               aria-labelledby={`accordion-heading-${id}`}
             >
               {content}

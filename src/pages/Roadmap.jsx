@@ -20,7 +20,7 @@ function Roadmap() {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem] dark:text-stone-50">
               Roadmap
             </h1>
-            <p className="pt-5 pb-5 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-gray-600 dark:text-stone-50">
+            <p className="pt-5 pb-5 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-stone-900 dark:text-stone-50">
               Our strategic roadmap outlines the evolution of Pixelmine OPC
               Japan, focusing on innovative technology, creator empowerment, and
               global expansion.
