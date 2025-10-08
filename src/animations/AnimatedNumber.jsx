@@ -10,17 +10,18 @@ export default function AnimatedNumber({
   return (
     <CountUp
       start={0}
-      end={value ?? 0}
+      end={Number(value) ?? 0}
       duration={duration}
-      decimals={decimals ?? 0}
+      decimals={decimals}
       separator=","
       formattingFn={(val) => {
+        const fixedVal = Number(val).toFixed(decimals); // already a string with correct decimals
         if (typeof formatter === "function") {
-          return formatter(val, currency);
+          return formatter(Number(fixedVal), currency);
         }
-        return val.toLocaleString(undefined, {
-          minimumFractionDigits: decimals ?? 0,
-          maximumFractionDigits: decimals ?? 2,
+        return parseFloat(fixedVal).toLocaleString(undefined, {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals,
         });
       }}
     />
