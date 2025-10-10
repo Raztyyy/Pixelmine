@@ -24,7 +24,6 @@ import ErrorPage from "./pages/ErrorPage";
 import AppLayout from "./ui/AppLayout";
 import Spinner from "./ui/spinner/Spinner";
 
-import { networkIncentivesLoader } from "./loaders/networkIncentives";
 import CareerRole from "./pages/CareerRole";
 import NewsDetails from "./pages/NewsDetails";
 
@@ -76,7 +75,6 @@ const router = createBrowserRouter([
       {
         path: "network-incentives",
         element: <NetworkIncentives />,
-        loader: networkIncentivesLoader,
       },
       { path: "democratic-system", element: <DemocraticSystem /> },
       { path: "roadmap", element: <Roadmap /> },
