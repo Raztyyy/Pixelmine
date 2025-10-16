@@ -10,9 +10,10 @@ function DesignImplementation() {
   return (
     <>
       <SEOHelmet
-        title="Page Under Construction | Pixelmine Japan OPC"
-        description="This page is currently under construction. Please check back soon for updates from Pixelmine Japan OPC."
-        url="https://www.pixelmine.org"
+        title="Design & Implementation | Pixelmine Japan OPC"
+        description="Decentralized Social Network with Byzantine Fault Tolerant Data
+            Propagation"
+        url="https://pixelmine.org/design-implementation"
         image="/social-sharing.jpg"
       />
 
