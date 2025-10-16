@@ -357,6 +357,247 @@ export const designImplementationItems = [
             </li>
           </ul>
         </div>
+
+        <div className="my-4 ml-5 text-sm sm:text-base dark:text-stone-50">
+          <p className="mb-2 font-semibold">
+            5.2.4. Consensus Threshold Properties
+          </p>
+          <p className="mb-2 ">For 𝑘 verification nodes:</p>
+          <ul className="mb-2 ml-10 list-disc">
+            <li>
+              Minimum required votes:{" "}
+              <InlineMath
+                math={`\\theta(k) = \\lceil \\frac{k}{2} \\rceil + 1`}
+              />
+            </li>
+            <li>
+              For <InlineMath math={`k = 5: \\theta(5) = 3`} /> (simple
+              majority)
+            </li>
+            <li>
+              For <InlineMath math={`k = 7: \\theta(7) = 4`} />
+            </li>
+            <li>
+              Byzantine fault tolerance: can tolerate up to{" "}
+              <InlineMath math={`\\lfloor \\frac{k-1}{2} \\rfloor`} /> malicious
+              nodes
+            </li>
+          </ul>
+        </div>
+
+        <div className="my-4 ml-5 text-sm sm:text-base dark:text-stone-50">
+          <p className="mb-2 font-semibold">5.2.5. Success Probability</p>
+          <p className="mb-2 ">
+            If nodes have probability pp p of honest behavior, the probability
+            of successful verification is:
+          </p>
+          <p className="mb-2 ">
+            <InlineMath
+              math={`P(\\text{success}) = \\sum_{i=\\theta(k)}^{k} \\binom{k}{i} p^i (1-p)^{k-i}`}
+            />
+          </p>
+          <p className="mb-2 ">
+            This follows a binomial distribution representing the probability
+            that at least <InlineMath math={`θ(k)\\theta(k) θ(k)`} /> nodes
+            return the correct hash.
+          </p>
+        </div>
+      </>
+    ),
+  },
+  {
+    title: "6. Byzantine Fault Tolerance",
+    content: (
+      <>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          The system tolerates up to{" "}
+          <InlineMath math={`\\lfloor \\frac{n} {2} \\rfloor`} /> Byzantine
+          failures, where n is the size of the verification quorum. With five
+          nodes, up to 2 can be malicious or faulty. The odd-numbered
+          requirement prevents ties when equal numbers of nodes produce the same
+          hash.
+        </p>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          Proof of tolerance:
+        </p>
+
+        <ul className="mb-2 ml-10 list-disc">
+          <li>For n nodes with f malicious nodes</li>
+          <li>
+            Honest nodes: <InlineMath math={`h = n - f`} />
+          </li>
+          <li>
+            For consensus: <InlineMath math={`h > f`} /> (honest majority
+            required)
+          </li>
+          <li>
+            With n odd and <InlineMath math={`n ≥ 2f + 1`} />, we guarantee{" "}
+            <InlineMath math={`h ≥ f + 1`} />
+          </li>
+          <li>Therefore, honest nodes always form a majority</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    title: "7. Security Analysis",
+    content: (
+      <>
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          7.1. Attack Vectors and Mitigations
+        </p>
+        <ul className="mb-2 list-disc">
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            Sybil Attack: Attacker creates multiple fake nodes to control
+            verification quorums
+          </p>
+          <li className="mb-2 ml-10">
+            <span className="italic">Mitigation</span>: Node reputation system,
+            proof-of-work or proof-of-stake requirements, geographic diversity
+            scoring
+          </li>
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            Eclipse Attack: Attacker isolates the target node by controlling all
+            its peer connections
+          </p>
+          <li className="mb-2 ml-10">
+            <span className="italic">Mitigation</span>: Maintain a diverse peer
+            set, periodic peer discovery, and reputation-based connection
+            scoring
+          </li>
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            Hash Collision Attack: Attacker attempts to find content with a
+            matching hash
+          </p>
+          <li className="mb-2 ml-10">
+            <span className="italic">Mitigation</span>: Use of SHA-256 makes
+            collision attacks computationally infeasible (2^128 operations)
+          </li>
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            Denial of Service: Malicious nodes refuse to respond to verification
+            requests
+          </p>
+          <li className="mb-2 ml-10">
+            <span className="italic">Mitigation</span>: Timeout mechanisms,
+            reputation penalties, dynamic quorum size adjustment
+          </li>
+        </ul>
+
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          7.2. Cryptographic Properties
+        </p>
+
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          The system relies on:
+        </p>
+
+        <ul className="mb-2 ml-10 list-disc">
+          <li>
+            Collision Resistance: SHA-256 provides 128-bit collision resistance
+          </li>
+          <li>
+            Preimage Resistance: Given a hash, finding the original content is
+            computationally infeasible
+          </li>
+          <li>
+            Digital Signatures: ECDSA or Ed25519 for author authentication
+          </li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    title: "8. Performance Considerationss",
+    content: (
+      <>
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          8.1. Scalability
+        </p>
+        <ul className="mb-2 list-disc">
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            Verification Latency: With n=5 nodes and average query time of
+            100ms:
+          </p>
+          <li className="ml-10">Sequential queries: 500ms</li>
+          <li className="ml-10">
+            Parallel queries: ~100ms (limited by slowest node)
+          </li>
+          <li className="mb-2 ml-10">
+            Optimization: Use a timeout of 200ms with fallback nodes
+          </li>
+
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            Network Overhead: For each content verification:
+          </p>
+          <li className="ml-10">Hash requests: 32 bytes × n nodes</li>
+          <li className="ml-10">Hash responses: 32 bytes × n nodes</li>
+          <li className="ml-10">Total: 64n bytes (320 bytes for n=5)</li>
+        </ul>
+
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          8.2. Optimization Strategies
+        </p>
+
+        <ul className="mb-2 ml-10 list-none">
+          <li>
+            Caching: Nodes cache verification results with TTL to avoid repeated
+            queries for popular content
+          </li>
+          <li>
+            Bloom Filters: Probabilistic data structures to quickly check if
+            peers likely have content
+          </li>
+          <li>
+            Content-Addressed Storage: Use a hash as an identifier for
+            deduplication
+          </li>
+          <li>
+            Gossip Protocol: Propagate content updates probabilistically to
+            reduce redundant transmissions
+          </li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    title: "9. Future Directions",
+    content: (
+      <>
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          9.1. Adaptive Quorum Sizing
+        </p>
+        <ul className="mb-2 list-disc">
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            Dynamically adjust verification node count based on:
+          </p>
+          <li className="ml-10">Content importance or value</li>
+          <li className="ml-10">Network conditions and node availability</li>
+          <li className="mb-2 ml-10">Historical attack frequency</li>
+        </ul>
+
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          9.2. Weighted Voting
+        </p>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          Assign vote weights based on node reputation, allowing trusted nodes
+          to have greater influence while maintaining Byzantine fault tolerance.
+        </p>
+
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          9.3. Zero-Knowledge Proofs
+        </p>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          Implement privacy-preserving verification that allows nodes to prove
+          content validity without revealing the content itself.
+        </p>
+
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          9.4. Sharding
+        </p>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          Partition the network into sub-networks responsible for different
+          content domains to improve scalability.
+        </p>
       </>
     ),
   },

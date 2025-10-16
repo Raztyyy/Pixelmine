@@ -16,7 +16,7 @@ function DesignImplementation() {
         image="/social-sharing.jpg"
       />
 
-      <section className="pt-[2rem] pb-[2rem] bg-green-50/50 dark:text-stone-50 dark:bg-stone-900">
+      <section className="pt-[2rem] pb-[2rem]  dark:text-stone-50 ">
         <FadeSlideUp className="flex flex-col items-start gap-10 p-6 mx-auto md:flex-row sm:items-start lg:items-center max-w-7xl md:items-center">
           {/* Left Column */}
           <div className="flex-1">
