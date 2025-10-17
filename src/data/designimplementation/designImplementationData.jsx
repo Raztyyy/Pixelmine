@@ -259,7 +259,7 @@ export const designImplementationItems = [
 
         <div className="my-4 ml-5 text-sm sm:text-base dark:text-stone-50">
           <p className="mb-2 font-semibold">5.2.2.Content Hash Function</p>
-          <p className="mb-2 ">For content with components:</p>
+          <p className="mb-2 ">For content 𝑐 with components:</p>
           <ul className="mb-2 ml-10 list-disc">
             <li>
               <InlineMath math={`Id_c`} /> : unique identifier

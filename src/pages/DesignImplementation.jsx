@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
 import { FadeSlideUp } from "../animations/AnimatedWrappers";
 import SEOHelmet from "../ui/SEOHelmet";
-
+import "katex/dist/katex.min.css";
 import { designImplementationItems } from "../data/designimplementation/designImplementationData";
 
 function DesignImplementation() {
@@ -17,17 +17,17 @@ function DesignImplementation() {
         image="/social-sharing.jpg"
       />
 
-      <section className="pt-[2rem] pb-[2rem] bg-green-50/50 dark:text-stone-50 dark:bg-stone-900 ">
+      <section className="pt-[2rem] pb-[2rem] dark:text-stone-50 bg-green-50/50 dark:bg-stone-900">
         <FadeSlideUp className="flex flex-col items-start gap-10 p-6 mx-auto md:flex-row sm:items-start lg:items-center max-w-7xl md:items-center">
           {/* Left Column */}
           <div className="flex-1">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[50rem]">
               Design & Implementation
             </h1>
-            {/* <p className="pt-5 pb-2 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-stone-900 dark:text-stone-50">
+            <p className="pt-5 pb-2 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-stone-900 dark:text-stone-50">
               Decentralized Social Network with Byzantine Fault Tolerant Data
               Propagation
-            </p> */}
+            </p>
           </div>
           {/* Right Column */}
           <div className="flex-1 ">
@@ -40,19 +40,25 @@ function DesignImplementation() {
         </FadeSlideUp>
       </section>
 
-      <FadeSlideUp element="section" className="pt-[2rem] pb-[2rem]">
+      <section className="pt-[2rem] pb-[2rem]">
         <div className="items-center gap-10 p-6 mx-auto max-w-7xl sm:flex-row">
-          <FontAwesomeIcon
-            icon={faLightbulbOn}
-            className="p-2 mt-4 rounded bg-primary/80 text-slate-100 size-5"
-          />
-          <p className="mt-5 text-sm text-stone-900 sm:text-base dark:text-stone-50">
+          {/* <p className="mt-5 text-sm text-stone-900 sm:text-base dark:text-stone-50">
             Decentralized Social Network with Byzantine Fault Tolerant Data
             Propagation
-          </p>
-          <Accordion items={designImplementationItems} />
+          </p> */}
+          {/* <Accordion items={designImplementationItems} /> */}
+          <div className="mt-10 space-y-10">
+            {designImplementationItems.map((item, index) => (
+              <section key={index}>
+                <h2 className="mb-4 text-xl font-medium sm:text-2xl dark:text-white">
+                  {item.title}
+                </h2>
+                <div className="leading-relaxed">{item.content}</div>
+              </section>
+            ))}
+          </div>
         </div>
-      </FadeSlideUp>
+      </section>
     </>
   );
 }
