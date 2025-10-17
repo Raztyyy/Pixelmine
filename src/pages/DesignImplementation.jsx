@@ -40,7 +40,7 @@ function DesignImplementation() {
         </FadeSlideUp>
       </section>
 
-      <section className="pt-[2rem] pb-[2rem]">
+      <section className="pt-[2rem] pb-[2rem] overflow-x-hidden">
         <div className="items-center gap-10 p-6 mx-auto max-w-7xl sm:flex-row">
           {/* <p className="mt-5 text-sm text-stone-900 sm:text-base dark:text-stone-50">
             Decentralized Social Network with Byzantine Fault Tolerant Data
