@@ -11,26 +11,32 @@ import MobileLink from "./MobileLink";
 const links = [
   {
     name: "Overview",
+    translatedName: "概要",
     path: "/",
   },
   {
     name: "Concept",
+    translatedName: "コンセプト",
     path: "concept",
   },
   {
     name: "Design & Implementation",
+    translatedName: "設計と実装",
     path: "design-implementation",
   },
   {
     name: "Network Incentives",
+    translatedName: "ネットワークインセンティブ",
     path: "network-incentives",
   },
   {
     name: "Democratic System",
+    translatedName: "民主システム",
     path: "democratic-system",
   },
   {
     name: "Roadmap",
+    translatedName: "ロードマップ",
     path: "roadmap",
   },
 ];

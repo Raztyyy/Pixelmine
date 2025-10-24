@@ -9,9 +9,12 @@ import {
 import Button from "../Button";
 import { useAuth } from "../../context/AuthContext";
 import ProfileDropdown from "../dashboard/ProfileDropdown";
+import { useLanguage } from "../../context/LanguageContext";
 
 function DesktopLink({ links }) {
   const { isAuthenticated } = useAuth();
+  const { language } = useLanguage(); // get current language
+  const isEN = language === "en"; // helper
 
   return (
     <PopoverGroup className="flex items-center gap-5">
@@ -29,7 +32,7 @@ function DesktopLink({ links }) {
               }`
             }
           >
-            {link.name}
+            {isEN ? link.name : link.translatedName}
           </NavLink>
         ))}
       </div>
@@ -47,14 +50,14 @@ function DesktopLink({ links }) {
                 icon={faUserCheck}
                 className="text-black transition-all duration-300 ease-in-out size-4"
               />
-              Create Account
+              {isEN ? "Create Account" : "アカウント作成"}
             </Button>
             <Button variant="primary" path="/login">
               <FontAwesomeIcon
                 icon={faArrowRightToBracket}
                 className="text-white transition-all duration-300 ease-in-out size-4"
               />
-              Login
+              {isEN ? "Login" : "ログイン"}
             </Button>
           </>
         )}

@@ -3,6 +3,7 @@ import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import ScrollToTop from "../utils/scrollToTop";
 import ScrollToTopButton from "./ScrollToTopButton";
+import LanguageToggle from "./LanguageToggle";
 
 function AppLayout() {
   return (
@@ -18,6 +19,7 @@ function AppLayout() {
 
       <Footer />
 
+      <LanguageToggle />
       {/* button that scrolls to top when clicked */}
       <ScrollToTopButton />
     </>

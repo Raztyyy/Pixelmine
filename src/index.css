@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.goog-te-gadget {
+  width: 100% !important;
+}
+
+.goog-te-gadget-simple {
+  background-color: #fff;
+  border: none !important;
+  font-size: 10px;
+  display: flex !important;
+  cursor: pointer;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.goog-te-gadget-simple .VIpgJd-ZVi9od-xl07Ob-lTBxed {
+  display: flex !important;
+}

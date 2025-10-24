@@ -13,9 +13,12 @@ import { Link } from "react-router-dom";
 import { Backdrop, Drawer } from "../../animations/AnimatedWrappers";
 import Button from "../Button";
 import { useAuth } from "../../context/AuthContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 function MobileLink({ links, mobileMenuOpen, setMobileMenuOpen }) {
   const { isAuthenticated, user, logout } = useAuth();
+  const { language } = useLanguage(); // get current language
+  const isEN = language === "en"; // helper
 
   return (
     <AnimatePresence>
@@ -45,7 +48,9 @@ function MobileLink({ links, mobileMenuOpen, setMobileMenuOpen }) {
                 onClick={() => setMobileMenuOpen(false)}
                 className="-m-2.5 rounded-md p-2.5 text-gray-700"
               >
-                <span className="sr-only">Close menu</span>
+                <span className="sr-only">
+                  {isEN ? "Close menu" : "メニューを閉じる"}
+                </span>
                 <FontAwesomeIcon
                   icon={faXmark}
                   className="text-gray-600 size-6 group-hover:text-primary dark:text-stone-50"
@@ -64,7 +69,7 @@ function MobileLink({ links, mobileMenuOpen, setMobileMenuOpen }) {
                         className="block px-3 py-2 -mx-3 font-semibold text-gray-900 rounded-lg text-base/7 hover:bg-gray-50 dark:text-stone-50 dark:hover:bg-green-400/20"
                         onClick={() => setMobileMenuOpen(false)}
                       >
-                        {link.name}
+                        {isEN ? link.name : link.translatedName}
                       </Link>
                     </li>
                   ))}
@@ -87,14 +92,14 @@ function MobileLink({ links, mobileMenuOpen, setMobileMenuOpen }) {
                           </div>
                           <div className="flex items-center gap-1 text-xs text-stone-500 dark:text-stone-300">
                             <span className="inline-block w-2 h-2 bg-green-500 rounded-full dark:bg-green-400"></span>
-                            Online
+                            {isEN ? "Online" : "オンライン"}
                           </div>
                         </div>
                         <div className="items-end flex-1 text-end">
                           <button
                             onClick={logout}
                             className="p-2 text-red-600 rounded-md"
-                            aria-label="Logout"
+                            aria-label={isEN ? "Logout" : "ログアウト"}
                           >
                             <FontAwesomeIcon
                               icon={faSignOutAlt}
@@ -116,7 +121,7 @@ function MobileLink({ links, mobileMenuOpen, setMobileMenuOpen }) {
                           icon={faUserCheck}
                           className="text-black transition-all duration-300 ease-in-out size-4"
                         />
-                        Create Account
+                        {isEN ? "Create Account" : "アカウント作成"}
                       </Button>
                       <Button
                         variant="primary"
@@ -128,7 +133,7 @@ function MobileLink({ links, mobileMenuOpen, setMobileMenuOpen }) {
                           icon={faArrowRightToBracket}
                           className="text-white transition-all duration-300 ease-in-out size-4"
                         />
-                        Login
+                        {isEN ? "Login" : "ログイン"}
                       </Button>
                     </div>
                   )}
