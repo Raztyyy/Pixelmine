@@ -1,10 +1,12 @@
 import { useState, useRef } from "react";
 import Button from "../Button";
 import BioContent from "./BioContent";
+import { useLanguage } from "../../context/LanguageContext";
 
 function BioModal({ memberDetails, children }) {
   const [isOpen, setIsOpen] = useState(false);
   const modalRef = useRef(null);
+  const { language } = useLanguage();
 
   const handleBackdropClick = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -54,7 +56,7 @@ function BioModal({ memberDetails, children }) {
                 size="sm"
                 onClick={() => setIsOpen(false)}
               >
-                Close
+                {language === "en" ? "Close" : "閉じる"}
               </Button>
             </div>
           </div>

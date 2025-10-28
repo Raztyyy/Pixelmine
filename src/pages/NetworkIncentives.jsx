@@ -15,14 +15,18 @@ import { items } from "../data/networkincentives/networkIncentivesData";
 import { FadeSlideUp } from "../animations/AnimatedWrappers";
 import AnimatedNumber from "../animations/AnimatedNumber";
 
+import { useLanguage } from "../context/LanguageContext"; // Language context
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 function NetworkIncentives() {
+  const { language } = useLanguage(); // Get current language
   const [summary, setSummary] = useState(null);
   const [selectedCurrency, setSelectedCurrency] = useState("JPY");
   const [userPoints, setUserPoints] = useState("");
   const [converted, setConverted] = useState({ usd: null, jpy: null });
 
+  // Fetch incentive summary
   useEffect(() => {
     const fetchSummary = async () => {
       try {
@@ -37,6 +41,7 @@ function NetworkIncentives() {
     fetchSummary();
   }, []);
 
+  // Handle point conversion to USD/JPY
   const handleConvert = () => {
     if (!userPoints || !summary) return;
 
@@ -53,6 +58,7 @@ function NetworkIncentives() {
     setConverted({ usd, jpy });
   };
 
+  // Loading screen
   if (!summary) {
     return (
       <div className="flex items-center justify-center h-screen bg-gray-50">
@@ -62,7 +68,9 @@ function NetworkIncentives() {
 
           {/* Loading text */}
           <p className="text-sm font-medium text-gray-600 md:text-base">
-            Loading network incentives...
+            {language === "en"
+              ? "Loading network incentives..."
+              : "ネットワークインセンティブを読み込み中..."}
           </p>
         </div>
       </div>
@@ -82,28 +90,41 @@ function NetworkIncentives() {
   return (
     <>
       <SEOHelmet
-        title="Network Incentives | Pixelmine Japan OPC"
-        description="Understand how Pixelmine rewards user participation and contribution through a decentralized incentive structure designed to promote fairness and engagement."
+        title={
+          language === "en"
+            ? "Network Incentives | Pixelmine Japan OPC"
+            : "ネットワークインセンティブ | Pixelmine Japan OPC"
+        }
+        description={
+          language === "en"
+            ? "Understand how Pixelmine rewards user participation and contribution through a decentralized incentive structure designed to promote fairness and engagement."
+            : "Pixelmineがユーザーの参加と貢献にどのように報酬を与えるか、分散型インセンティブ構造を通じて公平性とエンゲージメントを促進する方法を理解できます。"
+        }
         url="https://www.pixelmine.org/network-incentives"
         image="/social-sharing.jpg"
       />
 
+      {/* Main Incentive Section */}
       <section className="pt-[2rem] pb-[2rem] bg-green-50/50 dark:bg-stone-900">
         <div className="flex flex-col items-start gap-10 p-6 mx-auto lg:flex-row sm:items-start lg:items-center max-w-7xl">
           {/* Left Column */}
           <FadeSlideUp className="flex-1 text-left">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem] dark:text-stone-50">
-              Network Incentives
+              {language === "en"
+                ? "Network Incentives"
+                : "ネットワークインセンティブ"}
             </h1>
             <p className="pt-5 pb-5 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-stone-900 dark:text-stone-50">
-              Allocation of incentives based on performance and Pixelmine.
+              {language === "en"
+                ? "Allocation of incentives based on performance and Pixelmine."
+                : "パフォーマンスとPixelmineに基づくインセンティブの配分。"}
             </p>
           </FadeSlideUp>
 
           {/* Right Column - Incentive Cards */}
           <div className="flex-1 w-full">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {/* Total Incentive */}
+              {/* Total Incentive Card */}
               <div
                 className="h-64 col-span-1 p-5 md:p-10 text-white rounded-lg bg-green-950 sm:col-span-2 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
                 style={{
@@ -114,9 +135,12 @@ function NetworkIncentives() {
               >
                 <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center sm:gap-0 ">
                   <h2 className="inline-flex flex-col text-base font-semibold md:text-lg">
-                    Total Distributable Incentive
+                    {language === "en"
+                      ? "Total Distributable Incentive"
+                      : "総配分インセンティブ"}
                     <span className="w-fit bg-slate-50 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-md dark:text-green-400 border border-green-400 mt-2">
-                      Value as of {formatDate(summary.updated_at)}
+                      {language === "en" ? "Value as of" : "更新日時"}{" "}
+                      {formatDate(summary.updated_at)}
                     </span>
                   </h2>
                   <Dropdown
@@ -145,7 +169,7 @@ function NetworkIncentives() {
                 </p>
               </div>
 
-              {/* Activity Points */}
+              {/* Activity Points Card */}
               <div
                 className="flex flex-col px-5 py-4 md:px-10 md:py-4 text-white rounded-lg bg-green-950 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
                 style={{
@@ -155,7 +179,9 @@ function NetworkIncentives() {
                 }}
               >
                 <h2 className="text-base font-semibold text-center lg:text-start">
-                  Total User Activity Points
+                  {language === "en"
+                    ? "Total User Activity Points"
+                    : "総ユーザーアクティビティポイント"}
                 </h2>
                 <p className="mt-4 text-xl font-light text-center">
                   <AnimatedNumber
@@ -165,7 +191,7 @@ function NetworkIncentives() {
                 </p>
               </div>
 
-              {/* Pixel Points Conversion */}
+              {/* PXL Points Conversion Card */}
               <div
                 className="flex flex-col px-5 py-4 md:px-10 md:py-4 text-white rounded-lg bg-green-950 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
                 style={{
@@ -175,10 +201,12 @@ function NetworkIncentives() {
                 }}
               >
                 <h2 className="text-base font-semibold text-center lg:text-start">
-                  PXL Points Conversion
+                  {language === "en"
+                    ? "PXL Points Conversion"
+                    : "PXLポイント換算"}
                 </h2>
                 <p className="mt-4 text-xl font-light text-center">
-                  1 PXL ={" "}
+                  {language === "en" ? "1 PXL =" : "1 PXL ="}{" "}
                   {formatCurrencyWithSymbol(
                     pxlConversion[selectedCurrency],
                     selectedCurrency
@@ -190,7 +218,7 @@ function NetworkIncentives() {
         </div>
       </section>
 
-      {/* Conversion Calculator */}
+      {/* Conversion Calculator Section */}
       <FadeSlideUp element="section" className="pt-[2rem] pb-[2rem]">
         <div className="px-6 mx-auto max-w-auto lg:max-w-7xl lg:px-8">
           <div className="flex flex-col items-start gap-10 md:items-center lg:flex-row">
@@ -206,13 +234,17 @@ function NetworkIncentives() {
               >
                 <div className="relative z-10">
                   <h2 className="text-base font-semibold md:text-lg">
-                    PXL Points Calculator
+                    {language === "en"
+                      ? "PXL Points Calculator"
+                      : "PXLポイント計算機"}
                   </h2>
 
                   <div className="mt-6 space-y-5">
                     <div>
                       <label className="block mb-2 text-sm font-medium text-white/80">
-                        Enter Your PXL Points
+                        {language === "en"
+                          ? "Enter Your PXL Points"
+                          : "PXLポイントを入力してください"}
                       </label>
                       <input
                         type="number"
@@ -227,7 +259,7 @@ function NetworkIncentives() {
                       onClick={handleConvert}
                       className="w-full px-6 py-3 text-base font-medium text-green-900 transition-all duration-200 bg-green-100 rounded-xl shadow-lg hover:bg-green-50 hover:scale-[1.02] active:scale-95"
                     >
-                      Convert to Currency
+                      {language === "en" ? "Convert to Currency" : "通貨に換算"}
                     </button>
                   </div>
 
@@ -235,7 +267,7 @@ function NetworkIncentives() {
                     <div className="grid grid-cols-1 gap-4 mt-8 sm:grid-cols-2">
                       <div className="p-5 border border-white/20 rounded-xl bg-white/10 backdrop-blur-sm">
                         <p className="mb-1 text-base font-semibold text-center lg:text-start text-white/80">
-                          USD Value
+                          {language === "en" ? "USD Value" : "USD換算値"}
                         </p>
                         <p className="text-xl font-light leading-tight text-center text-white break-words lg:text-start">
                           {formatCurrencyWithSymbol(converted.usd, "USD")}
@@ -244,7 +276,7 @@ function NetworkIncentives() {
 
                       <div className="p-5 border border-white/20 rounded-xl bg-white/10 backdrop-blur-sm">
                         <p className="mb-1 text-base font-semibold text-center lg:text-start text-white/80">
-                          JPY Value
+                          {language === "en" ? "JPY Value" : "JPY換算値"}
                         </p>
                         <p className="text-xl font-light leading-tight text-center text-white break-words lg:text-start">
                           {formatCurrencyWithSymbol(converted.jpy, "JPY")}
@@ -255,7 +287,9 @@ function NetworkIncentives() {
 
                   {!converted.usd && (
                     <p className="mt-6 text-sm text-center text-white/70">
-                      Enter your points and click convert to see the results
+                      {language === "en"
+                        ? "Enter your points and click convert to see the results"
+                        : "ポイントを入力して「通貨に換算」をクリックすると結果が表示されます"}
                     </p>
                   )}
                 </div>
@@ -268,8 +302,9 @@ function NetworkIncentives() {
                 className="p-2 mt-4 rounded bg-primary/80 text-slate-100 size-5"
               />
               <p className="mt-5 mb-2 text-sm text-stone-900 sm:text-base dark:text-stone-50">
-                In Pixelmine, two factors contribute to the total incentive a
-                user can receive: Activity Points and PXL Points.
+                {language === "en"
+                  ? "In Pixelmine, two factors contribute to the total incentive a user can receive: Activity Points and PXL Points."
+                  : "Pixelmineでは、ユーザーが受け取る総インセンティブには2つの要素が関与しています：アクティビティポイントとPXLポイント。"}
               </p>
               <Accordion items={items} />
             </div>

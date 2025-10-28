@@ -1,6 +1,14 @@
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 
 function AccordionItem({ id, title, content, isOpen, toggle }) {
+  const { language } = useLanguage(); // "en" or "jp"
+
+  // Determine what to render: either string/JSX directly or object with {en,jp}
+  const renderTitle = typeof title === "object" ? title[language] : title;
+  const renderContent =
+    typeof content === "object" ? content[language] : content;
+
   return (
     <div>
       <h2 id={`accordion-heading-${id}`}>
@@ -20,7 +28,7 @@ function AccordionItem({ id, title, content, isOpen, toggle }) {
                 : "text-stone-900 dark:text-stone-50"
             }`}
           >
-            {title}
+            {renderTitle}
           </span>
           <motion.svg
             animate={{ rotate: isOpen ? 0 : 180 }}
@@ -57,7 +65,7 @@ function AccordionItem({ id, title, content, isOpen, toggle }) {
               className="py-5 border-b-4 border-primary dark:border-green-400 dark:text-stone-50 text-stone-900"
               aria-labelledby={`accordion-heading-${id}`}
             >
-              {content}
+              {renderContent}
             </div>
           </motion.div>
         )}

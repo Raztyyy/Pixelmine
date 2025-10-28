@@ -2,6 +2,7 @@ import SEOHelmet from "../ui/SEOHelmet";
 import { useState } from "react";
 import { truncateWords } from "../utils/truncateWords";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/pro-regular-svg-icons";
@@ -12,15 +13,39 @@ import { socialData } from "../data/socials/socialData";
 import { StaggerContainer, StaggerItem } from "../animations/AnimatedWrappers";
 
 function NewsEvents() {
+  const { language } = useLanguage();
   const [searchInput, setSearchInput] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const handleSearch = () => {
     setSearchTerm(searchInput);
-    console.log(searchInput);
   };
 
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
+  // ✅ Category translations (for display only)
+  const categoryTranslations = {
+    All: { en: "All", ja: "すべて" },
+    Event: { en: "Event", ja: "イベント" },
+    Announcement: { en: "Announcement", ja: "お知らせ" },
+    News: { en: "News", ja: "ニュース" },
+    Updates: { en: "Updates", ja: "アップデート" },
+    Community: { en: "Community", ja: "コミュニティ" },
+    Products: { en: "Products", ja: "製品情報" },
+    Company: { en: "Company", ja: "会社情報" },
+  };
+
+  // ✅ Translate for display only
+  const getTranslatedCategory = (category) => {
+    return language === "en"
+      ? category
+      : categoryTranslations[category]?.ja || category;
+  };
+
+  // ✅ Keep internal categories in English for filtering
   const categories = ["All", ...new Set(newsData.map((news) => news.category))];
 
   const filteredNews = newsData.filter((news) => {
@@ -29,11 +54,10 @@ function NewsEvents() {
       .includes(searchTerm.toLowerCase());
     const matchesCategory =
       selectedCategory === "All" || news.category === selectedCategory;
-
     return matchesSearch && matchesCategory;
   });
 
-  // Limit the posts by changing the slice count
+  // ✅ Limit recent posts
   const recentPosts = [...newsData]
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .slice(0, 3);
@@ -41,22 +65,36 @@ function NewsEvents() {
   return (
     <>
       <SEOHelmet
-        title="News & Events | Pixelmine Japan OPC"
-        description="Stay updated with the latest news and events from Pixelmine Japan OPC. Learn about announcements, product updates, and industry insights."
+        title={
+          language === "en"
+            ? "News & Events | Pixelmine Japan OPC"
+            : "ニュース＆イベント | ピクセルマインジャパンOPC"
+        }
+        description={
+          language === "en"
+            ? "Stay updated with the latest news and events from Pixelmine Japan OPC. Learn about announcements, product updates, and industry insights."
+            : "ピクセルマインジャパンOPCの最新ニュースとイベント情報をご覧ください。お知らせ、製品アップデート、業界の最新情報をお届けします。"
+        }
         url="https://www.pixelmine.org"
         image="/social-sharing.jpg"
       />
 
       <section className="pt-[2rem] pb-[2rem] sm:pt-[2rem] sm:pb-[2rem]">
-        <div className="flex flex-col-reverse gap-10 p-6 mx-auto max-w-7xl lg:flex-row ">
-          <StaggerContainer className="flex-[2]">
+        <div className="flex flex-col-reverse gap-10 p-6 mx-auto max-w-7xl lg:flex-row">
+          {/* MAIN CONTENT */}
+          <StaggerContainer
+            className="flex-[2]"
+            key={selectedCategory + searchTerm} // 👈 forces re-animation on filter change
+          >
             <StaggerItem
               element="h1"
               className="mb-5 text-3xl font-bold leading-tight lg:text-4xl dark:text-stone-50"
             >
-              Pixelmine News & Events
+              {language === "en"
+                ? "Pixelmine News & Events"
+                : "Pixelmine ニュース＆イベント"}
             </StaggerItem>
-            {/* News & Events */}
+            {/* NEWS LIST */}
             <div className="flex flex-col gap-10 mt-6">
               {filteredNews.length > 0 ? (
                 filteredNews.map((news) => {
@@ -72,10 +110,11 @@ function NewsEvents() {
                           {news.title}
                         </h2>
                         <p className="mt-2 text-gray-600 dark:text-stone-50">
-                          By {news.author} - {news.date}
+                          {language === "en" ? "By" : "著者："} {news.author} -{" "}
+                          {news.date}
                         </p>
                         <p className="my-3 text-sm font-normal rounded-lg bg-green-100 text-green-800 px-2.5 py-0.5">
-                          {news.category}
+                          {getTranslatedCategory(news.category)}
                         </p>
                         <p className="text-gray-600 text-sm/6 dark:text-stone-50">
                           {truncateWords(news.preview, 250)}
@@ -112,16 +151,20 @@ function NewsEvents() {
                 })
               ) : (
                 <p className="text-gray-500 dark:text-stone-50">
-                  No results found.
+                  {language === "en"
+                    ? "No results found."
+                    : "結果が見つかりませんでした。"}
                 </p>
               )}
             </div>
           </StaggerContainer>
+
+          {/* SIDEBAR */}
           <div className="flex-1 lg:mt-16">
-            {/* Search */}
+            {/* SEARCH */}
             <div>
               <h2 className="mb-4 text-xl leading-tight dark:text-stone-50">
-                Search
+                {language === "en" ? "Search" : "検索"}
               </h2>
               <form
                 onSubmit={(e) => {
@@ -131,14 +174,18 @@ function NewsEvents() {
                 className="flex max-w-md mt-3"
               >
                 <label htmlFor="search" className="sr-only">
-                  Search
+                  {language === "en" ? "Search" : "検索"}
                 </label>
 
                 <input
                   id="search"
                   name="search"
                   required
-                  placeholder="Search for any news & events"
+                  placeholder={
+                    language === "en"
+                      ? "Search for any news & events"
+                      : "ニュースやイベントを検索"
+                  }
                   autoComplete="search"
                   className="min-w-0 flex-auto rounded-md bg-white/5 px-3.5 py-2 text-base text-gray-600 outline outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 dark:placeholder:text-stone-900 dark:bg-stone-50 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-primary dark:focus:outline-green-400 sm:text-sm/6 border border-b-2 rounded-r-none"
                   value={searchInput}
@@ -153,83 +200,86 @@ function NewsEvents() {
                     icon={faMagnifyingGlass}
                     className="text-white size-4"
                   />
-                  <span className="sr-only">Search</span>
+                  <span className="sr-only">
+                    {language === "en" ? "Search" : "検索"}
+                  </span>
                 </button>
               </form>
 
-              {/* Clear Search Button */}
-
+              {/* CLEAR FILTERS */}
               {(searchInput !== "" || selectedCategory !== "All") && (
                 <button
                   onClick={() => {
                     setSearchInput("");
                     setSearchTerm("");
-                    setSelectedCategory("All"); // Reset category filter
+                    setSelectedCategory("All");
                   }}
                   className="flex items-center gap-2 px-3 py-1 mt-5 text-xs text-gray-800 bg-gray-100 rounded-full group hover:text-gray-900"
-                  aria-label="Reset search and category filters"
+                  aria-label={
+                    language === "en"
+                      ? "Reset search and category filters"
+                      : "検索とカテゴリーフィルターをリセット"
+                  }
                 >
                   <FontAwesomeIcon
                     icon={faXmark}
                     className="text-gray-700 group-hover:text-gray-900 size-3"
                   />
-                  Clear Filters
+                  {language === "en" ? "Clear Filters" : "フィルターをクリア"}
                 </button>
               )}
             </div>
 
-            {/* Category Filter */}
+            {/* CATEGORY FILTER */}
             <div className="mt-8">
               <h2 className="mb-4 text-xl leading-tight dark:text-stone-50">
-                Category
+                {language === "en" ? "Category" : "カテゴリー"}
               </h2>
               <div className="flex flex-wrap gap-2">
                 {categories.map((category) => (
                   <button
                     key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`px-3 py-1 text-sm rounded-full border ${
+                    onClick={() => handleCategoryClick(category)}
+                    className={`px-3 py-1 text-sm rounded-full border transition-all ${
                       selectedCategory === category
-                        ? "bg-primary text-white"
-                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                        ? "bg-primary text-white border-primary"
+                        : "bg-white dark:bg-stone-800 text-gray-700 dark:text-stone-50 border-gray-300 dark:border-stone-600 hover:bg-gray-100 dark:hover:bg-stone-700"
                     }`}
                   >
-                    {category}
+                    {getTranslatedCategory(category)}
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Follow Us */}
+            {/* FOLLOW US */}
             <div className="hidden mt-8 lg:block">
               <h2 className="mb-4 text-xl leading-tight dark:text-stone-50">
-                Follow Us
+                {language === "en" ? "Follow Us" : "フォローする"}
               </h2>
               <div className="flex gap-4">
-                {socialData.map((social) => {
-                  return (
-                    <a
-                      href={social.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      key={social.social_platform}
-                      className="flex items-center justify-center w-8 h-8 transition-all duration-300 ease-in-out rounded-full bg-primary hover:bg-primary/80"
-                    >
-                      <FontAwesomeIcon
-                        icon={social.icons}
-                        className="text-white size-4"
-                      />
-                      <span className="sr-only">{social.social_platform}</span>
-                    </a>
-                  );
-                })}
+                {socialData.map((social) => (
+                  <a
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    key={social.social_platform}
+                    className="flex items-center justify-center w-8 h-8 transition-all duration-300 ease-in-out rounded-full bg-primary hover:bg-primary/80"
+                  >
+                    <FontAwesomeIcon
+                      icon={social.icons}
+                      className="text-white size-4"
+                    />
+                    <span className="sr-only">{social.social_platform}</span>
+                  </a>
+                ))}
               </div>
             </div>
 
-            {/* Recent Posts */}
+            {/* RECENT POSTS */}
             <div className="hidden mt-8 lg:block">
               <h2 className="mb-4 text-xl leading-tight dark:text-stone-50">
-                Recent Posts
+                {language === "en" ? "Recent Posts" : "最新の投稿"}
               </h2>
               <div className="flex flex-col gap-4">
                 {recentPosts.map((news) => {

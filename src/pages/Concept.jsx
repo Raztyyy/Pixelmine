@@ -5,8 +5,10 @@ import CustomVideoPlayer from "../ui/concept/CustomVideoPlayer";
 import Accordion from "../ui/Accordion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
-import { items } from "../data/concept/conceptData";
 import SEOHelmet from "../ui/SEOHelmet";
+
+import { items as conceptItems } from "../data/concept/conceptData";
+import { useLanguage } from "../context/LanguageContext";
 
 import {
   FadeSlideUp,
@@ -24,30 +26,34 @@ const slideUpVariants = {
 function Concept() {
   const [playingId, setPlayingId] = useState(null);
   const [activeVideoId, setActiveVideoId] = useState(1);
+  const { language } = useLanguage();
+  const isEN = language === "en";
 
   const videos = [
     {
       id: 1,
       src: "/videos/concept-video-2.mp4",
-      title:
-        "【静かに世界を揺るがす！？】20代若き挑戦-真の分散型SNSピクセルマインの爆誕！",
+      title: isEN
+        ? "Quietly Shaking the World!? The Birth of Pixelmine, a True Decentralized SNS"
+        : "【静かに世界を揺るがす！？】20代若き挑戦-真の分散型SNSピクセルマインの爆誕！",
     },
     {
       id: 2,
       src: "/videos/concept-video-1.mp4",
-      title: "【WEB3信者の悲しい末路０１】先行者利益という言葉に騙された人たち",
+      title: isEN
+        ? "The Sad Fate of WEB3 Believers 01: Misled by First-Mover Advantage"
+        : "【WEB3信者の悲しい末路０１】先行者利益という言葉に騙された人たち",
     },
     {
       id: 3,
       src: "/videos/concept-video-3.mp4",
-      title: "【WEB3信者の悲しい末路０２】データビジネス崩壊のお知らせ・・・",
+      title: isEN
+        ? "The Sad Fate of WEB3 Believers 02: Collapse of Data Business"
+        : "【WEB3信者の悲しい末路０２】データビジネス崩壊のお知らせ・・・",
     },
   ];
 
-  const handlePlay = (id) => {
-    setPlayingId(id);
-  };
-
+  const handlePlay = (id) => setPlayingId(id);
   const handleSwitch = (id) => {
     setActiveVideoId(id);
     setPlayingId(null);
@@ -56,8 +62,16 @@ function Concept() {
   return (
     <>
       <SEOHelmet
-        title="Concept | Pixelmine Japan OPC"
-        description="Explore the core concept behind Pixelmine — a decentralized social network focused on transparency, fairness, and empowering users."
+        title={
+          isEN
+            ? "Concept | Pixelmine Japan OPC"
+            : "コンセプト | Pixelmine Japan OPC"
+        }
+        description={
+          isEN
+            ? "Explore the core concept behind Pixelmine — a decentralized social network focused on transparency, fairness, and empowering users."
+            : "Pixelmineの核心概念を探求します — 透明性、公平性、ユーザーのエンパワーメントに焦点を当てた分散型SNSです。"
+        }
         url="https://www.pixelmine.org/concept"
         image="/concept-social-sharing.jpg"
       />
@@ -67,26 +81,25 @@ function Concept() {
           {/* Left Column */}
           <div className="flex-1">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem] dark:text-stone-50">
-              Concept
+              {isEN ? "Concept" : "コンセプト"}
             </h1>
             <p className="pt-5 pb-2 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-stone-900 dark:text-stone-50">
-              The abstract concept underlying Pixelmine that serves as a crucial
-              foundation for the system's development.
+              {isEN
+                ? "The abstract concept underlying Pixelmine that serves as a crucial foundation for the system's development."
+                : "Pixelmineの根底にある抽象的な概念で、システム開発の重要な基盤となります。"}
             </p>
 
             <p className="mt-2 mb-5 pt-2 pb-2 max-w-full sm:max-w-[30rem] text-xs sm:text-xs text-stone-900 border-l-4 border-primary pl-5 font-light dark:text-stone-50 dark:border-green-400">
-              Watch the presentation by Yutaro Sodei, the Chief Executive
-              Officer of Pixelmine Japan. In this presentation, he delivers a
-              comprehensive overview of the system and asserts its significant
-              potential impact on the social networking service (SNS) market
+              {isEN
+                ? "Watch the presentation by Yutaro Sodei, the CEO of Pixelmine Japan. He provides a comprehensive overview of the system and its potential impact on the SNS market."
+                : "Pixelmine JapanのCEO、曽根祐太郎によるプレゼンテーションをご覧ください。システムの全体像とSNS市場への潜在的な影響を紹介します。"}
             </p>
 
             {/* Switch Buttons */}
             <StaggerContainer className="flex flex-col gap-5">
               {videos.map((video) => (
-                <StaggerItem>
+                <StaggerItem key={video.id}>
                   <button
-                    key={video.id}
                     onClick={() => handleSwitch(video.id)}
                     className={`inline-flex transition-all duration-300 ease-in-out text-xs text-start ${
                       video.id === activeVideoId
@@ -145,15 +158,15 @@ function Concept() {
             className="p-2 mt-4 rounded bg-primary/80 text-slate-100 size-5"
           />
           <p className="mt-5 text-sm text-stone-900 sm:text-base dark:text-stone-50">
-            The idea behind Pixelmine is to create a platform that empowers
-            users by removing the need for a central authority or server to
-            control user data and interactions...
+            {isEN
+              ? "The idea behind Pixelmine is to create a platform that empowers users by removing the need for a central authority or server to control user data and interactions..."
+              : "Pixelmineの理念は、ユーザーのデータややり取りを中央の管理者やサーバーに依存せずに、ユーザーが主体的に活用できるプラットフォームを作ることです..."}
           </p>
-          <Accordion items={items} />
+          <Accordion items={conceptItems} language={language} />
           <p className="mt-5 text-sm text-stone-900 sm:text-base dark:text-stone-50">
-            We implement a series of substantial measures to ensure that the
-            system effectively adapts to the continually evolving dynamics of
-            the social networking landscape.
+            {isEN
+              ? "We implement a series of substantial measures to ensure that the system effectively adapts to the continually evolving dynamics of the social networking landscape."
+              : "私たちは、システムが急速に進化するソーシャルネットワーキング環境に適応できるよう、さまざまな施策を実施しています。"}
           </p>
         </div>
       </FadeSlideUp>

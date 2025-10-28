@@ -1,5 +1,6 @@
 import ContactUsForm from "../ui/contactus/ContactUsForm";
 import SEOHelmet from "../ui/SEOHelmet";
+import { useLanguage } from "../context/LanguageContext";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,11 +15,21 @@ import {
 } from "../animations/AnimatedWrappers";
 
 function Contact() {
+  const { language } = useLanguage();
+
   return (
     <>
       <SEOHelmet
-        title="Contact Us | Pixelmine Japan OPC"
-        description="Get in touch with Pixelmine for inquiries, support, or partnership opportunities. We're here to help!"
+        title={
+          language === "en"
+            ? "Contact Us | Pixelmine Japan OPC"
+            : "お問い合わせ | Pixelmine Japan OPC"
+        }
+        description={
+          language === "en"
+            ? "Get in touch with Pixelmine for inquiries, support, or partnership opportunities. We're here to help!"
+            : "お問い合わせ、サポート、またはパートナーシップのご相談はPixelmineまでお気軽にご連絡ください。"
+        }
         url="https://www.pixelmine.org/contact-us"
         image="/contact-social-sharing.jpg"
       />
@@ -27,7 +38,7 @@ function Contact() {
         {/* Hero Section */}
         <FadeSlideUp className="flex flex-col items-center p-6 mx-auto text-center max-w-7xl">
           <h1 className="text-lg font-medium uppercase dark:text-stone-50">
-            Contact Us
+            {language === "en" ? "Contact Us" : "お問い合わせ"}
           </h1>
           <hr className="mx-auto mt-2 mb-4 border-b-4 w-14 border-primary dark:border-green-400" />
         </FadeSlideUp>
@@ -41,6 +52,7 @@ function Contact() {
                   Pixelmine Japan
                 </p>
               </div>
+
               <div className="flex flex-row items-center gap-3 mt-5 text-start">
                 <span>
                   <FontAwesomeIcon
@@ -52,6 +64,7 @@ function Contact() {
                   1-27-8 Higashi-Azabu, Minato-ku, Tokyo 106-0044, Japan
                 </p>
               </div>
+
               <div className="flex flex-row items-center gap-3 mt-5 text-start">
                 <span>
                   <FontAwesomeIcon
@@ -63,6 +76,7 @@ function Contact() {
                   pixie@pixelmine.org
                 </p>
               </div>
+
               <div className="flex flex-row items-center gap-3 mt-5 text-start">
                 <span>
                   <FontAwesomeIcon
@@ -90,6 +104,7 @@ function Contact() {
               />
             </StaggerItem>
           </div>
+
           <FadeSlideUp className="flex-1">
             <div className="flex flex-col items-center justify-center ">
               <div className="p-10 bg-white rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] flex justify-center flex-col items-center ">
