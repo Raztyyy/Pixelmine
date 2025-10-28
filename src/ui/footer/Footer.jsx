@@ -162,7 +162,7 @@ function Footer() {
               to="terms-and-conditions"
               className="transition-all duration-300 ease-in-out hover:text-primary dark:hover:text-green-400"
             >
-              {isEN ? "Terms & Conditions" : "利用規約"}
+              {isEN ? "Terms of Service" : "利用規約"}
             </Link>
           </li>
           <li className="lg:px-3">

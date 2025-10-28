@@ -8,15 +8,15 @@ function TermsAndConditions() {
       <SEOHelmet
         title={
           language === "en"
-            ? "Terms and Conditions | Pixelmine Japan OPC"
-            : "利用規約 | ピクセルマインジャパンOPC"
+            ? "Terms of Service | Pixelmine Japan OPC"
+            : "サービス利用規約 | Pixelmine Japan OPC"
         }
         description={
           language === "en"
-            ? "Review the terms and conditions governing the use of Pixelmine's services, including your rights, responsibilities, and legal agreements."
-            : "Pixelmineのサービス利用に関する利用規約をご確認ください。お客様の権利、責任、法的契約について説明しています。"
+            ? "Read the Terms of Service governing your use of Pixelmine's services, including your rights, responsibilities, and legal agreements."
+            : "Pixelmineのサービス利用規約をご確認ください。お客様の権利、責任、および法的契約について説明しています。"
         }
-        url="https://www.pixelmine.org/terms-and-conditions"
+        url="https://www.pixelmine.org/terms-of-service"
         image="/social-sharing.jpg"
       />
 
