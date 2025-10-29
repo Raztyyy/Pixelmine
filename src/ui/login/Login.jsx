@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { showToast } from "../../utils/Toast";
 import { useAuth } from "../../context/AuthContext";
+import { useLanguage } from "../../context/LanguageContext"; // <-- added
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -17,6 +18,8 @@ function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const { login, isAuthenticated } = useAuth();
+  const { language } = useLanguage(); // <-- added
+  const isEN = language === "en"; // <-- added
 
   // ✅ preserve both pathname + query string
   const fromPath = location.state?.from?.pathname || "/dashboard";
@@ -30,11 +33,16 @@ function Login() {
   // Show verified toast once
   useEffect(() => {
     if (isVerified && !hasShownToast.current) {
-      showToast("Your email has been verified. You can now log in.", "success");
+      showToast(
+        isEN
+          ? "Your email has been verified. You can now log in."
+          : "メールが確認されました。ログインできます。",
+        "success"
+      );
       hasShownToast.current = true;
       localStorage.removeItem("pending_email");
     }
-  }, [isVerified]);
+  }, [isVerified, isEN]);
 
   // Auto redirect if already logged in
   useEffect(() => {
@@ -57,19 +65,27 @@ function Login() {
       const data = await res.json();
 
       if (!res.ok) {
-        showToast(data.error || "Login failed", "error");
+        showToast(
+          data.error || (isEN ? "Login failed" : "ログインに失敗しました。"),
+          "error"
+        );
         setIsSubmitting(false);
         return;
       }
 
       login(data.token); // save token
-      showToast("Login successful!", "success");
+      showToast(isEN ? "Login successful!" : "ログイン成功！", "success");
 
       // ✅ go back to original route with query params intact
       navigate(from, { replace: true });
     } catch (err) {
       console.error("Login error:", err);
-      showToast("Server error. Please try again.", "error");
+      showToast(
+        isEN
+          ? "Server error. Please try again."
+          : "サーバーエラーが発生しました。もう一度お試しください。",
+        "error"
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -81,7 +97,7 @@ function Login() {
         {/* Header */}
         <div className="pb-2 mb-4 border-b">
           <h3 className="text-xl font-semibold text-gray-900 dark:text-stone-50">
-            Sign in to our platform
+            {isEN ? "Sign in to our platform" : "プラットフォームにサインイン"}
           </h3>
         </div>
 
@@ -92,13 +108,13 @@ function Login() {
               htmlFor="email"
               className="block text-sm font-medium text-gray-700 dark:text-stone-50"
             >
-              Your email
+              {isEN ? "Your email" : "メールアドレス"}
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="Enter your email"
+              placeholder={isEN ? "Enter your email" : "メールアドレスを入力"}
               required
               disabled={isSubmitting}
               value={email}
@@ -112,13 +128,13 @@ function Login() {
               htmlFor="password"
               className="block text-sm font-medium text-gray-700 dark:text-stone-50"
             >
-              Your password
+              {isEN ? "Your password" : "パスワード"}
             </label>
             <input
               type="password"
               id="password"
               name="password"
-              placeholder="Enter your password"
+              placeholder={isEN ? "Enter your password" : "パスワードを入力"}
               required
               disabled={isSubmitting}
               value={password}
@@ -132,7 +148,7 @@ function Login() {
               to="/forgot-password"
               className="transition-all duration-300 ease-in-out text-primary dark:text-green-400 hover:underline"
             >
-              Lost password?
+              {isEN ? "Lost password?" : "パスワードをお忘れですか？"}
             </Link>
           </div>
 
@@ -141,16 +157,22 @@ function Login() {
             disabled={isSubmitting}
             className="w-full bg-primary hover:bg-primary/80 text-white font-medium rounded-lg text-sm px-5 py-2.5 transition-all duration-300 ease-in-out"
           >
-            {isSubmitting ? "Logging in..." : "Login to your account"}
+            {isSubmitting
+              ? isEN
+                ? "Logging in..."
+                : "ログイン中..."
+              : isEN
+              ? "Login to your account"
+              : "アカウントにログイン"}
           </button>
 
           <div className="text-sm text-center text-gray-500 dark:text-stone-50">
-            Not registered?{" "}
+            {isEN ? "Not registered?" : "登録がまだの方は？"}{" "}
             <Link
               to="/signup"
               className="text-primary hover:underline dark:text-green-400"
             >
-              Create account
+              {isEN ? "Create account" : "アカウントを作成"}
             </Link>
           </div>
         </form>

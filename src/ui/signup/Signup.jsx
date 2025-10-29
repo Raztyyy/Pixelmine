@@ -2,12 +2,15 @@ import { useEffect } from "react";
 import { Link, useFetcher, useNavigate } from "react-router-dom";
 import { showToast } from "../../utils/Toast";
 import { useAuth } from "../../context/AuthContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 function Signup({ switchToLogin }) {
   const fetcher = useFetcher();
   const isSubmitting = fetcher.state === "submitting";
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
+  const { language } = useLanguage();
+  const isEN = language === "en";
 
   // ✅ Redirect if already logged in
   useEffect(() => {
@@ -33,7 +36,7 @@ function Signup({ switchToLogin }) {
       <div className="w-full max-w-2xl p-8 bg-white rounded-lg shadow-md dark:bg-stone-800">
         <div className="mb-6 text-center">
           <h1 className="text-2xl font-semibold text-gray-900 dark:text-stone-50">
-            Create your account
+            {isEN ? "Create your account" : "アカウントを作成"}
           </h1>
         </div>
 
@@ -41,7 +44,7 @@ function Signup({ switchToLogin }) {
           {/* First & Last Name */}
           <div>
             <label className="block mb-2 text-sm font-semibold text-gray-700 dark:text-stone-50">
-              Contact Person Name
+              {isEN ? "Contact Person Name" : "担当者名"}
             </label>
             <div className="flex flex-col gap-4 sm:flex-row">
               <div className="w-full sm:w-1/2">
@@ -49,7 +52,7 @@ function Signup({ switchToLogin }) {
                   htmlFor="firstName"
                   className="text-sm font-medium text-gray-700 dark:text-stone-50"
                 >
-                  First Name
+                  {isEN ? "First Name" : "名"}
                 </label>
                 <input
                   type="text"
@@ -65,7 +68,7 @@ function Signup({ switchToLogin }) {
                   htmlFor="lastName"
                   className="text-sm font-medium text-gray-700 dark:text-stone-50"
                 >
-                  Last Name
+                  {isEN ? "Last Name" : "姓"}
                 </label>
                 <input
                   type="text"
@@ -85,7 +88,7 @@ function Signup({ switchToLogin }) {
               htmlFor="contactPersonNumber"
               className="block text-sm font-medium text-gray-700 dark:text-stone-50"
             >
-              Contact Person Number
+              {isEN ? "Contact Person Number" : "担当者の電話番号"}
             </label>
             <input
               type="tel"
@@ -103,7 +106,7 @@ function Signup({ switchToLogin }) {
               htmlFor="companyName"
               className="block text-sm font-medium text-gray-700 dark:text-stone-50"
             >
-              Company Name
+              {isEN ? "Company Name" : "会社名"}
             </label>
             <input
               type="text"
@@ -120,7 +123,7 @@ function Signup({ switchToLogin }) {
               htmlFor="companyAddress"
               className="block text-sm font-medium text-gray-700 dark:text-stone-50"
             >
-              Company Address
+              {isEN ? "Company Address" : "会社住所"}
             </label>
             <input
               type="text"
@@ -138,7 +141,7 @@ function Signup({ switchToLogin }) {
               htmlFor="email"
               className="block text-sm font-medium text-gray-700 dark:text-stone-50"
             >
-              Email
+              {isEN ? "Email" : "メールアドレス"}
             </label>
             <input
               type="email"
@@ -155,7 +158,7 @@ function Signup({ switchToLogin }) {
               htmlFor="password"
               className="block text-sm font-medium text-gray-700 dark:text-stone-50"
             >
-              Password
+              {isEN ? "Password" : "パスワード"}
             </label>
             <input
               type="password"
@@ -172,7 +175,7 @@ function Signup({ switchToLogin }) {
               htmlFor="confirmPassword"
               className="block text-sm font-medium text-gray-700 dark:text-stone-50"
             >
-              Confirm Password
+              {isEN ? "Confirm Password" : "パスワードの確認"}
             </label>
             <input
               type="password"
@@ -190,17 +193,25 @@ function Signup({ switchToLogin }) {
             disabled={isSubmitting}
             className="w-full bg-primary hover:bg-primary/80 text-white font-medium rounded-lg text-sm px-5 py-2.5 transition-all duration-300 ease-in-out"
           >
-            {isSubmitting ? "Creating..." : "Create Account"}
+            {isSubmitting
+              ? isEN
+                ? "Creating..."
+                : "作成中..."
+              : isEN
+              ? "Create Account"
+              : "アカウントを作成"}
           </button>
 
           {/* Switch to Login */}
           <div className="text-sm text-center text-gray-500 dark:text-stone-50">
-            Already have an account?{" "}
+            {isEN
+              ? "Already have an account?"
+              : "すでにアカウントをお持ちですか？"}{" "}
             <Link
               to="/login"
               className="text-primary hover:underline dark:text-green-400"
             >
-              Login here
+              {isEN ? "Login here" : "こちらからログイン"}
             </Link>
           </div>
         </fetcher.Form>

@@ -4,6 +4,7 @@ import { BlockMath, InlineMath } from "react-katex";
 export const designImplementationItems = [
   {
     title: "1. Abstract",
+    titleJP: "1. 概要",
     content: (
       <>
         <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
@@ -32,9 +33,29 @@ export const designImplementationItems = [
         </p>
       </>
     ),
+    contentJP: (
+      <>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          本論文では、コンセンサス駆動型データ検証を活用した分散型ソーシャルネットワークシステム（SNS）の革新的なアーキテクチャを提案する。
+          提案するシステムは、奇数ノードのクォーラムとハッシュベースの多数決プロセスを組み合わせた独自のメカニズムを採用している。
+          この多層的な設計戦略により、中央集権的な権威に依存することなく、分散ノード間でのデータの整合性と一貫性を確保し、
+          ビザンチン障害や様々な悪意ある行為に対する耐性を高めている。
+        </p>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          本研究では、このアーキテクチャを支える理論的基盤を詳細に検討し、
+          ノード間の効果的なコンセンサスを実現するアルゴリズムとプロトコルを説明する。
+          さらに、スケーラビリティ、パフォーマンス最適化、ユーザーエクスペリエンスといった
+          実装上の重要な課題にも言及する。また、本手法に内在するセキュリティ機能を強調し、
+          データ改ざんや不正アクセスを防止しつつ、ネットワーク内でのユーザー間のやり取りの真正性を確保する方法についても議論する。
+          これらの議論を通じて、この分散型SNSアーキテクチャの応用可能性と実践的意義の両面を包括的に理解することを目的としている。
+        </p>
+      </>
+    ),
   },
+
   {
     title: "2. Introduction",
+    titleJP: "2. はじめに",
     content: (
       <>
         <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
@@ -64,9 +85,38 @@ export const designImplementationItems = [
         </p>
       </>
     ),
+    contentJP: (
+      <>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          従来のソーシャルネットワークは中央集権型のインフラに依存しており、
+          これにより単一障害点（Single Point of Failure）や、
+          ユーザーデータおよびやり取りに対する中央集権的な管理といった
+          脆弱性が本質的に存在する。この中央集権構造は、データ漏えいや
+          ユーザーのプライバシー侵害といった問題を引き起こす可能性がある。
+          一方で、分散型ソーシャルネットワークはこれらの脆弱性を排除することを
+          目指しているが、独立したノード群全体でデータの一貫性を維持し、
+          情報の真正性を検証するという重大な課題に直面している。
+        </p>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          これらの課題を解決するために、本論文では分散コンセンサスメカニズムを
+          導入し、データの伝播と検証を強化する新しいシステムを提案する。
+          提案するフレームワークでは、高度な暗号ハッシュ技術を利用して、
+          データの送信および保存の過程で整合性を確保する。
+          さらに、奇数のメンバーで構成されるノードグループ内で多数決方式を採用し、
+          効率的な意思決定を促進すると同時に、ネットワークの耐障害性および
+          悪意ある行為に対する耐性を向上させる。この方式では、
+          コンセンサスに過半数の同意を必要とするため、誤ったデータが
+          有効と判断されるリスクを低減することができる。
+          これらのメカニズムを通じて、本システムは信頼性と安全性を
+          兼ね備えた分散型ソーシャルネットワークの枠組みを提供することを目的としている。
+        </p>
+      </>
+    ),
   },
+
   {
-    title: "3. Problem Statement ",
+    title: "3. Problem Statement",
+    titleJP: "3. 問題提起",
     content: (
       <>
         <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
@@ -116,9 +166,64 @@ export const designImplementationItems = [
         </p>
       </>
     ),
+    contentJP: (
+      <>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          分散型ソーシャルネットワークは、慎重な検討と解決を要する
+          3つの重要な課題に直面している。
+        </p>
+
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          <span className="mr-2 font-semibold ">
+            3.1. データの一貫性（Data Coherence）:
+          </span>
+          主な課題の一つは、ネットワーク内のすべての参加ノード間で
+          データの一貫性を実現することである。これは、
+          プラットフォーム上で共有されるコンテンツの正式版が何であるかについて、
+          統一的な合意を形成できるメカニズムの開発を必要とする。
+          この目的のために、コンセンサスアルゴリズムのような技術を
+          活用することで、情報の同期を維持し、すべてのノードが
+          一貫性のある正確なデータにアクセスできるようにすることができる。
+        </p>
+
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          <span className="mr-2 font-semibold ">
+            3.2. ビザンチン障害耐性（Byzantine Fault Tolerance）:
+          </span>
+          もう一つの大きな課題は、悪意のあるノードによる虚偽情報の拡散や
+          不正行動によってネットワークが混乱させられる可能性に対処する
+          ビザンチン障害耐性（BFT）の必要性である。
+          BFTプロトコルを導入することは、一定数のノードが侵害されていても
+          システムが正しく機能し続けることを保証する上で不可欠である。
+          これには、データの正当性を検証し、不正を防止するための
+          強固な仕組みが含まれ、ユーザー間の信頼を維持するために極めて重要である。
+        </p>
+
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          <span className="mr-2 font-semibold ">
+            3.3. 効率的な検証（Efficient Verification）:
+          </span>
+          最後の課題は、厳格なセキュリティ基準を維持しながら、
+          計算負荷を軽減する効率的な検証プロセスを確立することである。
+          高度な暗号技術や最適化されたアルゴリズムを活用することで、
+          トランザクションやコンテンツ変更の検証に必要な処理能力を削減し、
+          ネットワークのスムーズで応答性の高い運用を実現できる。
+          効率性と安全性のバランスを取ることは、
+          ネットワークの完全性を損なうことなく
+          シームレスなユーザー体験を保証する上で不可欠である。
+        </p>
+
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          これらの課題に取り組むことは、分散型ソーシャルネットワークを
+          成功裏に実装し、持続可能に運用するために極めて重要であり、
+          ユーザーにとって安全で信頼性の高い環境を促進する基盤となる。
+        </p>
+      </>
+    ),
   },
   {
     title: "4. Proposed Solution",
+    titleJP: "4. 提案された解決策",
     content: (
       <>
         <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
@@ -141,9 +246,35 @@ export const designImplementationItems = [
         </p>
       </>
     ),
+    contentJP: (
+      <>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          本システムのアーキテクチャは、3、5、または7ノードといった
+          奇数個のノードで構成されるクォーラムの使用に基づいている。
+          この設計は、暗号学的ハッシュ比較のプロセスを通じて
+          データの完全性を検証する上で極めて重要であり、
+          高いセキュリティと信頼性を確保する手段となる。
+        </p>
+
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          ノードがネットワーク全体にコンテンツを分散する際、
+          各ノードは複数のピアに問い合わせを行い、
+          ハッシュ値を収集するプロセスに参加する。
+          その後、最も多く出現したハッシュ値を選択する。
+          このアプローチにより、悪意のあるノードによる攻撃のリスクが
+          効果的に軽減される。少数のノードがネットワークを改ざんしようとしても、
+          大多数の検証結果を上回ることはできず、
+          データ全体の完全性が保護される。
+          このメカニズムにより、システムは改ざんに強く、
+          攻撃に対する耐性が向上する。
+        </p>
+      </>
+    ),
   },
+
   {
-    title: "5. System Architecture ",
+    title: "5. System Architecture",
+    titleJP: "5. システムアーキテクチャ",
     content: (
       <>
         <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
@@ -404,9 +535,252 @@ export const designImplementationItems = [
         </div>
       </>
     ),
+    contentJP: (
+      <>
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          5.1. ネットワークトポロジー
+        </p>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          本システムは分散型ピアツーピアネットワークとして機能し、
+          各ノードはシステム運用に不可欠なさまざまなコンポーネントの
+          保持に重要な役割を果たします。
+        </p>
+        <div className="my-4 ml-5">
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            <span className="mr-2 font-semibold ">
+              5.1.1. ローカルデータストア:
+            </span>
+            各ノードはユーザー生成コンテンツや投稿を保持する包括的なキャッシュを持っています。
+            これにより、データの迅速な取得と効率的な管理が可能となり、ユーザー体験が向上します。
+          </p>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            <span className="mr-2 font-semibold ">5.1.2. ピアレジストリ:</span>
+            このコンポーネントはネットワーク内のすべての既知参加者の詳細なリストを保持します。
+            各参加者には、活動やネットワークへの貢献度に基づいて評価スコアが割り当てられます。
+            このスコアはユーザー間の信頼性を高める助けとなります。
+          </p>
+
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            <span className="mr-2 font-semibold ">
+              5.1.3. ハッシュインデックス:
+            </span>
+            ネットワーク内に保存されるデータの整合性と安全性を保証するため、
+            各コンテンツには固有の暗号ハッシュが割り当てられます。
+            このダイジェストはコンテンツを識別するだけでなく、無断変更から保護し、
+            情報の元の状態を維持します。
+          </p>
+
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            <span className="mr-2 font-semibold ">5.1.4. 検証キュー:</span>
+            新しくネットワークに提出されたコンテンツは検証キューに入ります。
+            このキューには、ネットワーク参加者の合意が得られるまで保留されるアイテムが含まれます。
+            この合意メカニズムは、共有コンテンツの正確性と正当性を維持するために不可欠です。
+          </p>
+        </div>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          これらのコンポーネントは協調して動作し、強靭で信頼性の高いネットワークを作り出し、
+          ユーザー間で効率的なデータ共有とコラボレーションを可能にします。
+        </p>
+
+        <p className="mt-5 mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          5.2. ノード選択アルゴリズム
+        </p>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          データ検証操作において、システムは戦略的に奇数のノード n
+          を選択します。 n は常に 3
+          以上の奇数である必要があります。この選択プロセスは複数の
+          基準に基づき、堅牢で信頼性の高い検証を保証します。
+          基準にはノードの稼働状況、地理的分布、各ノードの過去の性能指標などが含まれます。
+          これらのパラメータに従うことで、システムは信頼性の高いデータ検証ネットワークを構築し、
+          不整合のリスクを最小化し、処理されるデータの整合性を高めます。
+        </p>
+
+        <div className="my-4 ml-5 text-sm sm:text-base dark:text-stone-50">
+          <p className="mb-2 font-semibold">5.2.1. ノード選択関数</p>
+          <p className="mb-2 ">スコアリング関数:</p>
+          <p className="mb-2 ">
+            <InlineMath math={`N = \\{n_1, n_2, \\ldots, n_m\\}`} /> を
+            アクティブなピアノードの集合とします。
+          </p>
+          <p className="mb-2 ">
+            <InlineMath
+              math={`S(n_i) = 0.4 \\cdot R(n_i) + 0.3 \\cdot L(n_i) + 0.2 \\cdot D(n_i) + 0.1 \\cdot P(n_i)`}
+            />
+          </p>
+          <p className="mb-2">ここで:</p>
+          <ul className="mb-2 ml-10 list-disc">
+            <li>
+              <InlineMath math={`R(n_i) \\in [0,1]`} /> :
+              正規化された評判/稼働時間スコア
+            </li>
+            <li>
+              <InlineMath math={`L(ni )∈[0,1]`} /> :
+              正規化レイテンシスコア（低い方が良い）
+            </li>
+            <li>
+              <InlineMath math={`D(ni )∈[0,1]`} /> : 地理的多様性スコア
+            </li>
+            <li>
+              <InlineMath math={`P(ni )∈[0,1]`} /> :
+              正規化されたステーク/Proof-of-Work貢献度
+            </li>
+          </ul>
+
+          <p className="mt-4 mb-2 ">選択関数:</p>
+          <p className="mb-2 ">
+            <InlineMath
+              math={`\\text{SelectNodes}(k) = \\{n_{i_1}, n_{i_2}, \\ldots, n_{i_k}\\}`}
+            />
+          </p>
+          <p className="mb-2 ">
+            <InlineMath
+              math={`\\text{where } S(n_{i_j}) \\geq S(n_{i_{j+1}}) \\text{ for all } j \\in \\{1, \\ldots, k-1\\} \\text{ and } k \\text{ is odd.}`}
+            />
+          </p>
+        </div>
+
+        <div className="my-4 ml-5 text-sm sm:text-base dark:text-stone-50">
+          <p className="mb-2 font-semibold">5.2.2. コンテンツハッシュ関数</p>
+          <p className="mb-2 ">コンテンツ 𝑐 の構成要素:</p>
+          <ul className="mb-2 ml-10 list-disc">
+            <li>
+              <InlineMath math={`Id_c`} /> : ユニーク識別子
+            </li>
+            <li>
+              <InlineMath math={`pk_c`} /> : 著者の公開鍵
+            </li>
+            <li>
+              <InlineMath math={`t_c`} /> : タイムスタンプ
+            </li>
+            <li>
+              <InlineMath math={`d_c`} /> : データペイロード
+            </li>
+            <li>
+              <InlineMath math={`h_p`} /> : 親ハッシュ
+            </li>
+          </ul>
+          <p className="mb-2 ">コンテンツハッシュは以下の通りです:</p>
+          <p className="mb-2 ">
+            <InlineMath
+              math={`H(c) = \\text{SHA-256}(\\text{idc} \\parallel \\text{pk}_c \\parallel t_c \\parallel d_c \\parallel h_p)`}
+            />
+          </p>
+          <p className="mb-2 ">
+            <InlineMath math={`\\parallel`} /> は連結を示します。
+          </p>
+        </div>
+
+        <div className="my-4 ml-5 text-sm sm:text-base dark:text-stone-50">
+          <p className="mb-2 font-semibold">5.2.3. 検証プロトコル </p>
+          <p className="mb-2 ">
+            <span className="font-semibold">入力:</span> コンテンツ 𝑐
+            の検証ノード集合
+            <InlineMath math={`V = \\{v_1, v_2, \\ldots, v_k\\}`} />
+            （k は奇数）
+          </p>
+          <ul className="mb-2 ml-10 list-none">
+            <li>
+              <p className="mb-2">ステップ1 - ローカルハッシュ:</p>
+              <p className="mb-2 ml-5">
+                <InlineMath math={`h_{\\text{local}} = H(c)`} />
+              </p>
+            </li>
+            <li>
+              <p className="mb-2">ステップ2 - リモートハッシュ収集:</p>
+              <p className="mb-2 ml-5">
+                <InlineMath
+                  math={`H = \\{h_i : h_i = v_i.H(c), v_i \\in V, h_i \\neq \\bot\\}`}
+                />
+              </p>
+              <p className="mb-2 ml-5">
+                <InlineMath math={`\\bot`} /> は null/失敗応答を表します。
+              </p>
+            </li>
+            <li>
+              <p className="mb-2">ステップ3 - 投票集計:</p>
+              <p className="mb-2 ml-5">
+                各ユニークハッシュ <InlineMath math={`h \\in H`} />
+              </p>
+              <p className="mb-2 ml-10">
+                <InlineMath
+                  math={`\\text{votes}(h) = |\\{h_i \\in H : h_i = h\\}|`}
+                />
+              </p>
+            </li>
+            <li>
+              <p className="mb-2">ステップ4 - 過半数ハッシュ:</p>
+              <p className="mb-2 ml-5">
+                <InlineMath
+                  math={`h_{\\text{majority}} = \\text{arg } \\text{max} \\text{ votes}(h) \\newline {h \\in H}`}
+                />
+              </p>
+            </li>
+            <li>
+              <p className="mb-2">ステップ5 - 検証判定:</p>
+              <p className="mb-2 ml-5">
+                検証結果 <InlineMath math={`V_{\\text{result}}`} /> は次の通り:
+              </p>
+              <p className="mb-2 ml-10">
+                <InlineMath
+                  math={`V_{\\text{result}} = \\begin{cases}  \\text{PASS} & \\text{if } \\text{votes}(h_{\\text{majority}}) \\geq \\lceil \\frac{k}{2} \\rceil + 1 \\text{ and }  h_{\\text{majority}} = h_{\\text{local}} \\  \\text{FAIL} & \\text{otherwise}  \\end{cases}`}
+                />
+              </p>
+              <p className="mb-2 ml-5">もしくは、閾値関数を用いて表すと:</p>
+              <p className="mb-2 ml-10">
+                <InlineMath
+                  math={`\\theta(k) = \\lceil \\frac{k}{2} \\rceil + 1`}
+                />
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div className="my-4 ml-5 text-sm sm:text-base dark:text-stone-50">
+          <p className="mb-2 font-semibold">5.2.4. コンセンサス閾値の特性</p>
+          <p className="mb-2 ">k 個の検証ノードに対して:</p>
+          <ul className="mb-2 ml-10 list-disc">
+            <li>
+              最小投票数:{" "}
+              <InlineMath
+                math={`\\theta(k) = \\lceil \\frac{k}{2} \\rceil + 1`}
+              />
+            </li>
+            <li>
+              <InlineMath math={`k = 5: \\theta(5) = 3`} /> （単純過半数）
+            </li>
+            <li>
+              <InlineMath math={`k = 7: \\theta(7) = 4`} />
+            </li>
+            <li>
+              ビザンチン障害耐性: 最大{" "}
+              <InlineMath math={`\\lfloor \\frac{k-1}{2} \\rfloor`} />{" "}
+              の悪意あるノードを許容
+            </li>
+          </ul>
+        </div>
+
+        <div className="my-4 ml-5 text-sm sm:text-base dark:text-stone-50">
+          <p className="mb-2 font-semibold">5.2.5. 成功確率</p>
+          <p className="mb-2 ">
+            ノードが誠実に動作する確率 p
+            を持つ場合、検証成功の確率は以下の通りです:
+          </p>
+          <p className="mb-2 ">
+            <InlineMath
+              math={`P(\\text{success}) = \\sum_{i=\\theta(k)}^{k} \\binom{k}{i} p^i (1-p)^{k-i}`}
+            />
+          </p>
+          <p className="mb-2 ">
+            これは二項分布に従い、少なくとも <InlineMath math={`\\theta(k)`} />{" "}
+            個のノードが正しいハッシュを返す確率を表します。
+          </p>
+        </div>
+      </>
+    ),
   },
   {
     title: "6. Byzantine Fault Tolerance",
+    titleJP: "6. ビザンチン障害耐性",
     content: (
       <>
         <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
@@ -438,9 +812,40 @@ export const designImplementationItems = [
         </ul>
       </>
     ),
+    contentJP: (
+      <>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          システムは <InlineMath math={`\\lfloor \\frac{n} {2} \\rfloor`} />
+          までのビザンチン障害を許容します。ここで n
+          は検証クオーラムのサイズです。 5 ノードの場合、最大 2
+          ノードが悪意または障害を持つ可能性があります。
+          奇数ノードの要件により、同じハッシュを生成するノードが同数の場合でも同点を防ぎます。
+        </p>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          許容性の証明:
+        </p>
+
+        <ul className="mb-2 ml-10 list-disc">
+          <li>n ノードに f 個の悪意あるノードが存在する場合</li>
+          <li>
+            誠実なノード: <InlineMath math={`h = n - f`} />
+          </li>
+          <li>
+            コンセンサスには: <InlineMath math={`h > f`} />{" "}
+            （誠実な過半数が必要）
+          </li>
+          <li>
+            n が奇数かつ <InlineMath math={`n ≥ 2f + 1`} /> の場合、
+            <InlineMath math={`h ≥ f + 1`} /> が保証されます
+          </li>
+          <li>したがって、誠実なノードは常に過半数を形成します</li>
+        </ul>
+      </>
+    ),
   },
   {
     title: "7. Security Analysis",
+    titleJP: "7. セキュリティ分析",
     content: (
       <>
         <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
@@ -505,9 +910,64 @@ export const designImplementationItems = [
         </ul>
       </>
     ),
+    contentJP: (
+      <>
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          7.1. 攻撃ベクトルと緩和策
+        </p>
+        <ul className="mb-2 list-disc">
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            Sybil 攻撃: 攻撃者が複数の偽ノードを作成して検証クオーラムを支配
+          </p>
+          <li className="mb-2 ml-10">
+            <span className="italic">緩和策</span>:
+            ノード評判システム、Proof-of-Work または Proof-of-Stake
+            の要件、地理的多様性スコアリング
+          </li>
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            Eclipse 攻撃: 攻撃者がターゲットノードの全ピア接続を支配して隔離
+          </p>
+          <li className="mb-2 ml-10">
+            <span className="italic">緩和策</span>:
+            多様なピアセットの維持、定期的なピア探索、評判ベースの接続スコアリング
+          </li>
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            ハッシュ衝突攻撃: 攻撃者が一致するハッシュを持つコンテンツを探索
+          </p>
+          <li className="mb-2 ml-10">
+            <span className="italic">緩和策</span>: SHA-256
+            を使用することで衝突攻撃は計算上実行不可能（2^128 操作）
+          </li>
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            サービス拒否攻撃: 悪意あるノードが検証要求に応答拒否
+          </p>
+          <li className="mb-2 ml-10">
+            <span className="italic">緩和策</span>:
+            タイムアウト機構、評判ペナルティ、動的クオーラムサイズ調整
+          </li>
+        </ul>
+
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          7.2. 暗号学的特性
+        </p>
+
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          システムは以下に依存しています:
+        </p>
+
+        <ul className="mb-2 ml-10 list-disc">
+          <li>衝突耐性: SHA-256 は 128 ビットの衝突耐性を提供</li>
+          <li>
+            事前画像耐性: ハッシュから元のコンテンツを求めることは計算上困難
+          </li>
+          <li>デジタル署名: 著者認証のための ECDSA または Ed25519</li>
+        </ul>
+      </>
+    ),
   },
   {
-    title: "8. Performance Considerationss",
+    title: "8. Performance Considerations",
+    titleJP: "8. パフォーマンスに関する考慮事項",
     content: (
       <>
         <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
@@ -558,9 +1018,56 @@ export const designImplementationItems = [
         </ul>
       </>
     ),
+    contentJP: (
+      <>
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          8.1. スケーラビリティ
+        </p>
+        <ul className="mb-2 list-disc">
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            検証レイテンシ: n=5 ノードで平均クエリ時間 100ms の場合:
+          </p>
+          <li className="ml-10">逐次クエリ: 500ms</li>
+          <li className="ml-10">並列クエリ: 約100ms（最も遅いノードに制限）</li>
+          <li className="mb-2 ml-10">
+            最適化: タイムアウト200msとフォールバックノードの使用
+          </li>
+
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            ネットワークオーバーヘッド: 各コンテンツ検証に対して:
+          </p>
+          <li className="ml-10">ハッシュリクエスト: 32 バイト × n ノード</li>
+          <li className="ml-10">ハッシュレスポンス: 32 バイト × n ノード</li>
+          <li className="ml-10">合計: 64n バイト（n=5 の場合 320 バイト）</li>
+        </ul>
+
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          8.2. 最適化戦略
+        </p>
+
+        <ul className="mb-2 ml-10 list-none">
+          <li>
+            キャッシング: ノードは TTL
+            付きで検証結果をキャッシュし、人気コンテンツの繰り返しクエリを回避
+          </li>
+          <li>
+            ブルームフィルター:
+            ピアがコンテンツを持っている可能性を素早く確認する確率的データ構造
+          </li>
+          <li>
+            コンテンツアドレスストレージ: ハッシュを識別子として使用し重複排除
+          </li>
+          <li>
+            ゴシッププロトコル:
+            コンテンツ更新を確率的に伝播させ、冗長な送信を削減
+          </li>
+        </ul>
+      </>
+    ),
   },
   {
     title: "9. Future Directions",
+    titleJP: "9. 将来の方向性",
     content: (
       <>
         <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
@@ -597,6 +1104,42 @@ export const designImplementationItems = [
         <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
           Partition the network into sub-networks responsible for different
           content domains to improve scalability.
+        </p>
+      </>
+    ),
+    contentJP: (
+      <>
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          9.1. 適応型クオーラムサイズ
+        </p>
+        <ul className="mb-2 list-disc">
+          <p className="text-sm sm:text-base dark:text-stone-50">
+            以下に基づき検証ノード数を動的に調整:
+          </p>
+          <li className="ml-10">コンテンツの重要度や価値</li>
+          <li className="ml-10">ネットワーク状況およびノードの可用性</li>
+          <li className="mb-2 ml-10">過去の攻撃頻度</li>
+        </ul>
+
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          9.2. 重み付き投票
+        </p>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          ノードの評判に応じて投票の重みを割り当て、信頼されたノードがより大きな影響力を持つ一方で、ビザンチン耐性を維持します。
+        </p>
+
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          9.3. ゼロ知識証明
+        </p>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          ノードがコンテンツ自体を公開せずに、その有効性を証明できるプライバシー保護型検証を実装。
+        </p>
+
+        <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
+          9.4. シャーディング
+        </p>
+        <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+          ネットワークを異なるコンテンツドメインごとに担当するサブネットワークに分割し、スケーラビリティを向上。
         </p>
       </>
     ),
