@@ -124,7 +124,7 @@ function MobileLink({ links, mobileMenuOpen, setMobileMenuOpen }) {
                         {isEN ? "Create Account" : "アカウント作成"}
                       </Button>
                       <Button
-                        variant="primary"
+                        variant="modernEmerald"
                         path="/login"
                         className="w-full"
                         onClick={() => setMobileMenuOpen(false)}

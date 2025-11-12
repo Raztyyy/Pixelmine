@@ -37,7 +37,7 @@ const products = [
     translatedName: "民主的システム",
     path: "democratic-system",
   },
-  { name: "Roadmap", translatedName: "ロードマップ", path: "roadmap" },
+  // { name: "Roadmap", translatedName: "ロードマップ", path: "roadmap" },
 ];
 
 function Footer() {

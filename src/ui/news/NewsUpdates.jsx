@@ -38,7 +38,7 @@ function NewsUpdates() {
           )}
         </div>
         <div className="flex justify-center pt-10 md:justify-end">
-          <Button variant="primary" path="news-events">
+          <Button variant="modernPrimary" path="news-events">
             {isEN ? "More Articles" : "さらに記事を見る"}{" "}
             <span aria-hidden="true">&rarr;</span>
           </Button>

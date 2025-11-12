@@ -23,7 +23,7 @@ function BioCard({ memberDetails }) {
         {memberDetails.title}
       </p>
 
-      <hr className="w-10 mx-auto mb-4 border-b-4 border-primary" />
+      <hr className="w-10 mx-auto mb-4 font-semibold text-white border-b-4 shadow-lg border-emerald-600 shadow-emerald-600/25 " />
 
       <BioModal memberDetails={memberDetails}>
         {language === "en" ? "Read Bio" : "プロフィールを見る"}

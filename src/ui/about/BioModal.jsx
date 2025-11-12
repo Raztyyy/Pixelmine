@@ -16,7 +16,7 @@ function BioModal({ memberDetails, children }) {
 
   return (
     <>
-      <Button variant="primary" size="sm" onClick={() => setIsOpen(true)}>
+      <Button variant="modernEmerald" size="sm" onClick={() => setIsOpen(true)}>
         {children}
       </Button>
 
@@ -41,7 +41,7 @@ function BioModal({ memberDetails, children }) {
                 {memberDetails.name}
               </h2>
               <p className="text-gray-600">{memberDetails.title}</p>
-              <hr className="mx-auto mt-2 mb-4 border-b-4 w-14 border-primary " />
+              <hr className="w-10 mx-auto mt-4 mb-4 font-semibold text-white border-b-4 shadow-lg border-emerald-600 shadow-emerald-600/25 " />
 
               {/* <div className="px-2 mt-4 overflow-y-auto text-sm text-gray-700 max-h-72">
                 {memberDetails.bio}
@@ -52,7 +52,7 @@ function BioModal({ memberDetails, children }) {
 
               <Button
                 className="flex items-center justify-center w-full mt-5 "
-                variant="primary"
+                variant="modernEmerald"
                 size="sm"
                 onClick={() => setIsOpen(false)}
               >

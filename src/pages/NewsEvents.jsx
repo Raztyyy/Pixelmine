@@ -194,7 +194,7 @@ function NewsEvents() {
 
                 <button
                   type="submit"
-                  className="flex-none rounded-md rounded-l-none bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/65 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  className="flex-none rounded-md rounded-l-none bg-emerald-600 border-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-2.5 text-sm font-semibold  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
                   <FontAwesomeIcon
                     icon={faMagnifyingGlass}
@@ -242,7 +242,7 @@ function NewsEvents() {
                     onClick={() => handleCategoryClick(category)}
                     className={`px-3 py-1 text-sm rounded-full border transition-all ${
                       selectedCategory === category
-                        ? "bg-primary text-white border-primary"
+                        ? "bg-emerald-600 border-emerald-600 hover:bg-emerald-700 text-white"
                         : "bg-white dark:bg-stone-800 text-gray-700 dark:text-stone-50 border-gray-300 dark:border-stone-600 hover:bg-gray-100 dark:hover:bg-stone-700"
                     }`}
                   >
@@ -264,7 +264,7 @@ function NewsEvents() {
                     target="_blank"
                     rel="noopener noreferrer"
                     key={social.social_platform}
-                    className="flex items-center justify-center w-8 h-8 transition-all duration-300 ease-in-out rounded-full bg-primary hover:bg-primary/80"
+                    className="flex items-center justify-center w-8 h-8 text-white transition-all duration-300 ease-in-out rounded-full bg-emerald-600 border-emerald-600 hover:bg-emerald-700"
                   >
                     <FontAwesomeIcon
                       icon={social.icons}

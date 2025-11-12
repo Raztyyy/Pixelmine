@@ -210,7 +210,7 @@ function CareerRole() {
 
             {otherJobs.map((job) => {
               return (
-                <StaggerItem>
+                <StaggerItem key={job.id}>
                   <Link to={`/careers/${job.slug}`} key={job.id}>
                     <div className="p-5 mb-4 border border-b-2 rounded dark:bg-stone-50">
                       <div className="flex flex-col items-start justify-between ">

@@ -3,8 +3,8 @@ import { BlockMath, InlineMath } from "react-katex";
 
 export const designImplementationItems = [
   {
-    title: "1. Abstract",
-    titleJP: "1. 概要",
+    title: "Abstract",
+    titleJP: "概要",
     content: (
       <>
         <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
@@ -54,8 +54,8 @@ export const designImplementationItems = [
   },
 
   {
-    title: "2. Introduction",
-    titleJP: "2. はじめに",
+    title: "Introduction",
+    titleJP: "はじめに",
     content: (
       <>
         <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
@@ -115,8 +115,8 @@ export const designImplementationItems = [
   },
 
   {
-    title: "3. Problem Statement",
-    titleJP: "3. 問題提起",
+    title: "Problem Statement",
+    titleJP: "問題提起",
     content: (
       <>
         <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
@@ -222,8 +222,8 @@ export const designImplementationItems = [
     ),
   },
   {
-    title: "4. Proposed Solution",
-    titleJP: "4. 提案された解決策",
+    title: "Proposed Solution",
+    titleJP: "提案された解決策",
     content: (
       <>
         <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
@@ -273,8 +273,8 @@ export const designImplementationItems = [
   },
 
   {
-    title: "5. System Architecture",
-    titleJP: "5. システムアーキテクチャ",
+    title: "System Architecture",
+    titleJP: "システムアーキテクチャ",
     content: (
       <>
         <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
@@ -779,8 +779,8 @@ export const designImplementationItems = [
     ),
   },
   {
-    title: "6. Byzantine Fault Tolerance",
-    titleJP: "6. ビザンチン障害耐性",
+    title: "Byzantine Fault Tolerance",
+    titleJP: "ビザンチン障害耐性",
     content: (
       <>
         <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
@@ -844,8 +844,8 @@ export const designImplementationItems = [
     ),
   },
   {
-    title: "7. Security Analysis",
-    titleJP: "7. セキュリティ分析",
+    title: "Security Analysis",
+    titleJP: "セキュリティ分析",
     content: (
       <>
         <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
@@ -966,8 +966,8 @@ export const designImplementationItems = [
     ),
   },
   {
-    title: "8. Performance Considerations",
-    titleJP: "8. パフォーマンスに関する考慮事項",
+    title: "Performance Considerations",
+    titleJP: "パフォーマンスに関する考慮事項",
     content: (
       <>
         <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">
@@ -1066,8 +1066,8 @@ export const designImplementationItems = [
     ),
   },
   {
-    title: "9. Future Directions",
-    titleJP: "9. 将来の方向性",
+    title: "Future Directions",
+    titleJP: "将来の方向性",
     content: (
       <>
         <p className="mb-2 text-sm font-semibold sm:text-base dark:text-stone-50">

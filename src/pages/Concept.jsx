@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import CustomVideoPlayer from "../ui/concept/CustomVideoPlayer";
 import Accordion from "../ui/Accordion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLightbulbOn } from "@fortawesome/pro-solid-svg-icons";
+import { faLightbulbOn, faPlay } from "@fortawesome/pro-solid-svg-icons";
 import SEOHelmet from "../ui/SEOHelmet";
 
 import { items as conceptItems } from "../data/concept/conceptData";
@@ -76,100 +76,165 @@ function Concept() {
         image="/concept-social-sharing.jpg"
       />
 
-      <section className="pt-[2rem] pb-[2rem] bg-green-50/50 dark:bg-stone-900">
-        <FadeSlideUp className="flex flex-col items-start gap-10 p-6 mx-auto md:flex-row sm:items-start lg:items-center max-w-7xl md:items-center">
-          {/* Left Column */}
-          <div className="flex-1">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-full sm:max-w-[30rem] dark:text-stone-50">
-              {isEN ? "Concept" : "コンセプト"}
-            </h1>
-            <p className="pt-5 pb-2 max-w-full sm:max-w-[30rem] text-sm sm:text-base text-stone-900 dark:text-stone-50">
-              {isEN
-                ? "The abstract concept underlying Pixelmine that serves as a crucial foundation for the system's development."
-                : "Pixelmineの根底にある抽象的な概念で、システム開発の重要な基盤となります。"}
-            </p>
+      {/* Hero Section - Matching Hero Style */}
+      <section className="relative pt-32 pb-20 overflow-hidden bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-700 dark:from-emerald-800 dark:via-emerald-900 dark:to-teal-900">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Dotted Pattern Overlay */}
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
+              backgroundSize: "40px 40px",
+            }}
+          />
 
-            <p className="mt-2 mb-5 pt-2 pb-2 max-w-full sm:max-w-[30rem] text-xs sm:text-xs text-stone-900 border-l-4 border-primary pl-5 font-light dark:text-stone-50 dark:border-green-400">
-              {isEN
-                ? "Watch the presentation by Yutaro Sodei, the CEO of Pixelmine Japan. He provides a comprehensive overview of the system and its potential impact on the SNS market."
-                : "Pixelmine JapanのCEO、曽根祐太郎によるプレゼンテーションをご覧ください。システムの全体像とSNS市場への潜在的な影響を紹介します。"}
-            </p>
+          {/* Animated Gradient Blobs */}
+          <div className="absolute rounded-full top-10 left-1/4 w-96 h-96 bg-teal-500/30 blur-3xl animate-pulse" />
+          <div
+            className="absolute rounded-full bottom-10 right-1/4 w-96 h-96 bg-emerald-500/30 blur-3xl animate-pulse"
+            style={{ animationDelay: "1s" }}
+          />
+        </div>
 
-            {/* Switch Buttons */}
-            <StaggerContainer className="flex flex-col gap-5">
-              {videos.map((video) => (
-                <StaggerItem key={video.id}>
-                  <button
-                    onClick={() => handleSwitch(video.id)}
-                    className={`inline-flex transition-all duration-300 ease-in-out text-xs text-start ${
-                      video.id === activeVideoId
-                        ? "text-primary font-semibold dark:text-green-400"
-                        : "text-gray-900 dark:text-stone-50"
-                    }`}
-                  >
-                    <span
-                      className={`flex items-center justify-center ${
-                        video.id === activeVideoId
-                          ? "bg-green-100 text-green-800"
-                          : "bg-gray-100 text-gray-800"
-                      } text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm`}
+        <FadeSlideUp className="relative z-10 flex flex-col items-start gap-12 p-6 mx-auto md:flex-col max-w-7xl lg:gap-16">
+          <div className="flex flex-col items-center gap-12 lg:gap-16 lg:flex-row">
+            {/* Left Column */}
+            <div className="flex-1 text-center md:text-left">
+              {/* Badge */}
+              {/* <div className="flex justify-center mb-6 md:justify-start">
+                <span className="inline-flex items-center px-4 py-1.5 text-xs font-bold tracking-widest text-white uppercase bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg">
+                  {isEN ? "Concept" : "コンセプト"}
+                </span>
+              </div> */}
+
+              {/* Heading */}
+              <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-5xl drop-shadow-lg">
+                {isEN ? "Concept" : "コンセプト"}
+              </h1>
+
+              {/* Description */}
+              <p className="mb-6 text-base leading-relaxed md:text-lg text-emerald-50 drop-shadow-md">
+                {isEN
+                  ? "The abstract concept underlying Pixelmine that serves as a crucial foundation for the system's development."
+                  : "Pixelmineの根底にある抽象的な概念で、システム開発の重要な基盤となります。"}
+              </p>
+
+              {/* Info Box */}
+              <div className="p-5 border-l-4 rounded-r-xl border-white/50 bg-white/10 backdrop-blur-md">
+                <p className="text-sm leading-relaxed text-white/90">
+                  {isEN
+                    ? "Watch the presentation by Yutaro Sodei, the CEO of Pixelmine Japan. He provides a comprehensive overview of the system and its potential impact on the SNS market."
+                    : "Pixelmine JapanのCEO、曽根祐太郎によるプレゼンテーションをご覧ください。システムの全体像とSNS市場への潜在的な影響を紹介します。"}
+                </p>
+              </div>
+            </div>
+
+            {/* Right Column - Video Player */}
+            <div className="flex-1">
+              <AnimatePresence mode="wait">
+                {videos
+                  .filter((video) => video.id === activeVideoId)
+                  .map((video) => (
+                    <motion.div
+                      key={video.id}
+                      variants={slideUpVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                      className="overflow-hidden shadow-2xl rounded-3xl shadow-gray-900/30"
                     >
-                      {video.id}
-                    </span>
-                    {video.title}
-                  </button>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+                      <CustomVideoPlayer
+                        id={video.id}
+                        src={video.src}
+                        isPlaying={playingId === video.id}
+                        onPlay={() => handlePlay(video.id)}
+                      />
+                    </motion.div>
+                  ))}
+              </AnimatePresence>
+            </div>
           </div>
 
-          {/* Right Column with sliding animation */}
-          <div className="flex-1">
-            <AnimatePresence mode="wait">
-              {videos
-                .filter((video) => video.id === activeVideoId)
-                .map((video) => (
-                  <motion.div
-                    key={video.id}
-                    variants={slideUpVariants}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full lg:w-fit h-auto"
-                  >
-                    <CustomVideoPlayer
-                      id={video.id}
-                      src={video.src}
-                      isPlaying={playingId === video.id}
-                      onPlay={() => handlePlay(video.id)}
-                    />
-                  </motion.div>
-                ))}
-            </AnimatePresence>
-          </div>
+          {/* Video Switch Buttons */}
+          <StaggerContainer className="flex flex-col w-full gap-3 lg:flex-row lg:w-auto">
+            {videos.map((video) => (
+              <StaggerItem key={video.id}>
+                <button
+                  onClick={() => handleSwitch(video.id)}
+                  className={`w-full text-left px-5 py-4 rounded-xl transition-all duration-300 group ${
+                    video.id === activeVideoId
+                      ? "bg-white text-gray-900 shadow-xl"
+                      : "bg-white/10 backdrop-blur-md text-white hover:bg-white/20 border border-white/20"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={`flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg font-bold text-sm transition-all ${
+                        video.id === activeVideoId
+                          ? "bg-emerald-600 text-white"
+                          : "bg-white/20 text-white"
+                      }`}
+                    >
+                      {video.id === activeVideoId ? (
+                        <FontAwesomeIcon icon={faPlay} className="size-3" />
+                      ) : (
+                        video.id
+                      )}
+                    </span>
+                    <span
+                      className={`text-sm font-medium leading-relaxed ${
+                        video.id === activeVideoId
+                          ? "text-gray-900"
+                          : "text-white/90"
+                      }`}
+                    >
+                      {video.title}
+                    </span>
+                  </div>
+                </button>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </FadeSlideUp>
       </section>
 
-      <FadeSlideUp element="section" className="pt-[2rem] pb-[2rem]">
-        <div className="items-center gap-10 p-6 mx-auto max-w-7xl sm:flex-row">
-          <FontAwesomeIcon
-            icon={faLightbulbOn}
-            className="p-2 mt-4 rounded bg-primary/80 text-slate-100 size-5"
-          />
-          <p className="mt-5 text-sm text-stone-900 sm:text-base dark:text-stone-50">
-            {isEN
-              ? "The idea behind Pixelmine is to create a platform that empowers users by removing the need for a central authority or server to control user data and interactions..."
-              : "Pixelmineの理念は、ユーザーのデータややり取りを中央の管理者やサーバーに依存せずに、ユーザーが主体的に活用できるプラットフォームを作ることです..."}
-          </p>
-          <Accordion items={conceptItems} language={language} />
-          <p className="mt-5 text-sm text-stone-900 sm:text-base dark:text-stone-50">
-            {isEN
-              ? "We implement a series of substantial measures to ensure that the system effectively adapts to the continually evolving dynamics of the social networking landscape."
-              : "私たちは、システムが急速に進化するソーシャルネットワーキング環境に適応できるよう、さまざまな施策を実施しています。"}
-          </p>
+      {/* Content Section - Clean White Background */}
+      <section className="py-20 bg-gradient-to-b from-emerald-50 to-white dark:from-stone-900 dark:to-stone-800">
+        <div className="p-6 mx-auto max-w-7xl">
+          {/* Icon & Introduction */}
+          <div className="mb-12">
+            <div className="inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 shadow-emerald-500/30">
+              <FontAwesomeIcon
+                icon={faLightbulbOn}
+                className="text-white size-7"
+              />
+            </div>
+
+            <p className="text-base leading-relaxed text-gray-700 sm:text-lg dark:text-stone-300">
+              {isEN
+                ? "The idea behind Pixelmine is to create a platform that empowers users by removing the need for a central authority or server to control user data and interactions. Instead, these platforms distribute information across interconnected nodes, allowing users to communicate directly with one another without intermediaries. The following are essential factors to consider in order to fully comprehend the concept of the system."
+                : "Pixelmineの理念は、ユーザーデータややり取りを中央の管理者やサーバーに依存することなく、ユーザー自身が主体的に利用できるプラットフォームを構築することです。情報は相互に接続されたノードに分散され、ユーザー同士が仲介者なしで直接コミュニケーションできるようになります。以下は、本システムのコンセプトを正しく理解するために考慮すべき重要な要素です。"}
+            </p>
+          </div>
+
+          {/* Accordion */}
+          <div className="mb-12">
+            <Accordion items={conceptItems} language={language} />
+          </div>
+
+          {/* Closing Statement */}
+          <div className="p-8 border-l-4 rounded-r-2xl bg-gradient-to-br from-emerald-50 to-teal-50 border-emerald-600 dark:from-emerald-900/20 dark:to-teal-900/20 dark:border-emerald-600">
+            <p className="text-base leading-relaxed text-gray-700 sm:text-lg dark:text-stone-300">
+              {isEN
+                ? "We implement a series of substantial measures to ensure that the system effectively adapts to the continually evolving dynamics of the social networking landscape."
+                : "私たちは、システムが急速に進化するソーシャルネットワーキング環境に適応できるよう、さまざまな施策を実施しています。"}
+            </p>
+          </div>
         </div>
-      </FadeSlideUp>
+      </section>
     </>
   );
 }

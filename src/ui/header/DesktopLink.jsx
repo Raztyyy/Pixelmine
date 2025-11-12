@@ -52,7 +52,7 @@ function DesktopLink({ links }) {
               />
               {isEN ? "Create Account" : "アカウント作成"}
             </Button>
-            <Button variant="primary" path="/login">
+            <Button variant="modernPrimary" path="/login">
               <FontAwesomeIcon
                 icon={faArrowRightToBracket}
                 className="text-white transition-all duration-300 ease-in-out size-4"

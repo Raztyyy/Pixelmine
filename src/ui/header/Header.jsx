@@ -34,11 +34,11 @@ const links = [
     translatedName: "民主システム",
     path: "democratic-system",
   },
-  {
-    name: "Roadmap",
-    translatedName: "ロードマップ",
-    path: "roadmap",
-  },
+  // {
+  //   name: "Roadmap",
+  //   translatedName: "ロードマップ",
+  //   path: "roadmap",
+  // },
 ];
 
 export default function Header() {

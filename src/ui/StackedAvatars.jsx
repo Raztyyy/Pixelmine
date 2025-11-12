@@ -23,7 +23,7 @@ function StackedAvatars() {
   return (
     <StaggerContainer className="flex -space-x-3">
       {avatars.map((avatar) => (
-        <StaggerItem>
+        <StaggerItem key={avatar.alt}>
           <img
             className="w-10 h-10 border-2 border-white rounded-full"
             src={`/avatars/${avatar.src}`}

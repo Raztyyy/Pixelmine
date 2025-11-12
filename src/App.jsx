@@ -77,7 +77,7 @@ const router = createBrowserRouter([
         element: <NetworkIncentives />,
       },
       { path: "democratic-system", element: <DemocraticSystem /> },
-      { path: "roadmap", element: <Roadmap /> },
+      // { path: "roadmap", element: <Roadmap /> },
 
       { path: "about-us", element: <About /> },
       { path: "news-events", element: <NewsEvents /> },

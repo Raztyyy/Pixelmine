@@ -158,7 +158,7 @@ export default function ContactUsForm() {
               <Switch
                 checked={agreed}
                 onChange={setAgreed}
-                className="flex w-8 p-px rounded-full bg-gray-200 ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out group data-[checked]:bg-primary"
+                className="flex w-8 p-px rounded-full bg-gray-200 ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out group data-[checked]:bg-emerald-600 data-[checked]:shadow-emerald-600/25 font-semibold"
               >
                 <span className="sr-only">Agree to policies</span>
                 <span
@@ -202,7 +202,7 @@ export default function ContactUsForm() {
             disabled={!agreed || isSubmitting}
             className={`flex gap-2 group border rounded-lg w-full items-center justify-center text-center me-2 mb-2 transition-all duration-300 ease-in-out px-6 py-3.5 text-base ${
               agreed
-                ? "bg-primary text-white border-primary hover:bg-primary/80"
+                ? "bg-emerald-600 hover:bg-emerald-700 text-white border-transparent shadow-lg shadow-emerald-600/25 hover:shadow-emerald-600/40 hover:scale-105 font-semibold"
                 : "bg-gray-300 text-stone-500 border-gray-300 cursor-not-allowed"
             }`}
           >
