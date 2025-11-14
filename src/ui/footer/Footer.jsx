@@ -12,6 +12,11 @@ import {
 const company = [
   { name: "About Us", translatedName: "会社概要", path: "about-us" },
   { name: "Contact Us", translatedName: "お問い合わせ", path: "contact-us" },
+  {
+    name: "Investor Relations",
+    translatedName: "投資家情報",
+    path: "investor-relations",
+  },
   { name: "Careers", translatedName: "採用情報", path: "careers" },
   {
     name: "News & Events",

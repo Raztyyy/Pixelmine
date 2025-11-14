@@ -126,7 +126,7 @@ function Concept() {
                 <p className="text-sm leading-relaxed text-white/90">
                   {isEN
                     ? "Watch the presentation by Yutaro Sodei, the CEO of Pixelmine Japan. He provides a comprehensive overview of the system and its potential impact on the SNS market."
-                    : "Pixelmine JapanのCEO、曽根祐太郎によるプレゼンテーションをご覧ください。システムの全体像とSNS市場への潜在的な影響を紹介します。"}
+                    : "Pixelmine JapanのCEO、袖井雄太郎によるプレゼンテーションをご覧ください。システムの全体像とSNS市場への潜在的な影響を紹介します。"}
                 </p>
               </div>
             </div>

@@ -56,6 +56,8 @@ import DocumentationSupport from "./ui/dashboard/documentation/DocumentationSupp
 import AdPointsBuy from "./ui/dashboard/adpoints/AdPointsBuy";
 import AdPointsHistory from "./ui/dashboard/adpoints/AdPointsHistory";
 import AdPaymentMethod from "./ui/dashboard/adpoints/AdPaymentMethod";
+import InvestorsRelations from "./pages/InvestorsRelations";
+import ComingSoon from "./pages/ComingSoon";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -81,6 +83,7 @@ const router = createBrowserRouter([
 
       { path: "about-us", element: <About /> },
       { path: "news-events", element: <NewsEvents /> },
+      { path: "investor-relations", element: <ComingSoon /> },
       { path: "news-events/:news_slug", element: <NewsDetails /> },
       { path: "careers", element: <Careers /> },
       { path: "careers/:role_slug", element: <CareerRole /> },

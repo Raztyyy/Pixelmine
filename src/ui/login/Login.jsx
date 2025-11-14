@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { showToast } from "../../utils/Toast";
 import { useAuth } from "../../context/AuthContext";
-import { useLanguage } from "../../context/LanguageContext"; // <-- added
+import { useLanguage } from "../../context/LanguageContext";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -18,8 +18,8 @@ function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const { login, isAuthenticated } = useAuth();
-  const { language } = useLanguage(); // <-- added
-  const isEN = language === "en"; // <-- added
+  const { language } = useLanguage();
+  const isEN = language === "en";
 
   // ✅ preserve both pathname + query string
   const fromPath = location.state?.from?.pathname || "/dashboard";
@@ -92,21 +92,21 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-5rem)] px-4 bg-gray-100 dark:bg-stone-900">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow dark:bg-stone-800">
+    <div className="flex items-center justify-center min-h-[calc(100vh-5rem)] px-4 py-12 bg-gradient-to-b from-emerald-50 to-white dark:from-stone-900 dark:to-stone-800">
+      <div className="w-full max-w-lg p-8 bg-white border border-gray-200 shadow-2xl md:p-10 rounded-3xl dark:bg-stone-800 dark:border-gray-700">
         {/* Header */}
-        <div className="pb-2 mb-4 border-b">
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-stone-50">
+        <div className="mb-8 text-center">
+          <h3 className="text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
             {isEN ? "Sign in to our platform" : "プラットフォームにサインイン"}
           </h3>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700 dark:text-stone-50"
+              className="block mb-2 text-sm font-medium text-gray-700 dark:text-stone-50"
             >
               {isEN ? "Your email" : "メールアドレス"}
             </label>
@@ -119,14 +119,14 @@ function Login() {
               disabled={isSubmitting}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2.5 mt-1 border rounded-lg text-sm bg-gray-50"
+              className="w-full p-3 text-sm transition-all duration-200 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
             />
           </div>
 
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700 dark:text-stone-50"
+              className="block mb-2 text-sm font-medium text-gray-700 dark:text-stone-50"
             >
               {isEN ? "Your password" : "パスワード"}
             </label>
@@ -139,14 +139,14 @@ function Login() {
               disabled={isSubmitting}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2.5 mt-1 border rounded-lg text-sm bg-gray-50"
+              className="w-full p-3 text-sm transition-all duration-200 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
             />
           </div>
 
           <div className="flex items-center justify-end text-sm">
             <Link
               to="/forgot-password"
-              className="transition-all duration-300 ease-in-out text-primary dark:text-green-400 hover:underline"
+              className="font-medium transition-all duration-300 ease-in-out text-emerald-600 hover:text-emerald-700 hover:underline dark:text-emerald-400 dark:hover:text-emerald-300"
             >
               {isEN ? "Lost password?" : "パスワードをお忘れですか？"}
             </Link>
@@ -155,7 +155,7 @@ function Login() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-primary hover:bg-primary/80 text-white font-medium rounded-lg text-sm px-5 py-2.5 transition-all duration-300 ease-in-out"
+            className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold rounded-xl text-sm px-5 py-3.5 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
             {isSubmitting
               ? isEN
@@ -166,11 +166,11 @@ function Login() {
               : "アカウントにログイン"}
           </button>
 
-          <div className="text-sm text-center text-gray-500 dark:text-stone-50">
+          <div className="text-sm text-center text-gray-600 dark:text-stone-300">
             {isEN ? "Not registered?" : "登録がまだの方は？"}{" "}
             <Link
               to="/signup"
-              className="text-primary hover:underline dark:text-green-400"
+              className="font-semibold text-emerald-600 hover:text-emerald-700 hover:underline dark:text-emerald-400 dark:hover:text-emerald-300"
             >
               {isEN ? "Create account" : "アカウントを作成"}
             </Link>
