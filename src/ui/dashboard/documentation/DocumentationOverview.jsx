@@ -62,35 +62,39 @@ const documentationOverview = [
 function DocumentationOverview() {
   return (
     <div className="text-center">
-      <h2 className="mt-5 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
+      <h2 className="mt-5 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl dark:text-white">
         Welcome to Pixelmine Docs
       </h2>
-      <p className="max-w-5xl mx-auto mt-5 text-sm text-gray-500 md:text-lg">
+      <p className="max-w-5xl mx-auto mt-6 text-base leading-relaxed text-gray-600 md:text-lg dark:text-gray-300">
         This is the central hub for learning how to use the Pixelmine Dashboard.
-        Whether you’re new or experienced, you’ll find everything you need to
+        Whether you're new or experienced, you'll find everything you need to
         get started, explore features, and integrate with our APIs.
       </p>
 
       {/* Quick Links Grid */}
-      <div className="grid grid-cols-1 gap-6 mt-10 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 mt-12 md:grid-cols-2 xl:grid-cols-3">
         {documentationOverview.map((item) => (
           <div
             key={item.title}
-            className="p-5 transition bg-white border shadow-sm rounded-xl hover:shadow-md min-h-[280px] justify-center items-center flex flex-col"
+            className="flex flex-col items-center justify-center p-6 transition-all duration-300 bg-white border border-gray-200 shadow-lg group md:p-8 rounded-2xl hover:shadow-xl hover:scale-105 hover:border-emerald-300 dark:bg-stone-800 dark:border-gray-700 dark:hover:border-emerald-600 min-h-[280px]"
           >
-            <div className="flex flex-col items-center justify-center gap-3">
-              <FontAwesomeIcon
-                icon={item.icon}
-                className="w-5 h-5 p-4 rounded-full bg-primary text-stone-50 ring-4 ring-green-200/45"
-              />
-              <h3 className="mb-2 text-lg font-semibold text-stone-900">
+            <div className="flex flex-col items-center justify-center gap-4 mb-4">
+              <div className="flex items-center justify-center w-16 h-16 transition-all duration-300 shadow-lg rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 group-hover:shadow-xl group-hover:scale-110">
+                <FontAwesomeIcon
+                  icon={item.icon}
+                  className="text-white size-7"
+                />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
                 {item.title}
               </h3>
             </div>
-            <p className="mb-3 text-sm text-gray-600">{item.description}</p>
+            <p className="mb-5 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+              {item.description}
+            </p>
             <NavLink
               to={item.path}
-              className="font-medium text-primary hover:underline"
+              className="font-semibold transition-colors text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 dark:hover:text-emerald-300 hover:underline"
             >
               {item.link}
             </NavLink>

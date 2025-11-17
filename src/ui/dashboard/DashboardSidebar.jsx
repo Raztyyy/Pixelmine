@@ -58,16 +58,16 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
 
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-40 w-80 bg-white dark:bg-zinc-950/95 border-r dark:border-r-stone-400/50 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] transform backdrop-blur-md ${
+      className={`fixed inset-y-0 left-0 z-40 w-80 bg-white dark:bg-stone-900 border-r border-gray-200 dark:border-gray-700 shadow-xl backdrop-blur-md transform ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
-      } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:shadow-none`}
+      } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:shadow-lg`}
     >
       <div className="flex flex-col h-full">
-        <div className="flex items-center justify-between px-4 py-[30px]">
+        <div className="flex items-center justify-between px-6 py-8 ">
           {/* Logo */}
           <Logo paddingX={"3rem"} mode="dark" />
           <button
-            className="lg:hidden dark:text-white"
+            className="text-gray-600 transition-colors lg:hidden dark:text-white hover:text-gray-900 dark:hover:text-gray-300"
             onClick={() => setSidebarOpen(false)}
           >
             <FontAwesomeIcon icon={faX} className="w-5 h-5" />
@@ -77,30 +77,23 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
         <div className="flex flex-col justify-between overflow-y-auto">
           {/* Menu Items 1 Section */}
 
-          <nav className="flex flex-col p-4 gap-y-2">
+          <nav className="flex flex-col p-4 gap-y-1">
             {menuItems.map((item) => (
               <NavLink
                 key={item.name}
                 to={item.path}
                 end={item.path === "/dashboard"} // exact match for dashboard
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
+                  `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
                     isActive
-                      ? "bg-primary/10 dark:bg-zinc-500/30 dark:text-white text-stone-900"
-                      : "text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-500/30"
+                      ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg"
+                      : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-stone-800"
                   }`
                 }
               >
                 {({ isActive }) => (
                   <>
-                    <FontAwesomeIcon
-                      icon={item.icon}
-                      className={`w-5 h-5 ${
-                        isActive
-                          ? "dark:text-green-500 text-primary"
-                          : "dark:text-zinc-500"
-                      }`}
-                    />
+                    <FontAwesomeIcon icon={item.icon} className="w-5 h-5" />
                     <span>{item.name}</span>
                   </>
                 )}
@@ -108,24 +101,25 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             ))}
 
             {/* Separator */}
-            <hr className="my-3 border-0 border-t border-gray-300 dark:border-zinc-700" />
+            <hr className="my-4 border-0 border-t border-gray-200 dark:border-gray-700" />
 
             {/* Menu Items 2 Section */}
             {/* Documentation Collapsible Section */}
             <div>
               <button
                 onClick={() => setIsDocsOpen(!isDocsOpen)}
-                className="flex items-center justify-between w-full px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-500/30"
+                className="flex items-center justify-between w-full px-4 py-3 font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-stone-800"
               >
                 <div className="flex items-center gap-3">
                   <FontAwesomeIcon
                     icon={faFolder}
-                    className="w-5 h-5 dark:text-zinc-500"
+                    className="w-5 h-5 text-gray-500 dark:text-gray-400"
                   />
                   <span>Documentation</span>
                 </div>
                 <FontAwesomeIcon
                   icon={isDocsOpen ? faChevronUp : faChevronDown}
+                  className="w-4 h-4 text-gray-400"
                 />
               </button>
 
@@ -133,7 +127,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 {isDocsOpen && (
                   <Collapse
                     element="ul"
-                    className="mt-1 space-y-1 pl-9"
+                    className="mt-2 space-y-1 pl-9"
                     id="docs-menu"
                   >
                     {DocumentationMenu.map((sub) => (
@@ -143,10 +137,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           to={sub.path}
                           end={sub.path === "/dashboard/documentation"} // exact for Overview
                           className={({ isActive }) =>
-                            `flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${
+                            `flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 ${
                               isActive
-                                ? "bg-primary/10 dark:bg-zinc-500/30 text-primary dark:text-green-500"
-                                : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-zinc-500/30"
+                                ? "bg-emerald-50 text-emerald-700 font-semibold dark:bg-emerald-900/20 dark:text-emerald-400"
+                                : "text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-stone-800/50"
                             }`
                           }
                         >
@@ -160,34 +154,35 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             </div>
 
             {/* Collapsible Section */}
-            <div>
+            <div className="mt-1">
               <button
                 onClick={() => setIsReportsOpen(!isReportsOpen)}
-                className="flex items-center justify-between w-full px-3 py-2 text-gray-700 rounded-md hover:bg-gray-100 dark:text-white dark:hover:bg-zinc-500/30"
+                className="flex items-center justify-between w-full px-4 py-3 font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-stone-800"
               >
                 <div className="flex items-center gap-3">
                   <FontAwesomeIcon
                     icon={faHundredPoints}
-                    className="w-5 h-5 dark:text-zinc-500"
+                    className="w-5 h-5 text-gray-500 dark:text-gray-400"
                   />
                   <span>Ad Points</span>
                 </div>
                 <FontAwesomeIcon
                   icon={isReportsOpen ? faChevronUp : faChevronDown}
+                  className="w-4 h-4 text-gray-400"
                 />
               </button>
               <AnimatePresence>
                 {isReportsOpen && (
-                  <Collapse className="mt-1 space-y-1 pl-9">
+                  <Collapse className="mt-2 space-y-1 pl-9">
                     {AdPointsMenu.map((sub) => (
                       <NavLink
                         key={sub.name}
                         to={sub.path}
                         className={({ isActive }) =>
-                          `flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors ${
+                          `flex items-center gap-3 px-4 py-2 rounded-lg text-sm transition-all duration-200 ${
                             isActive
-                              ? "bg-primary/10 dark:bg-zinc-500/30 text-primary dark:text-green-500"
-                              : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-zinc-500/30"
+                              ? "bg-emerald-50 text-emerald-700 font-semibold dark:bg-emerald-900/20 dark:text-emerald-400"
+                              : "text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-stone-800/50"
                           }`
                         }
                       >
@@ -195,11 +190,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           <>
                             <FontAwesomeIcon
                               icon={sub.icon}
-                              className={`w-4 h-4 ${
-                                isActive
-                                  ? "text-primary dark:text-green-500"
-                                  : "dark:text-zinc-500"
-                              }`}
+                              className="w-4 h-4"
                             />
                             <span>{sub.name}</span>
                           </>
@@ -213,13 +204,13 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
           </nav>
 
           {/* Logout Button */}
-          <div className="w-full p-4 ">
+          <div className="w-full p-4 border-t border-gray-200 dark:border-gray-700">
             <button
               onClick={() => {
                 localStorage.removeItem("token");
                 window.location.href = "/login";
               }}
-              className="flex items-center w-full gap-3 px-3 py-2 text-red-600 transition-colors rounded-md dark:text-red-400 hover:bg-red-50 dark:hover:bg-zinc-500/30"
+              className="flex items-center w-full gap-3 px-4 py-3 font-medium text-red-600 transition-all duration-200 rounded-xl dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20"
             >
               <FontAwesomeIcon
                 icon={faArrowRightFromBracket}

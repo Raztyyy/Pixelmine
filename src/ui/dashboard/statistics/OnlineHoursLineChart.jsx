@@ -45,51 +45,108 @@ const OnlineHoursLineChart = ({ data }) => {
       {
         label: "Online Hours",
         data: values,
-        fill: false,
-        borderColor: isDark ? "#86efac" : "#22c55e", // Tailwind green-500 or green-800
-        tension: 0.3,
+        fill: true,
+        backgroundColor: isDark
+          ? "rgba(16, 185, 129, 0.1)"
+          : "rgba(16, 185, 129, 0.05)",
+        borderColor: isDark ? "#34d399" : "#10b981",
+        borderWidth: 3,
+        pointBackgroundColor: isDark ? "#34d399" : "#10b981",
+        pointBorderColor: "#ffffff",
+        pointBorderWidth: 2,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        pointHoverBackgroundColor: isDark ? "#6ee7b7" : "#059669",
+        pointHoverBorderColor: "#ffffff",
+        pointHoverBorderWidth: 3,
+        tension: 0.4,
       },
     ],
   };
 
   const options = {
     responsive: true,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
         display: true,
         position: "top",
         labels: {
-          color: isDark ? "#e5e7eb" : "#000000", // text-gray-200 or black
-          font: { size: 14, weight: "500" },
+          color: isDark ? "#d1d5db" : "#374151",
+          font: { size: 14, weight: "600" },
           padding: 20,
           boxWidth: 12,
+          usePointStyle: true,
+          pointStyle: "circle",
         },
       },
       title: { display: false },
+      tooltip: {
+        backgroundColor: isDark ? "#1f2937" : "#ffffff",
+        titleColor: isDark ? "#f3f4f6" : "#111827",
+        bodyColor: isDark ? "#d1d5db" : "#374151",
+        borderColor: isDark ? "#374151" : "#e5e7eb",
+        borderWidth: 1,
+        padding: 12,
+        displayColors: true,
+        boxPadding: 6,
+        usePointStyle: true,
+        callbacks: {
+          label: function (context) {
+            return ` ${context.dataset.label}: ${context.parsed.y} hours`;
+          },
+        },
+      },
     },
     scales: {
       x: {
-        ticks: { color: isDark ? "#e5e7eb" : "#000000" },
-        grid: { color: isDark ? "#6b7280" : "#d6d3d1" }, // gray-700 or gray-200
+        ticks: {
+          color: isDark ? "#9ca3af" : "#6b7280",
+          font: { size: 12, weight: "500" },
+          padding: 8,
+        },
+        grid: {
+          color: isDark ? "#374151" : "#f3f4f6",
+          lineWidth: 1,
+        },
+        border: {
+          color: isDark ? "#4b5563" : "#e5e7eb",
+        },
       },
       y: {
         beginAtZero: true,
-        ticks: { color: isDark ? "#e5e7eb" : "#000000" },
-        grid: { color: isDark ? "#6b7280" : "#d6d3d1" },
+        ticks: {
+          color: isDark ? "#9ca3af" : "#6b7280",
+          font: { size: 12, weight: "500" },
+          padding: 8,
+        },
+        grid: {
+          color: isDark ? "#374151" : "#f3f4f6",
+          lineWidth: 1,
+        },
+        border: {
+          color: isDark ? "#4b5563" : "#e5e7eb",
+        },
       },
+    },
+    interaction: {
+      intersect: false,
+      mode: "index",
     },
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full mx-auto max-w-7xl lg:p-8">
-      <h2 className="mb-5 font-semibold text-gray-800 dark:text-gray-200">
+    <div className="flex flex-col items-center justify-center w-full mx-auto max-w-7xl">
+      <h2 className="mb-6 text-lg font-bold text-gray-900 dark:text-white">
         User Online Hours per Month
       </h2>
-      <Line
-        key={isDark ? "dark" : "light"}
-        data={chartData}
-        options={options}
-      />
+      <div className="w-full">
+        <Line
+          key={isDark ? "dark" : "light"}
+          data={chartData}
+          options={options}
+        />
+      </div>
     </div>
   );
 };

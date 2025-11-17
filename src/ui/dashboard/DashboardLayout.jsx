@@ -8,7 +8,7 @@ export default function DashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen bg-slate-50">
+    <div className="flex h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-stone-900 dark:to-stone-950">
       {/* Sidebar */}
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
@@ -21,7 +21,7 @@ export default function DashboardLayout() {
         />
 
         {/* Page content */}
-        <main className="flex-1 p-4 overflow-y-auto lg:p-8 dark:bg-zinc-800">
+        <main className="flex-1 p-4 overflow-y-auto lg:p-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-stone-900 dark:to-stone-950">
           <Outlet />
         </main>
       </div>

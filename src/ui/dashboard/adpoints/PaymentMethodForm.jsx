@@ -59,18 +59,36 @@ export default function PaymentMethodForm({ token, onAdd }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <label className="block text-sm font-medium text-gray-700">
-        Card Details
-      </label>
-      <div className="p-3 border rounded-md">
-        <CardElement options={{ hidePostalCode: true }} />
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div>
+        <label className="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
+          Card Details
+        </label>
+        <div className="p-4 transition-all duration-200 border border-gray-300 shadow-sm rounded-xl focus-within:ring-2 focus-within:ring-emerald-500 focus-within:border-emerald-500 dark:bg-stone-700 dark:border-gray-600">
+          <CardElement
+            options={{
+              hidePostalCode: true,
+              style: {
+                base: {
+                  fontSize: "16px",
+                  color: "#374151",
+                  "::placeholder": {
+                    color: "#9ca3af",
+                  },
+                },
+                invalid: {
+                  color: "#ef4444",
+                },
+              },
+            }}
+          />
+        </div>
       </div>
 
       <button
         type="submit"
         disabled={loading || !stripe}
-        className="w-full py-2.5 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
+        className="w-full py-3.5 rounded-xl font-semibold text-white transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-lg"
       >
         {loading ? "Saving..." : "Save Payment Method"}
       </button>

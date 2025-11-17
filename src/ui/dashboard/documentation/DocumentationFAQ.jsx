@@ -68,32 +68,32 @@ const faqItems = [
 
 function DocumentationFAQ() {
   return (
-    <div className="p-10 bg-white border shadow-sm rounded-xl">
+    <div className="p-8 bg-white border border-gray-200 shadow-xl md:p-12 rounded-3xl dark:bg-stone-800 dark:border-gray-700">
       {/* Go Back Button */}
       <button
-        className="flex items-center justify-center text-lg text-gray-500 transition-all duration-300 ease-in-out group hover:text-primary dark:text-stone-50 dark:hover:text-green-400"
+        className="flex items-center justify-center text-base font-medium text-gray-600 transition-all duration-300 ease-in-out group hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400"
         onClick={useMoveBack()}
       >
-        <span className="flex items-center justify-center mr-1">
+        <span className="flex items-center justify-center mr-2">
           <FontAwesomeIcon
             icon={faAngleLeft}
-            className="text-gray-500 transition-all duration-300 ease-in-out size-7 group-hover:text-primary dark:text-stone-50 dark:group-hover:text-green-400"
+            className="transition-all duration-300 ease-in-out size-5 group-hover:-translate-x-1"
           />
         </span>
         Go Back
       </button>
 
       {/* Page Title */}
-      <h2 className="mt-10 text-3xl font-bold text-gray-900 md:text-4xl">
+      <h2 className="mt-10 text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">
         Frequently Asked Questions
       </h2>
-      <p className="mt-3 text-gray-600 md:text-lg">
+      <p className="mt-4 text-base leading-relaxed text-gray-600 md:text-lg dark:text-gray-300">
         Find answers to the most common questions about Pixelmine Japan. If you
-        can’t find what you’re looking for, please contact our support team.
+        can't find what you're looking for, please contact our support team.
       </p>
 
       {/* Accordion FAQ */}
-      <div className="mt-8">
+      <div className="mt-10">
         <Accordion items={faqItems} />
       </div>
     </div>

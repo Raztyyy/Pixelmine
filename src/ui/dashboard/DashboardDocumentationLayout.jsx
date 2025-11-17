@@ -37,23 +37,27 @@ export default function DashboardDocumentationLayout() {
   // ];
 
   return (
-    <div className="mx-auto ">
+    <div className="mx-auto">
       {/* Breadcrumb */}
-      <div className="mt-4 mb-4 text-sm text-gray-500 ">
-        <div className=" px-4 py-2 rounded-full bg-white/40 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] inline ">
-          <NavLink to="/dashboard/documentation" className="text-gray-700 ">
+      <div className="mt-6 mb-6">
+        <div className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full bg-white border border-gray-200 shadow-lg dark:bg-stone-800 dark:border-gray-700">
+          <NavLink
+            to="/dashboard/documentation"
+            className="text-gray-700 transition-colors hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400"
+          >
             Home
-          </NavLink>{" "}
-          -{" "}
-          <span className="font-semibold text-primary">
+          </NavLink>
+          <span className="text-gray-400 dark:text-gray-600">/</span>
+          <span className="font-semibold text-emerald-600 dark:text-emerald-400">
             {breadcrumbMap[location.pathname] || "Docs"}
           </span>
         </div>
-        {/* Main content */}
-        <main className="mt-14">
-          <Outlet />
-        </main>
       </div>
+
+      {/* Main content */}
+      <main className="mt-8">
+        <Outlet />
+      </main>
     </div>
   );
 }

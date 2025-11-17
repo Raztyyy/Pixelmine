@@ -11,7 +11,7 @@ function Accordion({ items }) {
   return (
     <div
       id="accordion-flush"
-      className="w-full"
+      className="w-full space-y-3"
       data-accordion="collapse"
       data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
       data-inactive-classes="text-gray-500 dark:text-gray-400"

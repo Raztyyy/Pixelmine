@@ -91,17 +91,16 @@ function DashboardOverview() {
         image="/social-sharing.jpg"
       />
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-[25%_1fr]">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-[25%_1fr]">
         {/* Box 1: Total Running Storer */}
-        <div className="flex flex-col items-center justify-center p-6 bg-white rounded-md shadow dark:bg-zinc-700 dark:border dark:border-stone-400/25 text-stone-900">
-          <FontAwesomeIcon
-            icon={faServer}
-            className="w-5 h-5 p-4 rounded-full bg-primary text-stone-50"
-          />
-          <h2 className="mt-5 mb-2 text-md dark:text-stone-300">
+        <div className="flex flex-col items-center justify-center p-8 bg-white border border-gray-200 shadow-lg rounded-2xl dark:bg-stone-800 dark:border-gray-700">
+          <div className="flex items-center justify-center w-16 h-16 mb-5 shadow-lg rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600">
+            <FontAwesomeIcon icon={faServer} className="text-white size-7" />
+          </div>
+          <h2 className="mb-3 text-sm font-semibold text-gray-600 dark:text-gray-400">
             Total Running Storer
           </h2>
-          <p className="text-5xl font-bold dark:text-white">
+          <p className="text-5xl font-bold text-gray-900 dark:text-white">
             {(locationStatus ?? []).reduce(
               (sum, city) => sum + (city.running || 0),
               0
@@ -110,18 +109,18 @@ function DashboardOverview() {
         </div>
 
         {/* Box 2: Filters and available slots */}
-        <div className="p-6 bg-white rounded-lg shadow dark:bg-zinc-700 dark:border dark:border-stone-400/25">
-          <h2 className="mb-5 text-lg font-bold text-gray-700 dark:text-white">
+        <div className="p-8 bg-white border border-gray-200 shadow-lg rounded-2xl dark:bg-stone-800 dark:border-gray-700">
+          <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">
             Check storer status by location
           </h2>
-          <div className="flex gap-4 mb-4">
+          <div className="flex flex-col gap-4 mb-6 md:flex-row">
             {/* Country select */}
             <div className="w-1/2">
-              <label className="block mb-1 text-sm text-gray-700 dark:text-stone-100">
+              <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                 Country
               </label>
               <select
-                className="w-full p-2 text-sm border rounded-md bg-gray-50"
+                className="w-full p-3 text-sm transition-all duration-200 border border-gray-300 bg-gray-50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white"
                 value={selectedCountry}
                 onChange={(e) => {
                   setSelectedCountry(e.target.value);
@@ -137,49 +136,55 @@ function DashboardOverview() {
               </select>
             </div>
             {/* City select */}
-            <div className="w-1/2">
-              <label className="block mb-1 text-sm text-gray-700 dark:text-stone-100">
-                City
-              </label>
-              <select
-                className="w-full p-2 text-sm border rounded-md bg-gray-50"
-                value={selectedCity}
-                onChange={(e) => setSelectedCity(e.target.value)}
-                disabled={!selectedCountry}
-              >
-                <option value="">Select City</option>
-                {cityOptions.map((city) => (
-                  <option key={city.name} value={city.name}>
-                    {city.name}
-                  </option>
-                ))}
-              </select>
-            </div>
+            {selectedCountry && (
+              <div className="w-1/2">
+                <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                  City
+                </label>
+
+                <select
+                  className={`w-full p-3 text-sm transition-all duration-200 border border-gray-300 bg-gray-50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white`}
+                  value={selectedCity}
+                  onChange={(e) => setSelectedCity(e.target.value)}
+                >
+                  <option value="">Select City</option>
+                  {cityOptions.map((city) => (
+                    <option key={city.name} value={city.name}>
+                      {city.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
 
           {selectedCity && (
-            <div className="flex flex-col justify-between gap-5 mt-5 lg:flex-row">
-              <div className="w-full p-5 text-center rounded-md shadow text-stone-900 dark:bg-zinc-600/20 dark:border dark:border-stone-400/30">
-                <FontAwesomeIcon
-                  icon={faBolt}
-                  className="w-4 h-4 p-2 rounded-full bg-primary text-stone-50"
-                />
-                <h2 className="mt-2 mb-1 text-sm font-medium dark:text-white">
+            <div className="flex flex-col justify-between gap-5 mt-6 lg:flex-row">
+              <div className="flex flex-col items-center w-full p-6 text-center border border-gray-200 shadow-md bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 dark:border-gray-700 rounded-2xl">
+                <div className="flex items-center justify-center w-12 h-12 mb-3 shadow-lg rounded-xl bg-gradient-to-br from-emerald-600 to-teal-600">
+                  <FontAwesomeIcon
+                    icon={faBolt}
+                    className="text-white size-5"
+                  />
+                </div>
+                <h2 className="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Storer Running
                 </h2>
-                <p className="text-2xl font-bold dark:text-white">
+                <p className="text-3xl font-bold text-gray-900 dark:text-white">
                   {selectedCityData.running ?? "--"}
                 </p>
               </div>
-              <div className="w-full p-5 text-center rounded-md shadow text-stone-900 dark:bg-zinc-600/20 dark:border dark:border-stone-400/30">
-                <FontAwesomeIcon
-                  icon={faBoxOpen}
-                  className="w-4 h-4 p-2 rounded-full bg-primary text-stone-50"
-                />
-                <h2 className="mt-2 mb-1 text-sm font-medium dark:text-white">
+              <div className="flex flex-col items-center w-full p-6 text-center border border-gray-200 shadow-md bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 dark:border-gray-700 rounded-2xl">
+                <div className="flex items-center justify-center w-12 h-12 mb-3 shadow-lg rounded-xl bg-gradient-to-br from-emerald-600 to-teal-600">
+                  <FontAwesomeIcon
+                    icon={faBoxOpen}
+                    className="text-white size-5"
+                  />
+                </div>
+                <h2 className="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Available Storer Slot
                 </h2>
-                <p className="text-2xl font-bold dark:text-white">
+                <p className="text-3xl font-bold text-gray-900 dark:text-white">
                   {selectedCityData.available ?? "--"}
                 </p>
               </div>
@@ -189,35 +194,33 @@ function DashboardOverview() {
       </div>
 
       {/* Box 3 + Box 4 */}
-      <div className="mt-4 grid grid-cols-1 2xl:grid-cols-[25%_1fr] gap-4">
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col items-center justify-center h-full p-6 bg-white rounded-md shadow dark:bg-zinc-700 dark:border dark:border-stone-400/25 text-stone-900">
-            <FontAwesomeIcon
-              icon={faBolt}
-              className="w-5 h-5 p-4 rounded-full bg-primary text-stone-50"
-            />
-            <h2 className="mt-5 mb-2 text-md dark:text-stone-300">
+      <div className="mt-6 grid grid-cols-1 2xl:grid-cols-[25%_1fr] gap-6">
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col items-center justify-center h-full p-8 bg-white border border-gray-200 shadow-lg rounded-2xl dark:bg-stone-800 dark:border-gray-700">
+            <div className="flex items-center justify-center w-16 h-16 mb-5 shadow-lg rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600">
+              <FontAwesomeIcon icon={faBolt} className="text-white size-7" />
+            </div>
+            <h2 className="mb-3 text-sm font-semibold text-gray-600 dark:text-gray-400">
               Activity Points
             </h2>
-            <p className="text-3xl font-bold dark:text-white">
+            <p className="text-4xl font-bold text-gray-900 dark:text-white">
               {statistics.activity_points ?? "--"}
             </p>
           </div>
-          <div className="flex flex-col items-center justify-center h-full p-6 bg-white rounded-md shadow dark:bg-zinc-700 dark:border dark:border-stone-400/25 text-stone-900">
-            <FontAwesomeIcon
-              icon={faBolt}
-              className="w-5 h-5 p-4 rounded-full bg-primary text-stone-50"
-            />
-            <h2 className="mt-5 mb-2 text-md dark:text-stone-300">
+          <div className="flex flex-col items-center justify-center h-full p-8 bg-white border border-gray-200 shadow-lg rounded-2xl dark:bg-stone-800 dark:border-gray-700">
+            <div className="flex items-center justify-center w-16 h-16 mb-5 shadow-lg rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600">
+              <FontAwesomeIcon icon={faBolt} className="text-white size-7" />
+            </div>
+            <h2 className="mb-3 text-sm font-semibold text-gray-600 dark:text-gray-400">
               PXL Points
             </h2>
-            <p className="text-3xl font-bold dark:text-white">
+            <p className="text-4xl font-bold text-gray-900 dark:text-white">
               {statistics.pxl_points ?? "--"} PXL
             </p>
           </div>
         </div>
 
-        <div className="flex items-center justify-center p-6 bg-white rounded-md shadow dark:bg-zinc-700 dark:border dark:border-stone-400/25 text-stone-900">
+        <div className="flex items-center justify-center p-8 bg-white border border-gray-200 shadow-lg rounded-2xl dark:bg-stone-800 dark:border-gray-700">
           <OnlineHoursLineChart data={statistics.online_hours_per_month} />
         </div>
       </div>

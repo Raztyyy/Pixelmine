@@ -11,13 +11,13 @@ function SelectWithIcon({ value, onChange, children, className }) {
       <select
         value={value}
         onChange={onChange}
-        className={`p-2 pr-8 border rounded-lg shadow-sm appearance-none ${className}`}
+        className={`p-3 pr-10 border border-gray-300 rounded-xl shadow-sm appearance-none transition-all duration-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white ${className}`}
       >
         {children}
       </select>
       <FontAwesomeIcon
         icon={faChevronDown}
-        className="absolute w-4 h-4 text-gray-500 -translate-y-1/2 pointer-events-none right-2 top-1/2"
+        className="absolute w-4 h-4 text-gray-400 -translate-y-1/2 pointer-events-none right-3 top-1/2"
       />
     </div>
   );
@@ -132,15 +132,15 @@ function AdPointsHistory() {
   };
 
   return (
-    <div className="p-4 bg-white shadow-md rounded-xl dark:bg-stone-800">
+    <div className="p-6 bg-white border border-gray-200 shadow-xl md:p-8 rounded-2xl dark:bg-stone-800 dark:border-gray-700">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-stone-50">
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
           Transaction History
         </h2>
         {/* Mobile filter toggle */}
         <button
-          className="flex items-center gap-2 px-3 py-1 text-sm border rounded-lg 2xl:hidden"
+          className="flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors border border-gray-300 rounded-xl 2xl:hidden hover:bg-gray-50 dark:border-gray-600 dark:text-white dark:hover:bg-stone-700"
           onClick={() => setFiltersOpen((prev) => !prev)}
         >
           Filters
@@ -157,9 +157,9 @@ function AdPointsHistory() {
             placeholder="Search by ID..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            className="p-2 border rounded-lg shadow-sm"
+            className="p-3 transition-all duration-200 border border-gray-300 shadow-sm rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white"
           />
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3">
             <SelectWithIcon
               value={filterType}
               onChange={(e) => updateParam("type", e.target.value)}
@@ -207,7 +207,7 @@ function AdPointsHistory() {
 
             <button
               onClick={exportCSV}
-              className="px-3 py-1 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700"
+              className="px-4 py-3 text-sm font-semibold text-white transition-all duration-200 shadow-md bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg"
             >
               Export CSV
             </button>
@@ -222,7 +222,7 @@ function AdPointsHistory() {
               placeholder="Search by ID..."
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              className="p-2 border rounded-lg shadow-sm"
+              className="p-3 transition-all duration-200 border border-gray-300 shadow-sm rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white"
             />
             <SelectWithIcon
               value={filterType}
@@ -276,7 +276,7 @@ function AdPointsHistory() {
 
             <button
               onClick={exportCSV}
-              className="px-3 py-2 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700"
+              className="px-4 py-3 text-sm font-semibold text-white transition-all duration-200 shadow-md bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg"
             >
               Export CSV
             </button>
@@ -289,13 +289,27 @@ function AdPointsHistory() {
         <table className="min-w-full text-sm border-separate border-spacing-y-2">
           <thead className="bg-gray-100 dark:bg-stone-700">
             <tr>
-              <th className="p-3 text-left">Transaction ID</th>
-              <th className="p-3 text-left">Date</th>
-              <th className="p-3 text-left">Purchased Points</th>
-              <th className="p-3 text-left">Amount</th>
-              <th className="p-3 text-left">Type</th>
-              <th className="p-3 text-left">Status</th>
-              <th className="p-3 text-left">Action</th>
+              <th className="p-4 font-semibold text-left text-gray-700 dark:text-gray-300">
+                Transaction ID
+              </th>
+              <th className="p-4 font-semibold text-left text-gray-700 dark:text-gray-300">
+                Date
+              </th>
+              <th className="p-4 font-semibold text-left text-gray-700 dark:text-gray-300">
+                Purchased Points
+              </th>
+              <th className="p-4 font-semibold text-left text-gray-700 dark:text-gray-300">
+                Amount
+              </th>
+              <th className="p-4 font-semibold text-left text-gray-700 dark:text-gray-300">
+                Type
+              </th>
+              <th className="p-4 font-semibold text-left text-gray-700 dark:text-gray-300">
+                Status
+              </th>
+              <th className="p-4 font-semibold text-left text-gray-700 dark:text-gray-300">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -303,28 +317,38 @@ function AdPointsHistory() {
               currentItems.map((txn) => (
                 <tr
                   key={txn.id}
-                  className="bg-white border rounded-lg shadow-sm dark:bg-stone-900"
+                  className="transition-colors bg-white border border-gray-200 shadow-sm hover:bg-gray-50 dark:bg-stone-900 dark:border-gray-700 dark:hover:bg-stone-800 rounded-xl"
                 >
-                  <td className="p-3">{txn.id}</td>
-                  <td className="p-3">{txn.date}</td>
-                  <td className="p-3 text-left">{txn.points}</td>
-                  <td className="p-3 text-left">₱{txn.amount}</td>
-                  <td className="p-3 text-left capitalize">{txn.type}</td>
-                  <td className="p-3 text-left">
+                  <td className="p-4 text-gray-900 dark:text-white">
+                    {txn.id}
+                  </td>
+                  <td className="p-4 text-gray-900 dark:text-white">
+                    {txn.date}
+                  </td>
+                  <td className="p-4 text-gray-900 dark:text-white">
+                    {txn.points}
+                  </td>
+                  <td className="p-4 text-gray-900 dark:text-white">
+                    ₱{txn.amount}
+                  </td>
+                  <td className="p-4 text-gray-900 capitalize dark:text-white">
+                    {txn.type}
+                  </td>
+                  <td className="p-4">
                     <span
-                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      className={`px-3 py-1.5 rounded-full text-xs font-semibold ${
                         txn.status === "Completed"
-                          ? "bg-green-100 text-green-700"
+                          ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400"
                           : txn.status === "Pending"
-                          ? "bg-yellow-100 text-yellow-700"
-                          : "bg-red-100 text-red-700"
+                          ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400"
+                          : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
                       }`}
                     >
                       {txn.status}
                     </span>
                   </td>
-                  <td className="p-3 text-left">
-                    <button className="px-3 py-1 text-sm text-white bg-blue-500 rounded-lg hover:bg-blue-600">
+                  <td className="p-4">
+                    <button className="px-4 py-2 text-sm font-semibold text-white transition-all duration-200 rounded-lg shadow-md bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg">
                       View
                     </button>
                   </td>
@@ -334,7 +358,7 @@ function AdPointsHistory() {
               <tr>
                 <td
                   colSpan="7"
-                  className="p-4 text-center text-gray-500 dark:text-gray-400"
+                  className="p-6 text-center text-gray-500 dark:text-gray-400"
                 >
                   No transactions found
                 </td>
@@ -346,8 +370,8 @@ function AdPointsHistory() {
 
       {/* Pagination */}
       {!!mockTransactions.length && (
-        <div className="flex flex-col items-center gap-6 mt-6 lg:flex-row lg:justify-between">
-          <div className="text-sm text-gray-500">
+        <div className="flex flex-col items-center gap-6 mt-8 lg:flex-row lg:justify-between">
+          <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
             Total: {filteredData.length}
           </div>
 
@@ -357,7 +381,7 @@ function AdPointsHistory() {
               onClick={() =>
                 updateParam("page", (currentPage - 1).toString(), false)
               }
-              className="px-3 py-1 bg-white border rounded hover:bg-gray-100 disabled:opacity-50"
+              className="px-4 py-2 font-medium transition-colors bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-stone-700 dark:border-gray-600 dark:text-white dark:hover:bg-stone-600"
             >
               ←
             </button>
@@ -366,10 +390,10 @@ function AdPointsHistory() {
               <button
                 key={i}
                 onClick={() => updateParam("page", (i + 1).toString(), false)}
-                className={`px-3 py-1 rounded border ${
+                className={`px-4 py-2 font-medium rounded-lg border transition-all duration-200 ${
                   currentPage === i + 1
-                    ? "bg-blue-600 text-white border-blue-600"
-                    : "bg-white hover:bg-gray-100"
+                    ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white border-emerald-600 shadow-md"
+                    : "bg-white border-gray-300 hover:bg-gray-50 dark:bg-stone-700 dark:border-gray-600 dark:text-white dark:hover:bg-stone-600"
                 }`}
               >
                 {i + 1}
@@ -381,18 +405,20 @@ function AdPointsHistory() {
               onClick={() =>
                 updateParam("page", (currentPage + 1).toString(), false)
               }
-              className="px-3 py-1 bg-white border rounded hover:bg-gray-100 disabled:opacity-50"
+              className="px-4 py-2 font-medium transition-colors bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed dark:bg-stone-700 dark:border-gray-600 dark:text-white dark:hover:bg-stone-600"
             >
               →
             </button>
           </div>
 
-          <div className="flex items-center gap-2 text-sm">
-            <span>Show per Page:</span>
+          <div className="flex items-center gap-3 text-sm">
+            <span className="font-medium text-gray-700 dark:text-gray-300">
+              Show per Page:
+            </span>
             <select
               value={itemsPerPage}
               onChange={(e) => updateParam("limit", e.target.value)}
-              className="p-1 border rounded"
+              className="p-2 transition-all duration-200 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white"
             >
               <option value="5">5</option>
               <option value="10">10</option>

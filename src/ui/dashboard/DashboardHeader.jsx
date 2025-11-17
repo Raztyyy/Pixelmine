@@ -35,10 +35,10 @@ function DashboardHeader({ sidebarOpen, setSidebarOpen }) {
   };
 
   return (
-    <header className="flex items-center justify-between px-4 py-[12px] lg:px-8 lg:py-[20px] bg-white dark:bg-zinc-800 border-b border-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] dark:border-stone-400/50">
+    <header className="flex items-center justify-between px-4 py-4 bg-white border-b border-gray-200 shadow-sm lg:px-8 lg:py-5 dark:bg-stone-900 dark:border-gray-700 backdrop-blur-md">
       {/* Sidebar toggle button */}
       <button
-        className="lg:hidden dark:text-white"
+        className="p-2 text-gray-600 transition-colors rounded-lg lg:hidden dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-stone-800"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
         <FontAwesomeIcon
@@ -48,18 +48,21 @@ function DashboardHeader({ sidebarOpen, setSidebarOpen }) {
       </button>
 
       {/* Page title */}
-      <h1 className="text-xl text-stone-900 dark:text-white">
+      <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
         {getPageTitle()}
       </h1>
 
       {/* Profile Dropdown */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         <div className="flex-col items-end hidden text-sm lg:flex">
-          <div className="text-stone-900 dark:text-white">
+          <div className="font-semibold text-gray-900 dark:text-white">
             {user?.first_name} {user?.last_name}
           </div>
-          <div className="flex items-center gap-1 text-xs text-stone-500 dark:text-stone-300">
-            <span className="inline-block w-2 h-2 bg-green-500 rounded-full dark:bg-green-400"></span>
+          <div className="flex items-center gap-1.5 text-xs text-gray-600 dark:text-gray-400">
+            <span className="relative flex w-2 h-2">
+              <span className="absolute inline-flex w-full h-full rounded-full opacity-75 bg-emerald-400 animate-ping"></span>
+              <span className="relative inline-flex w-2 h-2 rounded-full bg-emerald-500"></span>
+            </span>
             Online
           </div>
         </div>

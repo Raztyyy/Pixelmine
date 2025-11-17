@@ -37,15 +37,15 @@ export default function AdPointsBuy() {
 
   return (
     <div className="text-center">
-      <h2 className="mt-16 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
+      <h2 className="mt-16 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl dark:text-white">
         Ad Points Top Up
       </h2>
-      <p className="max-w-5xl mx-auto mt-5 text-sm text-gray-500 md:text-lg">
+      <p className="max-w-5xl mx-auto mt-5 text-base leading-relaxed text-gray-600 md:text-lg dark:text-gray-300">
         Manage your Ad Points — purchase packages, redeem codes, and keep your
         campaigns running smoothly.
       </p>
 
-      <div className="flex justify-center gap-4 mt-10 mb-10">
+      <div className="flex justify-center gap-3 mt-10 mb-10">
         {tabs.map((tab) => (
           <button
             key={tab.key}
@@ -53,10 +53,10 @@ export default function AdPointsBuy() {
               setActiveTab(tab.key);
               setSelectedPackage(null);
             }}
-            className={`px-4 py-2 text-sm rounded-full bg-white shadow-sm ${
+            className={`px-6 py-3 text-sm font-semibold rounded-xl transition-all duration-200 ${
               activeTab === tab.key
-                ? "border-primary text-primary font-semibold ring-2 ring-primary bg-green-200/15"
-                : "border-transparent text-gray-500 hover:text-primary"
+                ? "bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg"
+                : "bg-white text-gray-600 border border-gray-300 hover:bg-gray-50 dark:bg-stone-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-stone-700"
             }`}
           >
             {tab.label}
@@ -186,24 +186,26 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
   return (
     <div>
       {/* Ad point packages and custom form */}
-      <div className="grid grid-cols-1 2xl:gap-2 2xl:grid-cols-3 gap-y-2">
+      <div className="grid grid-cols-1 gap-6 2xl:grid-cols-3">
         {/* Custom points form */}
         <div
-          className={`flex flex-col items-center justify-center gap-4 p-10 bg-white border rounded-md 2xl:p-5 ${
+          className={`flex flex-col items-center justify-center gap-4 p-8 bg-white border rounded-2xl shadow-lg transition-all duration-200 dark:bg-stone-800 dark:border-gray-700 ${
             selectedPackage?.id === "custom"
-              ? "ring-2 ring-primary bg-green-200/20"
-              : ""
+              ? "ring-2 ring-emerald-500 bg-emerald-50 dark:bg-emerald-900/20"
+              : "border-gray-200"
           }`}
         >
-          <div className="flex flex-col w-full max-w-xl gap-3 ">
+          <div className="flex flex-col w-full max-w-xl gap-4">
             {selectedPackage?.id === "custom" ? (
-              <div className="flex flex-col items-center gap-2 ">
-                <div className="flex flex-col items-center justify-center gap-2 ">
-                  <FontAwesomeIcon
-                    icon={faGem}
-                    className="size-8 text-primary"
-                  />
-                  <p className="text-2xl font-medium text-stone-900">
+              <div className="flex flex-col items-center gap-3">
+                <div className="flex flex-col items-center justify-center gap-3">
+                  <div className="flex items-center justify-center w-16 h-16 shadow-lg rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600">
+                    <FontAwesomeIcon
+                      icon={faGem}
+                      className="text-white size-7"
+                    />
+                  </div>
+                  <p className="text-3xl font-bold text-gray-900 dark:text-white">
                     {selectedPackage.points.toLocaleString()}
                   </p>
                 </div>
@@ -212,22 +214,24 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
                     setSelectedPackage(null);
                     setCustomPoints("");
                   }}
-                  className="px-4 py-2 mt-5 text-sm border rounded-md text-primary border-primary hover:bg-primary/10"
+                  className="px-6 py-2.5 mt-5 text-sm font-semibold border-2 rounded-xl text-emerald-600 border-emerald-600 hover:bg-emerald-50 dark:text-emerald-400 dark:border-emerald-400 dark:hover:bg-emerald-900/20 transition-colors"
                 >
                   Edit Points
                 </button>
               </div>
             ) : (
               <>
-                <div>
-                  <FontAwesomeIcon
-                    icon={faGem}
-                    className="w-5 h-5 p-3 mb-2 rounded-full bg-primary text-stone-50 ring-4 ring-green-200/45"
-                  />
-                  <h3 className="text-xl font-semibold text-stone-900">
+                <div className="text-center">
+                  <div className="flex items-center justify-center mx-auto mb-4 shadow-lg w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600">
+                    <FontAwesomeIcon
+                      icon={faGem}
+                      className="text-white size-6"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
                     Custom Top-Up
                   </h3>
-                  <p className="text-center text-gray-500 text-sm/6">
+                  <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
                     Set the exact number of points you need — no limits, no
                     waste.
                   </p>
@@ -247,11 +251,11 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
                     }
                   }}
                   placeholder="Enter custom points"
-                  className="flex-1 p-2 border rounded-md"
+                  className="flex-1 p-3 transition-all duration-200 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white"
                 />
                 <button
                   onClick={handleCustomPointsConfirm}
-                  className="px-4 py-2 text-white rounded-md bg-primary hover:bg-primary/80"
+                  className="px-6 py-3 font-semibold text-white transition-all duration-200 shadow-md bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg"
                 >
                   Confirm
                 </button>
@@ -261,19 +265,25 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
         </div>
 
         {/* Predefined packages */}
-        <div className="grid grid-cols-3 col-span-2 gap-2 ">
+        <div className="grid grid-cols-3 col-span-2 gap-3">
           {adPointPackages.map((pkg) => (
             <button
               key={pkg.id}
               onClick={() => handleSelectPredefinedPoints(pkg)}
-              className={`flex flex-col items-center justify-center gap-2 p-4 leading-none transition-all duration-300 ease-in-out bg-white border rounded-md text-stone-900 min-h-28 hover:bg-green-200/15 hover:ring-2 hover:ring-primary ${
+              className={`flex flex-col items-center justify-center gap-3 p-6 leading-none transition-all duration-200 bg-white border shadow-md rounded-2xl min-h-32 dark:bg-stone-800 ${
                 selectedPackage?.id === pkg.id
-                  ? "ring-2 ring-primary bg-green-200/20"
-                  : ""
+                  ? "ring-2 ring-emerald-500 bg-emerald-50 border-emerald-300 dark:bg-emerald-900/20 dark:border-emerald-600"
+                  : "border-gray-200 hover:border-emerald-300 hover:shadow-lg dark:border-gray-700"
               }`}
             >
-              <FontAwesomeIcon icon={faGem} className="size-5 text-primary" />
-              <span className="font-medium">{pkg.points.toLocaleString()}</span>
+              <FontAwesomeIcon
+                icon={faGem}
+                className="text-emerald-600 size-5"
+              />
+
+              <span className="text-lg font-bold text-gray-900 dark:text-white">
+                {pkg.points.toLocaleString()}
+              </span>
             </button>
           ))}
         </div>
@@ -281,31 +291,31 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
 
       {/* Payment section */}
       {selectedPackage && (
-        <div className="flex flex-col justify-start p-6 mt-10 text-left bg-white border rounded-lg shadow-sm">
-          <h3 className="text-lg font-semibold text-gray-900">
+        <div className="flex flex-col justify-start p-8 mt-10 text-left bg-white border border-gray-200 shadow-xl rounded-2xl dark:bg-stone-800 dark:border-gray-700">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white">
             Payment Method
           </h3>
 
           {savedCards.length === 0 ? (
-            <div className="mt-4">
+            <div className="mt-6">
               <Link
                 to="/dashboard/payment-method"
-                className="px-6 py-3 text-white rounded-lg bg-primary hover:bg-primary/80"
+                className="inline-block px-6 py-3 font-semibold text-white transition-all duration-200 shadow-md bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg"
               >
                 Add Payment Method
               </Link>
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 gap-2 mt-4 lg:grid-cols-2 xl:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 mt-6 lg:grid-cols-2 xl:grid-cols-3">
                 {savedCards.map((card) => (
                   <button
                     key={card.id}
                     onClick={() => setSelectedCard(card)}
-                    className={`p-3 border rounded-md flex items-center gap-3 w-full text-left transition h-28 ${
+                    className={`p-4 border rounded-xl flex items-center gap-4 w-full text-left transition-all duration-200 h-28 shadow-md ${
                       selectedCard?.id === card.id
-                        ? "ring-2 ring-primary bg-green-100"
-                        : "bg-white"
+                        ? "ring-2 ring-emerald-500 bg-emerald-50 border-emerald-300 dark:bg-emerald-900/20 dark:border-emerald-600"
+                        : "bg-white border-gray-200 hover:border-emerald-300 dark:bg-stone-800 dark:border-gray-700"
                     }`}
                   >
                     <img
@@ -313,12 +323,15 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
                       alt="card"
                       className="object-contain w-12 h-12"
                     />
-                    <div className="flex flex-col">
-                      <span>
-                        **** **** **** {card.card_last4} ({card.card_brand})
+                    <div className="flex flex-col gap-1">
+                      <span className="font-medium text-gray-900 dark:text-white">
+                        **** **** **** {card.card_last4}
+                      </span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
+                        {card.card_brand}
                       </span>
                       {!!card.is_default && (
-                        <span className="flex items-center gap-1 text-xs font-semibold text-green-700">
+                        <span className="flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400">
                           <FontAwesomeIcon icon={faCheck} /> Default
                         </span>
                       )}
@@ -327,25 +340,25 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
                 ))}
               </div>
 
-              <div className="flex justify-end gap-4 mt-10">
-                <div className="flex flex-col text-end">
+              <div className="flex flex-col items-end gap-6 mt-10 lg:flex-row lg:justify-end">
+                <div className="flex flex-col gap-2 text-end">
                   <div className="flex items-center gap-2">
                     <FontAwesomeIcon
                       icon={faGem}
-                      className="size-5 text-primary"
+                      className="text-emerald-600 size-5 dark:text-emerald-400"
                     />
-                    <span className="font-medium">
+                    <span className="text-xl font-bold text-gray-900 dark:text-white">
                       {selectedPackage.points.toLocaleString()}
                     </span>
                   </div>
-                  <p className="text-gray-600">
+                  <p className="text-base font-semibold text-gray-700 dark:text-gray-300">
                     Total: ${formatCurrency(selectedPackage.price)}
                   </p>
                 </div>
                 <button
                   onClick={() => setShowConfirmModal(true)}
                   disabled={!selectedPackage || !selectedCard || loading}
-                  className="flex gap-2 group border rounded-lg text-sm text-center items-center transition-all duration-300 ease-in-out px-6 py-3.5 bg-primary text-white border-primary hover:bg-primary/80 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-8 py-3.5 font-semibold text-white transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? "Processing..." : "Buy Now"}
                 </button>
@@ -358,17 +371,20 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
       {/* Receipt-like Confirmation Modal */}
       {showConfirmModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/45"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-labelledby="receipt-title"
         >
-          <div className="w-full max-w-md bg-white shadow-xl rounded-xl ring-1 ring-black/10">
+          <div className="w-full max-w-md bg-white shadow-2xl dark:bg-stone-800 rounded-2xl">
             {/* Header */}
-            <div className="px-6 py-4 border-b">
+            <div className="px-6 py-5 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-between text-start">
                 <div>
-                  <h4 id="receipt-title" className="text-lg font-semibold">
+                  <h4
+                    id="receipt-title"
+                    className="text-xl font-bold text-gray-900 dark:text-white"
+                  >
                     Purchase Summary
                   </h4>
                 </div>
@@ -376,60 +392,60 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
             </div>
 
             {/* Body / line items */}
-            <div className="px-6 py-4">
-              <div className="font-mono text-sm text-gray-700">
-                <div className="flex justify-between py-2">
-                  <span>Ad Points</span>
-                  <span>{selectedPackage.points.toLocaleString()}</span>
+            <div className="px-6 py-6">
+              <div className="text-sm text-gray-700 dark:text-gray-300">
+                <div className="flex justify-between py-3">
+                  <span className="font-medium">Ad Points</span>
+                  <span className="font-semibold">
+                    {selectedPackage.points.toLocaleString()}
+                  </span>
                 </div>
-                {/* <div className="flex justify-between py-2">
-                  <span>Price</span>
-                  <span>${formatCurrency(pricePerPoint)}</span>
-                </div> */}
-                <div className="flex justify-between py-2">
-                  <span>Price</span>
-                  <span>${formatCurrency(selectedPackage.price)}</span>
+                <div className="flex justify-between py-3">
+                  <span className="font-medium">Price</span>
+                  <span className="font-semibold">
+                    ${formatCurrency(selectedPackage.price)}
+                  </span>
                 </div>
 
                 {/* dashed divider */}
-                <div className="my-3 border-t border-gray-200 border-dashed" />
+                <div className="my-4 border-t-2 border-gray-200 border-dashed dark:border-gray-700" />
 
-                <div className="flex items-center justify-between pt-2">
-                  <span className="text-sm font-medium">Total</span>
-                  <span className="text-lg font-semibold">
+                <div className="flex items-center justify-between pt-3">
+                  <span className="text-base font-semibold text-gray-900 dark:text-white">
+                    Total
+                  </span>
+                  <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                     ${formatCurrency(selectedPackage.price)}
                   </span>
                 </div>
               </div>
 
               {/* payment details */}
-              <div className="mt-4 text-sm text-gray-600">
-                <div className="flex justify-between">
-                  <span>Payment method</span>
-                  <span className="font-medium">
+              <div className="p-4 mt-6 border border-gray-200 bg-gray-50 dark:bg-stone-700 dark:border-gray-600 rounded-xl">
+                <div className="flex justify-between mb-3 text-sm">
+                  <span className="text-gray-600 dark:text-gray-400">
+                    Payment method
+                  </span>
+                  <span className="font-semibold text-gray-900 dark:text-white">
                     {selectedCard
                       ? `${selectedCard.card_brand} •••• ${selectedCard.card_last4}`
                       : "—"}
                   </span>
                 </div>
-                <div className="flex justify-between mt-2">
-                  <span>Date</span>
-                  <span>{nowString()}</span>
-                </div>
-                {/* <div className="flex justify-between mt-2">
-                  <span>Txn ID</span>
-                  <span className="font-mono text-xs text-gray-500">
-                    #{Math.random().toString(36).slice(2, 10)}
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600 dark:text-gray-400">Date</span>
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    {nowString()}
                   </span>
-                </div> */}
+                </div>
               </div>
             </div>
 
             {/* Actions */}
-            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t">
+            <div className="flex items-center justify-end gap-3 px-6 py-5 border-t border-gray-200 dark:border-gray-700">
               <button
                 onClick={() => setShowConfirmModal(false)}
-                className="px-4 py-2 text-gray-700 border rounded-md hover:bg-gray-100"
+                className="px-6 py-2.5 font-semibold text-gray-700 transition-colors border border-gray-300 rounded-xl hover:bg-gray-50 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-stone-700"
               >
                 Cancel
               </button>
@@ -438,7 +454,7 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
                   setShowConfirmModal(false);
                   await handleBuyNow();
                 }}
-                className="px-4 py-2 text-white rounded-md bg-primary hover:bg-primary/80"
+                className="px-6 py-2.5 font-semibold text-white transition-all duration-200 shadow-md bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg"
               >
                 Confirm & Pay
               </button>
@@ -452,18 +468,20 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
 
 function RedeemContent() {
   return (
-    <div>
-      <h2 className="text-lg font-semibold">Redeem Points</h2>
-      <p className="mt-2 mb-4 text-gray-600">
+    <div className="max-w-2xl mx-auto">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+        Redeem Points
+      </h2>
+      <p className="mt-3 mb-6 text-base text-gray-600 dark:text-gray-300">
         Enter your voucher code to redeem Ad Points instantly.
       </p>
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <input
           type="text"
           placeholder="Enter voucher code"
-          className="w-full max-w-md p-2.5 border rounded-md"
+          className="flex-1 p-3 transition-all duration-200 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white"
         />
-        <button className="items-center gap-2 px-4 py-3 text-sm text-center text-white transition-all duration-300 ease-in-out border rounded-lg group bg-primary border-primary hover:bg-primary/80">
+        <button className="px-6 py-3 font-semibold text-white transition-all duration-200 shadow-md bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg">
           Redeem
         </button>
       </div>
