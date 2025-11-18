@@ -318,12 +318,6 @@ export default function DashboardProfile() {
             <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-gradient-to-br from-emerald-500/10 to-teal-500/10 blur-3xl"></div>
             <div className="relative p-8 space-y-6">
               <h3 className="flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white">
-                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/30 dark:to-teal-900/30">
-                  <FontAwesomeIcon
-                    icon={faEnvelope}
-                    className="text-emerald-600 dark:text-emerald-400"
-                  />
-                </div>
                 Contact Information
               </h3>
               <div className="space-y-4">
@@ -368,12 +362,6 @@ export default function DashboardProfile() {
             <div className="absolute top-0 left-0 w-64 h-64 rounded-full bg-gradient-to-br from-teal-500/10 to-emerald-500/10 blur-3xl"></div>
             <div className="relative p-8 space-y-6">
               <h3 className="flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white">
-                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-teal-100 to-emerald-100 dark:from-teal-900/30 dark:to-emerald-900/30">
-                  <FontAwesomeIcon
-                    icon={faBriefcase}
-                    className="text-teal-600 dark:text-teal-400"
-                  />
-                </div>
                 Professional Details
               </h3>
               <div className="space-y-4">
