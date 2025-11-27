@@ -27,6 +27,8 @@ function DashboardHeader({ sidebarOpen, setSidebarOpen }) {
     if (path === "/dashboard/documentation/concepts") return "Core Concepts";
     if (path === "/dashboard/documentation/api-reference")
       return "API Reference";
+    if (path === "/dashboard/documentation/storer-download")
+      return "Storer Download";
     if (path === "/dashboard/documentation/guides") return "Guides";
     if (path === "/dashboard/documentation/faq") return "FAQ";
     if (path === "/dashboard/documentation/support") return "Support";

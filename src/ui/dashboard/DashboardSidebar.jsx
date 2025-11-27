@@ -32,6 +32,7 @@ const DocumentationMenu = [
   { name: "Getting Started", path: "/dashboard/documentation/getting-started" },
   { name: "Core Concepts", path: "/dashboard/documentation/concepts" },
   { name: "API Reference", path: "/dashboard/documentation/api-reference" },
+  { name: "Storer Download", path: "/dashboard/documentation/storer-download" },
   { name: "Guides", path: "/dashboard/documentation/guides" },
   { name: "FAQ", path: "/dashboard/documentation/faq" },
   { name: "Support", path: "/dashboard/documentation/support" },
