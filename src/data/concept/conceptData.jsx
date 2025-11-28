@@ -1,51 +1,50 @@
 export const items = [
   {
-    title: { en: "Enhanced User Control", jp: "ユーザー制御の強化" },
+    title: { en: "Strengthening User Control", jp: "ユーザー制御の強化" },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Numerous decentralized social networking services (SNS) are
-            developed utilizing open protocols, such as ActivityPub or Matrix,
-            which promote enhanced communication among various services. This
-            interoperability enables users to transition smoothly across
-            distinct platforms while preserving their identities and social
-            connections. As a result, users are empowered to establish their
-            communities across multiple applications without forfeiting their
-            network access.
+            Pixelmine distributes data across seven Storers and verifies
+            integrity using a patented “Geographical Node + Random Node Majority
+            Vote” system. This ensures that users—not a central
+            administrator—retain full ownership of their accounts, posts, and
+            messages. No entity can extract, alter, or monetize user data
+            without consent. This architecture shifts platform authority from
+            corporations back to the users, restoring true digital ownership.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            多数の分散型ソーシャルネットワーキングサービス（SNS）は、ActivityPubやMatrixなどのオープンプロトコルを利用して開発され、サービス間のコミュニケーションを強化します。この相互運用性により、ユーザーは異なるプラットフォーム間をスムーズに移動しながら、自身のアイデンティティとソーシャル接続を維持できます。その結果、ユーザーはネットワークアクセスを失うことなく、複数のアプリケーションでコミュニティを構築できます。
+            Pixelmineは、データを7つのストアラーに分散保存し、特許技術である「地理的ノード＋ランダムノード多数決」で検証することで、ユーザーが自分の情報を主体的にコントロールできる構造を実現しています。アカウント情報、投稿、チャット履歴などは中央管理者に依存せず、ユーザー自身が所有者となる仕組みです。企業が勝手にデータを抜いたり変更することができず、ユーザーは自分のデジタル資産を安全に維持できます。これにより、SNSの主導権が企業ではなくユーザーへと確実に戻ります。
           </p>
         </>
       ),
     },
   },
   {
-    title: { en: "Censorship Resistance", jp: "検閲耐性" },
+    title: { en: "Censorship Resistance", jp: "検閲体制" },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            In a decentralized social networking system, users are afforded
-            substantial control over their data. This empowerment enables
-            individuals to define the extent of their data usage, identify the
-            audiences with whom they wish to share information, and regulate the
-            frequency of content exposure. Such autonomy serves to alleviate
-            concerns related to privacy violations and potential data misuse by
-            third parties, thereby promoting a heightened sense of security
-            among users.
+            Pixelmine posts and messages are never stored on a central server.
+            Instead, they are distributed across seven Storers, combining
+            geographic and random nodes. Data validity is verified by patented
+            majority-vote algorithms, preventing operators from deleting or
+            altering specific user content. Even governments or corporations
+            cannot seize a single server to enforce censorship. This provides
+            strong protection for freedom of expression and guarantees user
+            sovereignty over their communications.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            分散型ソーシャルネットワーキングシステムでは、ユーザーは自身のデータを大幅にコントロールできます。この権限により、ユーザーはデータの使用範囲を定義し、情報を共有したい対象を特定し、コンテンツの表示頻度を調整できます。この自律性は、プライバシー侵害や第三者によるデータ悪用の懸念を軽減し、ユーザーの安全性の意識を高めます。
+            Pixelmineでは、投稿やメッセージが中央サーバーに集まらず、7つのストアラー（地理的ノード＋ランダムノード）に分散保存されます。データの正しさは特許技術である「複数ノードの多数決」で検証されるため、運営が特定ユーザーの投稿だけを消したり、内容を書き換えたりすることはできません。また、国家や企業がひとつのサーバーを押さえて検閲することも不可能です。結果として、情報の自由が守られ、誰もが発信内容の所有権を自分自身で持つことができるSNSになります。
           </p>
         </>
       ),
@@ -57,21 +56,20 @@ export const items = [
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            One of the defining characteristics of decentralized social networks
-            is their inherent resistance to censorship. In the absence of a
-            centralized governing authority, these platforms are less
-            susceptible to the suppression of content or voices influenced by
-            political, commercial, or ideological pressures. This quality
-            fosters an environment conducive to diverse viewpoints and open
-            discussions, thereby upholding the fundamental principles of free
-            speech.
+            By decentralizing data across seven Storers, Pixelmine enables
+            flexible data sharing across platforms and applications. The
+            patented node-verification process ensures that third-party apps
+            accessing Pixelmine data maintain security and consistency. This
+            allows users to move across services while retaining control of
+            their data. It breaks away from corporate lock-in and enables a
+            user-centric, open ecosystem.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            分散型ソーシャルネットワークの特徴のひとつは、検閲に対する本質的な耐性です。中央集権的な管理者が存在しないため、これらのプラットフォームは政治的、商業的、またはイデオロギー的な圧力によるコンテンツや意見の抑制を受けにくくなります。この特性により、多様な視点とオープンな議論が促進され、表現の自由の基本原則が維持されます。
+            Pixelmineは、データを中央に固定せず7ストアラーに分散させることで、プラットフォーム間のデータ共有を柔軟に実現できます。特許技術によるノード検証により、サードパーティーアプリや他サービスがPixelmineのデータを利用する際も、安全性と整合性が確保されます。これにより、ユーザーはSNS・アプリ・サービスを自由に移動しながら、自分のデータを一貫して活用可能になります。企業の囲い込みに縛られず、ユーザー中心のオープンなエコシステムが形成されます。
           </p>
         </>
       ),
@@ -79,28 +77,27 @@ export const items = [
   },
   {
     title: {
-      en: "Points Economics and Incentives",
+      en: "Point Economy and Incentives",
       jp: "ポイント経済とインセンティブ",
     },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Numerous decentralized social networking services (SNSs) are
-            constructed utilizing open protocols, such as ActivityPub or Matrix,
-            which enhance communication between different services. This
-            interoperability enables users to transition seamlessly between
-            various platforms while preserving their identities and social
-            connections. As a result, users are empowered to cultivate their
-            communities across multiple applications without compromising their
-            network access.
+            Pixelmine measures user activity through secure distributed storage
+            and converts that activity into economic value. Actions—posting,
+            viewing, evaluating, managing—generate points that users directly
+            earn. Instead of a Web2 model where companies monopolize advertising
+            revenue, Pixelmine redistributes the majority of value to users and
+            Storers. This alignment of incentives creates a sustainable,
+            community-driven data economy.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            多くの分散型SNSは、ActivityPubやMatrixなどのオープンプロトコルを利用して構築され、異なるサービス間のコミュニケーションを向上させます。この相互運用性により、ユーザーは複数のプラットフォーム間をシームレスに移動しながら、自身のアイデンティティとソーシャル接続を維持できます。その結果、ユーザーはネットワークアクセスを損なうことなく、複数のアプリケーションでコミュニティを育むことができます。
+            Pixelmineでは、ユーザーの活動データを7ストアラーで安全に分散管理することで、その行動価値を正確に測定できます。これにより、投稿・閲覧・評価・管理といった「行動そのもの」をポイントとして還元し、ユーザーが自分のデータ価値をそのまま利益として受け取れる仕組みが成立します。企業広告モデルのように運営だけが利益を独占する構造ではなく、利用者とストアラーへ収益の大部分が分配されるため、参加者全体のインセンティブが揃い、持続的に成長するデータ経済圏が形成されます。
           </p>
         </>
       ),
@@ -112,46 +109,19 @@ export const items = [
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Several decentralized social networking services (SNSs) utilize
-            blockchain technology to implement economic models that reward users
-            for their contributions and engagement. This may involve
-            cryptocurrency tokens, which can be earned through activities such
-            as content creation, moderation, or community participation. By
-            integrating points system, these platforms incentivize the
-            production of high-quality content and enable users to possess a
-            stake in the overall success of the network.
-          </p>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            In conclusion, decentralized social networking services (SNSs)
-            signify a considerable departure from traditional social networks.
-            These services prioritize principles such as user autonomy, enhanced
-            privacy, and collective decision-making. Prominent examples of
-            decentralized SNSs include Mastodon, recognized for its federated
-            architecture; Diaspora, which focuses on user privacy and data
-            ownership; and Scuttlebutt, a peer-to-peer protocol facilitating
-            offline social interactions. Each platform employs distinct
-            approaches to decentralization while striving to cultivate healthier
-            online communities.
-          </p>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            We acknowledge that decentralized social networking services
-            currently lack widespread social acceptance. The team is actively
-            engaged in ongoing research and development to enhance the system's
-            acceptability among a broader demographic. The following are the
-            various processes and documents that we manage.
+            Pixelmine emphasizes decision-making by users rather than a central
+            authority. Distributed storage and patented majority-vote validation
+            prevent arbitrary rule changes by administrators. Feature updates,
+            policies, and improvements are decided through user voting and
+            community proposals, creating a transparent and autonomous
+            governance model where the platform is operated by its participants.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            いくつかの分散型SNSは、ブロックチェーン技術を活用して、ユーザーの貢献や参加に報いる経済モデルを実装しています。これには、コンテンツ作成、モデレーション、コミュニティ参加などの活動を通じて取得できる暗号通貨トークンが含まれる場合があります。ポイントシステムを統合することで、これらのプラットフォームは高品質なコンテンツの作成を奨励し、ユーザーがネットワーク全体の成功に関与できるようにします。
-          </p>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            結論として、分散型SNSは従来のソーシャルネットワークとは大きく異なります。これらのサービスは、ユーザーの自律性、プライバシーの向上、集団的意思決定を重視しています。代表的な分散型SNSには、連合型アーキテクチャで知られるMastodon、ユーザープライバシーとデータ所有権に焦点を当てたDiaspora、オフラインでのソーシャルインタラクションを促進するピアツーピアプロトコルScuttlebuttなどがあります。各プラットフォームは独自の分散化アプローチを採用しつつ、より健全なオンラインコミュニティの構築を目指しています。
-          </p>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            現在、分散型SNSは広く社会に受け入れられていないことを認識しています。チームは、より広い層への受容性を高めるため、研究開発を積極的に行っています。以下は、管理しているさまざまなプロセスとドキュメントです。
+            Pixelmineは中央管理者ではなく、ユーザー同士が意思決定に参加できる仕組みを重視しています。データは7ストアラーに分散保存され、特許技術の多数決検証によって公平性が担保されるため、特定の管理者がルールを恣意的に変更することができません。機能追加、ルール、改善案などはユーザー投票やコミュニティ提案を通じて決定され、SNSそのものが「参加者によって運営される」構造になります。これにより、透明性の高い、自律分散型のコミュニティガバナンスが実現します。
           </p>
         </>
       ),
@@ -159,93 +129,27 @@ export const items = [
   },
   {
     title: {
-      en: "Define Decentralized Social Networking Services (SNS)",
+      en: "Definition of a Decentralized SNS",
       jp: "分散型SNSの定義",
     },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Investigate the fundamental principles and architectural frameworks
-            of decentralized social networking services (SNS), with an emphasis
-            on their essential characteristics.
+            A decentralized SNS is a communication infrastructure where user
+            data is not owned or controlled by corporations or governments but
+            by the users themselves. Pixelmine uses seven Storers and patented
+            majority-vote verification to eliminate centralized control,
+            censorship, and tampering. This enables freedom of expression, data
+            sovereignty, and transparent value circulation—forming a
+            self-governed network society.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            分散型ソーシャルネットワーキングサービス（SNS）の基本原則とアーキテクチャの構造を調査し、その本質的な特性に重点を置きます。
-          </p>
-        </>
-      ),
-    },
-  },
-  {
-    title: { en: "Investigate User Control", jp: "ユーザー制御の調査" },
-    content: {
-      en: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Examine the ways in which decentralized social networking services
-            empower users by affording them greater control over their personal
-            data and privacy settings. This examination should incorporate
-            relevant case studies and user testimonials to illustrate the impact
-            of these services on user autonomy and security.
-          </p>
-        </>
-      ),
-      jp: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            分散型SNSがユーザーにどのように自律性とプライバシー設定の制御権を提供しているかを調査します。この調査には、関連する事例やユーザーテストを含め、サービスがユーザーの自律性とセキュリティに与える影響を示します。
-          </p>
-        </>
-      ),
-    },
-  },
-  {
-    title: { en: "Examine Censorship Resistance", jp: "検閲耐性の分析" },
-    content: {
-      en: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            This analysis will explore the mechanisms through which
-            decentralized platforms effectively resist censorship, promote a
-            variety of viewpoints, and uphold free speech. Additionally, it will
-            compare these characteristics to those of traditional social
-            networks, highlighting the distinct advantages offered by
-            decentralized systems in fostering an open discourse environment.
-          </p>
-        </>
-      ),
-      jp: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            この分析では、分散型プラットフォームが検閲にどのように対抗し、多様な視点を促進し、表現の自由を維持しているかを検討します。また、従来のSNSとの比較を行い、分散型システムがオープンな議論環境を育む上で提供する利点を明らかにします。
-          </p>
-        </>
-      ),
-    },
-  },
-  {
-    title: { en: "Research Interoperability", jp: "相互運用性の研究" },
-    content: {
-      en: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            This document explores the impact of open protocols, on enhancing
-            interoperability among decentralized social networking services
-            (SNS). It is essential to examine specific examples of
-            cross-platform interactions to effectively illustrate these
-            concepts.
-          </p>
-        </>
-      ),
-      jp: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            この文書では、オープンプロトコルが分散型SNS間の相互運用性を向上させる影響を探ります。これらの概念を効果的に示すため、クロスプラットフォーム間の具体的な事例を検討することが重要です。
+            分散型SNSとは、ユーザーのデータややり取りが、企業や国家など単一の管理者に属さず、ユーザー自身によって所有・管理される新しい形の社会基盤である。Pixelmineでは、7ストアラーと特許技術による多数決検証を用いることで、情報が中央に集約されず、検閲・改ざん・不正利用を技術的に不可能にしている。発信の自由、データ主権、透明な経済循環を兼ね備え、ユーザーが主体となって価値を生み出す自律したネットワーク社会こそ、私たちが考える分散型SNSの本質である。
           </p>
         </>
       ),
@@ -253,24 +157,27 @@ export const items = [
   },
   {
     title: {
-      en: "Explore Token / Points Economics",
-      jp: "トークン／ポイント経済の調査",
+      en: "Achieving True Tamper-Resistance via Node Majority Vote",
+      jp: "ノード多数決による真の耐改ざん性の実現",
     },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            This paper investigates the influence of open protocols, on
-            enhancing interoperability among decentralized social networking
-            services (SNS). It will provide examples of cross-platform
-            interactions to demonstrate these concepts effectively.
+            Pixelmine avoids the high computation cost and latency of
+            blockchains by using a lightweight majority-vote algorithm. Its
+            patented mix of geographical and random nodes prevents any entity
+            from dominating the network. Data updates require agreement from the
+            majority of seven Storers, making tampering practically impossible.
+            This architecture introduces a new category of “third-type
+            immutability” beyond blockchains and centralized systems.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            この文書では、オープンプロトコルが分散型SNS間の相互運用性を向上させる影響を調査します。これらの概念を効果的に示すため、クロスプラットフォーム間の具体的な事例を提供します。
+            Pixelmineは、従来のブロックチェーンが抱える「計算コストの増大」と「ハッシュチェーン依存の遅延」を避け、独自の多数決アルゴリズムを採用している。特許技術に基づき、地理的ノードとランダムノードを混在させた7ストアラー構造を採用することで、特定勢力がノードを占有するリスクを限界まで低減。データ更新時には過半数一致が必須となり、国家・企業・攻撃者が情報を改ざんするには同時に複数ノードの書き換えが必要となる。これにより、現実的に改ざん不可能なデータ保全方式を実現している。
           </p>
         </>
       ),
@@ -278,24 +185,26 @@ export const items = [
   },
   {
     title: {
-      en: "Assess Community Governance",
-      jp: "コミュニティガバナンスの評価",
+      en: "Redefining Privacy Through a Zero-Access Architecture",
+      jp: "ゼロアクセス設計がつくるプライバシー標準の再定義",
     },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Examine the governance models utilized by decentralized social
-            networking sites, with a particular focus on democratic
-            decision-making processes and the active involvement of users in the
-            development of platform policies.
+            Pixelmine does not store user posts, messages, or activity logs on a
+            readable server. All data is encrypted and distributed across
+            Storers, and operators cannot access plaintext. This Zero-Access
+            Architecture ensures that even server seizure cannot reveal user
+            data. It fundamentally overturns the Web2 assumption that “platforms
+            hold user data,” establishing a new privacy standard.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            分散型SNSで利用されるガバナンスモデルを調査し、特に民主的な意思決定プロセスと、ユーザーがプラットフォームポリシーの策定に積極的に関与する点に焦点を当てます。
+            Pixelmineでは、ユーザーの投稿・DM・行動データが運営サーバーに蓄積されない。すべてが7ストアラーに暗号化分散され、運営側は平文データへアクセスできない構造を採用している。これは“誰も中身を見れない”ゼロアクセス前提のアーキテクチャであり、サーバー押収や情報要求があってもプライバシーが守られる。従来Webが依存していた「情報は運営が持つ」という思想を根底から覆し、次世代のプライバシー標準を構築する。{" "}
           </p>
         </>
       ),
@@ -303,65 +212,27 @@ export const items = [
   },
   {
     title: {
-      en: "Identify Notable Platforms",
-      jp: "注目プラットフォームの特定",
+      en: "Building a Decentralized Data Economy via Action-as-Currency",
+      jp: "行動データの疑似通貨化による分散型データ経済の構築",
     },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Compile a comprehensive list of notable decentralized social
-            networking platforms. Additionally, provide an in-depth analysis of
-            each platform's distinctive approach to decentralization.
+            Pixelmine treats user actions as economic assets instead of mere
+            logs. Verified by distributed Storers, user behavior is converted
+            into points that can interact directly with advertisers and
+            partners. This dismantles the Web2 model where platforms monopolize
+            data value and instead builds an economy where value flows back to
+            users. It establishes a sustainable economic base for the
+            decentralized web.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            注目すべき分散型SNSの包括的なリストを作成します。さらに、各プラットフォームの分散化に対する独自のアプローチについて詳細な分析を行います。
-          </p>
-        </>
-      ),
-    },
-  },
-  {
-    title: { en: "Highlight Benefits and Challenges", jp: "利点と課題の強調" },
-    content: {
-      en: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Evaluate the advantages of decentralized social networking services
-            in enhancing user autonomy and privacy, while also discussing the
-            potential challenges associated with scalability and user adoption.
-          </p>
-        </>
-      ),
-      jp: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            分散型SNSがユーザーの自律性とプライバシーを向上させる利点を評価するとともに、スケーラビリティやユーザー採用に関する潜在的な課題についても議論します。
-          </p>
-        </>
-      ),
-    },
-  },
-  {
-    title: { en: "Gather Expert Opinions", jp: "専門家の意見収集" },
-    content: {
-      en: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Engage with researchers and practitioners who specialize in
-            decentralized technology in order to obtain comprehensive insights
-            regarding the future trajectory of social networking.
-          </p>
-        </>
-      ),
-      jp: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            分散型技術を専門とする研究者や実務者と交流し、ソーシャルネットワーキングの将来の方向性について包括的な洞察を得ます。
+            Pixelmineは、行動データをログではなく「価値のある資産」として扱うためのインフラを提供する。7ストアラーの検証によりユーザー行動が正しく記録され、それがポイントとして還元される。さらに、そのポイントが広告企業と連動し、ユーザーが直接利益を得られるエコシステムを構築する。中央集権Web2の“データ利益の独占構造”を破壊し、行動＝経済価値がユーザーへ還元される新しいインターネット経済圏を生み出す。
           </p>
         </>
       ),
@@ -369,24 +240,30 @@ export const items = [
   },
   {
     title: {
-      en: "Prepare for Ethical Considerations",
+      en: "Preparing Ethical Safeguards",
       jp: "倫理的配慮への準備",
     },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Examine the ethical implications associated with decentralized
-            social networking services, focusing on issues of data ownership,
-            the right to freedom of expression, and the essential need to
-            balance security and privacy.
+            Pixelmine focuses on ethical system design to balance decentralized
+            freedom with safety. While the seven-Storer architecture prevents
+            arbitrary deletion or tampering, maintaining a healthy community
+            requires mechanisms to detect harmful behavior. Pixelmine introduces
+            a “Red Flag” system that identifies abnormal patterns based on user
+            reports and metadata—not by reading the actual content. This
+            preserves user privacy while enabling early detection of misuse.
+            Final actions are taken through community-driven consensus rather
+            than centralized authority, ensuring fair and decentralized
+            governance without unilateral power.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            分散型SNSに関連する倫理的影響を検討し、データ所有権、表現の自由の権利、セキュリティとプライバシーのバランスを取る必要性に焦点を当てます。
+            Pixelmineは、自由な表現を守りつつ悪意ある利用を防ぐため、コミュニティ主導の“レッドフラッグ”システムを採用しています。ユーザーの通報や行動ログのメタデータをもとに、危険性のある投稿や広告にレッドフラッグが立つと、その投稿は数時間後に自動的に非表示となります。重要なのは、運営が内容を読むことはなく、異常パターンのみを検知するためプライバシーが完全に守られる点です。削除・非表示の最終判断はあくまでユーザーの意思に基づくものであり、中央管理者の恣意的判断ではなく「ユーザー自身が守る健全なコミュニティ運営」を実現します。{" "}
           </p>
         </>
       ),
