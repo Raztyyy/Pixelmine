@@ -25,53 +25,11 @@ export default function Product() {
     <section className="pt-16 pb-16 bg-gradient-to-b from-emerald-50 to-white dark:from-stone-900 dark:to-stone-800">
       <FadeSlideUp className="px-6 mx-auto max-w-7xl lg:px-8">
         <div className="grid gap-6 lg:grid-cols-3 lg:grid-rows-2">
-          {/* Concept - Large Card */}
+          {/* Design & Implementation - Large Card */}
+
           <div className="relative lg:row-span-2 group">
             <div className="relative flex flex-col h-full overflow-hidden transition-all duration-500 bg-white shadow-xl rounded-3xl dark:bg-stone-800 shadow-gray-900/5 ring-1 ring-gray-900/5 dark:ring-white/10 hover:shadow-2xl hover:shadow-emerald-500/10 hover:-translate-y-1">
               <div className="px-8 pt-10 pb-6 sm:px-10 sm:pt-12">
-                {/* Icon & Title */}
-                <div className="flex flex-col items-center justify-center gap-4 mb-6 lg:justify-start lg:flex-row">
-                  <div className="flex items-center justify-center transition-transform duration-300 shadow-lg w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 shadow-emerald-500/30 group-hover:scale-110">
-                    <FontAwesomeIcon
-                      icon={faLightbulbOn}
-                      className="text-white size-5"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white max-lg:text-center">
-                    {isEN ? "Concept" : "コンセプト"}
-                  </h3>
-                </div>
-
-                {/* Description */}
-                <p className="text-base leading-7 text-stone-900 dark:text-gray-300 max-lg:text-center">
-                  {isEN
-                    ? `The idea behind Pixelmine is to create a platform that empowers users by removing the need for a central authority or server to control user data and interactions. Instead, these platforms distribute information across interconnected nodes, allowing users to communicate directly with one another without intermediaries. The following are essential factors to consider in order to fully comprehend the concept of the system.`
-                    : `Pixelmineの背後にあるアイデアは、中央の権限やサーバーによってユーザーデータや操作が制御される必要を排除することで、ユーザーに力を与えるプラットフォームを作ることです。代わりに、これらのプラットフォームは情報を相互接続されたノードに分散させ、ユーザー同士が仲介者なしで直接コミュニケーションできるようにします。システムのコンセプトを完全に理解するためには、以下の要点を考慮することが重要です。`}
-                </p>
-
-                {/* Read More Link */}
-                <div className="mt-6 max-lg:text-center">
-                  <Link
-                    to="concept"
-                    className="inline-flex items-center gap-2 text-base font-semibold transition-colors duration-200 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 group/link"
-                  >
-                    {isEN ? "Read More" : "続きを読む"}
-                    <span
-                      className="transition-transform duration-200 group-hover/link:translate-x-1"
-                      aria-hidden="true"
-                    >
-                      →
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Design & Implementation */}
-          <div className="relative max-lg:row-start-1 group">
-            <div className="relative flex flex-col h-full overflow-hidden transition-all duration-500 bg-white shadow-xl rounded-3xl dark:bg-stone-800 shadow-gray-900/5 ring-1 ring-gray-900/5 dark:ring-white/10 hover:shadow-2xl hover:shadow-emerald-500/10 hover:-translate-y-1">
-              <div className="px-8 py-10 text-center lg:text-start sm:px-10">
                 {/* Icon & Title */}
                 <div className="flex flex-col items-center justify-center gap-4 mb-6 lg:justify-start lg:flex-row">
                   <div className="flex items-center justify-center transition-transform duration-300 shadow-lg w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 shadow-emerald-500/30 group-hover:scale-110">
@@ -88,14 +46,81 @@ export default function Product() {
                 {/* Description */}
                 <p className="text-base leading-6 text-stone-900 dark:text-gray-300 max-lg:text-center">
                   {isEN
-                    ? `The network is built around three primary components: the User, the Storer, and the PXL Server. The User is any individual who interacts with the SNS mobile application, engaging with content, sharing media, and participating in the platform's social features. The Storer serves as a decentralized node tasked with securely storing encrypted data, such as user-generated content and metadata...`
-                    : `ネットワークは、ユーザー、ストアラー、およびPXLサーバーという3つの主要コンポーネントを中心に構築されています。ユーザーとは、SNSモバイルアプリとやり取りし、コンテンツに参加し、メディアを共有し、プラットフォームのソーシャル機能に参加する個人を指します。ストアラーは、ユーザー生成コンテンツやメタデータなどの暗号化されたデータを安全に保存する分散型ノードとして機能します...`}
+                    ? `Pixelmine is a distributed social network with no central server, consisting of a mobile app and the Storer engine running on independent nodes.`
+                    : `Pixelmineは中央サーバーを持たない分散型ソーシャルネットワークであり、モバイルアプリと独立したノード上で動作するStorerエンジンで構成されています。`}
+                </p>
+
+                <p className="text-base leading-6 text-stone-900 dark:text-gray-300 max-lg:text-center">
+                  {isEN
+                    ? `The system relies on four core mechanisms. Discovery allows nodes to find peers through seed nodes, peer exchange, and mDNS. Synchronization uses a gossip protocol to propagate data across the network in 2-3 seconds, with majority voting to resolve conflicts. Routing forwards requests to other peers when data isn't stored locally. Reputation tracking assigns trust scores to prioritize reliable nodes.`
+                    : `このシステムは4つの中核メカニズムに依存しています。ディスカバリーにより、ノードはシードノード、ピア交換、mDNSを通じてピアを発見できます。同期はゴシッププロトコルを使用してデータをネットワーク全体に2～3秒で伝播させ、多数決で競合を解決します。ルーティングは、データがローカルに保存されていない場合にリクエストを他のピアに転送します。レピュテーショントラッキングは信頼スコアを割り当て、信頼性の高いノードを優先します`}
+                </p>
+
+                <p className="text-base leading-6 text-stone-900 dark:text-gray-300 max-lg:text-center">
+                  {isEN
+                    ? `Security is built on post-quantum cryptography including ML-DSA-87, Kyber-1024, and Falcon, with end-to-end encrypted messaging and forward secrecy.`
+                    : `セキュリティはML-DSA-87、Kyber-1024、Falconを含む耐量子暗号に基づいて構築されており、エンドツーエンドの暗号化メッセージングと前方秘匿性を備えています。`}
+                </p>
+
+                <p className="text-base leading-6 text-stone-900 dark:text-gray-300 max-lg:text-center">
+                  {isEN
+                    ? `The result is a network with no single point of failure that is censorship resistant and keeps data under user control.`
+                    : `その結果、単一障害点がなく、検閲耐性があり、データがユーザーの管理下に置かれるネットワークが実現されます。`}
                 </p>
 
                 {/* Read More Link */}
                 <div className="mt-6 max-lg:text-center">
                   <Link
                     to="design-implementation"
+                    className="inline-flex items-center gap-2 text-base font-semibold transition-colors duration-200 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 group/link"
+                  >
+                    {isEN ? "Read More" : "続きを読む"}
+                    <span
+                      className="transition-transform duration-200 group-hover/link:translate-x-1"
+                      aria-hidden="true"
+                    >
+                      →
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Concept  */}
+          <div className="relative max-lg:row-start-1 group">
+            <div className="relative flex flex-col h-full overflow-hidden transition-all duration-500 bg-white shadow-xl rounded-3xl dark:bg-stone-800 shadow-gray-900/5 ring-1 ring-gray-900/5 dark:ring-white/10 hover:shadow-2xl hover:shadow-emerald-500/10 hover:-translate-y-1">
+              <div className="px-8 py-10 text-center lg:text-start sm:px-10">
+                {/* Icon & Title */}
+                <div className="flex flex-col items-center justify-center gap-4 mb-6 lg:justify-start lg:flex-row">
+                  <div className="flex items-center justify-center transition-transform duration-300 shadow-lg w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 shadow-emerald-500/30 group-hover:scale-110">
+                    <FontAwesomeIcon
+                      icon={faLightbulbOn}
+                      className="text-white size-5"
+                    />
+                  </div>
+
+                  <h3 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white max-lg:text-center">
+                    {isEN ? "Concept" : "コンセプト"}
+                  </h3>
+                </div>
+
+                {/* Description */}
+                <p className="text-base leading-7 text-stone-900 dark:text-gray-300 max-lg:text-center">
+                  {isEN
+                    ? `Traditional social networks operate under centralized control, where a single entity manages user data, establishes regulations, and may alter these parameters without prior notification. Pixelmine adopts an alternative model.`
+                    : `従来のソーシャルネットワークは中央集権的な管理の下で運営されており、単一の組織がユーザーデータを管理し、規則を定め、事前通知なしにこれらのパラメータを変更する可能性があります。Pixelmineは代替モデルを採用しています。`}
+                </p>
+                <p className="text-base leading-7 text-stone-900 dark:text-gray-300 max-lg:text-center">
+                  {isEN
+                    ? `In this system, data is distributed across independent nodes instead of being stored on a central server. Users interact directly, eliminating intermediaries. This design removes single points of failure and centralized control.`
+                    : `このシステムでは、データは中央サーバーに保存されるのではなく、独立したノードに分散されます。ユーザーは仲介者を排除して直接やり取りします。この設計により、単一障害点と中央集権的な管理が排除されます。`}
+                </p>
+
+                {/* Read More Link */}
+                <div className="mt-6 max-lg:text-center">
+                  <Link
+                    to="concept"
                     className="inline-flex items-center gap-2 text-base font-semibold transition-colors duration-200 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 group/link"
                   >
                     {isEN ? "Read More" : "続きを読む"}

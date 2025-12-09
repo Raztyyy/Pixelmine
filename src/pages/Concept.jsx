@@ -218,10 +218,20 @@ function Concept() {
               />
             </div>
 
+            <p className="mb-4 text-base leading-relaxed text-gray-700 sm:text-lg dark:text-stone-300">
+              {isEN
+                ? `Traditional social networks operate under centralized control, where a single entity manages user data, establishes regulations, and may alter these parameters without prior notification. Pixelmine adopts an alternative model.`
+                : `従来のソーシャルネットワークは中央集権的な管理の下で運営されており、単一の組織がユーザーデータを管理し、規則を定め、事前通知なしにこれらのパラメータを変更する可能性があります。Pixelmineは代替モデルを採用しています。`}
+            </p>
+            <p className="mb-4 text-base leading-relaxed text-gray-700 sm:text-lg dark:text-stone-300">
+              {isEN
+                ? `In this system, data is distributed across independent nodes instead of being stored on a central server. Users interact directly, eliminating intermediaries. This design removes single points of failure and centralized control.`
+                : `このシステムでは、データは中央サーバーに保存されるのではなく、独立したノードに分散されます。ユーザーは仲介者を排除して直接やり取りします。この設計により、単一障害点と中央集権的な管理が排除されます。`}
+            </p>
             <p className="text-base leading-relaxed text-gray-700 sm:text-lg dark:text-stone-300">
               {isEN
-                ? "The idea behind Pixelmine is to create a platform that empowers users by removing the need for a central authority or server to control user data and interactions. Instead, these platforms distribute information across interconnected nodes, allowing users to communicate directly with one another without intermediaries. The following are essential factors to consider in order to fully comprehend the concept of the system."
-                : "Pixelmineの理念は、ユーザーデータややり取りを中央の管理者やサーバーに依存することなく、ユーザー自身が主体的に利用できるプラットフォームを構築することです。情報は相互に接続されたノードに分散され、ユーザー同士が仲介者なしで直接コミュニケーションできるようになります。以下は、本システムのコンセプトを正しく理解するために考慮すべき重要な要素です。"}
+                ? `This architecture embodies the principle that users should retain sovereignty over their data. Decentralization represents not only a technical decision but also a commitment to resilience and autonomy.`
+                : `このアーキテクチャは、ユーザーが自身のデータに対する主権を保持すべきという原則を体現しています。分散化は単なる技術的な選択ではなく、耐障害性と自律性へのコミットメントでもあります。`}
             </p>
           </div>
 

@@ -40,28 +40,36 @@ function Hero() {
       </div>
 
       <FadeSlideUp className="relative z-10 flex flex-col px-6 mx-auto text-center sm:text-start max-w-7xl">
+        {/* Top Highlight Section */}
+        <div className="relative z-10 px-6 mx-auto mb-12 text-center max-w-7xl text-emerald-50">
+          <h1 className="text-3xl font-bold leading-tight text-white md:text-4xl lg:text-4xl drop-shadow-lg">
+            {isEN
+              ? "A decentralized social network architecture without a central server"
+              : "中央サーバーを持たない分散型ソーシャルネットワークアーキテクチャ。"}
+          </h1>
+
+          <p className="mt-4 text-base leading-relaxed md:text-lg">
+            {isEN
+              ? "Pixelmine distributes your data across a network of independent nodes rather than confining it to a corporate data center. There is no single point of failure and no centralized control. Your posts and your connections remain distributed and resilient."
+              : "Pixelmineは、あなたのデータを企業のデータセンターに閉じ込めるのではなく、独立したノードのネットワーク全体に分散させます。単一障害点も中央集権的な管理も存在しません。あなたの投稿やつながりは分散され、耐障害性を持ち続けます。"}
+          </p>
+        </div>
+
         <div className="flex flex-col gap-12 lg:gap-0 md:flex-row">
           {/* Left Column - Mobile Application */}
-          <div className="flex flex-col justify-between text-center md:text-end lg:pr-8">
+          <div className="flex flex-col justify-between flex-1 text-center md:text-end lg:pr-8">
             {/* Badge */}
             <div className="flex justify-center mb-3 md:justify-end md:mb-4">
-              <span className="inline-flex items-center px-4 py-1.5 text-xs font-bold tracking-widest text-white uppercase bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg">
+              <span className="inline-flex items-center px-4 py-1.5 text-base font-bold tracking-widest text-white uppercase bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg">
                 {isEN ? "Mobile Application" : "モバイルアプリケーション"}
               </span>
             </div>
 
-            {/* Heading */}
-            <h1 className="text-3xl font-bold leading-tight text-white md:text-4xl lg:text-4xl drop-shadow-lg">
-              {isEN
-                ? "Free to use for everyone, always"
-                : "誰でも自由に、いつでも使える"}
-            </h1>
-
             {/* Description */}
-            <p className="pt-6 pb-6 text-base leading-relaxed md:pt-7 md:pb-7 text-emerald-50 drop-shadow-md lg:text-lg">
+            <p className="pt-6 pb-6 text-base leading-relaxed md:pt-2 md:pb-7 text-emerald-50 drop-shadow-md lg:text-lg">
               {isEN
-                ? "Pixelmine is an innovative social networking system designed to empower users through the decentralization of control and governance. By operating across multiple nodes or servers, it ensures greater user autonomy and fosters a collaborative environment."
-                : "Pixelmineは、制御とガバナンスの分散化を通じてユーザーの権限を強化する革新的なソーシャルネットワーキングシステムです。複数のノードやサーバーで動作することで、ユーザーの自律性を高め、協力的な環境を促進します。"}
+                ? "The mobile application serves as a gateway to the network, enabling users to create accounts, post content, and connect with others. User data is distributed across multiple independent nodes rather than being confined to a single company's servers. As a result, if one node fails, content remains accessible throughout the network, thereby enhancing reliability."
+                : "モバイルアプリケーションはネットワークへのゲートウェイとして機能し、ユーザーがアカウントを作成し、コンテンツを投稿し、他のユーザーとつながることを可能にします。ユーザーデータは単一企業のサーバーに閉じ込められるのではなく、複数の独立したノードに分散されます。その結果、1つのノードに障害が発生しても、コンテンツはネットワーク全体でアクセス可能なままとなり、信頼性が向上します。"}
             </p>
 
             {/* Download Buttons */}
@@ -71,26 +79,19 @@ function Hero() {
           </div>
 
           {/* Right Column - Storer Engine */}
-          <div className="flex flex-col justify-between text-center lg:pl-8 lg:border-l lg:border-white/20 md:text-start">
+          <div className="flex flex-col justify-between flex-1 gap-0 text-center lg:pl-8 lg:border-l lg:border-white/20 md:text-start">
             {/* Badge */}
             <div className="flex justify-center mb-3 md:justify-start md:mb-4">
-              <span className="inline-flex items-center px-4 py-1.5 text-xs font-bold tracking-widest text-white uppercase bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg">
-                {isEN ? "Storer Engine" : "ストーラーエンジン"}
+              <span className="inline-flex items-center px-4 py-1.5 text-base font-bold tracking-widest text-white uppercase bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg">
+                {isEN ? "The Storer Engine" : "Storerエンジン"}
               </span>
             </div>
 
-            {/* Heading */}
-            <h2 className="text-3xl font-bold leading-tight text-white md:text-4xl lg:text-4xl drop-shadow-lg">
-              {isEN
-                ? "Run and host user data"
-                : "ユーザーデータの実行とホスティング"}
-            </h2>
-
             {/* Description */}
-            <p className="pt-6 pb-6 text-base leading-relaxed md:pt-7 md:pb-7 text-emerald-50 drop-shadow-md lg:text-lg">
+            <p className="pt-6 pb-6 text-base leading-relaxed md:pt-2 md:pb-7 text-emerald-50 drop-shadow-md lg:text-lg">
               {isEN
-                ? "The Storer engine is a command-line interface application that operates without the need for configuration settings. It acts as a host for a variety of public data sourced from the Pixelmine mobile application, enabling users to access and utilize that data efficiently."
-                : "ストーラーエンジンは、設定不要で動作するコマンドラインインターフェースアプリケーションです。Pixelmineモバイルアプリケーションから取得したさまざまな公開データをホストし、ユーザーが効率的にアクセス・活用できるようにします。"}
+                ? "This lightweight command-line interface (CLI) enables any machine to function as a network node. Storer synchronizes and serves public data from Pixelmine users without requiring configuration. By operating Storer, users contribute bandwidth and storage resources to support network sustainability."
+                : "この軽量なコマンドラインインターフェース（CLI）により、あらゆるマシンがネットワークノードとして機能できます。Storerは設定不要でPixelmineユーザーの公開データを同期・配信します。Storerを運用することで、ユーザーは帯域幅とストレージリソースを提供し、ネットワークの持続可能性に貢献します。"}
             </p>
 
             {/* Action Buttons */}
