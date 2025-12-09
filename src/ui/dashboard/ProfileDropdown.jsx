@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { faUser, faSignOutAlt } from "@fortawesome/pro-solid-svg-icons";
+import { faUser, faSignOutAlt, faGear } from "@fortawesome/pro-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuth } from "../../context/AuthContext";
 import profilePlaceholder from "../../assets/profile-placeholder-img.jpg";
@@ -93,6 +93,22 @@ export default function ProfileDropdown() {
                 </div>
                 <span className="transition-colors duration-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
                   View Profile
+                </span>
+              </Link>
+
+              <Link
+                to="/dashboard/settings"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 transition-all duration-200 rounded-xl hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50 dark:text-gray-300 dark:hover:from-emerald-900/20 dark:hover:to-teal-900/20 group"
+              >
+                <div className="flex items-center justify-center w-10 h-10 transition-all duration-200 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 group-hover:from-emerald-100 group-hover:to-teal-100 dark:group-hover:from-emerald-900/30 dark:group-hover:to-teal-900/30">
+                  <FontAwesomeIcon
+                    icon={faGear}
+                    className="text-gray-600 transition-colors duration-200 dark:text-gray-400 group-hover:text-emerald-600 dark:group-hover:text-emerald-400"
+                  />
+                </div>
+                <span className="transition-colors duration-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+                  Settings
                 </span>
               </Link>
 

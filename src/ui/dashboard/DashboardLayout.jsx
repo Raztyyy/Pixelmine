@@ -1,30 +1,277 @@
-// src/components/Layout.jsx
-import { useState } from "react";
-import Sidebar from "./DashboardSidebar";
-import DashboardHeader from "./DashboardHeader";
-import { Outlet } from "react-router-dom";
+// DashboardLayout.jsx - Ad Points Dropdown Fixed with Portal
+import { useState, useRef } from "react";
+import { Outlet, NavLink, useLocation } from "react-router-dom";
+import { createPortal } from "react-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRightFromBracket,
+  faBars,
+  faUser,
+  faGear,
+  faChevronDown,
+} from "@fortawesome/pro-solid-svg-icons";
+import Logo from "../header/Logo";
+import { useAuth } from "../../context/AuthContext";
+import ProfileDropdown from "./ProfileDropdown";
 
-export default function DashboardLayout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+// Menu items
+const mainNavItems = [
+  { name: "Overview", path: "/dashboard" },
+  { name: "Analytics", path: "/dashboard/analytics" },
+  { name: "Documentation", path: "/dashboard/documentation" },
+  {
+    name: "Ad Points",
+    hasSubmenu: true,
+    submenu: [
+      { name: "Buy", path: "/dashboard/buy" },
+      { name: "History", path: "/dashboard/history" },
+      { name: "Payment Method", path: "/dashboard/payment-method" },
+    ],
+  },
+  { name: "Settings", path: "/dashboard/settings" },
+];
+
+// Dropdown portal component
+function DropdownPortal({ children, parentRef }) {
+  if (!parentRef?.current) return null;
+
+  const rect = parentRef.current.getBoundingClientRect();
+  return createPortal(
+    <div
+      style={{
+        position: "absolute",
+        top: rect.bottom + window.scrollY,
+        left: rect.left + window.scrollX,
+        zIndex: 9999,
+      }}
+    >
+      {children}
+    </div>,
+    document.body
+  );
+}
+
+function DashboardLayout() {
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showAdPointsMenu, setShowAdPointsMenu] = useState(false);
+  const adPointsButtonRef = useRef(null);
+  const { user } = useAuth();
+  const location = useLocation();
+
+  const getPageTitle = () => {
+    const path = location.pathname;
+    if (path === "/dashboard") return "Overview";
+    if (path === "/dashboard/analytics") return "Analytics";
+    if (path === "/dashboard/settings") return "Settings";
+    if (path === "/dashboard/profile") return "Profile";
+    if (path === "/dashboard/buy") return "Buy Ad Points";
+    if (path === "/dashboard/history") return "History";
+    if (path === "/dashboard/payment-method") return "Payment Method";
+    if (path === "/dashboard/documentation") return "Documentation";
+    if (path === "/dashboard/documentation/getting-started")
+      return "Getting Started";
+    if (path === "/dashboard/documentation/concepts") return "Core Concepts";
+    if (path === "/dashboard/documentation/api-reference")
+      return "API Reference";
+    if (path === "/dashboard/documentation/storer-download")
+      return "Storer Download";
+    if (path === "/dashboard/documentation/guides") return "Guides";
+    if (path === "/dashboard/documentation/faq") return "FAQ";
+    if (path === "/dashboard/documentation/support") return "Support";
+    return "Page";
+  };
+
+  const isAdPointsActive = () => {
+    return (
+      location.pathname === "/dashboard/buy" ||
+      location.pathname === "/dashboard/history" ||
+      location.pathname === "/dashboard/payment-method"
+    );
+  };
 
   return (
-    <div className="flex h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-stone-900 dark:to-stone-950">
-      {/* Sidebar */}
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+    <div className="min-h-screen bg-gray-50 dark:bg-stone-950">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200 dark:bg-stone-900 dark:border-gray-700">
+        <div className="px-4 py-4 mx-auto sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            {/* Left */}
+            <div className="flex items-center gap-4">
+              <button
+                className="p-2 transition-colors rounded-lg lg:hidden hover:bg-gray-100 dark:hover:bg-stone-800"
+                onClick={() => setShowMobileMenu(!showMobileMenu)}
+              >
+                <FontAwesomeIcon
+                  icon={faBars}
+                  className="w-5 h-5 text-gray-600 dark:text-gray-300"
+                />
+              </button>
+              <Logo paddingX="0" mode="dark" />
+            </div>
 
-      {/* Main content area */}
-      <div className="flex flex-col flex-1 overflow-hidden">
-        {/* Header */}
-        <DashboardHeader
-          sidebarOpen={sidebarOpen}
-          setSidebarOpen={setSidebarOpen}
-        />
+            {/* Right side - Profile */}
+            <div className="flex items-center gap-3">
+              <ProfileDropdown />
+            </div>
+          </div>
+        </div>
+      </header>
 
-        {/* Page content */}
-        <main className="flex-1 p-4 overflow-y-auto lg:p-8 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-stone-900 dark:to-stone-950">
-          <Outlet />
-        </main>
-      </div>
+      {/* Main Content */}
+      <main className="px-4 py-6 mx-auto sm:px-6 lg:px-8">
+        <div className="mb-6">
+          <h1 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
+            {getPageTitle()}
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400">
+            View and manage the Storer status and availability across all
+            Pixelmine locations.
+          </p>
+        </div>
+
+        {/* Horizontal Nav */}
+        <div className="mb-8 border-b border-gray-200 dark:border-gray-700">
+          <nav className="flex gap-8 -mb-px overflow-x-auto">
+            {mainNavItems.map((item) => {
+              if (item.hasSubmenu) {
+                const active = isAdPointsActive();
+
+                return (
+                  <div
+                    key={item.name}
+                    className="relative"
+                    onMouseEnter={() => setShowAdPointsMenu(true)}
+                    onMouseLeave={() => setShowAdPointsMenu(false)}
+                  >
+                    <button
+                      ref={adPointsButtonRef}
+                      className={`pb-3 px-1 font-medium text-sm flex items-center gap-1 border-b-2 transition-colors border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 whitespace-nowrap flex-shrink-0`}
+                    >
+                      Ad Points
+                      <FontAwesomeIcon
+                        icon={faChevronDown}
+                        className="w-3 h-3"
+                      />
+                    </button>
+
+                    {showAdPointsMenu && (
+                      <DropdownPortal parentRef={adPointsButtonRef}>
+                        <div className="w-48 py-2 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-stone-800 dark:border-gray-700">
+                          {item.submenu.map((sub) => (
+                            <NavLink
+                              key={sub.name}
+                              to={sub.path}
+                              onClick={() => setShowAdPointsMenu(false)}
+                              className={({ isActive }) =>
+                                `block px-4 py-2 text-sm ${
+                                  isActive
+                                    ? "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400"
+                                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-stone-700"
+                                }`
+                              }
+                            >
+                              {sub.name}
+                            </NavLink>
+                          ))}
+                        </div>
+                      </DropdownPortal>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <NavLink
+                  key={item.name}
+                  to={item.path}
+                  end={item.path === "/dashboard"}
+                  className={({ isActive }) =>
+                    `pb-3 px-1 font-medium text-sm border-b-2 ${
+                      isActive
+                        ? "border-emerald-500 text-emerald-500"
+                        : "border-transparent text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+                    }`
+                  }
+                >
+                  {item.name}
+                </NavLink>
+              );
+            })}
+          </nav>
+        </div>
+
+        <Outlet />
+      </main>
+
+      {/* Mobile Menu */}
+      {showMobileMenu && (
+        <>
+          <div
+            className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+            onClick={() => setShowMobileMenu(false)}
+          ></div>
+
+          <div
+            className="fixed top-0 bottom-0 left-0 z-50 w-64 p-6 bg-white dark:bg-stone-900 lg:hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mb-8">
+              <Logo paddingX="0" mode="dark" />
+            </div>
+
+            <nav className="space-y-2">
+              {mainNavItems.map((item) => {
+                if (item.hasSubmenu) {
+                  return (
+                    <div key={item.name}>
+                      <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase dark:text-gray-400">
+                        {item.name}
+                      </div>
+
+                      {item.submenu.map((sub) => (
+                        <NavLink
+                          key={sub.name}
+                          to={sub.path}
+                          onClick={() => setShowMobileMenu(false)}
+                          className={({ isActive }) =>
+                            `block px-4 py-3 pl-8 rounded-lg font-medium ${
+                              isActive
+                                ? "bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400"
+                                : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-stone-800"
+                            }`
+                          }
+                        >
+                          {sub.name}
+                        </NavLink>
+                      ))}
+                    </div>
+                  );
+                }
+
+                return (
+                  <NavLink
+                    key={item.name}
+                    to={item.path}
+                    onClick={() => setShowMobileMenu(false)}
+                    className={({ isActive }) =>
+                      `block px-4 py-3 rounded-lg font-medium ${
+                        isActive
+                          ? "bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400"
+                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-stone-800"
+                      }`
+                    }
+                  >
+                    {item.name}
+                  </NavLink>
+                );
+              })}
+            </nav>
+          </div>
+        </>
+      )}
     </div>
   );
 }
+
+export default DashboardLayout;

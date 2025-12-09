@@ -1,6 +1,14 @@
+// DashboardOverview.jsx - REPLACE YOUR EXISTING FILE
+// This keeps ALL your logic, only improves the layout for better visual hierarchy
+
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faServer, faBolt, faBoxOpen } from "@fortawesome/pro-solid-svg-icons";
+import {
+  faServer,
+  faBolt,
+  faBoxOpen,
+  faFilter,
+} from "@fortawesome/pro-solid-svg-icons";
 import SEOHelmet from "../SEOHelmet";
 import OnlineHoursLineChart from "./statistics/OnlineHoursLineChart";
 import { useAuth } from "../../context/AuthContext";
@@ -91,16 +99,17 @@ function DashboardOverview() {
         image="/social-sharing.jpg"
       />
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-[25%_1fr]">
-        {/* Box 1: Total Running Storer */}
-        <div className="flex flex-col items-center justify-center p-8 bg-white border border-gray-200 shadow-lg rounded-2xl dark:bg-stone-800 dark:border-gray-700">
-          <div className="flex items-center justify-center w-16 h-16 mb-5 shadow-lg rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600">
-            <FontAwesomeIcon icon={faServer} className="text-white size-7" />
+      {/* Metrics Overview - 4 equal cards in a row */}
+      <div className="grid grid-cols-1 gap-6 mb-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Total Running Storer */}
+        <div className="p-6 bg-white border border-gray-200 dark:bg-stone-900 rounded-xl dark:border-gray-700">
+          <div className="flex items-center justify-center w-12 h-12 mb-4 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl">
+            <FontAwesomeIcon icon={faServer} className="w-6 h-6 text-white" />
           </div>
-          <h2 className="mb-3 text-sm font-semibold text-gray-600 dark:text-gray-400">
+          <p className="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
             Total Running Storer
-          </h2>
-          <p className="text-5xl font-bold text-gray-900 dark:text-white">
+          </p>
+          <p className="text-4xl font-bold text-gray-900 dark:text-white">
             {(locationStatus ?? []).reduce(
               (sum, city) => sum + (city.running || 0),
               0
@@ -108,19 +117,50 @@ function DashboardOverview() {
           </p>
         </div>
 
-        {/* Box 2: Filters and available slots */}
-        <div className="p-8 bg-white border border-gray-200 shadow-lg rounded-2xl dark:bg-stone-800 dark:border-gray-700">
-          <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">
+        {/* Activity Points */}
+        <div className="p-6 bg-white border border-gray-200 dark:bg-stone-900 rounded-xl dark:border-gray-700">
+          <div className="flex items-center justify-center w-12 h-12 mb-4 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl">
+            <FontAwesomeIcon icon={faBolt} className="w-6 h-6 text-white" />
+          </div>
+          <p className="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+            Activity Points
+          </p>
+          <p className="text-4xl font-bold text-gray-900 dark:text-white">
+            {statistics.activity_points ?? "--"}
+          </p>
+        </div>
+
+        {/* PXL Points */}
+        <div className="p-6 bg-white border border-gray-200 dark:bg-stone-900 rounded-xl dark:border-gray-700">
+          <div className="flex items-center justify-center w-12 h-12 mb-4 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl">
+            <FontAwesomeIcon icon={faBolt} className="w-6 h-6 text-white" />
+          </div>
+          <p className="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+            PXL Points
+          </p>
+          <p className="text-4xl font-bold text-gray-900 dark:text-white">
+            {statistics.pxl_points ?? "--"}
+          </p>
+        </div>
+      </div>
+
+      {/* Location Status Section */}
+      <div className="mb-6 bg-white border border-gray-200 dark:bg-stone-900 rounded-xl dark:border-gray-700">
+        <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white">
             Check storer status by location
           </h2>
-          <div className="flex flex-col gap-4 mb-6 md:flex-row">
+        </div>
+
+        <div className="p-6">
+          <div className="grid grid-cols-1 gap-4 mb-6 md:grid-cols-2">
             {/* Country select */}
-            <div className="w-1/2">
+            <div>
               <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                 Country
               </label>
               <select
-                className="w-full p-3 text-sm transition-all duration-200 border border-gray-300 bg-gray-50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white"
+                className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 bg-white dark:bg-stone-800 rounded-lg text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
                 value={selectedCountry}
                 onChange={(e) => {
                   setSelectedCountry(e.target.value);
@@ -135,15 +175,15 @@ function DashboardOverview() {
                 ))}
               </select>
             </div>
+
             {/* City select */}
             {selectedCountry && (
-              <div className="w-1/2">
+              <div>
                 <label className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                   City
                 </label>
-
                 <select
-                  className={`w-full p-3 text-sm transition-all duration-200 border border-gray-300 bg-gray-50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white`}
+                  className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 bg-white dark:bg-stone-800 rounded-lg text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
                   value={selectedCity}
                   onChange={(e) => setSelectedCity(e.target.value)}
                 >
@@ -158,69 +198,61 @@ function DashboardOverview() {
             )}
           </div>
 
+          {/* City Stats - Only show when city is selected */}
           {selectedCity && (
-            <div className="flex flex-col justify-between gap-5 mt-6 lg:flex-row">
-              <div className="flex flex-col items-center w-full p-6 text-center border border-gray-200 shadow-md bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 dark:border-gray-700 rounded-2xl">
-                <div className="flex items-center justify-center w-12 h-12 mb-3 shadow-lg rounded-xl bg-gradient-to-br from-emerald-600 to-teal-600">
-                  <FontAwesomeIcon
-                    icon={faBolt}
-                    className="text-white size-5"
-                  />
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {/* Storer Running */}
+              <div className="p-6 border border-emerald-200 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-xl dark:border-emerald-800">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-500">
+                    <FontAwesomeIcon
+                      icon={faBolt}
+                      className="w-5 h-5 text-white"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      Storer Running
+                    </p>
+                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                      {selectedCityData.running ?? "--"}
+                    </p>
+                  </div>
                 </div>
-                <h2 className="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  Storer Running
-                </h2>
-                <p className="text-3xl font-bold text-gray-900 dark:text-white">
-                  {selectedCityData.running ?? "--"}
-                </p>
               </div>
-              <div className="flex flex-col items-center w-full p-6 text-center border border-gray-200 shadow-md bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 dark:border-gray-700 rounded-2xl">
-                <div className="flex items-center justify-center w-12 h-12 mb-3 shadow-lg rounded-xl bg-gradient-to-br from-emerald-600 to-teal-600">
-                  <FontAwesomeIcon
-                    icon={faBoxOpen}
-                    className="text-white size-5"
-                  />
+
+              {/* Available Storer Slot */}
+              <div className="p-6 border border-emerald-200 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-xl dark:border-emerald-800">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-500">
+                    <FontAwesomeIcon
+                      icon={faBoxOpen}
+                      className="w-5 h-5 text-white"
+                    />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      Available Storer Slot
+                    </p>
+                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                      {selectedCityData.available ?? "--"}
+                    </p>
+                  </div>
                 </div>
-                <h2 className="mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  Available Storer Slot
-                </h2>
-                <p className="text-3xl font-bold text-gray-900 dark:text-white">
-                  {selectedCityData.available ?? "--"}
-                </p>
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Box 3 + Box 4 */}
-      <div className="mt-6 grid grid-cols-1 2xl:grid-cols-[25%_1fr] gap-6">
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-col items-center justify-center h-full p-8 bg-white border border-gray-200 shadow-lg rounded-2xl dark:bg-stone-800 dark:border-gray-700">
-            <div className="flex items-center justify-center w-16 h-16 mb-5 shadow-lg rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600">
-              <FontAwesomeIcon icon={faBolt} className="text-white size-7" />
-            </div>
-            <h2 className="mb-3 text-sm font-semibold text-gray-600 dark:text-gray-400">
-              Activity Points
-            </h2>
-            <p className="text-4xl font-bold text-gray-900 dark:text-white">
-              {statistics.activity_points ?? "--"}
-            </p>
-          </div>
-          <div className="flex flex-col items-center justify-center h-full p-8 bg-white border border-gray-200 shadow-lg rounded-2xl dark:bg-stone-800 dark:border-gray-700">
-            <div className="flex items-center justify-center w-16 h-16 mb-5 shadow-lg rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600">
-              <FontAwesomeIcon icon={faBolt} className="text-white size-7" />
-            </div>
-            <h2 className="mb-3 text-sm font-semibold text-gray-600 dark:text-gray-400">
-              PXL Points
-            </h2>
-            <p className="text-4xl font-bold text-gray-900 dark:text-white">
-              {statistics.pxl_points ?? "--"} PXL
-            </p>
-          </div>
+      {/* Chart Section - Full Width */}
+      <div className="bg-white border border-gray-200 dark:bg-stone-900 rounded-xl dark:border-gray-700">
+        <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+            Online Hours per Month
+          </h2>
         </div>
-
-        <div className="flex items-center justify-center p-8 bg-white border border-gray-200 shadow-lg rounded-2xl dark:bg-stone-800 dark:border-gray-700">
+        <div className="p-6">
           <OnlineHoursLineChart data={statistics.online_hours_per_month} />
         </div>
       </div>
