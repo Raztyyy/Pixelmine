@@ -1,75 +1,247 @@
-export const items = [
+// User Sovereignity
+export const userSovereignityItems = [
   {
-    title: { en: "Strengthening User Control", jp: "ユーザー制御の強化" },
+    title: {
+      en: "Strengthening User Control",
+      jp: "ユーザーコントロールの強化",
+    },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmine distributes data across seven Storers and verifies
-            integrity using a patented “Geographical Node + Random Node Majority
-            Vote” system. This ensures that users—not a central
-            administrator—retain full ownership of their accounts, posts, and
-            messages. No entity can extract, alter, or monetize user data
-            without consent. This architecture shifts platform authority from
-            corporations back to the users, restoring true digital ownership.
+            In centralized systems, users function as tenants, occupying space
+            on infrastructure owned by others and subject to non-negotiable
+            terms. Pixelmine fundamentally alters this dynamic. Users generate
+            and retain their own cryptographic keys, ensuring that only they can
+            authorize access to their data. Content cannot be modified, moved,
+            or deleted without explicit owner consent. Control is embedded
+            within the system's architecture rather than granted by the
+            platform.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmineは、データを7つのストアラーに分散保存し、特許技術である「地理的ノード＋ランダムノード多数決」で検証することで、ユーザーが自分の情報を主体的にコントロールできる構造を実現しています。アカウント情報、投稿、チャット履歴などは中央管理者に依存せず、ユーザー自身が所有者となる仕組みです。企業が勝手にデータを抜いたり変更することができず、ユーザーは自分のデジタル資産を安全に維持できます。これにより、SNSの主導権が企業ではなくユーザーへと確実に戻ります。
+            中央集権型システムでは、ユーザーは他者が所有するインフラストラクチャ上のスペースを占有し
+            、交渉不可能な条件に従うテナントとして機能します。Pixelmineはこの力学を根本的に変革します
+            。ユーザーは自身の暗号鍵を生成・保持し、自分だけがデータへのアクセスを承認できることを保
+            証します。コンテンツは所有者の明示的な同意なしに変更、移動、削除することはできません。コ
+            ントロールはプラットフォームから付与されるのではなく、システムのアーキテクチャに組み込ま
+            れています。
           </p>
         </>
       ),
     },
   },
   {
-    title: { en: "Censorship Resistance", jp: "検閲体制" },
+    title: { en: "Self-Sovereign Identity", jp: "自己主権型アイデンティティ" },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmine posts and messages are never stored on a central server.
-            Instead, they are distributed across seven Storers, combining
-            geographic and random nodes. Data validity is verified by patented
-            majority-vote algorithms, preventing operators from deleting or
-            altering specific user content. Even governments or corporations
-            cannot seize a single server to enforce censorship. This provides
-            strong protection for freedom of expression and guarantees user
-            sovereignty over their communications.
+            On conventional platforms, user identity is subject to the
+            provider's discretion; accounts may be suspended, usernames
+            reassigned, and histories erased. Pixelmine employs cryptographic
+            key pairs to establish identity. Users generate and control their
+            own keys, rendering their identity portable, verifiable, and
+            irrevocable by any external party. Users are not merely entries in
+            another entity's database.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmineでは、投稿やメッセージが中央サーバーに集まらず、7つのストアラー（地理的ノード＋ランダムノード）に分散保存されます。データの正しさは特許技術である「複数ノードの多数決」で検証されるため、運営が特定ユーザーの投稿だけを消したり、内容を書き換えたりすることはできません。また、国家や企業がひとつのサーバーを押さえて検閲することも不可能です。結果として、情報の自由が守られ、誰もが発信内容の所有権を自分自身で持つことができるSNSになります。
+            従来のプラットフォームでは、ユーザーのアイデンティティはプロバイダーの裁量に委ねられてい
+            ます。アカウントは停止され、ユーザー名は再割り当てされ、履歴は消去される可能性があります
+            。Pixelmineは暗号鍵ペアを使用してアイデンティティを確立します。ユーザーは自身の鍵を生成・
+            管理し、アイデンティティを携帯可能で検証可能なものとし、外部の第三者によって取り消し不可
+            能なものにします。ユーザーは他者のデータベースの単なるエントリーではありません。
           </p>
         </>
       ),
     },
   },
   {
-    title: { en: "Interoperability", jp: "相互運用性" },
+    title: { en: "Data Portability", jp: "データポータビリティ" },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            By decentralizing data across seven Storers, Pixelmine enables
-            flexible data sharing across platforms and applications. The
-            patented node-verification process ensures that third-party apps
-            accessing Pixelmine data maintain security and consistency. This
-            allows users to move across services while retaining control of
-            their data. It breaks away from corporate lock-in and enables a
-            user-centric, open ecosystem.
+            Centralized platforms often benefit from user lock-in, as
+            accumulated data makes migration more difficult. Pixelmine enables
+            users to export their data at any time in standard formats. Content,
+            connections, and history remain the user's property and are fully
+            portable. The platform is designed to serve its users rather than
+            restrict them.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmineは、データを中央に固定せず7ストアラーに分散させることで、プラットフォーム間のデータ共有を柔軟に実現できます。特許技術によるノード検証により、サードパーティーアプリや他サービスがPixelmineのデータを利用する際も、安全性と整合性が確保されます。これにより、ユーザーはSNS・アプリ・サービスを自由に移動しながら、自分のデータを一貫して活用可能になります。企業の囲い込みに縛られず、ユーザー中心のオープンなエコシステムが形成されます。
+            中央集権型プラットフォームは、蓄積されたデータが移行を困難にするため、ユーザーのロックイ
+            ンから利益を得ることが多いです。Pixelmineはユーザーがいつでも標準フォーマットでデータをエ
+            クスポートできるようにします。コンテンツ、つながり、履歴はユーザーの所有物であり、完全に
+            携帯可能です。プラットフォームはユーザーを制限するのではなく、ユーザーに奉仕するよう設計
+            されています。
+          </p>
+        </>
+      ),
+    },
+  },
+];
+
+// Privacy & Security
+export const privacySecurityItems = [
+  {
+    title: { en: "End-to-End Encryption", jp: "エンドツーエンド暗号化" },
+    content: {
+      en: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            Privacy should not rely on trust in the platform. Pixelmine
+            implements end-to-end encryption for private communications,
+            ensuring that messages are encrypted on the sender's device and can
+            only be decrypted by the intended recipient. Neither intermediate
+            nodes, server operators, nor third parties can access content in
+            transit or at rest. Privacy is enforced through cryptographic
+            methods rather than policy.
+          </p>
+        </>
+      ),
+      jp: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            プライバシーはプラットフォームへの信頼に依存すべきではありません。Pixelmineはプライベート
+            通信にエンドツーエンド暗号化を実装し、メッセージは送信者のデバイスで暗号化され、意図され
+            た受信者のみが復号できることを保証します。中間ノード、サーバーオペレーター、第三者のいず
+            れも、転送中または保存中のコンテンツにアクセスできません。プライバシーはポリシーではなく
+            、暗号技術によって強制されます。
+          </p>
+        </>
+      ),
+    },
+  },
+  {
+    title: { en: "Post-Quantum Security", jp: "耐量子セキュリティ" },
+    content: {
+      en: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            Current encryption standards are vulnerable to future threats posed
+            by quantum computers, which may be able to break widely used
+            cryptographic algorithms. Pixelmine addresses this risk by
+            implementing post-quantum cryptography, ensuring that data encrypted
+            today remains secure against future advances in computation.
+            Security is engineered for long-term resilience rather than solely
+            present-day threats.
+          </p>
+        </>
+      ),
+      jp: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            現在の暗号化標準は、広く使用されている暗号アルゴリズムを破る可能性のある量子コンピュータ
+            による将来の脅威に対して脆弱です。Pixelmineは耐量子暗号を実装することでこのリスクに対処し
+            、今日暗号化されたデータが将来の計算能力の進歩に対しても安全であり続けることを保証します
+            。セキュリティは現在の脅威だけでなく、長期的な耐障害性のために設計されています。
+          </p>
+        </>
+      ),
+    },
+  },
+];
+
+// Network Resilience
+export const networkResilienceItems = [
+  {
+    title: { en: "Censorship Resistance", jp: "検閲耐性" },
+    content: {
+      en: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            When content resides on a single server, its removal requires only a
+            single decision by one authority. Decentralization fundamentally
+            alters this dynamic. Data replicated across multiple independent
+            nodes cannot be erased by any single actor. There is no central
+            point of control or single jurisdiction responsible for enforcing
+            removal. The network's architecture inherently renders unilateral
+            censorship impractical.
+          </p>
+        </>
+      ),
+      jp: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            コンテンツが単一のサーバーに存在する場合、その削除には1つの権威による1つの決定のみが必要
+            です。分散化はこの力学を根本的に変えます。複数の独立したノードに複製されたデータは、単一
+            のアクターによって消去することはできません。中央制御点も、削除を強制する単一の管轄権もあ
+            りません。ネットワークのアーキテクチャは本質的に一方的な検閲を実行不可能にします。
+          </p>
+        </>
+      ),
+    },
+  },
+  {
+    title: { en: "Network Self-Healing", jp: "ネットワーク自己修復" },
+    content: {
+      en: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            Centralized systems are characterized by a single point of failure;
+            if the server becomes unavailable, the entire service is disrupted.
+            Pixelmine distributes data and functionality across multiple
+            independent nodes. If one node fails, others continue to operate,
+            allowing the network to adapt, reroute, and self-heal. Availability
+            is an inherent property of the architecture rather than a guarantee
+            from a service provider.
+          </p>
+        </>
+      ),
+      jp: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            中央集権型システムは単一障害点を特徴とします。サーバーが利用不能になると、サービス全体が
+            中断されます。Pixelmineはデータと機能を複数の独立したノードに分散します。1つのノードに障
+            害が発生しても、他のノードは動作を継続し、ネットワークは適応、再ルーティング、自己修復を
+            行います。可用性はサービスプロバイダーからの保証ではなく、アーキテクチャの固有の特性です
+            。
+          </p>
+        </>
+      ),
+    },
+  },
+];
+
+// Trust & Transparency
+export const trustTransparencyItems = [
+  {
+    title: { en: "Node Reputation", jp: "ノードレピュテーション" },
+    content: {
+      en: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            Node performance varies across the network. Some nodes maintain high
+            uptime, reliably relay data, and accurately store content, while
+            others do not. Pixelmine monitors node behavior over time and
+            assigns reputation scores accordingly. Nodes that contribute
+            positively gain trust and influence, whereas unreliable nodes are
+            deprioritized. The network incentivizes positive participation
+            through its reputation system.
+          </p>
+        </>
+      ),
+      jp: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            ノードのパフォーマンスはネットワーク全体で異なります。一部のノードは高い稼働時間を維持し
+            、データを確実に中継し、コンテンツを正確に保存しますが、そうでないノードもあります。Pixel
+            mineは時間の経過とともにノードの動作を監視し、それに応じてレピュテーションスコアを割り当
+            てます。積極的に貢献するノードは信頼と影響力を獲得し、信頼性の低いノードは優先度が下げら
+            れます。ネットワークはレピュテーションシステムを通じて積極的な参加にインセンティブを与え
+            ます。
           </p>
         </>
       ),
@@ -77,51 +249,123 @@ export const items = [
   },
   {
     title: {
-      en: "Point Economy and Incentives",
-      jp: "ポイント経済とインセンティブ",
+      en: "Tamper-Resistance via Majority Consensus",
+      jp: "多数決コンセンサスによる改ざん耐性",
     },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmine measures user activity through secure distributed storage
-            and converts that activity into economic value. Actions—posting,
-            viewing, evaluating, managing—generate points that users directly
-            earn. Instead of a Web2 model where companies monopolize advertising
-            revenue, Pixelmine redistributes the majority of value to users and
-            Storers. This alignment of incentives creates a sustainable,
-            community-driven data economy.
+            Data integrity within a decentralized system relies on consensus.
+            When user data is distributed across multiple nodes, any attempt to
+            alter it must address independent copies maintained elsewhere.
+            Pixelmine resolves conflicts through majority consensus; if most
+            nodes agree on a version of the data, that version is considered
+            authoritative. Tampering would require compromising a majority of
+            the network simultaneously, rendering unauthorized modification
+            effectively infeasible.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmineでは、ユーザーの活動データを7ストアラーで安全に分散管理することで、その行動価値を正確に測定できます。これにより、投稿・閲覧・評価・管理といった「行動そのもの」をポイントとして還元し、ユーザーが自分のデータ価値をそのまま利益として受け取れる仕組みが成立します。企業広告モデルのように運営だけが利益を独占する構造ではなく、利用者とストアラーへ収益の大部分が分配されるため、参加者全体のインセンティブが揃い、持続的に成長するデータ経済圏が形成されます。
+            分散システムにおけるデータの整合性はコンセンサスに依存します。ユーザーデータが複数のノー
+            ドに分散されている場合、それを変更しようとする試みは、他の場所で維持されている独立したコ
+            ピーに対処する必要があります。Pixelmineは多数決コンセンサスによって競合を解決します。ほと
+            んどのノードがデータのバージョンに同意すれば、そのバージョンが権威あるものとみなされます
+            。改ざんにはネットワークの過半数を同時に侵害する必要があり、不正な変更は事実上実行不可能
+            になります。
           </p>
         </>
       ),
     },
   },
+  {
+    title: {
+      en: "Verifiable History",
+      jp: "検証可能な履歴",
+    },
+    content: {
+      en: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            In centralized systems, historical records can be altered without
+            detection. Pixelmine maintains verifiable records of data changes
+            across the network. Both users and nodes can independently confirm
+            that content has not been altered without authorization. Trust is
+            established through verification rather than assumption.
+          </p>
+        </>
+      ),
+      jp: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            中央集権型システムでは、過去の記録は検出されずに変更される可能性があります。Pixelmineはネ
+            ットワーク全体でデータ変更の検証可能な記録を維持します。ユーザーとノードの両方が、コンテ
+            ンツが許可なく変更されていないことを独立して確認できます。信頼は仮定ではなく、検証によっ
+            て確立されます。
+          </p>
+        </>
+      ),
+    },
+  },
+  {
+    title: {
+      en: "Open Protocol",
+      jp: "オープンプロトコル",
+    },
+    content: {
+      en: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            Transparency necessitates more than stated intentions; it requires
+            systems that are open to audit. Pixelmine's protocol is open and
+            publicly documented. Any participant can inspect data flows,
+            decision-making processes, and system operations. No hidden
+            algorithms influence user experience. All operational rules are
+            accessible to participants.
+          </p>
+        </>
+      ),
+      jp: (
+        <>
+          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
+            透明性には、表明された意図以上のものが必要です。監査に開かれたシステムが必要です。Pixelmi
+            neのプロトコルはオープンで公開されています。参加者は誰でもデータフロー、意思決定プロセス
+            、システム運用を検査できます。隠れたアルゴリズムがユーザー体験に影響を与えることはありま
+            せん。すべての運用ルールは参加者がアクセス可能です。
+          </p>
+        </>
+      ),
+    },
+  },
+];
+
+// Governance & Economy
+export const governanceEconomyItems = [
   {
     title: { en: "Community Governance", jp: "コミュニティガバナンス" },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmine emphasizes decision-making by users rather than a central
-            authority. Distributed storage and patented majority-vote validation
-            prevent arbitrary rule changes by administrators. Feature updates,
-            policies, and improvements are decided through user voting and
-            community proposals, creating a transparent and autonomous
-            governance model where the platform is operated by its participants.
+            In the absence of a central authority, decisions are made
+            collectively. Pixelmine employs community governance, allowing
+            participants to determine protocol changes, moderation standards,
+            and network policies rather than imposing them on participants. The
+            system evolves in alignment with user interests rather than those of
+            a corporation or founding team.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmineは中央管理者ではなく、ユーザー同士が意思決定に参加できる仕組みを重視しています。データは7ストアラーに分散保存され、特許技術の多数決検証によって公平性が担保されるため、特定の管理者がルールを恣意的に変更することができません。機能追加、ルール、改善案などはユーザー投票やコミュニティ提案を通じて決定され、SNSそのものが「参加者によって運営される」構造になります。これにより、透明性の高い、自律分散型のコミュニティガバナンスが実現します。
+            中央権威がない場合、決定は集合的に行われます。Pixelmineはコミュニティガバナンスを採用し、
+            参加者がプロトコルの変更、モデレーション基準、ネットワークポリシーを参加者に押し付けるの
+            ではなく、決定できるようにします。システムは企業や創設チームの利益ではなく、ユーザーの利
+            益に沿って進化します。
           </p>
         </>
       ),
@@ -129,27 +373,32 @@ export const items = [
   },
   {
     title: {
-      en: "Definition of a Decentralized SNS",
-      jp: "分散型SNSの定義",
+      en: "Points and Economic Incentives",
+      jp: "ポイントと経済的インセンティブ",
     },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            A decentralized SNS is a communication infrastructure where user
-            data is not owned or controlled by corporations or governments but
-            by the users themselves. Pixelmine uses seven Storers and patented
-            majority-vote verification to eliminate centralized control,
-            censorship, and tampering. This enables freedom of expression, data
-            sovereignty, and transparent value circulation—forming a
-            self-governed network society.
+            Decentralization depends on active participation, as nodes are
+            responsible for storing data, relaying messages, and maintaining
+            connectivity. Pixelmine incentivizes participation through an
+            internal points-based economy. Users who contribute resources to the
+            network earn points, while those who consume resources spend them.
+            This structure fosters a self-sustaining ecosystem in which
+            participation is rewarded, and network health is linked to
+            collective contribution.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            分散型SNSとは、ユーザーのデータややり取りが、企業や国家など単一の管理者に属さず、ユーザー自身によって所有・管理される新しい形の社会基盤である。Pixelmineでは、7ストアラーと特許技術による多数決検証を用いることで、情報が中央に集約されず、検閲・改ざん・不正利用を技術的に不可能にしている。発信の自由、データ主権、透明な経済循環を兼ね備え、ユーザーが主体となって価値を生み出す自律したネットワーク社会こそ、私たちが考える分散型SNSの本質である。
+            分散化は積極的な参加に依存します。ノードはデータの保存、メッセージの中継、接続性の維持を
+            担当します。Pixelmineは内部のポイントベース経済を通じて参加にインセンティブを与えます。ネ
+            ットワークにリソースを提供するユーザーはポイントを獲得し、リソースを消費するユーザーはポ
+            イントを使用します。この構造は、参加が報われ、ネットワークの健全性が集団的貢献に連動する
+            自己持続型エコシステムを育成します。
           </p>
         </>
       ),
@@ -157,27 +406,30 @@ export const items = [
   },
   {
     title: {
-      en: "Achieving True Tamper-Resistance via Node Majority Vote",
-      jp: "ノード多数決による真の耐改ざん性の実現",
+      en: "Community-Powered Infrastructure",
+      jp: "コミュニティ主導のインフラストラクチャ",
     },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmine avoids the high computation cost and latency of
-            blockchains by using a lightweight majority-vote algorithm. Its
-            patented mix of geographical and random nodes prevents any entity
-            from dominating the network. Data updates require agreement from the
-            majority of seven Storers, making tampering practically impossible.
-            This architecture introduces a new category of “third-type
-            immutability” beyond blockchains and centralized systems.
+            Traditional platforms depend on corporate data centers financed by
+            external capital. Pixelmine operates on infrastructure contributed
+            by its users. Each node operator provides storage and bandwidth to
+            sustain the network. This model distributes both cost and ownership,
+            resulting in a platform that is collectively maintained rather than
+            corporately controlled.
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmineは、従来のブロックチェーンが抱える「計算コストの増大」と「ハッシュチェーン依存の遅延」を避け、独自の多数決アルゴリズムを採用している。特許技術に基づき、地理的ノードとランダムノードを混在させた7ストアラー構造を採用することで、特定勢力がノードを占有するリスクを限界まで低減。データ更新時には過半数一致が必須となり、国家・企業・攻撃者が情報を改ざんするには同時に複数ノードの書き換えが必要となる。これにより、現実的に改ざん不可能なデータ保全方式を実現している。
+            従来のプラットフォームは外部資本によって資金調達された企業のデータセンターに依存していま
+            す。Pixelmineはユーザーが提供するインフラストラクチャ上で運営されます。各ノードオペレータ
+            ーはネットワークを維持するためにストレージと帯域幅を提供します。このモデルはコストと所有
+            権の両方を分散させ、企業が管理するのではなく、集合的に維持されるプラットフォームを実現し
+            ます。
           </p>
         </>
       ),
@@ -185,85 +437,28 @@ export const items = [
   },
   {
     title: {
-      en: "Redefining Privacy Through a Zero-Access Architecture",
-      jp: "ゼロアクセス設計がつくるプライバシー標準の再定義",
+      en: "Permissionless Participation",
+      jp: "パーミッションレス参加",
     },
     content: {
       en: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmine does not store user posts, messages, or activity logs on a
-            readable server. All data is encrypted and distributed across
-            Storers, and operators cannot access plaintext. This Zero-Access
-            Architecture ensures that even server seizure cannot reveal user
-            data. It fundamentally overturns the Web2 assumption that “platforms
-            hold user data,” establishing a new privacy standard.
+            Participation in the Pixelmine network does not require application,
+            approval, or gatekeeping. Any individual can operate a node,
+            contribute resources, or develop applications using the protocol.
+            Participation is open by default, and the network expands through
+            voluntary contributions rather than centralized recruitment.{" "}
           </p>
         </>
       ),
       jp: (
         <>
           <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmineでは、ユーザーの投稿・DM・行動データが運営サーバーに蓄積されない。すべてが7ストアラーに暗号化分散され、運営側は平文データへアクセスできない構造を採用している。これは“誰も中身を見れない”ゼロアクセス前提のアーキテクチャであり、サーバー押収や情報要求があってもプライバシーが守られる。従来Webが依存していた「情報は運営が持つ」という思想を根底から覆し、次世代のプライバシー標準を構築する。{" "}
-          </p>
-        </>
-      ),
-    },
-  },
-  {
-    title: {
-      en: "Building a Decentralized Data Economy via Action-as-Currency",
-      jp: "行動データの疑似通貨化による分散型データ経済の構築",
-    },
-    content: {
-      en: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmine treats user actions as economic assets instead of mere
-            logs. Verified by distributed Storers, user behavior is converted
-            into points that can interact directly with advertisers and
-            partners. This dismantles the Web2 model where platforms monopolize
-            data value and instead builds an economy where value flows back to
-            users. It establishes a sustainable economic base for the
-            decentralized web.
-          </p>
-        </>
-      ),
-      jp: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmineは、行動データをログではなく「価値のある資産」として扱うためのインフラを提供する。7ストアラーの検証によりユーザー行動が正しく記録され、それがポイントとして還元される。さらに、そのポイントが広告企業と連動し、ユーザーが直接利益を得られるエコシステムを構築する。中央集権Web2の“データ利益の独占構造”を破壊し、行動＝経済価値がユーザーへ還元される新しいインターネット経済圏を生み出す。
-          </p>
-        </>
-      ),
-    },
-  },
-  {
-    title: {
-      en: "Preparing Ethical Safeguards",
-      jp: "倫理的配慮への準備",
-    },
-    content: {
-      en: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmine focuses on ethical system design to balance decentralized
-            freedom with safety. While the seven-Storer architecture prevents
-            arbitrary deletion or tampering, maintaining a healthy community
-            requires mechanisms to detect harmful behavior. Pixelmine introduces
-            a “Red Flag” system that identifies abnormal patterns based on user
-            reports and metadata—not by reading the actual content. This
-            preserves user privacy while enabling early detection of misuse.
-            Final actions are taken through community-driven consensus rather
-            than centralized authority, ensuring fair and decentralized
-            governance without unilateral power.
-          </p>
-        </>
-      ),
-      jp: (
-        <>
-          <p className="mb-2 text-sm sm:text-base dark:text-stone-50">
-            Pixelmineは、自由な表現を守りつつ悪意ある利用を防ぐため、コミュニティ主導の“レッドフラッグ”システムを採用しています。ユーザーの通報や行動ログのメタデータをもとに、危険性のある投稿や広告にレッドフラッグが立つと、その投稿は数時間後に自動的に非表示となります。重要なのは、運営が内容を読むことはなく、異常パターンのみを検知するためプライバシーが完全に守られる点です。削除・非表示の最終判断はあくまでユーザーの意思に基づくものであり、中央管理者の恣意的判断ではなく「ユーザー自身が守る健全なコミュニティ運営」を実現します。{" "}
+            Pixelmineネットワークへの参加には、申請、承認、ゲートキーピングは必要ありません。誰でもノ
+            ードを運営し、リソースを提供し、プロトコルを使用してアプリケーションを開発できます。参加
+            はデフォルトでオープンであり、ネットワークは中央集権的な募集ではなく、自発的な貢献によっ
+            て拡大します。
           </p>
         </>
       ),

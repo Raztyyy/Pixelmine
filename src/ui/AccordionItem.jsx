@@ -46,7 +46,7 @@ function AccordionItem({ id, title, content, isOpen, toggle }) {
 
           {/* Title */}
           <span
-            className={`flex-1 text-lg font-bold tracking-tight transition-all duration-300 sm:text-xl ${
+            className={`flex-1 text-lg font-medium tracking-tight transition-all duration-300 sm:text-md ${
               isOpen
                 ? "text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400"
                 : "text-gray-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400"

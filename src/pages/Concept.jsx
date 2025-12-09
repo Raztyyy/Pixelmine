@@ -7,7 +7,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLightbulbOn, faPlay } from "@fortawesome/pro-solid-svg-icons";
 import SEOHelmet from "../ui/SEOHelmet";
 
-import { items as conceptItems } from "../data/concept/conceptData";
+import { userSovereignityItems as userSovereignity } from "../data/concept/conceptData";
+import { privacySecurityItems as privacySecurity } from "../data/concept/conceptData";
+import { networkResilienceItems as networkResilience } from "../data/concept/conceptData";
+import { trustTransparencyItems as trustTransparency } from "../data/concept/conceptData";
+import { governanceEconomyItems as governanceEconomy } from "../data/concept/conceptData";
+
 import { useLanguage } from "../context/LanguageContext";
 
 import {
@@ -220,9 +225,48 @@ function Concept() {
             </p>
           </div>
 
-          {/* Accordion */}
+          {/* User Sovereignity */}
           <div className="mb-12">
-            <Accordion items={conceptItems} language={language} />
+            <h2 className="mb-8 text-xl font-semibold leading-snug sm:text-2xl lg:text-3xl max-w-auto dark:text-stone-50">
+              {language === "en" ? "User Sovereignity" : "ユーザー主権"}
+            </h2>
+            <Accordion items={userSovereignity} language={language} />
+          </div>
+
+          {/* Privacy Security */}
+          <div className="mb-12">
+            <h2 className="mb-8 text-xl font-semibold leading-snug sm:text-2xl lg:text-3xl max-w-auto dark:text-stone-50">
+              {language === "en"
+                ? "Privacy & Security"
+                : "プライバシーとセキュリティ"}
+            </h2>
+            <Accordion items={privacySecurity} language={language} />
+          </div>
+
+          {/* Network Resilience */}
+          <div className="mb-12">
+            <h2 className="mb-8 text-xl font-semibold leading-snug sm:text-2xl lg:text-3xl max-w-auto dark:text-stone-50">
+              {language === "en"
+                ? "Network Resilience"
+                : "ネットワークレジリエンス"}
+            </h2>
+            <Accordion items={networkResilience} language={language} />
+          </div>
+
+          {/* Trust & Transparency */}
+          <div className="mb-12">
+            <h2 className="mb-8 text-xl font-semibold leading-snug sm:text-2xl lg:text-3xl max-w-auto dark:text-stone-50">
+              {language === "en" ? "Trust & Transparency" : "信頼と透明性"}
+            </h2>
+            <Accordion items={trustTransparency} language={language} />
+          </div>
+
+          {/* Governance & Economy */}
+          <div className="mb-12">
+            <h2 className="mb-8 text-xl font-semibold leading-snug sm:text-2xl lg:text-3xl max-w-auto dark:text-stone-50">
+              {language === "en" ? "Governance & Economy" : "ガバナンスと経済"}
+            </h2>
+            <Accordion items={governanceEconomy} language={language} />
           </div>
 
           {/* Closing Statement */}
