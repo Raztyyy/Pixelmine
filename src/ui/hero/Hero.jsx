@@ -42,9 +42,9 @@ function Hero() {
       <FadeSlideUp className="relative z-10 flex flex-col px-6 mx-auto text-center sm:text-start max-w-7xl">
         {/* Top Highlight Section */}
         <div className="relative z-10 px-6 mx-auto mb-12 text-center max-w-7xl text-emerald-50">
-          <h1 className="text-3xl font-bold leading-tight text-white md:text-4xl lg:text-4xl drop-shadow-lg">
+          <h1 className="text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl drop-shadow-lg">
             {isEN
-              ? "A decentralized social network architecture without a central server"
+              ? "Decentralized Social Network"
               : "中央サーバーを持たない分散型ソーシャルネットワークアーキテクチャ。"}
           </h1>
 
