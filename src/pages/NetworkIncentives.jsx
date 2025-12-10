@@ -227,10 +227,12 @@ function NetworkIncentives() {
                   </h2>
                   <p className="mt-auto text-2xl font-light text-center">
                     {isEN ? "1 PXL =" : "1 PXL ="}{" "}
-                    {formatCurrencyWithSymbol(
-                      pxlConversion[selectedCurrency],
-                      selectedCurrency
-                    )}
+                    {pxlConversion[selectedCurrency] > 0
+                      ? formatCurrencyWithSymbol(
+                          pxlConversion[selectedCurrency],
+                          selectedCurrency
+                        )
+                      : "-"}
                   </p>
                 </div>
               </div>
