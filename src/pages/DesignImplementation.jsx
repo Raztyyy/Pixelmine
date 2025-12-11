@@ -112,7 +112,7 @@ function DesignImplementation() {
           </p>
 
           <div className="my-10">
-            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl dark:bg-stone-900 border-emerald-100 dark:border-stone-700">
+            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl border-emerald-100 ">
               <img
                 src={images.DesignImg1[imgKey]}
                 alt="Design & Implementation"
@@ -162,7 +162,7 @@ function DesignImplementation() {
           <DiscoverySystemTable isEN={isEN} />
 
           <div className="my-10">
-            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl dark:bg-stone-900 border-emerald-100 dark:border-stone-700">
+            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl border-emerald-100">
               <img
                 src={images.DesignImg2[imgKey]}
                 alt="Design & Implementation"
@@ -210,7 +210,7 @@ function DesignImplementation() {
           </p>
 
           <div className="my-10">
-            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl dark:bg-stone-900 border-emerald-100 dark:border-stone-700">
+            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl border-emerald-100">
               <img
                 src={images.DesignImg3[imgKey]}
                 alt="Design & Implementation"
@@ -230,7 +230,7 @@ function DesignImplementation() {
           </p>
 
           <div className="my-10">
-            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl dark:bg-stone-900 border-emerald-100 dark:border-stone-700">
+            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl border-emerald-100">
               <img
                 src={images.DesignImg4[imgKey]}
                 alt="Design & Implementation"
@@ -256,7 +256,7 @@ function DesignImplementation() {
           </p>
 
           <div className="my-10">
-            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl dark:bg-stone-900 border-emerald-100 dark:border-stone-700">
+            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl border-emerald-100">
               <img
                 src={images.DesignImg5[imgKey]}
                 alt="Design & Implementation"
@@ -301,7 +301,7 @@ function DesignImplementation() {
           </h3>
 
           <div className="my-10">
-            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl dark:bg-stone-900 border-emerald-100 dark:border-stone-700">
+            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl border-emerald-100">
               <img
                 src={images.DesignImg6[imgKey]}
                 alt="Design & Implementation"
@@ -403,7 +403,7 @@ function DesignImplementation() {
           </h3>
 
           <div className="my-10">
-            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl dark:bg-stone-900 border-emerald-100 dark:border-stone-700">
+            <div className="p-8 overflow-hidden bg-white border shadow-lg lg:p-20 rounded-2xl border-emerald-100">
               <img
                 src={images.DesignImg7[imgKey]}
                 alt="Design & Implementation"
