@@ -3,7 +3,7 @@
 // import { faPuzzle } from "@fortawesome/pro-solid-svg-icons";
 import { FadeSlideUp } from "../animations/AnimatedWrappers";
 import SEOHelmet from "../ui/SEOHelmet";
-import "katex/dist/katex.min.css";
+// import "katex/dist/katex.min.css";
 // import { designImplementationItems } from "../data/designimplementation/designImplementationData";
 import { useLanguage } from "../context/LanguageContext";
 import { images } from "../assets/images";
