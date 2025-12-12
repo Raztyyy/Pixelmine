@@ -45,7 +45,7 @@ function Hero() {
           <h1 className="text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl drop-shadow-lg">
             {isEN
               ? "Decentralized Social Network"
-              : "中央サーバーを持たない分散型ソーシャルネットワークアーキテクチャ。"}
+              : "中央サーバーを持たない分散型ソーシャルネットワーク"}
           </h1>
 
           <p className="mt-4 text-base leading-relaxed md:text-lg">
