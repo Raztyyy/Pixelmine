@@ -10,17 +10,15 @@ import mastercardImg from "../../../assets/payment-method-icons/mastercard.png";
 import { showToast } from "../../../utils/Toast";
 
 const API_URL = import.meta.env.VITE_API_URL;
+const API_PURCHASE_URL = import.meta.env.VITE_API_PURCHASE_URL;
 
 const adPointPackages = [
-  { id: 1, points: 500, price: 5.0 },
-  { id: 2, points: 1000, price: 10.0 },
-  { id: 3, points: 2500, price: 25.0 },
-  { id: 4, points: 5000, price: 50.0 },
-  { id: 5, points: 10000, price: 100.0 },
-  { id: 6, points: 15000, price: 150.0 },
-  { id: 7, points: 20000, price: 200.0 },
-  { id: 8, points: 25000, price: 250.0 },
-  { id: 9, points: 30000, price: 300.0 },
+  { id: 1, points: 10, price: 10 },
+  { id: 2, points: 25, price: 25 },
+  { id: 3, points: 50, price: 50 },
+  { id: 4, points: 100, price: 100 },
+  { id: 5, points: 200, price: 200 },
+  { id: 6, points: 365, price: 365 },
 ];
 
 export default function AdPointsBuy() {
@@ -81,13 +79,13 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
   const [savedCards, setSavedCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
   const [customPoints, setCustomPoints] = useState("");
-  const [pricePerPoint, setPricePerPoint] = useState(0.01);
+  const [customPointsError, setCustomPointsError] = useState("");
+  const [pricePerPoint, setPricePerPoint] = useState(1);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const stripe = useStripe();
   const elements = useElements();
 
-  // Fetch saved cards and auto-select default
   useEffect(() => {
     const fetchCards = async () => {
       try {
@@ -107,30 +105,58 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
     if (token) fetchCards();
   }, [token]);
 
+  const handleCustomPointsChange = (value) => {
+    let cleaned = value.replace(/\D/g, "");
+    if (parseInt(cleaned, 10) > 365) cleaned = "365";
+
+    setCustomPoints(cleaned);
+
+    const points = parseInt(cleaned, 10);
+    if (!points || points < 1 || points > 365) {
+      setCustomPointsError("Points must be between 1 and 365");
+    } else {
+      setCustomPointsError("");
+    }
+  };
+
   const handleCustomPointsConfirm = () => {
-    if (!customPoints || parseInt(customPoints, 10) <= 0) {
-      showToast("Please enter a valid points amount", "error");
+    const points = parseInt(customPoints, 10);
+
+    if (!points || points <= 0 || points > 365) {
+      showToast("Please enter a valid points amount (1-365)", "error");
       return;
     }
 
-    const points = parseInt(customPoints, 10);
-
     setSelectedPackage({
       id: "custom",
-      points,
-      price: (points * pricePerPoint).toFixed(2),
+      points: points,
+      price: Number(points * pricePerPoint),
     });
 
     setCustomPoints("");
   };
 
   const handleSelectPredefinedPoints = (pkg) => {
-    setSelectedPackage(pkg);
+    setSelectedPackage({
+      id: pkg.id,
+      points: Number(pkg.points),
+      price: Number(pkg.price),
+    });
     setCustomPoints("");
+    setCustomPointsError("");
   };
 
   const handleBuyNow = async () => {
     if (!stripe || !selectedPackage || !selectedCard) return;
+
+    const days = Number(selectedPackage.points);
+    const amount = Number(selectedPackage.price);
+
+    if (!days || isNaN(days) || !amount || isNaN(amount)) {
+      showToast("Invalid package selected", "error");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -141,37 +167,52 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          amount: Math.round(Number(selectedPackage.price) * 100),
+          amount: Math.round(amount * 100),
           packageId: selectedPackage.id,
           paymentMethodId: selectedCard.stripe_payment_method_id,
         }),
       });
 
-      if (!res.ok) {
-        throw new Error("Failed to create payment intent");
-      }
+      if (!res.ok) throw new Error("Failed to create payment intent");
 
       const { clientSecret } = await res.json();
 
       const { error, paymentIntent } = await stripe.confirmCardPayment(
         clientSecret,
-        { payment_method: selectedCard.stripe_payment_method_id }
+        {
+          payment_method: selectedCard.stripe_payment_method_id,
+        }
       );
 
       if (error) {
         showToast("Payment failed: " + error.message, "error");
-      } else if (paymentIntent.status === "succeeded") {
-        showToast("Payment successful!", "success");
+        return;
+      }
+
+      if (paymentIntent.status === "succeeded") {
+        const adRes = await fetch(`${API_URL}/api/purchase`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ days }),
+        });
+
+        if (!adRes.ok) throw new Error("Ad purchase failed");
+
+        const adData = await adRes.json();
+        console.log("Ad purchased:", adData);
+        showToast("Payment and Ad purchase successful!", "success");
       }
     } catch (err) {
       console.error(err);
-      showToast("Payment failed.", "error");
+      showToast(err.message || "Payment or ad purchase failed", "error");
     } finally {
       setLoading(false);
     }
   };
 
-  // helpers
   const formatCurrency = (v) =>
     Number(v).toLocaleString(undefined, {
       minimumFractionDigits: 2,
@@ -185,9 +226,7 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
 
   return (
     <div>
-      {/* Ad point packages and custom form */}
       <div className="grid grid-cols-1 gap-6 2xl:grid-cols-3">
-        {/* Custom points form */}
         <div
           className={`flex flex-col items-center justify-center gap-4 p-8 bg-white border rounded-2xl shadow-lg transition-all duration-200 dark:bg-stone-800 dark:border-gray-700 ${
             selectedPackage?.id === "custom"
@@ -213,6 +252,7 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
                   onClick={() => {
                     setSelectedPackage(null);
                     setCustomPoints("");
+                    setCustomPointsError("");
                   }}
                   className="px-6 py-2.5 mt-5 text-sm font-semibold border-2 rounded-xl text-emerald-600 border-emerald-600 hover:bg-emerald-50 dark:text-emerald-400 dark:border-emerald-400 dark:hover:bg-emerald-900/20 transition-colors"
                 >
@@ -232,30 +272,34 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
                     Custom Top-Up
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-                    Set the exact number of points you need — no limits, no
-                    waste.
+                    Set the exact number of points you need — max 365.
                   </p>
                 </div>
                 <input
                   id="customPoints"
                   type="number"
                   min="1"
+                  max="365"
                   value={customPoints}
-                  onChange={(e) =>
-                    setCustomPoints(e.target.value.replace(/\D/g, ""))
-                  }
+                  onChange={(e) => handleCustomPointsChange(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
                       e.preventDefault();
-                      handleCustomPointsConfirm();
+                      if (!customPointsError) handleCustomPointsConfirm();
                     }
                   }}
                   placeholder="Enter custom points"
                   className="flex-1 p-3 transition-all duration-200 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white"
                 />
+                {customPointsError && (
+                  <p className="mt-1 text-sm text-red-500">
+                    {customPointsError}
+                  </p>
+                )}
                 <button
                   onClick={handleCustomPointsConfirm}
-                  className="px-6 py-3 font-semibold text-white transition-all duration-200 shadow-md bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg"
+                  disabled={!!customPointsError || !customPoints}
+                  className="px-6 py-3 font-semibold text-white transition-all duration-200 shadow-md bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Confirm
                 </button>
@@ -264,7 +308,6 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
           </div>
         </div>
 
-        {/* Predefined packages */}
         <div className="grid grid-cols-3 col-span-2 gap-3">
           {adPointPackages.map((pkg) => (
             <button
@@ -280,7 +323,6 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
                 icon={faGem}
                 className="text-emerald-600 size-5"
               />
-
               <span className="text-lg font-bold text-gray-900 dark:text-white">
                 {pkg.points.toLocaleString()}
               </span>
@@ -368,7 +410,7 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
         </div>
       )}
 
-      {/* Receipt-like Confirmation Modal */}
+      {/* Confirm modal */}
       {showConfirmModal && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
@@ -377,21 +419,15 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
           aria-labelledby="receipt-title"
         >
           <div className="w-full max-w-md bg-white shadow-2xl dark:bg-stone-800 rounded-2xl">
-            {/* Header */}
             <div className="px-6 py-5 border-b border-gray-200 dark:border-gray-700">
-              <div className="flex items-center justify-between text-start">
-                <div>
-                  <h4
-                    id="receipt-title"
-                    className="text-xl font-bold text-gray-900 dark:text-white"
-                  >
-                    Purchase Summary
-                  </h4>
-                </div>
-              </div>
+              <h4
+                id="receipt-title"
+                className="text-xl font-bold text-gray-900 dark:text-white"
+              >
+                Purchase Summary
+              </h4>
             </div>
 
-            {/* Body / line items */}
             <div className="px-6 py-6">
               <div className="text-sm text-gray-700 dark:text-gray-300">
                 <div className="flex justify-between py-3">
@@ -406,10 +442,7 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
                     ${formatCurrency(selectedPackage.price)}
                   </span>
                 </div>
-
-                {/* dashed divider */}
                 <div className="my-4 border-t-2 border-gray-200 border-dashed dark:border-gray-700" />
-
                 <div className="flex items-center justify-between pt-3">
                   <span className="text-base font-semibold text-gray-900 dark:text-white">
                     Total
@@ -420,7 +453,6 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
                 </div>
               </div>
 
-              {/* payment details */}
               <div className="p-4 mt-6 border border-gray-200 bg-gray-50 dark:bg-stone-700 dark:border-gray-600 rounded-xl">
                 <div className="flex justify-between mb-3 text-sm">
                   <span className="text-gray-600 dark:text-gray-400">
@@ -441,7 +473,6 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
               </div>
             </div>
 
-            {/* Actions */}
             <div className="flex items-center justify-end gap-3 px-6 py-5 border-t border-gray-200 dark:border-gray-700">
               <button
                 onClick={() => setShowConfirmModal(false)}

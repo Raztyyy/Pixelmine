@@ -1,4 +1,3 @@
-// context/AuthContext.js
 import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext();
@@ -7,6 +6,7 @@ export function AuthProvider({ children }) {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
 
+  // On initial load, check if the token is stored in localStorage and fetch profile
   useEffect(() => {
     const stored = localStorage.getItem("token");
     if (stored) {
@@ -15,15 +15,24 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
+  // Fetch the user profile from the API
   const fetchProfile = async (jwt) => {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/profile`, {
         headers: { Authorization: `Bearer ${jwt}` },
       });
+
       const data = await res.json();
+
       if (res.ok) {
-        setUser(data);
-        return data;
+        if (data.id) {
+          setUser(data); // Ensure user object contains id
+          return data;
+        } else {
+          console.error("User profile does not have an id!");
+          logout();
+          return null;
+        }
       } else {
         console.error("Failed to fetch profile:", data.error);
         logout();
