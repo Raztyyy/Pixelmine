@@ -203,7 +203,21 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
 
         const adData = await adRes.json();
         console.log("Ad purchased:", adData);
-        showToast("Payment and Ad purchase successful!", "success");
+        showToast(
+          "Payment successful! ad.key has been downloaded to your Downloads folder.",
+          "success"
+        );
+
+        // ⬅️ Automatic download
+        const blob = new Blob([JSON.stringify(adData, null, 2)], {
+          type: "application/json",
+        });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "ad.key";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }
     } catch (err) {
       console.error(err);
