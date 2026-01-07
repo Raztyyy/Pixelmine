@@ -5,7 +5,7 @@ import EarnPointsTable from "../data/networkincentives/earnPointsTable";
 import HowPxlWorks from "../data/networkincentives/howPxlWorks";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLightbulbOn, faPlay } from "@fortawesome/pro-solid-svg-icons";
+import { faHandshake, faPlay } from "@fortawesome/pro-solid-svg-icons";
 
 export default function NetworkIncentives() {
   const { language } = useLanguage();
@@ -71,7 +71,7 @@ export default function NetworkIncentives() {
           <div>
             <div className="inline-flex items-center justify-center w-16 h-16 mb-10 shadow-lg rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600 shadow-emerald-500/30">
               <FontAwesomeIcon
-                icon={faLightbulbOn}
+                icon={faHandshake}
                 className="text-white size-7"
               />
             </div>
