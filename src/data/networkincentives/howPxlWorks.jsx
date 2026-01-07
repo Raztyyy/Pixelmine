@@ -17,11 +17,11 @@ function HowPxlWorks({ isEN }) {
   return (
     <div className="my-8 overflow-x-auto">
       <table className="min-w-full overflow-hidden border-collapse table-auto rounded-xl">
-        <tbody className="divide-y bg-gradient-to-r from-emerald-50 to-emerald-50 divide-emerald-200">
+        <tbody className="divide-y divide-emerald-200 bg-emerald-50 dark:divide-stone-700 dark:bg-stone-800">
           {tableData.map((row, index) => (
             <tr
               key={index}
-              className="transition-colors hover:bg-emerald-200 dark:hover:bg-stone-800"
+              className="transition-colors hover:bg-emerald-200 dark:hover:bg-stone-700"
             >
               <td className="px-6 py-4 text-lg font-medium text-gray-900 dark:text-stone-50">
                 {row.step}
