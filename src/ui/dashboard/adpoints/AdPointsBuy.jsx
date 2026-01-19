@@ -24,6 +24,7 @@ const adPointPackages = [
 export default function AdPointsBuy() {
   const [activeTab, setActiveTab] = useState("purchase");
   const [selectedPackage, setSelectedPackage] = useState(null);
+  const [selectedScope, setSelectedScope] = useState("area"); // scope dropdown
   const { user } = useAuth();
 
   const tabs = [
@@ -66,6 +67,8 @@ export default function AdPointsBuy() {
         <PurchaseContent
           selectedPackage={selectedPackage}
           setSelectedPackage={setSelectedPackage}
+          selectedScope={selectedScope}
+          setSelectedScope={setSelectedScope}
           token={token}
         />
       )}
@@ -74,7 +77,13 @@ export default function AdPointsBuy() {
   );
 }
 
-function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
+function PurchaseContent({
+  selectedPackage,
+  setSelectedPackage,
+  selectedScope,
+  setSelectedScope,
+  token,
+}) {
   const [loading, setLoading] = useState(false);
   const [savedCards, setSavedCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
@@ -85,6 +94,13 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
 
   const stripe = useStripe();
   const elements = useElements();
+
+  const scopeMultipliers = {
+    area: 1,
+    city: 2,
+    country: 3,
+    global: 4,
+  };
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -104,6 +120,16 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
     };
     if (token) fetchCards();
   }, [token]);
+
+  // === NEW: Update price when scope changes ===
+  useEffect(() => {
+    if (selectedPackage) {
+      setSelectedPackage((prev) => ({
+        ...prev,
+        price: Number(prev.points * scopeMultipliers[selectedScope]),
+      }));
+    }
+  }, [selectedScope]);
 
   const handleCustomPointsChange = (value) => {
     let cleaned = value.replace(/\D/g, "");
@@ -130,7 +156,7 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
     setSelectedPackage({
       id: "custom",
       points: points,
-      price: Number(points * pricePerPoint),
+      price: Number(points * scopeMultipliers[selectedScope]),
     });
 
     setCustomPoints("");
@@ -140,8 +166,9 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
     setSelectedPackage({
       id: pkg.id,
       points: Number(pkg.points),
-      price: Number(pkg.price),
+      price: Number(pkg.points * scopeMultipliers[selectedScope]),
     });
+
     setCustomPoints("");
     setCustomPointsError("");
   };
@@ -170,6 +197,7 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
           amount: Math.round(amount * 100),
           packageId: selectedPackage.id,
           paymentMethodId: selectedCard.stripe_payment_method_id,
+          scope: selectedScope, // include scope
         }),
       });
 
@@ -196,7 +224,7 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ days }),
+          body: JSON.stringify({ days, scope: selectedScope }),
         });
 
         if (!adRes.ok) throw new Error("Ad purchase failed");
@@ -208,7 +236,6 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
           "success"
         );
 
-        // ⬅️ Automatic download
         const blob = new Blob([JSON.stringify(adData, null, 2)], {
           type: "application/json",
         });
@@ -240,6 +267,7 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
 
   return (
     <div>
+      {/* Points Cards Section */}
       <div className="grid grid-cols-1 gap-6 2xl:grid-cols-3">
         <div
           className={`flex flex-col items-center justify-center gap-4 p-8 bg-white border rounded-2xl shadow-lg transition-all duration-200 dark:bg-stone-800 dark:border-gray-700 ${
@@ -342,6 +370,38 @@ function PurchaseContent({ selectedPackage, setSelectedPackage, token }) {
               </span>
             </button>
           ))}
+        </div>
+      </div>
+
+      {/* Scope Selection Cards */}
+      <div className="p-8 mt-10 mb-6 bg-white border border-gray-200 shadow-xl dark:bg-stone-900 rounded-xl dark:border-gray-700 rounded-2xl">
+        <div className="pb-4 ">
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white text-start">
+            Promotion Scope
+          </h2>
+        </div>
+
+        <div className="pt-2">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { key: "area", label: "Area" },
+              { key: "city", label: "City" },
+              { key: "country", label: "Country" },
+              { key: "global", label: "Global" },
+            ].map((scope) => (
+              <button
+                key={scope.key}
+                onClick={() => setSelectedScope(scope.key)}
+                className={`flex items-center justify-center px-4 py-6 text-center rounded-2xl shadow-md transition-all duration-200 font-semibold text-gray-900 dark:text-white ${
+                  selectedScope === scope.key
+                    ? "ring-2 ring-emerald-500 bg-emerald-50 dark:bg-emerald-900/20"
+                    : "bg-white border border-gray-200 hover:ring-2 hover:ring-emerald-300 dark:bg-stone-800 dark:border-gray-700"
+                }`}
+              >
+                {scope.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
