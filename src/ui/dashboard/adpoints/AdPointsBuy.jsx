@@ -39,7 +39,7 @@ export default function AdPointsBuy() {
         Ad Points Top Up
       </h2>
       <p className="max-w-5xl mx-auto mt-5 text-base leading-relaxed text-gray-600 md:text-lg dark:text-gray-300">
-        Manage your Ad Points — purchase packages, redeem codes, and keep your
+        Every Ad Point you purchase equals 1 day of promotion, keeping your
         campaigns running smoothly.
       </p>
 
