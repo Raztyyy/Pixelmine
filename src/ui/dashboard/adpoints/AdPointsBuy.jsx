@@ -224,7 +224,7 @@ function PurchaseContent({
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ days, scope: selectedScope }),
+          body: JSON.stringify({ days, sync_scope: selectedScope }), // ✅ match backend
         });
 
         if (!adRes.ok) throw new Error("Ad purchase failed");
