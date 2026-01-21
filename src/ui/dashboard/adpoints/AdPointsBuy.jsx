@@ -1,4 +1,3 @@
-// frontend/pages/AdPointsBuy.jsx
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGem, faCheck } from "@fortawesome/pro-solid-svg-icons";
@@ -10,7 +9,6 @@ import mastercardImg from "../../../assets/payment-method-icons/mastercard.png";
 import { showToast } from "../../../utils/Toast";
 
 const API_URL = import.meta.env.VITE_API_URL;
-const API_PURCHASE_URL = import.meta.env.VITE_API_PURCHASE_URL;
 
 const adPointPackages = [
   { id: 1, points: 10, price: 10 },
@@ -21,18 +19,24 @@ const adPointPackages = [
   { id: 6, points: 365, price: 365 },
 ];
 
+const scopes = [
+  { label: "Area", value: "area" },
+  { label: "City", value: "city" },
+  { label: "Country", value: "country" },
+  { label: "Global", value: "global" },
+];
+
 export default function AdPointsBuy() {
   const [activeTab, setActiveTab] = useState("purchase");
   const [selectedPackage, setSelectedPackage] = useState(null);
-  const [selectedScope, setSelectedScope] = useState("area"); // scope dropdown
+  const [selectedScope, setSelectedScope] = useState("area");
   const { user } = useAuth();
+  const token = localStorage.getItem("token");
 
   const tabs = [
     { key: "purchase", label: "Purchase Points" },
     { key: "redeem", label: "Redeem Points" },
   ];
-
-  const token = localStorage.getItem("token");
 
   return (
     <div className="text-center">
@@ -44,6 +48,7 @@ export default function AdPointsBuy() {
         campaigns running smoothly.
       </p>
 
+      {/* Tabs */}
       <div className="flex justify-center gap-3 mt-10 mb-10">
         {tabs.map((tab) => (
           <button
@@ -72,6 +77,7 @@ export default function AdPointsBuy() {
           token={token}
         />
       )}
+
       {activeTab === "redeem" && <RedeemContent />}
     </div>
   );
@@ -89,18 +95,9 @@ function PurchaseContent({
   const [selectedCard, setSelectedCard] = useState(null);
   const [customPoints, setCustomPoints] = useState("");
   const [customPointsError, setCustomPointsError] = useState("");
-  const [pricePerPoint, setPricePerPoint] = useState(1);
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const stripe = useStripe();
   const elements = useElements();
-
-  const scopeMultipliers = {
-    area: 1,
-    city: 2,
-    country: 3,
-    global: 4,
-  };
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -110,7 +107,6 @@ function PurchaseContent({
         });
         const data = await res.json();
         setSavedCards(data || []);
-
         const defaultCard = (data || []).find((c) => c.is_default);
         if (defaultCard) setSelectedCard(defaultCard);
       } catch (err) {
@@ -120,16 +116,6 @@ function PurchaseContent({
     };
     if (token) fetchCards();
   }, [token]);
-
-  // === NEW: Update price when scope changes ===
-  useEffect(() => {
-    if (selectedPackage) {
-      setSelectedPackage((prev) => ({
-        ...prev,
-        price: Number(prev.points * scopeMultipliers[selectedScope]),
-      }));
-    }
-  }, [selectedScope]);
 
   const handleCustomPointsChange = (value) => {
     let cleaned = value.replace(/\D/g, "");
@@ -147,18 +133,15 @@ function PurchaseContent({
 
   const handleCustomPointsConfirm = () => {
     const points = parseInt(customPoints, 10);
-
     if (!points || points <= 0 || points > 365) {
       showToast("Please enter a valid points amount (1-365)", "error");
       return;
     }
-
     setSelectedPackage({
       id: "custom",
       points: points,
-      price: Number(points * scopeMultipliers[selectedScope]),
+      price: Number(points),
     });
-
     setCustomPoints("");
   };
 
@@ -166,27 +149,19 @@ function PurchaseContent({
     setSelectedPackage({
       id: pkg.id,
       points: Number(pkg.points),
-      price: Number(pkg.points * scopeMultipliers[selectedScope]),
+      price: Number(pkg.points),
     });
-
-    setCustomPoints("");
-    setCustomPointsError("");
   };
 
   const handleBuyNow = async () => {
     if (!stripe || !selectedPackage || !selectedCard) return;
 
     const days = Number(selectedPackage.points);
-    const amount = Number(selectedPackage.price);
-
-    if (!days || isNaN(days) || !amount || isNaN(amount)) {
-      showToast("Invalid package selected", "error");
-      return;
-    }
 
     setLoading(true);
 
     try {
+      // 1️⃣ Create payment intent
       const res = await fetch(`${API_URL}/api/payments/create-payment-intent`, {
         method: "POST",
         headers: {
@@ -194,10 +169,9 @@ function PurchaseContent({
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          amount: Math.round(amount * 100),
+          amount: Math.round(selectedPackage.price * 100),
           packageId: selectedPackage.id,
           paymentMethodId: selectedCard.stripe_payment_method_id,
-          scope: selectedScope, // include scope
         }),
       });
 
@@ -218,19 +192,21 @@ function PurchaseContent({
       }
 
       if (paymentIntent.status === "succeeded") {
+        // 2️⃣ Purchase ad with sync_scope
         const adRes = await fetch(`${API_URL}/api/purchase`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ days, sync_scope: selectedScope }), // ✅ match backend
+          body: JSON.stringify({ days, sync_scope: selectedScope }),
         });
 
         if (!adRes.ok) throw new Error("Ad purchase failed");
 
         const adData = await adRes.json();
         console.log("Ad purchased:", adData);
+
         showToast(
           "Payment successful! ad.key has been downloaded to your Downloads folder.",
           "success"
@@ -254,21 +230,11 @@ function PurchaseContent({
     }
   };
 
-  const formatCurrency = (v) =>
-    Number(v).toLocaleString(undefined, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-
-  const nowString = () => {
-    const d = new Date();
-    return d.toLocaleString();
-  };
-
   return (
     <div>
       {/* Points Cards Section */}
       <div className="grid grid-cols-1 gap-6 2xl:grid-cols-3">
+        {/* Custom Points Card */}
         <div
           className={`flex flex-col items-center justify-center gap-4 p-8 bg-white border rounded-2xl shadow-lg transition-all duration-200 dark:bg-stone-800 dark:border-gray-700 ${
             selectedPackage?.id === "custom"
@@ -291,11 +257,7 @@ function PurchaseContent({
                   </p>
                 </div>
                 <button
-                  onClick={() => {
-                    setSelectedPackage(null);
-                    setCustomPoints("");
-                    setCustomPointsError("");
-                  }}
+                  onClick={() => setSelectedPackage(null)}
                   className="px-6 py-2.5 mt-5 text-sm font-semibold border-2 rounded-xl text-emerald-600 border-emerald-600 hover:bg-emerald-50 dark:text-emerald-400 dark:border-emerald-400 dark:hover:bg-emerald-900/20 transition-colors"
                 >
                   Edit Points
@@ -350,6 +312,7 @@ function PurchaseContent({
           </div>
         </div>
 
+        {/* Predefined Points Packages */}
         <div className="grid grid-cols-3 col-span-2 gap-3">
           {adPointPackages.map((pkg) => (
             <button
@@ -373,39 +336,32 @@ function PurchaseContent({
         </div>
       </div>
 
-      {/* Scope Selection Cards */}
-      <div className="p-8 mt-10 mb-6 bg-white border border-gray-200 shadow-xl dark:bg-stone-900 rounded-xl dark:border-gray-700 rounded-2xl">
-        <div className="pb-4 ">
-          <h2 className="text-xl font-bold text-gray-900 dark:text-white text-start">
-            Promotion Scope
-          </h2>
-        </div>
+      {/* Scope Section */}
+      {selectedPackage && (
+        <div className="flex flex-col justify-start p-8 mt-10 text-left bg-white border border-gray-200 shadow-xl rounded-2xl dark:bg-stone-800 dark:border-gray-700">
+          <h3 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+            Select Scope
+          </h3>
 
-        <div className="pt-2">
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { key: "area", label: "Area" },
-              { key: "city", label: "City" },
-              { key: "country", label: "Country" },
-              { key: "global", label: "Global" },
-            ].map((scope) => (
+          <div className="grid grid-cols-1 gap-4 mt-2 sm:grid-cols-2 md:grid-cols-4">
+            {scopes.map((s) => (
               <button
-                key={scope.key}
-                onClick={() => setSelectedScope(scope.key)}
-                className={`flex items-center justify-center px-4 py-6 text-center rounded-2xl shadow-md transition-all duration-200 font-semibold text-gray-900 dark:text-white ${
-                  selectedScope === scope.key
-                    ? "ring-2 ring-emerald-500 bg-emerald-50 dark:bg-emerald-900/20"
-                    : "bg-white border border-gray-200 hover:ring-2 hover:ring-emerald-300 dark:bg-stone-800 dark:border-gray-700"
+                key={s.value}
+                onClick={() => setSelectedScope(s.value)}
+                className={`p-6 text-center transition-all duration-200 border rounded-2xl shadow-md font-bold ${
+                  selectedScope === s.value
+                    ? "ring-2 ring-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 border-emerald-300 text-gray-900 dark:text-white"
+                    : "bg-white border-gray-200 hover:border-emerald-300 dark:bg-stone-800 dark:border-gray-700 dark:text-white text-gray-900"
                 }`}
               >
-                {scope.label}
+                {s.label}
               </button>
             ))}
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Payment section */}
+      {/* Payment Section */}
       {selectedPackage && (
         <div className="flex flex-col justify-start p-8 mt-10 text-left bg-white border border-gray-200 shadow-xl rounded-2xl dark:bg-stone-800 dark:border-gray-700">
           <h3 className="text-xl font-bold text-gray-900 dark:text-white">
@@ -468,11 +424,11 @@ function PurchaseContent({
                     </span>
                   </div>
                   <p className="text-base font-semibold text-gray-700 dark:text-gray-300">
-                    Total: ${formatCurrency(selectedPackage.price)}
+                    Total: ${selectedPackage.price.toLocaleString()}
                   </p>
                 </div>
                 <button
-                  onClick={() => setShowConfirmModal(true)}
+                  onClick={() => handleBuyNow()}
                   disabled={!selectedPackage || !selectedCard || loading}
                   className="px-8 py-3.5 font-semibold text-white transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
@@ -481,90 +437,6 @@ function PurchaseContent({
               </div>
             </>
           )}
-        </div>
-      )}
-
-      {/* Confirm modal */}
-      {showConfirmModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="receipt-title"
-        >
-          <div className="w-full max-w-md bg-white shadow-2xl dark:bg-stone-800 rounded-2xl">
-            <div className="px-6 py-5 border-b border-gray-200 dark:border-gray-700">
-              <h4
-                id="receipt-title"
-                className="text-xl font-bold text-gray-900 dark:text-white"
-              >
-                Purchase Summary
-              </h4>
-            </div>
-
-            <div className="px-6 py-6">
-              <div className="text-sm text-gray-700 dark:text-gray-300">
-                <div className="flex justify-between py-3">
-                  <span className="font-medium">Ad Points</span>
-                  <span className="font-semibold">
-                    {selectedPackage.points.toLocaleString()}
-                  </span>
-                </div>
-                <div className="flex justify-between py-3">
-                  <span className="font-medium">Price</span>
-                  <span className="font-semibold">
-                    ${formatCurrency(selectedPackage.price)}
-                  </span>
-                </div>
-                <div className="my-4 border-t-2 border-gray-200 border-dashed dark:border-gray-700" />
-                <div className="flex items-center justify-between pt-3">
-                  <span className="text-base font-semibold text-gray-900 dark:text-white">
-                    Total
-                  </span>
-                  <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
-                    ${formatCurrency(selectedPackage.price)}
-                  </span>
-                </div>
-              </div>
-
-              <div className="p-4 mt-6 border border-gray-200 bg-gray-50 dark:bg-stone-700 dark:border-gray-600 rounded-xl">
-                <div className="flex justify-between mb-3 text-sm">
-                  <span className="text-gray-600 dark:text-gray-400">
-                    Payment method
-                  </span>
-                  <span className="font-semibold text-gray-900 dark:text-white">
-                    {selectedCard
-                      ? `${selectedCard.card_brand} •••• ${selectedCard.card_last4}`
-                      : "—"}
-                  </span>
-                </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600 dark:text-gray-400">Date</span>
-                  <span className="font-medium text-gray-900 dark:text-white">
-                    {nowString()}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-end gap-3 px-6 py-5 border-t border-gray-200 dark:border-gray-700">
-              <button
-                onClick={() => setShowConfirmModal(false)}
-                className="px-6 py-2.5 font-semibold text-gray-700 transition-colors border border-gray-300 rounded-xl hover:bg-gray-50 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-stone-700"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={async () => {
-                  setShowConfirmModal(false);
-                  await handleBuyNow();
-                }}
-                className="px-6 py-2.5 font-semibold text-white transition-all duration-200 shadow-md bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg"
-              >
-                Confirm & Pay
-              </button>
-            </div>
-          </div>
         </div>
       )}
     </div>
