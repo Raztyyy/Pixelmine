@@ -5,13 +5,11 @@ import {
   faDownload,
   faKey,
 } from "@fortawesome/pro-regular-svg-icons";
-import { useEffect, useState } from "react";
 
 function DocumentationStorerDownload() {
   const moveBack = useMoveBack();
-  const [detectedOS, setDetectedOS] = useState(null);
 
-  // Download options with separate variants for macOS and Linux
+  // All download options with separate variants for macOS and Linux
   const downloadOptions = [
     {
       name: "Windows",
@@ -28,13 +26,11 @@ function DocumentationStorerDownload() {
           description: "Intel Mac (x86_64)",
           downloadUrl:
             "https://app.pixelmine.org:8005/update/download/darwin/amd64",
-          arch: "intel",
         },
         {
           description: "Apple Silicon (ARM64)",
           downloadUrl:
             "https://app.pixelmine.org:8005/update/download/darwin/arm64",
-          arch: "arm",
         },
       ],
     },
@@ -46,50 +42,15 @@ function DocumentationStorerDownload() {
           description: "Intel/AMD 64-bit (amd64)",
           downloadUrl:
             "https://app.pixelmine.org:8005/update/download/linux/amd64",
-          arch: "amd64",
         },
         {
           description: "ARM64",
           downloadUrl:
             "https://app.pixelmine.org:8005/update/download/linux/arm64",
-          arch: "arm64",
         },
       ],
     },
   ];
-
-  // Detect OS and architecture on client
-  useEffect(() => {
-    const platform = window.navigator.platform.toLowerCase();
-    const userAgent = window.navigator.userAgent.toLowerCase();
-
-    if (platform.includes("mac") || userAgent.includes("macintosh")) {
-      if (
-        userAgent.includes("arm") ||
-        userAgent.includes("m1") ||
-        userAgent.includes("m2")
-      ) {
-        setDetectedOS({ name: "macOS", arch: "arm" });
-      } else {
-        setDetectedOS({ name: "macOS", arch: "intel" });
-      }
-    } else if (platform.includes("win") || userAgent.includes("win32")) {
-      setDetectedOS({ name: "Windows" });
-    } else if (platform.includes("linux")) {
-      if (userAgent.includes("aarch64") || userAgent.includes("arm64")) {
-        setDetectedOS({ name: "Linux", arch: "arm64" });
-      } else {
-        setDetectedOS({ name: "Linux", arch: "amd64" });
-      }
-    } else {
-      setDetectedOS({ name: "Unknown" });
-    }
-  }, []);
-
-  // Only show the detected OS
-  const osToShow = detectedOS
-    ? [detectedOS.name]
-    : ["Windows", "macOS", "Linux"];
 
   return (
     <div className="p-8 bg-white border border-gray-200 shadow-xl md:p-12 rounded-3xl dark:bg-stone-800 dark:border-gray-700">
@@ -136,63 +97,52 @@ function DocumentationStorerDownload() {
         </div>
       </div>
 
-      {/* Section 2 - Download Section (desktop only) */}
-      {detectedOS && (
-        <div className="hidden mt-10 md:block">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-            2. Download the Storer
-          </h3>
-          <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            Detected OS: {detectedOS.name}
-            {detectedOS.arch ? ` (${detectedOS.arch})` : ""}
-          </p>
+      {/* Section 2 - Download Section */}
+      <div className="mt-10">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+          2. Download the Storer
+        </h3>
+        <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+          Choose your operating system and architecture below:
+        </p>
 
-          <div className="grid gap-4 mt-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-            {osToShow.map((osName) => {
-              const os = downloadOptions.find((o) => o.name === osName);
+        <div className="grid gap-4 mt-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+          {downloadOptions.map((os) => {
+            const variants = os.variants || [os];
 
-              // Only show the variant that matches the detected architecture
-              const variants = os.variants
-                ? os.variants.filter((v) => v.arch === detectedOS?.arch)
-                : [os];
-
-              return (
-                <div
-                  key={osName}
-                  className="flex flex-col items-center justify-center p-6 transition-all duration-300 bg-white border border-gray-200 rounded-xl dark:bg-stone-800 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-lg"
-                >
-                  <div className="flex items-center justify-center w-16 h-16 mb-4">
-                    <img
-                      src={`/os-logos/${os.logo}`}
-                      alt={`${osName} logo`}
-                      className="w-full h-full"
-                    />
-                  </div>
-
-                  <h4 className="mb-2 font-bold text-center text-gray-900 dark:text-white">
-                    {osName}
-                  </h4>
-
-                  {variants.map((variant, idx) => (
-                    <div key={idx} className="mb-3">
-                      <a
-                        href={variant.downloadUrl}
-                        className="flex items-center justify-center w-full gap-2 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-600 hover:shadow-md"
-                      >
-                        <FontAwesomeIcon
-                          icon={faDownload}
-                          className="text-sm"
-                        />
-                        Download for {osName} ({variant.description})
-                      </a>
-                    </div>
-                  ))}
+            return (
+              <div
+                key={os.name}
+                className="flex flex-col items-center justify-center p-6 transition-all duration-300 bg-white border border-gray-200 rounded-xl dark:bg-stone-800 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-lg"
+              >
+                <div className="flex items-center justify-center w-16 h-16 mb-4">
+                  <img
+                    src={`/os-logos/${os.logo}`}
+                    alt={`${os.name} logo`}
+                    className="w-full h-full"
+                  />
                 </div>
-              );
-            })}
-          </div>
+
+                <h4 className="mb-2 font-bold text-center text-gray-900 dark:text-white">
+                  {os.name}
+                </h4>
+
+                {variants.map((variant, idx) => (
+                  <div key={idx} className="mb-3">
+                    <a
+                      href={variant.downloadUrl}
+                      className="flex items-center justify-center w-full gap-2 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-600 hover:shadow-md"
+                    >
+                      <FontAwesomeIcon icon={faDownload} className="text-sm" />
+                      Download ({variant.description})
+                    </a>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
         </div>
-      )}
+      </div>
 
       {/* Section 3 */}
       <div className="mt-10">
