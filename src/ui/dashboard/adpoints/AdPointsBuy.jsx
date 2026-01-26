@@ -14,7 +14,7 @@ export default function AdPointsBuy() {
   const [activeTab, setActiveTab] = useState("purchase");
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedScope, setSelectedScope] = useState("area");
-  const [maxPoints, setMaxPoints] = useState(365); // Default max points
+  const [maxPoints, setMaxPoints] = useState(180); // Default max points
   const { user } = useAuth();
   const token = localStorage.getItem("token");
 
@@ -53,10 +53,12 @@ export default function AdPointsBuy() {
         console.log("User Country:", country);
 
         if (country === "Japan") setMaxPoints(180);
-        else setMaxPoints(365);
+        else setMaxPoints(180);
+        // else setMaxPoints(360);
       } catch (err) {
         console.error("Failed to detect country:", err);
-        setMaxPoints(365); // fallback
+        // setMaxPoints(360);
+        setMaxPoints(180); // fallback
       }
     };
 
@@ -132,7 +134,19 @@ function PurchaseContent({
   const stripe = useStripe();
   const elements = useElements();
 
+  // -------------------------------
+  // Scope Price Multiplier
+  // -------------------------------
+  const SCOPE_PRICE_MULTIPLIER = {
+    area: 1,
+    city: 2,
+    country: 3,
+    global: 4,
+  };
+
+  // -------------------------------
   // Build point packages
+  // -------------------------------
   useEffect(() => {
     const packages = [
       { id: 1, points: 10, price: 10 },
@@ -154,7 +168,9 @@ function PurchaseContent({
     setAdPointPackages(packages);
   }, [maxPoints]);
 
+  // -------------------------------
   // Fetch saved cards
+  // -------------------------------
   useEffect(() => {
     const fetchCards = async () => {
       try {
@@ -173,7 +189,9 @@ function PurchaseContent({
     if (token) fetchCards();
   }, [token]);
 
+  // -------------------------------
   // Custom points input handling
+  // -------------------------------
   const handleCustomPointsChange = (value) => {
     let cleaned = value.replace(/\D/g, "");
     if (parseInt(cleaned, 10) > maxPoints) cleaned = String(maxPoints);
@@ -193,7 +211,11 @@ function PurchaseContent({
       showToast(`Please enter a valid points amount (1-${maxPoints})`, "error");
       return;
     }
-    setSelectedPackage({ id: "custom", points, price: Number(points) });
+    setSelectedPackage({
+      id: "custom",
+      points,
+      price: points * (SCOPE_PRICE_MULTIPLIER[selectedScope] || 1),
+    });
     setCustomPoints("");
   };
 
@@ -201,9 +223,21 @@ function PurchaseContent({
     setSelectedPackage({
       id: pkg.id,
       points: Number(pkg.points),
-      price: Number(pkg.points),
+      price: Number(pkg.points) * (SCOPE_PRICE_MULTIPLIER[selectedScope] || 1),
     });
   };
+
+  // -------------------------------
+  // Update price when scope changes
+  // -------------------------------
+  useEffect(() => {
+    if (!selectedPackage) return;
+
+    setSelectedPackage((prev) => ({
+      ...prev,
+      price: prev.points * (SCOPE_PRICE_MULTIPLIER[selectedScope] || 1),
+    }));
+  }, [selectedScope]);
 
   // -------------------------------
   // Buy Now (with absolute_expiry)
@@ -256,7 +290,7 @@ function PurchaseContent({
           body: JSON.stringify({
             days,
             sync_scope: selectedScope,
-            absolute_expiry, // <-- Added here
+            absolute_expiry,
           }),
         });
 
