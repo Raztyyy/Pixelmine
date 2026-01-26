@@ -11,31 +11,50 @@ function DocumentationStorerDownload() {
   const moveBack = useMoveBack();
   const [detectedOS, setDetectedOS] = useState(null);
 
+  // Download options with separate variants for macOS and Linux
   const downloadOptions = [
     {
       name: "Windows",
       logo: "windows-logo.png",
-      description: "64-bit",
+      description: "64-bit Intel/AMD",
       downloadUrl:
         "https://app.pixelmine.org:8005/update/download/windows/amd64",
     },
     {
       name: "macOS",
       logo: "apple-logo.svg",
-      description: "Intel & Apple Silicon",
-      downloadUrl: {
-        intel: "https://app.pixelmine.org:8005/update/download/darwin/amd64",
-        arm: "https://app.pixelmine.org:8005/update/download/darwin/arm64",
-      },
+      variants: [
+        {
+          description: "Intel",
+          downloadUrl:
+            "https://app.pixelmine.org:8005/update/download/darwin/amd64",
+          arch: "intel",
+        },
+        {
+          description: "Apple Silicon",
+          downloadUrl:
+            "https://app.pixelmine.org:8005/update/download/darwin/arm64",
+          arch: "arm",
+        },
+      ],
     },
     {
       name: "Linux",
       logo: "linux-logo.png",
-      description: "x86_64 & ARM64",
-      downloadUrl: {
-        amd64: "https://app.pixelmine.org:8005/update/download/linux/amd64",
-        arm64: "https://app.pixelmine.org:8005/update/download/linux/arm64",
-      },
+      variants: [
+        {
+          description: "Intel/AMD 64-bit (amd64)",
+          downloadUrl:
+            "https://app.pixelmine.org:8005/update/download/linux/amd64",
+          arch: "amd64",
+        },
+        {
+          description: "ARM64",
+          downloadUrl:
+            "https://app.pixelmine.org:8005/update/download/linux/arm64",
+          arch: "arm64",
+        },
+      ],
     },
   ];
 
@@ -67,7 +86,7 @@ function DocumentationStorerDownload() {
     }
   }, []);
 
-  // Determine which OS cards to show: detectedOS only, or all if detection failed
+  // Only show detected OS on desktop
   const osCardsToShow = detectedOS
     ? [detectedOS.name]
     : ["Windows", "macOS", "Linux"];
@@ -117,77 +136,63 @@ function DocumentationStorerDownload() {
         </div>
       </div>
 
-      {/* Section 2 - Download Section Grouped by OS */}
-      <div className="mt-10">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-          2. Download the Storer
-        </h3>
-        <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
-          {detectedOS
-            ? `Detected OS: ${detectedOS.name}${
-                detectedOS.arch ? ` (${detectedOS.arch})` : ""
-              }`
-            : "Select your operating system to download the Storer Engine:"}
-        </p>
+      {/* Section 2 - Download Section (desktop only) */}
+      {detectedOS && (
+        <div className="hidden mt-10 md:block">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+            2. Download the Storer
+          </h3>
+          <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+            Detected OS: {detectedOS.name}
+            {detectedOS.arch ? ` (${detectedOS.arch})` : ""}
+          </p>
 
-        <div className="grid gap-4 mt-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-          {osCardsToShow.map((osName) => {
-            const osVariants = downloadOptions.filter(
-              (opt) => opt.name === osName
-            );
+          <div className="grid gap-4 mt-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+            {osCardsToShow.map((osName) => {
+              const os = downloadOptions.find((o) => o.name === osName);
 
-            return (
-              <div
-                key={osName}
-                className="flex flex-col items-center justify-center p-6 transition-all duration-300 bg-white border border-gray-200 rounded-xl dark:bg-stone-800 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-lg"
-              >
-                <div className="flex items-center justify-center w-16 h-16 mb-4">
-                  <img
-                    src={`/os-logos/${osVariants[0].logo}`}
-                    alt={`${osName} logo`}
-                    className="w-full h-full"
-                  />
-                </div>
+              // Determine which variants to show
+              const variants = os.variants
+                ? os.variants.filter((v) => v.arch === detectedOS?.arch)
+                : [os];
 
-                <h4 className="mb-2 font-bold text-center text-gray-900 dark:text-white">
-                  {osName}
-                </h4>
+              return (
+                <div
+                  key={osName}
+                  className="flex flex-col items-center justify-center p-6 transition-all duration-300 bg-white border border-gray-200 rounded-xl dark:bg-stone-800 dark:border-gray-700 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-lg"
+                >
+                  <div className="flex items-center justify-center w-16 h-16 mb-4">
+                    <img
+                      src={`/os-logos/${os.logo}`}
+                      alt={`${osName} logo`}
+                      className="w-full h-full"
+                    />
+                  </div>
 
-                {osVariants.map((variant, idx) => {
-                  let href = variant.downloadUrl;
+                  <h4 className="mb-2 font-bold text-center text-gray-900 dark:text-white">
+                    {osName}
+                  </h4>
 
-                  // select architecture-specific link for macOS and Linux
-                  if (osName === "macOS" && detectedOS?.arch) {
-                    href = variant.downloadUrl[detectedOS.arch];
-                  } else if (osName === "Linux" && detectedOS?.arch) {
-                    href = variant.downloadUrl[detectedOS.arch];
-                  }
-
-                  return (
+                  {variants.map((variant, idx) => (
                     <div key={idx} className="mb-3">
                       <a
-                        href={href}
+                        href={variant.downloadUrl}
                         className="flex items-center justify-center w-full gap-2 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 rounded-lg bg-gradient-to-br from-emerald-600 to-teal-600 hover:shadow-md"
                       >
                         <FontAwesomeIcon
                           icon={faDownload}
                           className="text-sm"
                         />
-                        Download for {osName}{" "}
-                        {`${
-                          !!variant.description
-                            ? `(${variant.description})`
-                            : ""
-                        }`}
+                        Download for {osName} ({variant.description})
                       </a>
                     </div>
-                  );
-                })}
-              </div>
-            );
-          })}
+                  ))}
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Section 3 */}
       <div className="mt-10">

@@ -6,6 +6,7 @@ import {
   faBook,
   faQuestionCircle,
   faHeadset,
+  faServer,
 } from "@fortawesome/pro-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 
@@ -34,7 +35,7 @@ const documentationOverview = [
     link: "View API →",
   },
   {
-    icon: faQuestionCircle,
+    icon: faServer,
     title: "Storer Download",
     description:
       "Download Storer quickly and easily, with guides to help you get started and resolve common setup issues.",
