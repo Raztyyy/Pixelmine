@@ -25,13 +25,13 @@ function DocumentationStorerDownload() {
       logo: "apple-logo.svg",
       variants: [
         {
-          description: "Intel",
+          description: "Intel Mac (x86_64)",
           downloadUrl:
             "https://app.pixelmine.org:8005/update/download/darwin/amd64",
           arch: "intel",
         },
         {
-          description: "Apple Silicon",
+          description: "Apple Silicon (ARM64)",
           downloadUrl:
             "https://app.pixelmine.org:8005/update/download/darwin/arm64",
           arch: "arm",
@@ -86,8 +86,8 @@ function DocumentationStorerDownload() {
     }
   }, []);
 
-  // Only show detected OS on desktop
-  const osCardsToShow = detectedOS
+  // Only show the detected OS
+  const osToShow = detectedOS
     ? [detectedOS.name]
     : ["Windows", "macOS", "Linux"];
 
@@ -148,10 +148,10 @@ function DocumentationStorerDownload() {
           </p>
 
           <div className="grid gap-4 mt-6 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-            {osCardsToShow.map((osName) => {
+            {osToShow.map((osName) => {
               const os = downloadOptions.find((o) => o.name === osName);
 
-              // Determine which variants to show
+              // Only show the variant that matches the detected architecture
               const variants = os.variants
                 ? os.variants.filter((v) => v.arch === detectedOS?.arch)
                 : [os];
