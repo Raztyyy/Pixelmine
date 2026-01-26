@@ -34,6 +34,14 @@ const documentationOverview = [
     link: "View API →",
   },
   {
+    icon: faQuestionCircle,
+    title: "Storer Download",
+    description:
+      "Download Storer quickly and easily, with guides to help you get started and resolve common setup issues.",
+    path: "/dashboard/documentation/storer-download",
+    link: "Learn More →",
+  },
+  {
     icon: faBook,
     title: "Guides",
     description:

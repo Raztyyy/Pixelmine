@@ -10,7 +10,6 @@ export default function DashboardDocumentationLayout() {
     "/dashboard/documentation/getting-started": "Getting Started",
     "/dashboard/documentation/api-reference": "API Reference",
     "/dashboard/documentation/concepts": "Concept",
-    "/dashboard/documentation/api-reference": "API Reference",
     "/dashboard/documentation/storer-download": "Storer Download",
     "/dashboard/documentation/guides": "Guides",
     "/dashboard/documentation/faq": "FAQ",
