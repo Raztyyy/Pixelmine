@@ -59,6 +59,8 @@ import AdPaymentMethod from "./ui/dashboard/adpoints/AdPaymentMethod";
 import InvestorsRelations from "./pages/InvestorsRelations";
 import ComingSoon from "./pages/ComingSoon";
 import DocumentationStorerDownload from "./ui/dashboard/documentation/DocumentationStorerDownload";
+import DocumentationStorerInstallation from "./ui/dashboard/documentation/DocumentationStorerInstallation";
+import DocumentationStorerAdSetup from "./ui/dashboard/documentation/DocumentationStorerAdSetup";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -136,6 +138,14 @@ const router = createBrowserRouter([
           { path: "concepts", element: <DocumentationConcept /> },
           { path: "api-reference", element: <DocumentationApiReference /> },
           { path: "storer-download", element: <DocumentationStorerDownload /> },
+          {
+            path: "storer-installation",
+            element: <DocumentationStorerInstallation />,
+          },
+          {
+            path: "storer-ad-setup",
+            element: <DocumentationStorerAdSetup />,
+          },
           { path: "guides", element: <DocumentationGuides /> },
           { path: "faq", element: <DocumentationFAQ /> },
           { path: "support", element: <DocumentationSupport /> },

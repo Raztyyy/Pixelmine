@@ -1,5 +1,6 @@
 // ui/dashboard/DashboardDocumentationLayout.jsx
 import { NavLink, Outlet, useLocation } from "react-router-dom";
+import SEOHelmet from "../SEOHelmet";
 
 export default function DashboardDocumentationLayout() {
   const location = useLocation();
@@ -11,6 +12,8 @@ export default function DashboardDocumentationLayout() {
     "/dashboard/documentation/api-reference": "API Reference",
     "/dashboard/documentation/concepts": "Concept",
     "/dashboard/documentation/storer-download": "Storer Download",
+    "/dashboard/documentation/storer-installation": "Storer Installation Guide",
+    "/dashboard/documentation/storer-ad-setup": "Storer Ad Setup Guide",
     "/dashboard/documentation/guides": "Guides",
     "/dashboard/documentation/faq": "FAQ",
     "/dashboard/documentation/support": "Support",
@@ -37,27 +40,36 @@ export default function DashboardDocumentationLayout() {
   // ];
 
   return (
-    <div className="mx-auto">
-      {/* Breadcrumb */}
-      <div className="mt-6 mb-6">
-        <div className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full bg-white border border-gray-200 shadow-lg dark:bg-stone-800 dark:border-gray-700">
-          <NavLink
-            to="/dashboard/documentation"
-            className="text-gray-700 transition-colors hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400"
-          >
-            Home
-          </NavLink>
-          <span className="text-gray-400 dark:text-gray-600">/</span>
-          <span className="font-semibold text-emerald-600 dark:text-emerald-400">
-            {breadcrumbMap[location.pathname] || "Docs"}
-          </span>
-        </div>
-      </div>
+    <>
+      <SEOHelmet
+        title="Documentation | Pixelmine Japan OPC"
+        description="Explore Pixelmine Japan's documentation for setup guides, API references, Storer instructions, and troubleshooting tips to manage your ads and storers efficiently."
+        url="https://www.pixelmine.org/dashboard/documentation"
+        image="/social-sharing.jpg"
+      />
 
-      {/* Main content */}
-      <main className="mt-8">
-        <Outlet />
-      </main>
-    </div>
+      <div className="mx-auto">
+        {/* Breadcrumb */}
+        <div className="mt-6 mb-6">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-full bg-white border border-gray-200 shadow-lg dark:bg-stone-800 dark:border-gray-700">
+            <NavLink
+              to="/dashboard/documentation"
+              className="text-gray-700 transition-colors hover:text-emerald-600 dark:text-gray-300 dark:hover:text-emerald-400"
+            >
+              Home
+            </NavLink>
+            <span className="text-gray-400 dark:text-gray-600">/</span>
+            <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+              {breadcrumbMap[location.pathname] || "Docs"}
+            </span>
+          </div>
+        </div>
+
+        {/* Main content */}
+        <main className="mt-8">
+          <Outlet />
+        </main>
+      </div>
+    </>
   );
 }

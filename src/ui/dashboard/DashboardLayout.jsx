@@ -75,7 +75,11 @@ function DashboardLayout() {
     if (path === "/dashboard/documentation/api-reference")
       return "API Reference";
     if (path === "/dashboard/documentation/storer-download")
-      return "Storer Download";
+      return "Storer Download Guide";
+    if (path === "/dashboard/documentation/storer-ad-setup")
+      return "Storer Ad Setup Guide";
+    if (path === "/dashboard/documentation/storer-installation")
+      return "Storer Installation Guide";
     if (path === "/dashboard/documentation/guides") return "Guides";
     if (path === "/dashboard/documentation/faq") return "FAQ";
     if (path === "/dashboard/documentation/support") return "Support";

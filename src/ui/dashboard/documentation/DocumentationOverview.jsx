@@ -36,10 +36,26 @@ const documentationOverview = [
   },
   {
     icon: faServer,
-    title: "Storer Download",
+    title: "Storer Download Guide",
     description:
       "Download Storer quickly and easily, with guides to help you get started and resolve common setup issues.",
     path: "/dashboard/documentation/storer-download",
+    link: "Learn More →",
+  },
+  {
+    icon: faServer,
+    title: "Storer Installation Guide",
+    description:
+      "Detailed instructions for installing Storer, including system requirements and troubleshooting common issues.",
+    path: "/dashboard/documentation/storer-installation",
+    link: "Learn More →",
+  },
+  {
+    icon: faServer,
+    title: "Storer Ad Setup Guide",
+    description:
+      "Everything you need to set up Storer Ads, with easy guides and help for common ad setup problems.",
+    path: "/dashboard/documentation/storer-ad-setup",
     link: "Learn More →",
   },
   {
