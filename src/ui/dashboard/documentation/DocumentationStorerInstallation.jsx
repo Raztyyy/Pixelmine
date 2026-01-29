@@ -88,7 +88,7 @@ function DocumentationStorerInstallation() {
                 "Mac M1/M2 (Apple Silicon)",
                 <a
                   href="https://app.pixelmine.org:8005/update/download/darwin/arm64"
-                  className="underline text-emerald-600 dark:text-emerald-400"
+                  className="font-bold text-emerald-600 dark:text-emerald-400"
                 >
                   Download
                 </a>,
@@ -97,7 +97,7 @@ function DocumentationStorerInstallation() {
                 "Mac Intel",
                 <a
                   href="https://app.pixelmine.org:8005/update/download/darwin/amd64"
-                  className="underline text-emerald-600 dark:text-emerald-400"
+                  className="font-bold text-emerald-600 dark:text-emerald-400"
                 >
                   Download
                 </a>,
@@ -106,7 +106,7 @@ function DocumentationStorerInstallation() {
                 "Linux x64",
                 <a
                   href="https://app.pixelmine.org:8005/update/download/linux/amd64"
-                  className="underline text-emerald-600 dark:text-emerald-400"
+                  className="font-bold text-emerald-600 dark:text-emerald-400"
                 >
                   Download
                 </a>,
@@ -115,7 +115,7 @@ function DocumentationStorerInstallation() {
                 "Linux ARM64",
                 <a
                   href="https://app.pixelmine.org:8005/update/download/linux/arm64"
-                  className="underline text-emerald-600 dark:text-emerald-400"
+                  className="font-bold text-emerald-600 dark:text-emerald-400"
                 >
                   Download
                 </a>,
@@ -124,7 +124,7 @@ function DocumentationStorerInstallation() {
                 "Windows",
                 <a
                   href="https://app.pixelmine.org:8005/update/download/windows/amd64"
-                  className="underline text-emerald-600 dark:text-emerald-400"
+                  className="font-bold text-emerald-600 dark:text-emerald-400"
                 >
                   Download
                 </a>,
