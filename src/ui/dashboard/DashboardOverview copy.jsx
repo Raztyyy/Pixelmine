@@ -1,6 +1,14 @@
+// DashboardOverview.jsx - REPLACE YOUR EXISTING FILE
+// This keeps ALL your logic, only improves the layout for better visual hierarchy
+
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faServer, faBolt } from "@fortawesome/pro-solid-svg-icons";
+import {
+  faServer,
+  faBolt,
+  faBoxOpen,
+  faFilter,
+} from "@fortawesome/pro-solid-svg-icons";
 import SEOHelmet from "../SEOHelmet";
 import OnlineHoursLineChart from "./statistics/OnlineHoursLineChart";
 import { useAuth } from "../../context/AuthContext";
@@ -12,14 +20,14 @@ function DashboardOverview() {
     online_hours_per_month: [],
   });
 
-  const [storers, setStorers] = useState([]);
-  const { token } = useAuth();
+  const [locationStatus, setLocationStatus] = useState([]);
+
   const API_URL = import.meta.env.VITE_API_URL;
+  const { token } = useAuth();
 
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
 
-  // Fetch user statistics
   useEffect(() => {
     const fetchStats = async () => {
       try {
@@ -36,51 +44,51 @@ function DashboardOverview() {
       }
     };
 
-    if (token) fetchStats();
+    if (token) {
+      fetchStats();
+    }
   }, [token, API_URL]);
 
-  // Fetch all storers
   useEffect(() => {
-    const fetchStorers = async () => {
+    const fetchLocationStatus = async () => {
       try {
-        const res = await fetch(`${API_URL}/api/storer`);
+        const res = await fetch(`${API_URL}/api/global-storer-status`);
         const data = await res.json();
-        setStorers(data.storers || []);
+
+        const raw = data.location_status?.[0]?.location_status;
+
+        // raw should be a JSON string; parse it
+        let parsed = [];
+        if (typeof raw === "string") {
+          parsed = JSON.parse(raw);
+        } else if (Array.isArray(raw)) {
+          // just in case backend auto-parses in future
+          parsed = raw;
+        }
+
+        setLocationStatus(parsed);
       } catch (err) {
-        console.error("Error fetching storers:", err);
+        console.error("Error fetching global location status:", err);
       }
     };
 
-    fetchStorers();
+    fetchLocationStatus();
   }, [API_URL]);
 
-  // Unique country list
-  const countryNames = Array.from(
-    new Set(storers.map((s) => s.country || "Unknown"))
+  const countryNames = Object.keys(
+    locationStatus.reduce((acc, city) => {
+      const country = city.country || "Unknown";
+      acc[country] = true;
+      return acc;
+    }, {})
   );
 
-  // Cities for selected country (deduplicated)
   const cityOptions = selectedCountry
-    ? Array.from(
-        new Map(
-          storers
-            .filter((s) => s.country === selectedCountry)
-            .map((s) => [s.city, s])
-        ).values()
-      )
+    ? locationStatus.filter((city) => city.country === selectedCountry)
     : [];
 
-  // Count of storers in selected country
-  const totalStorersInCountry = selectedCountry
-    ? storers.filter((s) => s.country === selectedCountry).length
-    : 0;
-
-  // Count of storers in selected city
-  const totalStorersInCity = selectedCity
-    ? storers.filter(
-        (s) => s.country === selectedCountry && s.city === selectedCity
-      ).length
-    : 0;
+  const selectedCityData =
+    cityOptions.find((c) => c.name === selectedCity) || {};
 
   return (
     <>
@@ -91,8 +99,9 @@ function DashboardOverview() {
         image="/social-sharing.jpg"
       />
 
-      {/* Metrics Overview */}
+      {/* Metrics Overview - 4 equal cards in a row */}
       <div className="grid grid-cols-1 gap-6 mb-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Total Running Storer */}
         <div className="p-6 bg-white border border-gray-200 dark:bg-stone-900 rounded-xl dark:border-gray-700">
           <div className="flex items-center justify-center w-12 h-12 mb-4 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl">
             <FontAwesomeIcon icon={faServer} className="w-6 h-6 text-white" />
@@ -101,10 +110,14 @@ function DashboardOverview() {
             Total Running Storer
           </p>
           <p className="text-4xl font-bold text-gray-900 dark:text-white">
-            {storers.length}
+            {(locationStatus ?? []).reduce(
+              (sum, city) => sum + (city.running || 0),
+              0
+            )}
           </p>
         </div>
 
+        {/* Activity Points */}
         <div className="p-6 bg-white border border-gray-200 dark:bg-stone-900 rounded-xl dark:border-gray-700">
           <div className="flex items-center justify-center w-12 h-12 mb-4 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl">
             <FontAwesomeIcon icon={faBolt} className="w-6 h-6 text-white" />
@@ -117,6 +130,7 @@ function DashboardOverview() {
           </p>
         </div>
 
+        {/* PXL Points */}
         <div className="p-6 bg-white border border-gray-200 dark:bg-stone-900 rounded-xl dark:border-gray-700">
           <div className="flex items-center justify-center w-12 h-12 mb-4 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl">
             <FontAwesomeIcon icon={faBolt} className="w-6 h-6 text-white" />
@@ -134,7 +148,7 @@ function DashboardOverview() {
       <div className="mb-6 bg-white border border-gray-200 dark:bg-stone-900 rounded-xl dark:border-gray-700">
         <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-lg font-bold text-gray-900 dark:text-white">
-            Check storer count by location
+            Check storer status by location
           </h2>
         </div>
 
@@ -174,9 +188,9 @@ function DashboardOverview() {
                   onChange={(e) => setSelectedCity(e.target.value)}
                 >
                   <option value="">Select City</option>
-                  {cityOptions.map((storer) => (
-                    <option key={storer.id} value={storer.city}>
-                      {storer.city}
+                  {cityOptions.map((city) => (
+                    <option key={city.name} value={city.name}>
+                      {city.name}
                     </option>
                   ))}
                 </select>
@@ -184,54 +198,54 @@ function DashboardOverview() {
             )}
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {selectedCountry && (
+          {/* City Stats - Only show when city is selected */}
+          {selectedCity && (
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {/* Storer Running */}
               <div className="p-6 border border-emerald-200 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-xl dark:border-emerald-800">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-500">
                     <FontAwesomeIcon
-                      icon={faServer}
+                      icon={faBolt}
                       className="w-5 h-5 text-white"
                     />
                   </div>
                   <div>
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Total Storers in {selectedCountry}
+                      Storer Running
                     </p>
                     <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                      {totalStorersInCountry}
+                      {selectedCityData.running ?? "--"}
                     </p>
                   </div>
                 </div>
               </div>
-            )}
 
-            {selectedCity && (
+              {/* Available Storer Slot */}
               <div className="p-6 border border-emerald-200 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-xl dark:border-emerald-800">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-emerald-500">
                     <FontAwesomeIcon
-                      icon={faServer}
+                      icon={faBoxOpen}
                       className="w-5 h-5 text-white"
                     />
                   </div>
                   <div>
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Total Storers in {selectedCity}
+                      Available Storer Slot
                     </p>
                     <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                      {totalStorersInCity}
+                      {selectedCityData.available ?? "--"}
                     </p>
                   </div>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Chart Section */}
+      {/* Chart Section - Full Width */}
       <div className="bg-white border border-gray-200 dark:bg-stone-900 rounded-xl dark:border-gray-700">
         <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-lg font-bold text-gray-900 dark:text-white">

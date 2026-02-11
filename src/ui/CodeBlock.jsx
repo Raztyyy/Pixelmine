@@ -25,7 +25,7 @@ function CodeBlock({ code, language = "" }) {
 
       <SyntaxHighlighter
         language={language}
-        style={oneLight} // still respects dark mode
+        style={oneLight}
         customStyle={{
           borderRadius: "12px",
           padding: `${language ? "2.5rem" : "1.5rem"} 1rem 1rem 1rem`, // extra top padding for the label
