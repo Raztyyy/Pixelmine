@@ -87,7 +87,7 @@ const documentationOverview = [
 function DocumentationOverview() {
   return (
     <div className="text-center">
-      <h2 className="mt-5 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl dark:text-white">
+      <h2 className="mt-5 text-3xl font-bold tracking-tight text-gray-900 md:text-5xl dark:text-white">
         Welcome to Pixelmine Docs
       </h2>
       <p className="max-w-5xl mx-auto mt-6 text-base leading-relaxed text-gray-600 md:text-lg dark:text-gray-300">

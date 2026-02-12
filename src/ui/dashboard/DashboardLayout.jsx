@@ -95,15 +95,15 @@ function DashboardLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-stone-950">
+    <div className="min-h-screen bg-white dark:bg-stone-950">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 dark:bg-stone-900 dark:border-gray-700">
-        <div className="px-4 py-4 mx-auto sm:px-6 lg:px-8">
+      <header className="px-4 bg-white border-b border-gray-200 dark:bg-stone-900 dark:border-gray-700 sm:px-6 md:px-16 lg:px-12 xl:px-24 2xl:px-60 ">
+        <div className="py-4 mx-auto">
           <div className="flex items-center justify-between">
             {/* Left */}
             <div className="flex items-center gap-4">
               <button
-                className="p-2 transition-colors rounded-lg lg:hidden hover:bg-gray-100 dark:hover:bg-stone-800"
+                className="py-2 transition-colors rounded-lg lg:hidden hover:bg-gray-100 dark:hover:bg-stone-800"
                 onClick={() => setShowMobileMenu(!showMobileMenu)}
               >
                 <FontAwesomeIcon
@@ -123,11 +123,12 @@ function DashboardLayout() {
       </header>
 
       {/* Main Content */}
-      <main className="px-4 py-6 mx-auto sm:px-6 lg:px-8">
+      <main className="px-4 py-6 mx-auto sm:px-6 md:px-16 lg:px-12 xl:px-24 2xl:px-60">
         <div className="mb-6">
           <h1 className="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
             {getPageTitle()}
           </h1>
+
           <p className="text-gray-600 dark:text-gray-400">
             View and manage the Storer status and availability across all
             Pixelmine locations.
@@ -135,7 +136,7 @@ function DashboardLayout() {
         </div>
 
         {/* Horizontal Nav */}
-        <div className="mb-8 border-b border-gray-200 dark:border-gray-700">
+        <div className="mb-8 border-b border-gray-200 dark:border-gray-700 ">
           <nav className="flex gap-8 -mb-px overflow-x-auto">
             {mainNavItems.map((item) => {
               if (item.hasSubmenu) {
@@ -212,7 +213,7 @@ function DashboardLayout() {
       {showMobileMenu && (
         <>
           <div
-            className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+            className="fixed inset-0 z-40 px-4 bg-black/50 lg:hidden sm:px-6 md:px-16 lg:px-12 xl:px-24 2xl:px-60"
             onClick={() => setShowMobileMenu(false)}
           ></div>
 

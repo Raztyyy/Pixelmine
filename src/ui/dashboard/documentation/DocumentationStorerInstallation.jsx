@@ -77,7 +77,7 @@ function DocumentationStorerInstallation() {
         {/* Download Section */}
         <section className="mt-12">
           <h3 className="text-xl font-bold dark:text-white">Download</h3>
-          <p className="mt-3 text-gray-600 dark:text-gray-400">
+          <p className="mt-3 text-stone-950 dark:text-stone-50">
             Download the latest version for your platform:
           </p>
 
@@ -139,7 +139,7 @@ function DocumentationStorerInstallation() {
 
           {/* Mac */}
           <h4 className="mt-6 font-semibold dark:text-white">Mac</h4>
-          <ol className="mt-3 space-y-2 text-gray-600 list-decimal list-inside dark:text-gray-400">
+          <ol className="mt-3 space-y-2 list-decimal list-inside text-stone-950 dark:text-stone-50">
             <li>Download the file</li>
             <li>
               Open Terminal and navigate to the download folder:
@@ -164,7 +164,7 @@ function DocumentationStorerInstallation() {
 
           {/* Linux */}
           <h4 className="mt-6 font-semibold dark:text-white">Linux</h4>
-          <ol className="mt-3 space-y-2 text-gray-600 list-decimal list-inside dark:text-gray-400">
+          <ol className="mt-3 space-y-2 list-decimal list-inside text-stone-950 dark:text-stone-50">
             <li>Download the file</li>
             <li>
               Open Terminal and navigate to the download folder:
@@ -182,7 +182,7 @@ function DocumentationStorerInstallation() {
 
           {/* Windows */}
           <h4 className="mt-6 font-semibold dark:text-white">Windows</h4>
-          <ol className="mt-3 space-y-2 text-gray-600 list-decimal list-inside dark:text-gray-400">
+          <ol className="mt-3 space-y-2 list-decimal list-inside text-stone-950 dark:text-stone-50">
             <li>Download the file (storer.exe)</li>
             <li>
               Double click to run, or open Command Prompt:
@@ -194,7 +194,7 @@ function DocumentationStorerInstallation() {
         {/* Configuration */}
         <section className="mt-12">
           <h3 className="text-xl font-bold dark:text-white">Configuration</h3>
-          <p className="mt-3 text-gray-600 dark:text-gray-400">
+          <p className="mt-3 text-stone-950 dark:text-stone-50">
             Before running, make sure you have a{" "}
             <span className="font-semibold dark:text-white">`config.js`</span>{" "}
             file in the same directory as the executable.
@@ -204,7 +204,7 @@ function DocumentationStorerInstallation() {
         {/* Auto Updates */}
         <section className="mt-12">
           <h3 className="text-xl font-bold dark:text-white">Auto Updates</h3>
-          <p className="mt-3 text-gray-600 dark:text-gray-400">
+          <p className="mt-3 text-stone-950 dark:text-stone-50">
             Storer automatically checks for updates every 2 minutes and will
             restart with the new version when available.
           </p>
@@ -243,7 +243,7 @@ function DocumentationStorerInstallation() {
           <h4 className="mt-6 font-semibold dark:text-white">
             Windows: "Windows protected your PC"
           </h4>
-          <p className="mt-2 text-gray-600 dark:text-gray-400">
+          <p className="mt-2 text-stone-950 dark:text-stone-50">
             Click "More info" then "Run anyway"
           </p>
         </section>

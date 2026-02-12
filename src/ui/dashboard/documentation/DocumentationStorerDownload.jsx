@@ -80,7 +80,7 @@ function DocumentationStorerDownload() {
         <h2 className="mt-10 text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">
           Storer Download Guide
         </h2>
-        <p className="max-w-3xl mt-4 text-base leading-relaxed text-gray-600 md:text-lg dark:text-gray-300">
+        <p className="max-w-3xl mt-4 text-base leading-relaxed md:text-lg text-stone-950 dark:text-stone-50">
           The Storer Engine is the software that allows your device to
           participate in the Pixelmine network. Follow this guide to download,
           install, and activate your Storer using your license key.
@@ -91,14 +91,14 @@ function DocumentationStorerDownload() {
           <h3 className="text-xl font-bold text-gray-900 dark:text-white">
             1. What is the Storer Engine?
           </h3>
-          <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+          <p className="mt-3 text-base leading-relaxed text-stone-950 dark:text-stone-50">
             The Storer Engine is a lightweight application that enables your
             device to contribute compute resources and stay connected to the
             Pixelmine ecosystem. Once installed and activated, it runs tasks,
             maintains uptime, and earns Activity Points and PXL Points.
           </p>
           <div className="inline-block p-5 mt-4 border-l-4 shadow-md border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 rounded-r-xl">
-            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            <p className="text-sm font-medium text-stone-950 dark:text-stone-50">
               💡 Tip: The Storer runs in the background and is optimized for low
               usage. Keep your device connected to maximize uptime rewards.
             </p>
@@ -110,7 +110,7 @@ function DocumentationStorerDownload() {
           <h3 className="text-xl font-bold text-gray-900 dark:text-white">
             2. Download the Storer
           </h3>
-          <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+          <p className="mt-3 text-base leading-relaxed text-stone-950 dark:text-stone-50">
             Choose your operating system and architecture below:
           </p>
 
@@ -160,7 +160,7 @@ function DocumentationStorerDownload() {
           <h3 className="text-xl font-bold text-gray-900 dark:text-white">
             3. Import Your Storer License Key
           </h3>
-          <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+          <p className="mt-3 text-base leading-relaxed text-stone-950 dark:text-stone-50">
             After installation, the Storer Engine will ask for your{" "}
             <strong>license key</strong>.
           </p>
@@ -183,7 +183,7 @@ function DocumentationStorerDownload() {
           <h3 className="text-xl font-bold text-gray-900 dark:text-white">
             4. Start Running the Storer
           </h3>
-          <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+          <p className="mt-3 text-base leading-relaxed text-stone-950 dark:text-stone-50">
             Once your license key is verified, the Storer Engine will begin
             running. You can monitor uptime, activity points, and performance
             inside the Pixelmine Dashboard.

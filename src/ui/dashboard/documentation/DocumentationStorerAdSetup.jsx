@@ -76,348 +76,219 @@ function DocumentationStorerAdSetup() {
         </button>
         {/* Header */}
         <h2 className="mt-10 text-4xl font-bold text-gray-900 md:text-5xl dark:text-white">
-          Storer Ad Setup Guide
+          How to Add Ads to Your Storer
         </h2>
-        <p className="mt-4 text-base leading-relaxed text-gray-600 md:text-lg dark:text-gray-300">
-          This guide explains how to set up ads on your storer node.
+        <p className="mt-4 text-base leading-relaxed text-stone-950 dark:text-stone-50 md:text-lg ">
+          A simple guide for storer runners.
         </p>
+
+        <section className="mt-12">
+          <h3 className="text-xl font-bold dark:text-white">What You Need</h3>
+          <ul className="pl-5 mt-2 space-y-2 list-decimal text-stone-950 dark:text-stone-50">
+            <li>Your storer running on your computer</li>
+            <li>An ad image or video file</li>
+            <li>A purchased ad key from Pixelmine</li>
+          </ul>
+        </section>
+
         {/* Step 1 */}
         <section className="mt-12">
           <h3 className="text-xl font-bold dark:text-white">
-            STEP 1: Purchase an Ad Key
+            STEP 1: Buy an Ad Key
           </h3>
-          <p className="mt-3 text-gray-600 dark:text-gray-400">
-            Call the API to purchase an ad key:
-          </p>
-
-          <CodeBlock
-            code={`curl -X POST https://app.pixelmine.org:8005/purchase_ad \\
-  -H "Authorization: Bearer YOUR_JWT_TOKEN" \\
-  -H "Content-Type: application/json" \\
-  -d '{"days": 30, "sync_scope": "global"}'`}
-            language="bash"
-          />
-
-          <h4 className="mt-8 font-semibold dark:text-white">Parameters</h4>
-          <Table
-            headers={["Parameter", "Required", "Default", "Description"]}
-            rows={[
-              ["days", "Yes", "-", "1–180, how long the ad will run"],
-              [
-                "sync_scope",
-                "No",
-                `"global"`,
-                "Controls which storers sync this ad",
-              ],
-              [
-                "absolute_expiry",
-                "No",
-                "180",
-                "Days until key expires (even if unused)",
-              ],
-            ]}
-          />
-
-          <h4 className="mt-8 font-semibold dark:text-white">
-            Sync Scope Options
-          </h4>
-          <Table
-            headers={["Scope", "Behavior"]}
-            rows={[
-              ["global", "Ad syncs to ALL storers worldwide"],
-              ["country", "Ad syncs only to storers in your country"],
-              ["city", "Ad syncs only to storers in your city"],
-              ["area", "Ad stays local only, no sync to other storers"],
-            ]}
-          />
-
-          <h4 className="mt-8 font-semibold dark:text-white">
-            Example Response
-          </h4>
-          <CodeBlock
-            code={`{
- "message": "Ad purchase successful",
-  "data": {
-    "ad_key": {
-      "ad_id": "550e8400-e29b-41d4-a716-446655440000",
-      "valid_from": 1737446400,
-      "valid_until": 1740038400,
-      "absolute_expiry": 1752969600,
-      "sync_scope": "global",
-      "signature": "BASE64_SIGNATURE..."
-    },
-    "days_purchased": 30,
-    "valid_from": "2025-01-21T00:00:00.000Z",
-    "valid_until": "2025-02-20T00:00:00.000Z",
-    "absolute_expiry": "2025-07-20T00:00:00.000Z"
-  },
-  "status": 200
-}`}
-            language="json"
-          />
+          <ul className="pl-5 mt-2 space-y-2 list-decimal text-stone-950 dark:text-stone-50">
+            <li>Open the Pixelmine app</li>
+            <li>
+              Go to <strong>Ads</strong> &gt; <strong>Purchase Ad</strong>{" "}
+            </li>
+            <li>Choose how many days you want the ad to run (1-180 days)</li>
+            <li>
+              Choose your sync scope:
+              <ul className="pl-5 list-disc">
+                <li>
+                  <strong>Global</strong> - Your ad shows on all storers
+                  worldwide
+                </li>
+                <li>
+                  <strong>Country</strong> - Your ad shows only on storers in
+                  your country
+                </li>
+                <li>
+                  <strong>City</strong> - Your ad shows only on storers in your
+                  city
+                </li>
+                <li>
+                  <strong>Area</strong> - Your ad stays only on your storer (no
+                  sharing)
+                </li>
+              </ul>
+            </li>
+            <li>
+              Click <strong>Purchase</strong>
+            </li>
+            <li>
+              Download the <strong>`ad.key`</strong> file
+            </li>
+          </ul>
         </section>
+
         {/* Step 2 */}
         <section className="mt-12">
           <h3 className="text-xl font-bold dark:text-white">
-            STEP 2: Create Ad Folder
+            STEP 2: Find Your Ads Folder
           </h3>
-          <p className="mt-3 text-gray-600 dark:text-gray-400">
-            Create a folder inside your storer's{" "}
-            <span className="font-semibold dark:text-white">`ads` </span>
-            directory:
+          <p className="mt-3 text-stone-950 dark:text-stone-50">
+            Your storer has an <strong>`ads`</strong> folder. Find it at:
           </p>
-
           <CodeBlock
-            code={`storer/
-└── ads/
-    └── my-ad-campaign/       <-- Create this folder (any name)
-        ├── ad.key            <-- Required: The ad key file
-        ├── ad.png            <-- Required: Your ad media
-        └── description.txt   <-- Optional: Ad description`}
+            code={`C:\\Users\\YourName\\Storer\\ads\\`}
+            language="Windows"
           />
+          <CodeBlock code={`/Users/YourName/Storer/ads/`} language="Mac" />
+          <CodeBlock code={`/home/yourname/storer/ads/`} language="Linux" />
         </section>
         {/* Step 3 */}
         <section className="mt-12">
           <h3 className="text-xl font-bold dark:text-white">
-            STEP 3: Save the Ad Key
+            STEP 3: Create a Folder for Your Ad
           </h3>
-          <p className="mt-3 text-gray-600 dark:text-gray-400">
-            Take the{" "}
-            <span className="font-semibold dark:text-white">`ad_key` </span>{" "}
-            object from the API response and save it as{" "}
-            <span className="font-semibold dark:text-white">`ad.key`</span>:
+          <p className="mt-3 text-stone-950 dark:text-stone-50">
+            Inside the <strong>`ads`</strong> folder, create a new folder with
+            any name:
           </p>
 
           <CodeBlock
-            code={`# Create the ad folder
-mkdir -p /path/to/storer/ads/my-ad-campaign
-
-# Save the ad.key file (copy the ad_key object from response)
-cat > /path/to/storer/ads/my-ad-campaign/ad.key << 'EOF'
-{
-  "ad_id": "550e8400-e29b-41d4-a716-446655440000",
-  "valid_from": 1737446400,
-  "valid_until": 1740038400,
-  "absolute_expiry": 1752969600,
-  "sync_scope": "global",
-  "signature": "BASE64_SIGNATURE..."
-}
-EOF`}
-            language="bash"
+            code={`ads/
+└── my-first-ad/      <-- Create this folder`}
           />
 
-          <div className="inline-block p-5 mt-4 border-l-4 shadow-md border-emerald-500 bg-emerald-50 dark:bg-emerald-900/20 rounded-r-xl">
-            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              <span className="font-bold">IMPORTANT:</span> Do NOT modify the
-              ad.key contents or the signature will be invalid.
-            </p>
-          </div>
+          <p className="mt-3 text-stone-950 dark:text-stone-50">
+            You can name it anything you want (no spaces recommended).
+          </p>
         </section>
         {/* Step 4 */}
         <section className="mt-12">
           <h3 className="text-xl font-bold dark:text-white">
-            STEP 4: Add Your Ad Media
+            STEP 4: Add Your Files
           </h3>
 
-          <p className="mt-3 text-gray-600 dark:text-gray-400">
-            Place your ad media file in the same folder. Supported formats:
+          <p className="mt-3 text-stone-950 dark:text-stone-50">
+            Put these files inside your new folder:
           </p>
 
           <Table
-            headers={["Type", "Extensions"]}
+            headers={["File", "Required", "Description"]}
             rows={[
-              ["Image", ".jpg, .jpeg, .png, .gif, .webp"],
-              ["Video", ".mp4, .mov, .webm"],
+              ["`ad.key`", "Yes", "The key file you downloaded"],
+              ["Your image/video", "Yes", "The ad you want to display"],
+              ["`description.txt`", "No", "Short text about your ad"],
             ]}
           />
 
-          <p className="mt-8 font-semibold text-gray-600 dark:text-gray-400">
-            Example:
+          <h3 className="mt-8 text-xl font-bold dark:text-white">
+            Supported formats
+          </h3>
+          <ul className="pl-5 mt-2 space-y-2 list-disc text-stone-950 dark:text-stone-50">
+            <li>Images: `.jpg`, `.png`, `.gif`, `.webp`</li>
+            <li>Videos: `.mp4`, `.mov`, `.webm`</li>
+          </ul>
+
+          <p className="mt-3 text-stone-950 dark:text-stone-50">
+            Your folder should look like this:
           </p>
 
           <CodeBlock
-            code={`cp /path/to/your/ad-image.png /path/to/storer/ads/my-ad-campaign/`}
-            language="bash"
+            code={`ads/
+└── my-first-ad/
+    ├── ad.key
+    ├── my-ad-image.png
+    └── description.txt`}
           />
         </section>
         {/* Step 5 */}
         <section className="mt-12">
-          <h3 className="text-xl font-bold dark:text-white">
-            STEP 5: Add Description (Optional)
-          </h3>
-          <p className="mt-3 text-gray-600 dark:text-gray-400">
-            Create a{" "}
-            <span className="font-semibold dark:text-white">
-              `description.txt`{" "}
-            </span>{" "}
-            file with your ad description:
+          <h3 className="text-xl font-bold dark:text-white">STEP 5: Done!</h3>
+          <p className="mt-3 text-stone-950 dark:text-stone-50">
+            Your storer will automatically detect the new ad within a few
+            minutes.
           </p>
-          <CodeBlock
-            code={`echo "Check out our amazing product!" > /path/to/storer/ads/my-ad-campaign/description.txt`}
-            language="bash"
-          />
-        </section>
-        {/* Step 6 */}
-        <section className="mt-12">
-          <h3 className="text-xl font-bold dark:text-white">
-            STEP 6: Set Your Storer Location
-          </h3>
-          <p className="mt-3 text-gray-600 dark:text-gray-400">
-            Your storer needs to know its location for sync scope to work. In
-            your storer config or startup:
+          <p className="mt-3 text-stone-950 dark:text-stone-50">
+            You can add multiple ads by creating more folders:
           </p>
-          <CodeBlock
-            code={`// Set your storer's location
-adsManager.SetNodeLocation("JP", "Tokyo", "Shibuya")
-//                          ^      ^        ^
-//                       Country  City     Area
-`}
-            language="Go"
-          />
-          <p className="mt-3 text-gray-600 dark:text-gray-400">
-            Use ISO 3166-1 alpha-2 country codes (e.g., `JP`, `US`, `PH`, `GB`).
-          </p>
-        </section>
-        {/* Step 7 */}
-        <section className="mt-12">
-          <h3 className="text-xl font-bold dark:text-white">STEP 7: Verify</h3>
-          <p className="mt-3 text-gray-600 dark:text-gray-400">
-            The storer will automatically scan the ads folder and validate your
-            ad. Check the logs:
-          </p>
-          <CodeBlock
-            code={`
-12:34:56 ADS       › Scanning folder: ./ads
-12:34:56 ADS       › Found ad, ID: 550e8400, Media: ad.png, Scope: global
-12:34:56 ADS       ▸ Ad validated, ID: 550e8400 (valid until 2025-02-20)
-12:34:56 ADS       ▸ Scan complete: 1 active ads
-            `}
-          />
 
-          <p className="mt-8 text-gray-600 dark:text-gray-400">
-            If you see warnings like:
-          </p>
+          <CodeBlock
+            code={`ads/
+├── summer-sale/
+│   ├── ad.key
+│   └── banner.jpg
+│
+├── new-product/
+│   ├── ad.key
+│   └── promo.png
+│
+└── holiday-special/
+    ├── ad.key
+    └── video.mp4`}
+          />
+        </section>
+
+        {/* Sync Scope Explained */}
+        <section className="mt-12">
+          <h3 className="text-xl font-bold dark:text-white">
+            Sync Scope Explained
+          </h3>
           <Table
-            headers={["Error", "Reason / Meaning"]}
+            headers={["You Choose", "What Happens"]}
             rows={[
-              ["`invalid signature`", "The ad.key was modified or corrupted"],
-              ["`expired`", "The ad validity period has passed"],
-              ["`exceeded 6 month absolute limit`", "Key has expired"],
+              ["Global", "All storers worldwide will show your ad"],
+              ["Country", "Only storers in your country show your ad"],
+              ["City", "Only storers in your city show your ad"],
+              ["Area", "Only YOUR storer shows the ad (private)"],
             ]}
           />
         </section>
 
-        {/* Complete Example */}
+        {/* Common Problems */}
         <section className="mt-12">
-          <h3 className="text-xl font-bold dark:text-white">
-            Complete Example
-          </h3>
-          <CodeBlock
-            code={`# 1. Purchase ad key
-curl -X POST https://app.pixelmine.org:8005/purchase_ad \\ 
--H "Authorization: Bearer $TOKEN" \\
--H "Content-Type: application/json" \\
--d '{"days": 30, "sync_scope": "city", "absolute_expiry": 60}'
-
-# 2. Create folder
-mkdir -p ./ads/summer-sale
-
-# 3. Save ad.key (paste the ad_key from response)
-cat > ./ads/summer-sale/ad.key << 'EOF'
-{
-  "ad_id": "...",
-  "valid_from": ...,
-  "valid_until": ...,
-  "absolute_expiry": ...,
-  "sync_scope": "city",
-  "signature": "..."
-}
-EOF
-
-# 4. Add media
-cp ~/my-ad-banner.png ./ads/summer-sale/
-
-# 5. Add description
-echo "Summer Sale - 50% off!" > ./ads/summer-sale/description.txt
-
-# 6. Restart storer or wait for automatic scan`}
-            language="bash"
-          />
+          <h3 className="text-xl font-bold dark:text-white">Common Problems</h3>
+          <ul className="pl-5 mt-2 space-y-2 font-semibold list-decimal text-stone-950 dark:text-stone-50">
+            <li>
+              Ad not showing?
+              <ul className="pl-5 mt-2 space-y-2 font-normal list-disc text-stone-950 dark:text-stone-50">
+                <li>
+                  Make sure <strong>`ad.key`</strong> file is in the folder
+                </li>
+                <li>Make sure you have an image or video file</li>
+                <li>Wait a few minutes for the storer to scan</li>
+              </ul>
+            </li>
+            <li>
+              "Invalid signature" error?
+              <ul className="pl-5 mt-2 space-y-2 font-normal list-disc text-stone-950 dark:text-stone-50">
+                <li>
+                  Download a fresh <strong>`ad.key`</strong> from the app
+                </li>
+                <li>
+                  Do not edit the <strong>`ad.key`</strong> file
+                </li>
+              </ul>
+            </li>
+            <li>
+              "Expired" error?
+              <ul className="pl-5 mt-2 space-y-2 font-normal list-disc text-stone-950 dark:text-stone-50">
+                <li>Your ad time has ended</li>
+                <li>Purchase a new ad key</li>
+              </ul>
+            </li>
+          </ul>
         </section>
 
-        {/* Folder Structure Summary */}
+        {/* Need Help? */}
         <section className="mt-12">
-          <h3 className="text-xl font-bold dark:text-white">
-            Folder Structure Summary
-          </h3>
-
-          <CodeBlock
-            code={`storer/
-└── ads/
-    ├── campaign-1/
-    │   ├── ad.key           # Required
-    │   ├── banner.jpg       # Required (any supported format)
-    │   └── description.txt  # Optional
-    │
-    ├── campaign-2/
-    │   ├── ad.key
-    │   └── promo.mp4
-    │
-    └── campaign-3/
-        ├── ad.key
-        ├── ad.png
-        └── description.txt
-            `}
-          />
-        </section>
-
-        {/* Troubleshooting */}
-        <section className="mt-12">
-          <h3 className="text-xl font-bold dark:text-white">Troubleshooting</h3>
-          <Table
-            headers={["Problem", "Solution"]}
-            rows={[
-              ["Ad not showing", "Check logs for validation errors"],
-              [
-                "Invalid signature",
-                "Re-download ad.key from API, don't modify it",
-              ],
-              ["Ad expired", "Purchase a new ad key"],
-              [
-                "Not syncing to other storers",
-                "Check sync_scope matches your needs",
-              ],
-              [
-                "Sync scope not working",
-                "Make sure SetNodeLocation is configured",
-              ],
-            ]}
-          />
-        </section>
-
-        {/* API Quick Ref */}
-        <section className="mt-12">
-          <h3 className="text-xl font-bold dark:text-white">
-            API Quick Reference
-          </h3>
-          <CodeBlock
-            code={`# Global ad (syncs everywhere)
-{"days": 30}
-
-# Country scope (syncs to same country)
-{"days": 30, "sync_scope": "country"}
-
-# City scope (syncs to same city)
-{"days": 30, "sync_scope": "city"}
-
-# Area scope (local only)
-{"days": 30, "sync_scope": "area"}
-
-# Custom expiry (key expires in 60 days)
-{"days": 30, "absolute_expiry": 60}
-`}
-            language="bash"
-          />
+          <h3 className="text-xl font-bold dark:text-white">Need Help?</h3>
+          <p className="mt-3 text-stone-950 dark:text-stone-50">
+            Contact Pixelmine support or check the community forum.
+          </p>
         </section>
       </div>
     </>
