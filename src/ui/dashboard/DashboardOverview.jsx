@@ -4,6 +4,7 @@ import { faServer, faBolt } from "@fortawesome/pro-solid-svg-icons";
 import SEOHelmet from "../SEOHelmet";
 import OnlineHoursLineChart from "./statistics/OnlineHoursLineChart";
 import { useAuth } from "../../context/AuthContext";
+import countries from "../../utils/countries";
 
 function DashboardOverview() {
   const [statistics, setStatistics] = useState({
@@ -154,9 +155,9 @@ function DashboardOverview() {
                 }}
               >
                 <option value="">Select Country</option>
-                {countryNames.map((country) => (
-                  <option key={country} value={country}>
-                    {country}
+                {countryNames.map((countryCode) => (
+                  <option key={countryCode} value={countryCode}>
+                    {countries[countryCode] || countryCode}
                   </option>
                 ))}
               </select>
@@ -197,7 +198,8 @@ function DashboardOverview() {
                   </div>
                   <div>
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Total Storers in {selectedCountry}
+                      Total Storers in{" "}
+                      {countries[selectedCountry] || selectedCountry}
                     </p>
                     <p className="text-2xl font-bold text-gray-900 dark:text-white">
                       {totalStorersInCountry}
