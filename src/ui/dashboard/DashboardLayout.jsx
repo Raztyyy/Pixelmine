@@ -86,6 +86,63 @@ function DashboardLayout() {
     return "Page";
   };
 
+  const getPageCaption = () => {
+    const path = location.pathname;
+
+    if (path === "/dashboard")
+      return "View your overall performance, activity, and key metrics at a glance.";
+
+    if (path === "/dashboard/analytics")
+      return "Analyze engagement, trends, and performance insights in detail.";
+
+    if (path === "/dashboard/settings")
+      return "Manage your account preferences and system configurations.";
+
+    if (path === "/dashboard/profile")
+      return "Update your personal information and account details.";
+
+    if (path === "/dashboard/buy")
+      return "Purchase ad points to boost visibility and reach more users.";
+
+    if (path === "/dashboard/history")
+      return "Review your past transactions and activity records.";
+
+    if (path === "/dashboard/payment-method")
+      return "Add or manage your saved payment options securely.";
+
+    if (path === "/dashboard/documentation")
+      return "Explore detailed guides and resources to help you get started.";
+
+    if (path === "/dashboard/documentation/getting-started")
+      return "Learn the basics and set up your account step by step.";
+
+    if (path === "/dashboard/documentation/concepts")
+      return "Understand the core ideas and how the platform works.";
+
+    if (path === "/dashboard/documentation/api-reference")
+      return "Browse available endpoints and technical integration details.";
+
+    if (path === "/dashboard/documentation/storer-download")
+      return "Follow instructions to download and access the Storer app.";
+
+    if (path === "/dashboard/documentation/storer-ad-setup")
+      return "Step-by-step guide to setting up and launching your ads.";
+
+    if (path === "/dashboard/documentation/storer-installation")
+      return "Instructions for properly installing and configuring Storer.";
+
+    if (path === "/dashboard/documentation/guides")
+      return "Detailed walkthroughs for specific features and workflows.";
+
+    if (path === "/dashboard/documentation/faq")
+      return "Find answers to commonly asked questions.";
+
+    if (path === "/dashboard/documentation/support")
+      return "Get help and contact support for further assistance.";
+
+    return "Manage and navigate your dashboard features here.";
+  };
+
   const isAdPointsActive = () => {
     return (
       location.pathname === "/dashboard/buy" ||
@@ -129,10 +186,7 @@ function DashboardLayout() {
             {getPageTitle()}
           </h1>
 
-          <p className="text-gray-600 dark:text-gray-400">
-            View and manage the Storer status and availability across all
-            Pixelmine locations.
-          </p>
+          <p className="text-gray-600 dark:text-gray-400">{getPageCaption()}</p>
         </div>
 
         {/* Horizontal Nav */}
