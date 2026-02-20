@@ -86,7 +86,7 @@ const router = createBrowserRouter([
 
       { path: "about-us", element: <About /> },
       { path: "news-events", element: <NewsEvents /> },
-      { path: "investor-relations", element: <InvestorsRelations /> },
+      // { path: "investor-relations", element: <InvestorsRelations /> },
       { path: "news-events/:news_slug", element: <NewsDetails /> },
       { path: "careers", element: <Careers /> },
       { path: "careers/:role_slug", element: <CareerRole /> },
