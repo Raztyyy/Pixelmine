@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/pro-solid-svg-icons";
 
 const company = [
-  { name: "About Us", translatedName: "会社概要", path: "about-us" },
+  // { name: "About Us", translatedName: "会社概要", path: "about-us" },
   { name: "Contact Us", translatedName: "お問い合わせ", path: "contact-us" },
   // {
   //   name: "Investor Relations",

@@ -84,7 +84,7 @@ const router = createBrowserRouter([
       { path: "democratic-system", element: <DemocraticSystem /> },
       // { path: "roadmap", element: <Roadmap /> },
 
-      { path: "about-us", element: <About /> },
+      // { path: "about-us", element: <About /> },
       { path: "news-events", element: <NewsEvents /> },
       // { path: "investor-relations", element: <InvestorsRelations /> },
       { path: "news-events/:news_slug", element: <NewsDetails /> },
