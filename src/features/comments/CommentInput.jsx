@@ -3,12 +3,26 @@ import { useAuth } from "../../context/AuthContext";
 import { capitalize } from "../../utils/stringUtils";
 import { useComments } from "../../context/CommentContext";
 
-export default function CommentInput({ parentId = null, onCancel }) {
+export default function CommentInput({
+  parentId = null,
+  onCancel,
+  onSubmit,
+  autoFocus = false,
+  scrollRef,
+}) {
   const { token, user: currentUser } = useAuth();
   const { createComment } = useComments();
   const [text, setText] = useState("");
   const textareaRef = useRef(null);
 
+  // Auto-focus only if autoFocus=true
+  useEffect(() => {
+    if (autoFocus && textareaRef.current) {
+      textareaRef.current.focus();
+    }
+  }, [autoFocus]);
+
+  // Auto-expand height
   useEffect(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
@@ -19,10 +33,21 @@ export default function CommentInput({ parentId = null, onCancel }) {
 
   if (!token) return null;
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!text.trim()) return;
-    createComment(text, parentId);
+
+    const newComment = await createComment(text, parentId); // returns new comment object
     setText("");
+
+    // Scroll to new comment if scrollRef exists
+    if (scrollRef) {
+      const yOffset = -140; // adjust this to match your header height
+      const y =
+        scrollRef.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+
+    if (onSubmit) onSubmit(newComment?.id); // pass new comment id if needed
     if (onCancel) onCancel();
   };
 

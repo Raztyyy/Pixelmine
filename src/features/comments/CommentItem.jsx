@@ -8,32 +8,45 @@ import UpvoteButton from "./UpvoteButton";
 export default function CommentItem({
   comment,
   currentUser,
-  fetchComments,
   confirmDelete,
-  depth = 0, // add depth
-  maxDepth = 2, // max nested levels
+  depth = 0,
+  maxDepth = 2,
+  openReplyId,
+  setOpenReplyId,
+  openReplies,
+  setOpenReplies,
+  commentRefs,
 }) {
-  const { vote, upvotes, createComment, editComment } = useComments();
-
+  const { vote, upvotes, editComment } = useComments();
   const [editingComment, setEditingComment] = useState(null);
   const [editingContent, setEditingContent] = useState("");
-  const [openReplyInput, setOpenReplyInput] = useState({});
-  const [openReplies, setOpenReplies] = useState({});
   const [openMenuId, setOpenMenuId] = useState(null);
-
   const menuRefs = useRef({});
-
-  // Auto resize of text area
+  const commentRef = useRef(null);
   const textareaRef = useRef(null);
 
+  // Auto-resize edit textarea
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = "auto"; // reset height
+      textareaRef.current.style.height = "auto";
       textareaRef.current.style.height =
-        textareaRef.current.scrollHeight + "px"; // adjust to content
+        textareaRef.current.scrollHeight + "px";
     }
   }, [editingContent]);
 
+  // Register this comment in commentRefs
+  useEffect(() => {
+    if (commentRef.current && commentRefs) {
+      commentRefs.current[comment.id] = commentRef.current;
+    }
+    return () => {
+      if (commentRefs && commentRefs.current) {
+        delete commentRefs.current[comment.id];
+      }
+    };
+  }, [comment.id, commentRefs]);
+
+  // Close menus when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       const clickedInside = Object.values(menuRefs.current).some((ref) =>
@@ -50,14 +63,15 @@ export default function CommentItem({
     try {
       await editComment(comment.id, editingContent);
       setEditingComment(null);
-      fetchComments();
     } catch (err) {
       console.error(err);
     }
   };
 
-  const toggleReplyInput = () =>
-    setOpenReplyInput((prev) => ({ ...prev, [comment.id]: !prev[comment.id] }));
+  const toggleReplyInput = () => {
+    setOpenReplyId(openReplyId === comment.id ? null : comment.id);
+    setOpenReplies((prev) => ({ ...prev, [comment.id]: true }));
+  };
 
   const toggleReplies = () =>
     setOpenReplies((prev) => ({ ...prev, [comment.id]: !prev[comment.id] }));
@@ -71,7 +85,7 @@ export default function CommentItem({
   };
 
   return (
-    <div className="py-4 bg-white">
+    <div className="py-4 bg-white" ref={commentRef}>
       <div className="flex items-start gap-3">
         {/* Avatar */}
         {comment.avatar_blob ? (
@@ -154,7 +168,7 @@ export default function CommentItem({
                 value={editingContent}
                 onChange={(e) => setEditingContent(e.target.value)}
                 className="w-full p-2 overflow-hidden border resize-none rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                rows={1} // initial height, will auto-expand
+                rows={1}
               />
               <div className="flex self-end gap-2">
                 <button
@@ -202,20 +216,27 @@ export default function CommentItem({
                 key={r.id}
                 comment={r}
                 currentUser={currentUser}
-                fetchComments={fetchComments}
                 confirmDelete={confirmDelete}
-                depth={depth + 1} // increment depth
-                maxDepth={maxDepth} // pass maxDepth down
+                depth={depth + 1}
+                maxDepth={maxDepth}
+                openReplyId={openReplyId}
+                setOpenReplyId={setOpenReplyId}
+                openReplies={openReplies}
+                setOpenReplies={setOpenReplies}
+                commentRefs={commentRefs}
               />
             ))}
 
           {/* Reply Input */}
-          {openReplyInput[comment.id] && (
+          {depth < maxDepth && openReplyId === comment.id && (
             <CommentInput
               parentId={comment.id}
-              onCancel={() =>
-                setOpenReplyInput((prev) => ({ ...prev, [comment.id]: false }))
-              }
+              autoFocus={true}
+              scrollRef={commentRefs.current[comment.id]} // scroll to parent
+              onSubmit={() => {
+                setOpenReplyId(comment.id);
+                setOpenReplies((prev) => ({ ...prev, [comment.id]: true }));
+              }}
             />
           )}
         </div>

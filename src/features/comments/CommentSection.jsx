@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useComments } from "../../context/CommentContext";
@@ -17,11 +17,15 @@ export default function CommentSection() {
     commentId: null,
   });
   const [openReplies, setOpenReplies] = useState({});
+  const [openReplyId, setOpenReplyId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState(null); // null = no search yet
-  const [sortOption, setSortOption] = useState("recent"); // "recent" or "upvoted"
+  const [searchResults, setSearchResults] = useState(null);
+  const [sortOption, setSortOption] = useState("recent");
 
   const API_URL = import.meta.env.VITE_API_URL;
+
+  const commentRefs = useRef({});
+  const commentsContainerRef = useRef(null);
 
   const confirmDelete = (id) => setDeleteModal({ open: true, commentId: id });
   const closeDeleteModal = () =>
@@ -47,15 +51,14 @@ export default function CommentSection() {
     e.preventDefault();
     const filtered = filterComments(comments, searchTerm);
     setSearchResults(filtered);
-    setVisibleCount(5); // reset visible count for new search
+    setVisibleCount(5);
   };
 
   const filterComments = (commentsList, term) => {
     if (!term.trim()) return commentsList;
-
     return commentsList
       .map((comment) => {
-        const matches =
+        const matchesComment =
           comment.content.toLowerCase().includes(term.toLowerCase()) ||
           `${comment.first_name} ${comment.last_name}`
             .toLowerCase()
@@ -65,7 +68,11 @@ export default function CommentSection() {
           ? filterComments(comment.replies, term)
           : [];
 
-        if (matches || filteredReplies.length > 0) {
+        const termNumber = parseInt(term, 10);
+        const matchesUpvotes =
+          !isNaN(termNumber) && (comment.upvotes ?? 0) >= termNumber;
+
+        if (matchesComment || filteredReplies.length > 0 || matchesUpvotes) {
           return { ...comment, replies: filteredReplies };
         }
         return null;
@@ -79,45 +86,48 @@ export default function CommentSection() {
     { value: "upvoted", label: "Most Upvoted" },
   ];
 
+  const getTotalUpvotes = (comment) =>
+    (upvotes[comment.id]?.count ?? 0) +
+    (comment.replies?.reduce((sum, r) => sum + getTotalUpvotes(r), 0) ?? 0);
+
   const sortComments = (commentsList) => {
     const sorted = [...commentsList];
-
     sorted.forEach((c) => {
-      if (c.replies?.length) {
-        c.replies = sortComments(c.replies); // sort nested replies recursively
-      }
+      if (c.replies?.length) c.replies = sortComments(c.replies);
     });
-
     if (sortOption === "upvoted") {
-      // sort descending by upvote count
-      sorted.sort(
-        (a, b) => (upvotes[b.id]?.count ?? 0) - (upvotes[a.id]?.count ?? 0)
-      );
+      sorted.sort((a, b) => getTotalUpvotes(b) - getTotalUpvotes(a));
     } else if (sortOption === "recent") {
-      // most recent first
       sorted.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
     } else if (sortOption === "oldest") {
-      // oldest first
       sorted.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
     }
-
     return sorted;
   };
 
-  // Recursively count comments and all nested replies
-  const countAllComments = (commentsList) => {
-    return commentsList.reduce((total, comment) => {
+  const countAllComments = (commentsList) =>
+    commentsList.reduce((total, comment) => {
       const repliesCount = comment.replies
         ? countAllComments(comment.replies)
         : 0;
-      return total + 1 + repliesCount; // +1 for the comment itself
+      return total + 1 + repliesCount;
     }, 0);
-  };
 
-  // Usage
-  const filteredComments = searchResults ?? comments; // search results if any
+  const filteredComments = searchResults ?? comments;
   const displayedComments = sortComments(filteredComments);
   const totalComments = countAllComments(displayedComments);
+
+  // Scroll to top when a new top-level comment is added
+  const prevTopLevelCount = useRef(comments.length);
+  useEffect(() => {
+    if (
+      comments.length > prevTopLevelCount.current &&
+      commentsContainerRef.current
+    ) {
+      commentsContainerRef.current.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    prevTopLevelCount.current = comments.length;
+  }, [comments]);
 
   if (loading)
     return (
@@ -135,7 +145,6 @@ export default function CommentSection() {
         onConfirm={deleteComment}
       />
 
-      {/* Only show search & sort if there are comments */}
       {token && comments.length > 0 && (
         <div className="mb-4">
           <form onSubmit={handleSearchSubmit} className="flex gap-2 mb-4">
@@ -165,35 +174,47 @@ export default function CommentSection() {
         </div>
       )}
 
-      {/* Comment header */}
       <h2 className="my-5 text-lg font-medium">
-        {displayedComments.length === 0
-          ? "No comments yet"
+        {searchResults === null
+          ? comments.length === 0
+            ? "No comments yet"
+            : `Comments (${totalComments})`
+          : filteredComments.length === 0
+          ? "No results"
           : `Comments (${totalComments})`}
       </h2>
 
-      {/* No comments message */}
-      {displayedComments.length === 0 ? (
-        <p className="mt-4 mb-10 text-left text-gray-500">
-          {searchTerm
-            ? "No matching results. Try different keywords."
-            : "Be the first to comment!"}
-        </p>
-      ) : (
-        displayedComments
-          .slice(0, visibleCount)
-          .map((c) => (
-            <CommentItem
-              key={c.id}
-              comment={c}
-              currentUser={currentUser}
-              fetchComments={refresh}
-              confirmDelete={confirmDelete}
-            />
-          ))
-      )}
+      {/* Comments Container */}
+      <div ref={commentsContainerRef} className="flex flex-col gap-4">
+        {displayedComments.length === 0
+          ? searchResults === null
+            ? comments.length === 0 && (
+                <p className="mt-4 mb-10 text-left text-gray-500">
+                  Be the first to comment!
+                </p>
+              )
+            : filteredComments.length === 0 && (
+                <p className="mt-4 mb-10 text-left text-gray-500">
+                  No matching results. Try different keywords.
+                </p>
+              )
+          : displayedComments
+              .slice(0, visibleCount)
+              .map((c) => (
+                <CommentItem
+                  key={c.id}
+                  comment={c}
+                  currentUser={currentUser}
+                  confirmDelete={confirmDelete}
+                  openReplyId={openReplyId}
+                  setOpenReplyId={setOpenReplyId}
+                  openReplies={openReplies}
+                  setOpenReplies={setOpenReplies}
+                  commentRefs={commentRefs}
+                />
+              ))}
+      </div>
 
-      {/* Show more only if top-level items exceed visibleCount */}
       {token && displayedComments.length > visibleCount && (
         <div className="flex justify-center mt-4">
           <button
@@ -207,7 +228,10 @@ export default function CommentSection() {
 
       {/* New comment input */}
       {token ? (
-        <CommentInput parentId={null} />
+        <CommentInput
+          parentId={null}
+          scrollRef={commentsContainerRef.current}
+        />
       ) : (
         <p className="mt-4 text-sm text-gray-500">
           <Link to="/login" className="underline hover:text-gray-700">

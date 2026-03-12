@@ -5,7 +5,7 @@ import { useAuth } from "./AuthContext";
 const CommentContext = createContext();
 
 export const CommentProvider = ({ children }) => {
-  const { token } = useAuth();
+  const { token, user: currentUser } = useAuth();
 
   const [comments, setComments] = useState([]);
   const [upvotes, setUpvotes] = useState({});
@@ -58,8 +58,42 @@ export const CommentProvider = ({ children }) => {
   const createComment = async (content, parent_id = null) => {
     if (!token) return;
     try {
-      await commentService.postComment(token, content, parent_id);
-      fetchComments(); // refresh
+      const newComment = await commentService.postComment(
+        token,
+        content,
+        parent_id
+      );
+
+      const fullComment = {
+        ...newComment,
+        user_id: currentUser.id, // ← add this
+        first_name: currentUser.first_name,
+        last_name: currentUser.last_name,
+        avatar_blob: currentUser.avatar_blob,
+        replies: [],
+      };
+
+      setComments((prev) => {
+        if (!parent_id) {
+          return [fullComment, ...prev]; // use fullComment here too
+        }
+
+        const addReply = (comments) =>
+          comments.map((c) => {
+            if (c.id === parent_id) {
+              return {
+                ...c,
+                replies: [...(c.replies || []), fullComment],
+              };
+            }
+            if (c.replies) {
+              return { ...c, replies: addReply(c.replies) };
+            }
+            return c;
+          });
+
+        return addReply(prev);
+      });
     } catch (err) {
       console.error(err);
     }
@@ -71,12 +105,43 @@ export const CommentProvider = ({ children }) => {
     setLoading(true);
     try {
       await commentService.editComment(token, id, newContent);
-      await fetchComments(); // refresh
+
+      setComments((prev) => {
+        const updateComment = (comments) =>
+          comments.map((c) => {
+            // Edit
+            if (c.id === id) {
+              return {
+                ...c,
+                content: newContent,
+                updated_at: new Date().toISOString(), // optional
+              };
+            }
+            if (c.replies) {
+              return { ...c, replies: updateComment(c.replies) };
+            }
+            return c;
+          });
+
+        return updateComment(prev);
+      });
     } catch (err) {
       console.error(err);
     } finally {
       setLoading(false);
     }
+  };
+
+  const removeComment = (id) => {
+    const remove = (comments) =>
+      comments
+        .filter((c) => c.id !== id)
+        .map((c) => ({
+          ...c,
+          replies: c.replies ? remove(c.replies) : [],
+        }));
+
+    setComments((prev) => remove(prev));
   };
 
   return (
@@ -88,6 +153,7 @@ export const CommentProvider = ({ children }) => {
         vote,
         createComment,
         editComment,
+        removeComment,
         refresh: fetchComments,
       }}
     >
