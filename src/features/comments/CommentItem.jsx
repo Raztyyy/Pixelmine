@@ -21,9 +21,13 @@ export default function CommentItem({
   const [editingComment, setEditingComment] = useState(null);
   const [editingContent, setEditingContent] = useState("");
   const [openMenuId, setOpenMenuId] = useState(null);
+  const [showFull, setShowFull] = useState(false); // <-- for read more toggle
+
   const menuRefs = useRef({});
   const commentRef = useRef(null);
   const textareaRef = useRef(null);
+
+  const MAX_LENGTH = 380; // characters before truncation
 
   // Auto-resize edit textarea
   useEffect(() => {
@@ -83,6 +87,12 @@ export default function CommentItem({
       0
     );
   };
+
+  // Decide whether to truncate content
+  const displayedContent =
+    !showFull && comment.content.length > MAX_LENGTH
+      ? comment.content.slice(0, MAX_LENGTH) + "..."
+      : comment.content;
 
   return (
     <div className="py-4 bg-white" ref={commentRef}>
@@ -186,9 +196,19 @@ export default function CommentItem({
               </div>
             </div>
           ) : (
-            <p className="mt-2 text-sm text-gray-800 break-words whitespace-pre-wrap">
-              {comment.content}
-            </p>
+            <>
+              <p className="mt-2 text-sm text-gray-800 break-words whitespace-pre-wrap">
+                {displayedContent}{" "}
+                {comment.content.length > MAX_LENGTH && (
+                  <button
+                    onClick={() => setShowFull(!showFull)}
+                    className="mt-1 text-sm text-emerald-600 hover:underline"
+                  >
+                    {showFull ? "Read less" : "Read more"}
+                  </button>
+                )}
+              </p>
+            </>
           )}
 
           {/* Actions */}
@@ -232,7 +252,7 @@ export default function CommentItem({
             <CommentInput
               parentId={comment.id}
               autoFocus={true}
-              scrollRef={commentRefs.current[comment.id]} // scroll to parent
+              scrollRef={commentRefs.current[comment.id]}
               onSubmit={() => {
                 setOpenReplyId(comment.id);
                 setOpenReplies((prev) => ({ ...prev, [comment.id]: true }));
