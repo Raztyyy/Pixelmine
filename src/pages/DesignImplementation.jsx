@@ -19,6 +19,7 @@ import LiveStreamingScalingOptionsTable from "../data/designimplementation/liveS
 import SecurityFeaturesTable from "../data/designimplementation/securityFeaturesTable";
 import HowItAllWorksTable from "../data/designimplementation/howItAllWorksTable";
 import KeyBenefitsTable from "../data/designimplementation/keyBenefitsTable";
+import CommentSection from "../features/comments/CommentSection";
 
 function DesignImplementation() {
   const { language } = useLanguage();
@@ -449,6 +450,8 @@ function DesignImplementation() {
           </div>
 
           <KeyBenefitsTable isEN={isEN} />
+
+          <CommentSection />
         </div>
       </section>
     </>
