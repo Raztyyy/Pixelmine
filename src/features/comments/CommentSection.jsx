@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useComments } from "../../context/CommentContext";
@@ -117,7 +117,6 @@ export default function CommentSection() {
   const displayedComments = sortComments(filteredComments);
   const totalComments = countAllComments(displayedComments);
 
-  // Scroll to top when a new top-level comment is added
   const prevTopLevelCount = useRef(comments.length);
   useEffect(() => {
     if (
@@ -132,8 +131,10 @@ export default function CommentSection() {
   if (loading)
     return (
       <div className="flex flex-col items-center justify-center p-4">
-        <div className="w-8 h-8 border-4 rounded-full border-emerald-700 border-t-transparent animate-spin"></div>
-        <p className="mt-2 text-sm text-gray-500">Loading comments...</p>
+        <div className="w-8 h-8 border-4 rounded-full border-emerald-700 border-t-transparent animate-spin dark:border-emerald-400 dark:border-t-transparent"></div>
+        <p className="mt-2 text-sm text-gray-500 dark:text-gray-300">
+          Loading comments...
+        </p>
       </div>
     );
 
@@ -146,24 +147,29 @@ export default function CommentSection() {
       />
 
       {token && comments.length > 0 && (
-        <div className="mb-4">
-          <form onSubmit={handleSearchSubmit} className="flex gap-2 mb-4">
+        <div className="flex flex-col flex-1 gap-6">
+          <form
+            onSubmit={handleSearchSubmit}
+            className="flex flex-col flex-1 gap-2 sm:flex-row"
+          >
             <input
               type="text"
               placeholder="Search comments or users..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="flex-1 px-3 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="flex-1 px-3 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400"
             />
             <button
               type="submit"
-              className="px-5 py-2 text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700"
+              className="px-5 py-3 text-sm font-semibold text-white sm:py-2 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 dark:from-emerald-500 dark:to-teal-400 dark:hover:from-emerald-600 dark:hover:to-teal-500"
             >
               Search
             </button>
           </form>
-          <div className="flex flex-col gap-2">
-            Sort by:
+          <div className="flex flex-col gap-2 ">
+            <span className="font-medium text-gray-700 text-md dark:text-white">
+              Sort by:
+            </span>
             <Dropdown
               options={sortOptions}
               value={sortOption}
@@ -174,7 +180,7 @@ export default function CommentSection() {
         </div>
       )}
 
-      <h2 className="my-5 text-lg font-medium">
+      <h2 className="my-5 text-lg font-medium text-gray-900 dark:text-gray-100">
         {searchResults === null
           ? comments.length === 0
             ? "No comments yet"
@@ -184,17 +190,16 @@ export default function CommentSection() {
           : `Comments (${totalComments})`}
       </h2>
 
-      {/* Comments Container */}
-      <div ref={commentsContainerRef} className="flex flex-col gap-4">
+      <div ref={commentsContainerRef} className="flex flex-col gap-4 ">
         {displayedComments.length === 0
           ? searchResults === null
             ? comments.length === 0 && (
-                <p className="mt-4 mb-10 text-left text-gray-500">
+                <p className="mt-4 mb-10 text-left text-gray-500 dark:text-gray-400">
                   Be the first to comment!
                 </p>
               )
             : filteredComments.length === 0 && (
-                <p className="mt-4 mb-10 text-left text-gray-500">
+                <p className="mt-4 mb-10 text-left text-gray-500 dark:text-gray-400">
                   No matching results. Try different keywords.
                 </p>
               )
@@ -219,22 +224,24 @@ export default function CommentSection() {
         <div className="flex justify-center mt-4">
           <button
             onClick={() => setVisibleCount((prev) => prev + 5)}
-            className="w-full mb-10 px-5 py-3.5 text-sm font-semibold text-emerald-600 border-2 border-emerald-600 rounded-xl hover:bg-emerald-50 transition"
+            className="w-full  mb-10 px-5 py-3.5 text-sm font-semibold text-emerald-600 border-2 border-emerald-600 rounded-xl hover:bg-emerald-50 dark:text-emerald-400 dark:border-emerald-400 dark:hover:bg-gray-800 transition"
           >
             See more
           </button>
         </div>
       )}
 
-      {/* New comment input */}
       {token ? (
         <CommentInput
           parentId={null}
           scrollRef={commentsContainerRef.current}
         />
       ) : (
-        <p className="mt-4 text-sm text-gray-500">
-          <Link to="/login" className="underline hover:text-gray-700">
+        <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+          <Link
+            to="/login"
+            className="underline hover:text-gray-700 dark:hover:text-gray-200"
+          >
             Login
           </Link>{" "}
           to leave a comment and access full content.
