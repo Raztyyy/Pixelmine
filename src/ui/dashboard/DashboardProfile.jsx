@@ -14,6 +14,7 @@ import {
   faTimes,
   faLinkSimple,
   faCamera,
+  faTrashCan,
 } from "@fortawesome/pro-solid-svg-icons";
 import {
   faLinkedin,
@@ -25,6 +26,7 @@ import {
 import { showToast } from "../../utils/Toast";
 import { useAuth } from "../../context/AuthContext";
 import SEOHelmet from "../SEOHelmet";
+import Dropdown from "../Dropdown";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -264,7 +266,7 @@ export default function DashboardProfile() {
                   )}
                 </div>
                 {editing ? (
-                  <div className="flex flex-col w-full gap-3 sm:flex-row whitespace-nowrap">
+                  <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center gap-3 p-4 md:gap-12 ">
                     <button
                       className="flex items-center justify-center gap-3 px-6 py-3.5 font-bold text-gray-700 transition-all duration-300 bg-white border-2 border-gray-300 shadow-lg rounded-2xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-xl hover:scale-105 dark:bg-stone-700 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-stone-600 group"
                       onClick={() => {
@@ -399,24 +401,20 @@ export default function DashboardProfile() {
                           key={idx}
                           className="flex flex-col gap-3 p-4 transition-colors duration-200 border-2 border-gray-200 sm:flex-row rounded-2xl dark:border-gray-700 dark:bg-stone-900/30 hover:border-emerald-300 dark:hover:border-emerald-700"
                         >
-                          <select
-                            className="flex-1 px-4 py-3 text-sm font-medium text-gray-700 transition-all duration-200 border-2 border-gray-300 rounded-xl dark:bg-stone-700 dark:text-gray-200 dark:border-gray-600 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                          <Dropdown
+                            options={SOCIAL_PLATFORMS.map((p) => ({
+                              value: p.name,
+                              label: p.name,
+                              icon: p.icon, // optional
+                              hoverColor: p.color, // optional
+                            }))}
                             value={link.platform}
-                            onChange={(e) =>
-                              handleSocialLinkChange(
-                                idx,
-                                "platform",
-                                e.target.value
-                              )
+                            onChange={(value) =>
+                              handleSocialLinkChange(idx, "platform", value)
                             }
-                          >
-                            <option value="">Select Platform</option>
-                            {SOCIAL_PLATFORMS.map((p) => (
-                              <option key={p.name} value={p.name}>
-                                {p.name}
-                              </option>
-                            ))}
-                          </select>
+                            placeholder="Select Platform"
+                            fullWidth
+                          />
                           <input
                             className="flex-1 px-4 py-3 text-sm font-medium text-gray-700 break-all transition-all duration-200 border-2 border-gray-300 rounded-xl dark:bg-stone-700 dark:border-gray-600 dark:text-gray-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                             placeholder="URL"
@@ -431,7 +429,7 @@ export default function DashboardProfile() {
                             className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold text-white transition-all duration-300 bg-red-600 shadow-lg rounded-xl hover:bg-red-700 hover:scale-105 sm:w-auto hover:shadow-xl"
                             title="Remove"
                           >
-                            <FontAwesomeIcon icon={faTimes} />
+                            <FontAwesomeIcon icon={faTrashCan} />
                             <span className="sm:hidden">Remove</span>
                           </button>
                         </div>
