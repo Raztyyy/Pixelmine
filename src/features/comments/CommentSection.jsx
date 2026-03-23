@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useComments } from "../../context/CommentContext";
 import CommentItem from "./CommentItem";
@@ -18,14 +18,19 @@ export default function CommentSection() {
   });
   const [openReplies, setOpenReplies] = useState({});
   const [openReplyId, setOpenReplyId] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState(null);
-  const [sortOption, setSortOption] = useState("recent");
-
-  const API_URL = import.meta.env.VITE_API_URL;
 
   const commentRefs = useRef({});
   const commentsContainerRef = useRef(null);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchTermParam = searchParams.get("search") || "";
+  const sortOptionParam = searchParams.get("sort") || "recent";
+
+  const [searchTerm, setSearchTerm] = useState(searchTermParam);
+  const [sortOption, setSortOption] = useState(sortOptionParam);
+  const [searchResults, setSearchResults] = useState(null);
+
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const confirmDelete = (id) => setDeleteModal({ open: true, commentId: id });
   const closeDeleteModal = () =>
@@ -49,6 +54,14 @@ export default function CommentSection() {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
+    // Update URL query param
+    setSearchParams((prev) => {
+      const newParams = new URLSearchParams(prev);
+      if (searchTerm.trim()) newParams.set("search", searchTerm.trim());
+      else newParams.delete("search");
+      return newParams;
+    });
+
     const filtered = filterComments(comments, searchTerm);
     setSearchResults(filtered);
     setVisibleCount(5);
@@ -113,6 +126,28 @@ export default function CommentSection() {
       return total + 1 + repliesCount;
     }, 0);
 
+  // Apply search filter from URL when component mounts or comments change
+  useEffect(() => {
+    if (searchTermParam) {
+      const filtered = filterComments(comments, searchTermParam);
+      setSearchResults(filtered);
+      setVisibleCount(5);
+    } else {
+      setSearchResults(null);
+    }
+  }, [comments, searchTermParam]);
+
+  // Sync sort option with URL query param
+  useEffect(() => {
+    setSearchParams((prev) => {
+      const newParams = new URLSearchParams(prev);
+      if (sortOption && sortOption !== "recent")
+        newParams.set("sort", sortOption);
+      else newParams.delete("sort");
+      return newParams;
+    });
+  }, [sortOption]);
+
   const filteredComments = searchResults ?? comments;
   const displayedComments = sortComments(filteredComments);
   const totalComments = countAllComments(displayedComments);
@@ -166,7 +201,7 @@ export default function CommentSection() {
               Search
             </button>
           </form>
-          <div className="flex flex-col gap-2 ">
+          <div className="flex flex-col gap-2">
             <span className="font-medium text-gray-700 text-md dark:text-white">
               Sort by:
             </span>
@@ -190,7 +225,7 @@ export default function CommentSection() {
           : `Comments (${totalComments})`}
       </h2>
 
-      <div ref={commentsContainerRef} className="flex flex-col gap-4 ">
+      <div ref={commentsContainerRef} className="flex flex-col gap-4">
         {displayedComments.length === 0
           ? searchResults === null
             ? comments.length === 0 && (
@@ -224,7 +259,7 @@ export default function CommentSection() {
         <div className="flex justify-center mt-4">
           <button
             onClick={() => setVisibleCount((prev) => prev + 5)}
-            className="w-full  mb-10 px-5 py-3.5 text-sm font-semibold text-emerald-600 border-2 border-emerald-600 rounded-xl hover:bg-emerald-50 dark:text-emerald-400 dark:border-emerald-400 dark:hover:bg-gray-800 transition"
+            className="w-full mb-10 px-5 py-3.5 text-sm font-semibold text-emerald-600 border-2 border-emerald-600 rounded-xl hover:bg-emerald-50 dark:text-emerald-400 dark:border-emerald-400 dark:hover:bg-gray-800 transition"
           >
             See more
           </button>

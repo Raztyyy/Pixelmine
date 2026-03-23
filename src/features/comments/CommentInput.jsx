@@ -69,7 +69,7 @@ export default function CommentInput({
           rows={1}
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className="box-border w-full p-2 bg-transparent border outline-none appearance-none resize-none rounded-xl focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400"
+          className="box-border w-full p-2 bg-white border outline-none appearance-none resize-none rounded-xl focus:ring-2 focus:ring-emerald-500 dark:focus:ring-emerald-400"
           placeholder={parentId ? "Write a reply..." : "Write a comment..."}
         />
         {text.trim() && (
