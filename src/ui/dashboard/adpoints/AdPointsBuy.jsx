@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGem, faCheck } from "@fortawesome/pro-solid-svg-icons";
+import {
+  faGem,
+  faCheck,
+  faCircleExclamation,
+} from "@fortawesome/pro-solid-svg-icons";
 import { useAuth } from "../../../context/AuthContext";
 import { useStripe, useElements } from "@stripe/react-stripe-js";
 import { Link } from "react-router-dom";
@@ -15,6 +19,7 @@ export default function AdPointsBuy() {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedScope, setSelectedScope] = useState("area");
   const [maxPoints, setMaxPoints] = useState(180); // Default max points
+
   const { user } = useAuth();
   const token = localStorage.getItem("token");
 
@@ -130,6 +135,14 @@ function PurchaseContent({
   const [customPoints, setCustomPoints] = useState("");
   const [customPointsError, setCustomPointsError] = useState("");
   const [adPointPackages, setAdPointPackages] = useState([]);
+  // URL Validation states
+  const [targetUrl, setTargetUrl] = useState("");
+  const [urlError, setUrlError] = useState("");
+  const [checkingUrl, setCheckingUrl] = useState(false);
+  const [urlValid, setUrlValid] = useState(false);
+  //Title & Description
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const stripe = useStripe();
   const elements = useElements();
@@ -291,6 +304,9 @@ function PurchaseContent({
             days,
             sync_scope: selectedScope,
             absolute_expiry,
+            url: targetUrl,
+            title,
+            description,
           }),
         });
 
@@ -324,116 +340,228 @@ function PurchaseContent({
 
   return (
     <div>
-      {/* Points Selection */}
-      <div className="grid grid-cols-1 gap-6 2xl:grid-cols-3">
-        {/* Custom Points */}
-        <div
-          className={`flex flex-col items-center justify-center gap-4 p-8 bg-white border rounded-2xl shadow-lg transition-all duration-200 dark:bg-stone-800 dark:border-gray-700 ${
-            selectedPackage?.id === "custom"
-              ? "ring-2 ring-emerald-500 bg-emerald-50 dark:bg-emerald-900/20"
-              : "border-gray-200"
-          }`}
-        >
-          <div className="flex flex-col w-full max-w-xl gap-4">
-            {selectedPackage?.id === "custom" ? (
-              <div className="flex flex-col items-center gap-3">
-                <div className="flex items-center justify-center w-16 h-16 shadow-lg rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600">
-                  <FontAwesomeIcon icon={faGem} className="text-white size-7" />
-                </div>
-                <p className="text-3xl font-bold text-gray-900 dark:text-white">
-                  {selectedPackage.points.toLocaleString()}
-                </p>
-                <button
-                  onClick={() => setSelectedPackage(null)}
-                  className="px-6 py-2.5 mt-5 text-sm font-semibold border-2 rounded-xl text-emerald-600 border-emerald-600 hover:bg-emerald-50 dark:text-emerald-400 dark:border-emerald-400 dark:hover:bg-emerald-900/20 transition-colors"
-                >
-                  Edit Points
-                </button>
-              </div>
-            ) : (
-              <>
-                <div className="text-center">
-                  <div className="flex items-center justify-center mx-auto mb-4 shadow-lg w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600">
-                    <FontAwesomeIcon
-                      icon={faGem}
-                      className="text-white size-6"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                    Custom Top-Up
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-                    Set the exact number of points you need — max {maxPoints}.
-                  </p>
-                </div>
-                <input
-                  type="number"
-                  min="1"
-                  max={maxPoints}
-                  value={customPoints}
-                  onChange={(e) => handleCustomPointsChange(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault();
-                      if (!customPointsError) handleCustomPointsConfirm();
-                    }
-                  }}
-                  placeholder={`Enter custom points (1-${maxPoints})`}
-                  className="flex-1 p-3 transition-all duration-200 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white"
-                />
-                {customPointsError && (
-                  <p className="mt-1 text-sm text-red-500">
-                    {customPointsError}
-                  </p>
-                )}
-                <button
-                  onClick={handleCustomPointsConfirm}
-                  disabled={!!customPointsError || !customPoints}
-                  className="px-6 py-3 font-semibold text-white transition-all duration-200 shadow-md bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  Confirm
-                </button>
-              </>
-            )}
-          </div>
-        </div>
-
-        {/* Predefined Points */}
-        <div className="grid grid-cols-3 col-span-2 gap-3">
-          {adPointPackages.map((pkg) => (
-            <button
-              key={pkg.id}
-              onClick={() => handleSelectPredefinedPoints(pkg)}
-              className={`flex flex-col items-center justify-center gap-3 p-6 leading-none transition-all duration-200 bg-white border shadow-md rounded-2xl min-h-32 dark:bg-stone-800 ${
-                selectedPackage?.id === pkg.id
-                  ? "ring-2 ring-emerald-500 bg-emerald-50 border-emerald-300 dark:bg-emerald-900/20 dark:border-emerald-600"
-                  : "border-gray-200 hover:border-emerald-300 hover:shadow-lg dark:border-gray-700"
-              }`}
-            >
-              <FontAwesomeIcon
-                icon={faGem}
-                className="text-emerald-600 size-5"
-              />
-              <span className="text-lg font-bold text-gray-900 dark:text-white">
-                {pkg.points.toLocaleString()}
-              </span>
-            </button>
-          ))}
-        </div>
+      {/* Title & Description */}
+      <div className="mx-auto mb-6 text-left ">
+        <label className="block mb-2 font-semibold text-gray-900 text-md dark:text-white ">
+          Ad Title
+        </label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Enter ad title"
+          className="w-full p-3 border rounded-xl dark:bg-stone-700 dark:border-gray-600 dark:text-white"
+        />
       </div>
 
-      {/* Scope & Payment Section */}
-      {selectedPackage && (
-        <ScopeAndPaymentSection
-          selectedPackage={selectedPackage}
-          selectedScope={selectedScope}
-          setSelectedScope={setSelectedScope}
-          savedCards={savedCards}
-          selectedCard={selectedCard}
-          setSelectedCard={setSelectedCard}
-          handleBuyNow={handleBuyNow}
-          loading={loading}
+      <div className="mx-auto mb-6 text-left ">
+        <label className="block mb-2 font-semibold text-gray-900 text-md dark:text-white">
+          Ad Description
+        </label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Enter ad description"
+          className="w-full p-3 border rounded-xl dark:bg-stone-700 dark:border-gray-600 dark:text-white"
+          rows={4}
         />
+      </div>
+      {/* URL FIELD */}
+
+      <div className="mb-8 text-left ">
+        <label className="block mb-2 font-semibold text-gray-900 text-md dark:text-white">
+          URL
+        </label>
+
+        <div className="flex items-center w-full gap-2">
+          <input
+            type="text"
+            value={targetUrl}
+            onChange={(e) => {
+              setTargetUrl(e.target.value);
+              setUrlValid(false);
+              setUrlError("");
+            }}
+            placeholder="Enter destination URL"
+            className="flex-1 min-w-0 p-3 border rounded-xl dark:bg-stone-700 dark:border-gray-600 dark:text-white"
+          />
+
+          <button
+            onClick={async () => {
+              setCheckingUrl(true);
+              setUrlError("");
+
+              try {
+                const res = await fetch(`${API_URL}/api/validate-url`, {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                  },
+                  body: JSON.stringify({ url: targetUrl }),
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) throw new Error(data.message);
+
+                setUrlValid(true);
+                // showToast("URL is valid and reachable", "success");
+              } catch (err) {
+                setUrlValid(false);
+                setUrlError(err.message || "Invalid URL");
+                // showToast(err.message || "Invalid URL format", "error");
+              } finally {
+                setCheckingUrl(false);
+              }
+            }}
+            disabled={!targetUrl || checkingUrl}
+            className={`px-6 py-3 text-sm font-semibold rounded-xl transition-all duration-200 text-white shadow-lg whitespace-nowrap bg-gradient-to-r from-emerald-600 to-teal-600
+      ${
+        !targetUrl || checkingUrl
+          ? "opacity-50 cursor-not-allowed"
+          : "hover:from-emerald-700 hover:to-teal-700"
+      }
+    `}
+          >
+            {checkingUrl ? "Verifying..." : "Verify URL"}
+          </button>
+        </div>
+
+        {urlError && (
+          <div className="flex items-center gap-2 mt-2 text-sm font-medium text-red-500">
+            <FontAwesomeIcon icon={faCircleExclamation} />
+            <span>{urlError}</span>
+          </div>
+        )}
+        {urlValid && (
+          <div className="flex items-center gap-2 mt-2 text-sm font-semibold text-emerald-600">
+            <FontAwesomeIcon icon={faCheck} className="text-emerald-600" />
+            <span>Destination verified</span>
+          </div>
+        )}
+      </div>
+      {urlValid && (
+        <>
+          {/* Points Selection */}
+          <div className="grid grid-cols-1 gap-6 2xl:grid-cols-3">
+            {/* Custom Points */}
+            <div
+              className={`flex flex-col items-center justify-center gap-4 p-8 bg-white border rounded-2xl shadow-lg transition-all duration-200 dark:bg-stone-800 dark:border-gray-700 ${
+                selectedPackage?.id === "custom"
+                  ? "ring-2 ring-emerald-500 bg-emerald-50 dark:bg-emerald-900/20"
+                  : "border-gray-200"
+              }`}
+            >
+              <div className="flex flex-col w-full max-w-xl gap-4">
+                {selectedPackage?.id === "custom" ? (
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="flex items-center justify-center w-16 h-16 shadow-lg rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600">
+                      <FontAwesomeIcon
+                        icon={faGem}
+                        className="text-white size-7"
+                      />
+                    </div>
+                    <p className="text-3xl font-bold text-gray-900 dark:text-white">
+                      {selectedPackage.points.toLocaleString()}
+                    </p>
+                    <button
+                      onClick={() => setSelectedPackage(null)}
+                      className="px-6 py-2.5 mt-5 text-sm font-semibold border-2 rounded-xl text-emerald-600 border-emerald-600 hover:bg-emerald-50 dark:text-emerald-400 dark:border-emerald-400 dark:hover:bg-emerald-900/20 transition-colors"
+                    >
+                      Edit Points
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="text-center">
+                      <div className="flex items-center justify-center mx-auto mb-4 shadow-lg w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-600">
+                        <FontAwesomeIcon
+                          icon={faGem}
+                          className="text-white size-6"
+                        />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                        Custom Top-Up
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+                        Set the exact number of points you need — max{" "}
+                        {maxPoints}.
+                      </p>
+                    </div>
+                    <input
+                      type="number"
+                      min="1"
+                      max={maxPoints}
+                      value={customPoints}
+                      onChange={(e) => handleCustomPointsChange(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          if (!customPointsError) handleCustomPointsConfirm();
+                        }
+                      }}
+                      placeholder={`Enter custom points (1-${maxPoints})`}
+                      className="flex-1 p-3 transition-all duration-200 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white"
+                    />
+                    {customPointsError && (
+                      <p className="mt-1 text-sm text-red-500">
+                        {customPointsError}
+                      </p>
+                    )}
+                    <button
+                      onClick={handleCustomPointsConfirm}
+                      disabled={!!customPointsError || !customPoints}
+                      className="px-6 py-3 font-semibold text-white transition-all duration-200 shadow-md bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Confirm
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* Predefined Points */}
+            <div className="grid grid-cols-3 col-span-2 gap-3">
+              {adPointPackages.map((pkg) => (
+                <button
+                  key={pkg.id}
+                  onClick={() => handleSelectPredefinedPoints(pkg)}
+                  className={`flex flex-col items-center justify-center gap-3 p-6 leading-none transition-all duration-200 bg-white border shadow-md rounded-2xl min-h-32 dark:bg-stone-800 ${
+                    selectedPackage?.id === pkg.id
+                      ? "ring-2 ring-emerald-500 bg-emerald-50 border-emerald-300 dark:bg-emerald-900/20 dark:border-emerald-600"
+                      : "border-gray-200 hover:border-emerald-300 hover:shadow-lg dark:border-gray-700"
+                  }`}
+                >
+                  <FontAwesomeIcon
+                    icon={faGem}
+                    className="text-emerald-600 size-5"
+                  />
+                  <span className="text-lg font-bold text-gray-900 dark:text-white">
+                    {pkg.points.toLocaleString()}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Scope & Payment Section */}
+          {selectedPackage && urlValid && (
+            <ScopeAndPaymentSection
+              selectedPackage={selectedPackage}
+              selectedScope={selectedScope}
+              setSelectedScope={setSelectedScope}
+              savedCards={savedCards}
+              selectedCard={selectedCard}
+              setSelectedCard={setSelectedCard}
+              targetUrl={targetUrl}
+              title={title}
+              description={description}
+              handleBuyNow={handleBuyNow}
+              loading={loading}
+            />
+          )}
+        </>
       )}
     </div>
   );
@@ -449,6 +577,9 @@ function ScopeAndPaymentSection({
   savedCards,
   selectedCard,
   setSelectedCard,
+  targetUrl,
+  title,
+  description,
   handleBuyNow,
   loading,
 }) {
@@ -459,11 +590,21 @@ function ScopeAndPaymentSection({
     { label: "Global", value: "global" },
   ];
 
+  // -------------------------------
+  // Form Checker
+  // -------------------------------
+  const isFormValid =
+    selectedPackage &&
+    selectedCard &&
+    targetUrl.trim() &&
+    title.trim() &&
+    description.trim();
+
   return (
     <div className="mt-10">
       {/* Scope */}
       <div className="flex flex-col justify-start p-8 text-left bg-white border border-gray-200 shadow-xl rounded-2xl dark:bg-stone-800 dark:border-gray-700">
-        <h3 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+        <h3 className="mb-4 font-semibold text-gray-900 text-md dark:text-white">
           Select Scope
         </h3>
         <div className="grid grid-cols-1 gap-4 mt-2 sm:grid-cols-2 md:grid-cols-4">
@@ -485,7 +626,7 @@ function ScopeAndPaymentSection({
 
       {/* Payment */}
       <div className="flex flex-col justify-start p-8 mt-10 text-left bg-white border border-gray-200 shadow-xl rounded-2xl dark:bg-stone-800 dark:border-gray-700">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+        <h3 className="font-semibold text-gray-900 text-md dark:text-white">
           Payment Method
         </h3>
 
@@ -547,7 +688,7 @@ function ScopeAndPaymentSection({
           </div>
           <button
             onClick={handleBuyNow}
-            disabled={!selectedPackage || !selectedCard || loading}
+            disabled={!isFormValid || loading}
             className="px-8 py-3.5 font-semibold text-white transition-all duration-200 shadow-lg bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl hover:from-emerald-700 hover:to-teal-700 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? "Processing..." : "Buy Now"}
