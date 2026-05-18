@@ -32,11 +32,18 @@ export default function ProfileDropdown() {
         {/* Avatar with ring */}
         <div className="relative">
           <div className="absolute inset-0 transition-all duration-300 border-2 rounded-full border-emerald-200 group-hover:border-emerald-400 dark:border-emerald-800 dark:group-hover:border-emerald-500"></div>
-          <img
-            src={user?.avatar_blob || profilePlaceholder}
-            alt={`${user?.first_name} Profile Image`}
-            className="relative object-cover transition-all duration-300 rounded-full w-11 h-11 group-hover:scale-95"
-          />
+          {user?.avatar_blob ? (
+            <img
+              src={user.avatar_blob}
+              alt={`${user?.first_name} Profile Image`}
+              className="relative object-cover transition-all duration-300 rounded-full w-11 h-11 group-hover:scale-95"
+            />
+          ) : (
+            <div className="relative flex items-center justify-center text-sm font-bold text-white rounded-full w-11 h-11 bg-gradient-to-br from-emerald-500 to-teal-500 group-hover:scale-95">
+              {(user?.first_name?.[0] || "") + (user?.last_name?.[0] || "") ||
+                "U"}
+            </div>
+          )}
           {/* Online status indicator */}
           <div className="absolute bottom-0 right-0 w-3 h-3 border-2 border-white rounded-full bg-emerald-500 dark:border-stone-900"></div>
         </div>
@@ -60,11 +67,18 @@ export default function ProfileDropdown() {
 
               <div className="relative flex items-center gap-4">
                 <div className="relative">
-                  <img
-                    src={user?.avatar_blob || profilePlaceholder}
-                    alt={`${user?.first_name} Profile`}
-                    className="object-cover w-16 h-16 border-4 border-white rounded-full shadow-lg"
-                  />
+                  {user?.avatar_blob ? (
+                    <img
+                      src={user.avatar_blob}
+                      alt={`${user?.first_name} Profile`}
+                      className="object-cover w-16 h-16 border-4 border-white rounded-full shadow-lg"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center w-16 h-16 text-lg font-bold text-white border-4 border-white rounded-full shadow-lg bg-gradient-to-br from-emerald-500 to-teal-500">
+                      {(user?.first_name?.[0] || "") +
+                        (user?.last_name?.[0] || "") || "U"}
+                    </div>
+                  )}
                   <div className="absolute bottom-0 right-0 w-4 h-4 border-2 border-white rounded-full shadow-lg bg-emerald-400"></div>
                 </div>
                 <div className="flex-1 min-w-0">

@@ -1,4 +1,3 @@
-import placeholderAvatar from "../../assets/profile-placeholder-img.jpg";
 import { useEffect, useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -190,11 +189,20 @@ export default function DashboardProfile() {
                 onClick={handleAvatarClick}
                 className="relative flex items-center justify-center w-32 h-32 overflow-hidden transition-all duration-300 bg-white border-4 rounded-full cursor-pointer border-emerald-200 dark:bg-gray-800 dark:border-emerald-800 hover:border-emerald-400 dark:hover:border-emerald-500 hover:scale-105"
               >
-                <img
-                  src={editedProfile.avatar_blob || placeholderAvatar}
-                  alt="User Avatar"
-                  className="object-cover w-full h-full transition-all duration-300 group-hover:scale-110"
-                />
+                {editedProfile.avatar_blob ? (
+                  <img
+                    src={editedProfile.avatar_blob}
+                    alt="User Avatar"
+                    className="object-cover w-full h-full transition-all duration-300 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center w-full h-full text-2xl font-bold text-white bg-gradient-to-br from-emerald-500 to-teal-500">
+                    {(
+                      (editedProfile.first_name?.[0] || "") +
+                      (editedProfile.last_name?.[0] || "")
+                    ).toUpperCase() || "U"}
+                  </div>
+                )}
                 {uploading && (
                   <div className="absolute inset-0 flex items-center justify-center text-sm font-semibold text-white bg-gradient-to-br from-emerald-600/90 to-teal-600/90 backdrop-blur-sm">
                     Uploading...

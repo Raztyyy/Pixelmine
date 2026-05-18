@@ -5,6 +5,9 @@ import {
   useSearchParams,
   useLocation,
 } from "react-router-dom";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/pro-solid-svg-icons";
 import { showToast } from "../../utils/Toast";
 import { useAuth } from "../../context/AuthContext";
 import { useLanguage } from "../../context/LanguageContext";
@@ -19,6 +22,7 @@ function Login() {
   const location = useLocation();
   const { login, isAuthenticated } = useAuth();
   const { language } = useLanguage();
+  const [showPassword, setShowPassword] = useState(false);
   const isEN = language === "en";
 
   // ✅ preserve both pathname + query string
@@ -122,7 +126,6 @@ function Login() {
               className="w-full p-3 text-sm transition-all duration-200 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
             />
           </div>
-
           <div>
             <label
               htmlFor="password"
@@ -130,17 +133,30 @@ function Login() {
             >
               {isEN ? "Your password" : "パスワード"}
             </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder={isEN ? "Enter your password" : "パスワードを入力"}
-              required
-              disabled={isSubmitting}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 text-sm transition-all duration-200 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
-            />
+
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                placeholder={isEN ? "Enter your password" : "パスワードを入力"}
+                required
+                disabled={isSubmitting}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-3 pr-12 text-sm transition-all duration-200 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 dark:bg-stone-700 dark:border-gray-600 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+              />
+
+              {password && (
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute text-gray-500 -translate-y-1/2 right-3 top-1/2 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
+                >
+                  <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                </button>
+              )}
+            </div>
           </div>
 
           <div className="flex items-center justify-end text-sm">
