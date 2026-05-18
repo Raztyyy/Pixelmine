@@ -14,6 +14,7 @@ import {
   faLinkSimple,
   faCamera,
   faTrashCan,
+  faSpinner,
 } from "@fortawesome/pro-solid-svg-icons";
 import {
   faLinkedin,
@@ -26,6 +27,10 @@ import { showToast } from "../../utils/Toast";
 import { useAuth } from "../../context/AuthContext";
 import SEOHelmet from "../SEOHelmet";
 import Dropdown from "../Dropdown";
+import { AnimatePresence } from "framer-motion";
+import { Collapse } from "../../animations/AnimatedWrappers";
+
+import Cropper from "react-easy-crop";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -60,8 +65,12 @@ export default function DashboardProfile() {
   const [editing, setEditing] = useState(false);
   const [editedProfile, setEditedProfile] = useState({});
   const [socialLinks, setSocialLinks] = useState([]);
-  const [uploading, setUploading] = useState(false);
+  const [avatarStatus, setAvatarStatus] = useState("idle");
+  // "idle" | "loading"
+  const [isAvatarOpen, setIsAvatarOpen] = useState(false);
   const fileInputRef = useRef();
+
+  const hasAvatar = !!user?.avatar_blob;
 
   useEffect(() => {
     if (user) {
@@ -127,31 +136,138 @@ export default function DashboardProfile() {
     }
   };
 
+  const [imageSrc, setImageSrc] = useState(null);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [showCrop, setShowCrop] = useState(false);
+
   const handleAvatarClick = () => fileInputRef.current?.click();
 
-  const handleAvatarChange = async (e) => {
+  const handleAvatarChange = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setImageSrc(reader.result); // preview image
+      setShowCrop(true); // open crop modal
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  const uploadCroppedAvatar = async (file) => {
     try {
-      setUploading(true);
+      setAvatarStatus("loading");
+
       const formData = new FormData();
       formData.append("avatar", file);
+
       const res = await fetch(`${API_URL}/api/profile/avatar`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
       });
+
       if (!res.ok) {
         const data = await res.json();
         throw new Error(data.error || "Upload failed");
       }
+
       await refreshProfile();
       showToast("Avatar updated!", "success");
     } catch (err) {
       console.error("Avatar upload failed:", err);
       showToast(err.message, "error");
     } finally {
-      setUploading(false);
+      setAvatarStatus("idle");
+    }
+  };
+
+  const getCroppedImage = async (imageSrc, cropPixels) => {
+    const image = new Image();
+    image.src = imageSrc;
+
+    await new Promise((resolve) => {
+      image.onload = resolve;
+    });
+
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = cropPixels.width;
+    canvas.height = cropPixels.height;
+
+    ctx.drawImage(
+      image,
+      cropPixels.x,
+      cropPixels.y,
+      cropPixels.width,
+      cropPixels.height,
+      0,
+      0,
+      cropPixels.width,
+      cropPixels.height
+    );
+
+    return new Promise((resolve) => {
+      canvas.toBlob((blob) => {
+        resolve(blob);
+      }, "image/jpeg");
+    });
+  };
+
+  const onCropComplete = (_, croppedPixels) => {
+    setCroppedAreaPixels(croppedPixels);
+  };
+
+  const handleCropCancel = () => {
+    setShowCrop(false);
+    setImageSrc(null);
+    setCrop({ x: 0, y: 0 });
+    setZoom(1);
+    setCroppedAreaPixels(null);
+  };
+
+  const handleCropConfirm = async () => {
+    if (!imageSrc || !croppedAreaPixels) return;
+
+    const blob = await getCroppedImage(imageSrc, croppedAreaPixels);
+
+    const file = new File([blob], "avatar.jpg", { type: "image/jpeg" });
+
+    setShowCrop(false);
+    setImageSrc(null);
+    setCrop({ x: 0, y: 0 });
+    setZoom(1);
+    setCroppedAreaPixels(null);
+
+    await uploadCroppedAvatar(file);
+  };
+
+  const handleRemoveAvatar = async () => {
+    try {
+      setAvatarStatus("loading");
+
+      const res = await fetch(`${API_URL}/api/profile/avatar`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Remove failed");
+
+      await refreshProfile();
+      showToast("Avatar removed!", "success");
+    } catch (err) {
+      console.error("Avatar remove failed:", err);
+      showToast(err.message, "error");
+    } finally {
+      setAvatarStatus("idle");
     }
   };
 
@@ -175,6 +291,70 @@ export default function DashboardProfile() {
         image="/social-sharing.jpg"
       />
 
+      {showCrop && imageSrc && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+          <div className="w-[92%] max-w-md bg-white dark:bg-stone-900 rounded-3xl p-5 space-y-5 shadow-2xl">
+            {/* Header */}
+            <div className="flex items-center justify-between">
+              <h2 className="text-base font-semibold text-gray-800 dark:text-white">
+                Adjust Profile Photo
+              </h2>
+            </div>
+
+            {/* Crop Area */}
+            <div className="relative w-full overflow-hidden h-80 bg-black/5 rounded-2xl">
+              <Cropper
+                image={imageSrc}
+                crop={crop}
+                zoom={zoom}
+                aspect={1}
+                cropShape="round"
+                showGrid={false}
+                onCropChange={setCrop}
+                onZoomChange={setZoom}
+                onCropComplete={onCropComplete}
+              />
+
+              {/* Circle guide overlay */}
+            </div>
+
+            {/* Zoom */}
+            <div className="space-y-2">
+              <div className="flex justify-between text-xs text-gray-500">
+                <span>Zoom</span>
+              </div>
+
+              <input
+                type="range"
+                min={1}
+                max={3}
+                step={0.01}
+                value={zoom}
+                onChange={(e) => setZoom(Number(e.target.value))}
+                className="w-full accent-emerald-500"
+              />
+            </div>
+
+            {/* Actions */}
+            <div className="flex justify-end gap-2 pt-2">
+              <button
+                onClick={handleCropCancel}
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-xl hover:bg-gray-300 dark:bg-stone-700 dark:text-gray-200"
+              >
+                Cancel
+              </button>
+
+              <button
+                onClick={handleCropConfirm}
+                className="px-5 py-2 text-sm font-semibold text-white bg-emerald-600 rounded-xl hover:bg-emerald-700"
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="z-0 mx-auto space-y-8 max-w-7xl">
         {/* Header Card with Gradient Background */}
         <div className="relative overflow-hidden bg-white border border-gray-200 shadow-2xl dark:bg-stone-800 dark:border-gray-700 rounded-3xl">
@@ -183,52 +363,107 @@ export default function DashboardProfile() {
 
           <div className="relative flex flex-col items-center gap-8 p-8 md:flex-row md:items-start md:p-10">
             {/* Avatar with Enhanced Styling */}
-            <div className="relative group">
-              <div className="absolute inset-0 transition-opacity duration-300 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 blur-xl opacity-20 group-hover:opacity-30"></div>
-              <div
-                onClick={handleAvatarClick}
-                className="relative flex items-center justify-center w-32 h-32 overflow-hidden transition-all duration-300 bg-white border-4 rounded-full cursor-pointer border-emerald-200 dark:bg-gray-800 dark:border-emerald-800 hover:border-emerald-400 dark:hover:border-emerald-500 hover:scale-105"
-              >
-                {editedProfile.avatar_blob ? (
-                  <img
-                    src={editedProfile.avatar_blob}
-                    alt="User Avatar"
-                    className="object-cover w-full h-full transition-all duration-300 group-hover:scale-110"
-                  />
-                ) : (
+            {!hasAvatar ? (
+              <div className="relative group">
+                <div className="absolute inset-0 transition-opacity duration-300 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 blur-xl opacity-20 group-hover:opacity-30"></div>
+
+                <div
+                  onClick={handleAvatarClick}
+                  className="relative flex items-center justify-center w-32 h-32 overflow-hidden transition-all duration-300 bg-white border-4 rounded-full cursor-pointer border-emerald-200 dark:bg-gray-800 dark:border-emerald-800 hover:border-emerald-400 hover:scale-105"
+                >
                   <div className="flex items-center justify-center w-full h-full text-2xl font-bold text-white bg-gradient-to-br from-emerald-500 to-teal-500">
-                    {(
-                      (editedProfile.first_name?.[0] || "") +
-                      (editedProfile.last_name?.[0] || "")
-                    ).toUpperCase() || "U"}
+                    {(editedProfile.first_name?.[0] || "") +
+                      (editedProfile.last_name?.[0] || "") || "U"}
                   </div>
-                )}
-                {uploading && (
-                  <div className="absolute inset-0 flex items-center justify-center text-sm font-semibold text-white bg-gradient-to-br from-emerald-600/90 to-teal-600/90 backdrop-blur-sm">
-                    Uploading...
-                  </div>
-                )}
-                <div className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0 bg-gradient-to-br from-emerald-600/80 to-teal-600/80 group-hover:opacity-100">
-                  <div className="flex flex-col items-center gap-1">
-                    <FontAwesomeIcon
-                      icon={faCamera}
-                      className="text-2xl text-white"
-                    />
-                    <span className="text-xs font-semibold text-white">
-                      Change Photo
-                    </span>
+
+                  {avatarStatus !== "idle" && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                      <FontAwesomeIcon
+                        icon={faSpinner}
+                        spin
+                        className="text-2xl text-white"
+                      />
+                    </div>
+                  )}
+
+                  {/* Hover CTA ONLY */}
+                  <div className="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0 bg-gradient-to-br from-emerald-600/80 to-teal-600/80 group-hover:opacity-100">
+                    <div className="flex flex-col items-center gap-1">
+                      <FontAwesomeIcon
+                        icon={faCamera}
+                        className="text-2xl text-white"
+                      />
+                      <span className="text-xs font-semibold text-white">
+                        Change Photo
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <input
-                type="file"
-                accept="image/*"
-                ref={fileInputRef}
-                onChange={handleAvatarChange}
-                className="hidden"
-              />
-            </div>
+            ) : (
+              <div className="relative">
+                <div
+                  onClick={() => setIsAvatarOpen((p) => !p)}
+                  className="relative flex items-center justify-center w-32 h-32 overflow-hidden transition-all duration-300 bg-white border-4 rounded-full cursor-pointer border-emerald-200 dark:bg-gray-800 dark:border-emerald-800 hover:scale-105"
+                >
+                  <img
+                    src={editedProfile.avatar_blob}
+                    alt="User Avatar"
+                    className="object-cover w-full h-full"
+                  />
 
+                  {avatarStatus !== "idle" && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                      <FontAwesomeIcon
+                        icon={faSpinner}
+                        spin
+                        className="text-2xl text-white"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                <AnimatePresence>
+                  {isAvatarOpen && (
+                    <Collapse className="absolute z-50 p-2 mt-3 space-y-1 -translate-x-1/2 bg-white border border-gray-200 shadow-lg left-1/2 w-44 rounded-xl dark:border-gray-700 dark:bg-stone-800">
+                      <button
+                        onClick={() => {
+                          handleAvatarClick();
+                          setIsAvatarOpen(false);
+                        }}
+                        className="w-full px-3 py-2 text-sm text-left text-gray-600 rounded-lg hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-stone-600/30"
+                      >
+                        Change Photo
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          handleRemoveAvatar();
+                          setIsAvatarOpen(false);
+                        }}
+                        className="w-full px-3 py-2 text-sm text-left text-red-500 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20"
+                      >
+                        Remove Photo
+                      </button>
+                    </Collapse>
+                  )}
+                </AnimatePresence>
+
+                {isAvatarOpen && (
+                  <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setIsAvatarOpen(false)}
+                  />
+                )}
+              </div>
+            )}
+            <input
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              onChange={handleAvatarChange}
+              className="hidden"
+            />
             {/* Profile Info */}
             <div className="flex-1 w-full">
               <div className="flex flex-col items-center justify-between gap-6 md:items-start md:flex-col">
