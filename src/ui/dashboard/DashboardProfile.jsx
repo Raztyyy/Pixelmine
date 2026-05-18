@@ -768,7 +768,7 @@ function EditableInfoItem({
   const displayText = text?.trim() || fallback;
 
   return (
-    <div className="flex items-start gap-4 p-4 transition-all duration-300 border-2 border-transparent rounded-2xl hover:bg-gray-50 dark:hover:bg-stone-900/30">
+    <div className="flex items-start gap-4 p-4 transition-all duration-300 border-2 border-transparent rounded-2xl ">
       <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 transition-all duration-300 rounded-xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800">
         <FontAwesomeIcon
           icon={icon}
