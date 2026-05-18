@@ -33,6 +33,7 @@ import { Collapse } from "../../animations/AnimatedWrappers";
 import Cropper from "react-easy-crop";
 
 const API_URL = import.meta.env.VITE_API_URL;
+const nameRegex = /^[A-Za-z\s]+$/;
 
 const SOCIAL_PLATFORMS = [
   { name: "LinkedIn", icon: faLinkedin },
@@ -97,14 +98,34 @@ export default function DashboardProfile() {
 
   const handleSave = async () => {
     try {
+      const firstName = editedProfile.first_name?.trim();
+      const lastName = editedProfile.last_name?.trim();
+
+      if (!firstName || !lastName) {
+        showToast("First name and last name are required.", "error");
+        return;
+      }
+
+      if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+        showToast("Names can only contain letters and spaces.", "error");
+        return;
+      }
+
       const sanitized = { ...editedProfile };
+
       Object.keys(sanitized).forEach((key) => {
-        if (typeof sanitized[key] === "string" && sanitized[key].trim() === "")
+        if (
+          typeof sanitized[key] === "string" &&
+          sanitized[key].trim() === ""
+        ) {
           sanitized[key] = null;
+        }
       });
+
       const filteredLinks = socialLinks.filter(
         (link) => link.platform && link.url && link.url.trim() !== ""
       );
+
       sanitized.social_links = filteredLinks.length > 0 ? filteredLinks : null;
 
       const res = await fetch(`${API_URL}/api/profile`, {
@@ -115,6 +136,7 @@ export default function DashboardProfile() {
         },
         body: JSON.stringify(sanitized),
       });
+
       if (!res.ok) {
         const data = await res.json();
         throw new Error(data.error || "Could not save changes");
@@ -128,6 +150,7 @@ export default function DashboardProfile() {
           Array.isArray(fresh.social_links) ? fresh.social_links : []
         );
       }
+
       setEditing(false);
       showToast("Profile updated successfully.", "success");
     } catch (err) {
@@ -494,7 +517,7 @@ export default function DashboardProfile() {
                   ) : (
                     <>
                       <div>
-                        <h2 className="text-3xl font-bold text-transparent break-all md:text-4xl bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text">
+                        <h2 className="text-3xl font-bold text-transparent capitalize break-all md:text-4xl bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text">
                           {user.first_name} {user.last_name}
                         </h2>
                         <p className="flex items-center justify-center gap-2 mt-3 text-base font-semibold text-emerald-600 dark:text-emerald-400 md:justify-start">
