@@ -178,6 +178,7 @@ export default function DashboardProfile() {
       setShowCrop(true); // open crop modal
     };
 
+    hasShownInvalidToast.current = false;
     reader.readAsDataURL(file);
   };
 
@@ -200,9 +201,8 @@ export default function DashboardProfile() {
       }
 
       await refreshProfile();
-      showToast("Avatar updated!", "success");
+      showToast("Your profile photo has been updated.", "success");
     } catch (err) {
-      console.error("Avatar upload failed:", err);
       showToast(err.message, "error");
     } finally {
       setAvatarStatus("idle");
@@ -294,6 +294,34 @@ export default function DashboardProfile() {
     }
   };
 
+  const isValidAspectRatio = (width, height) => {
+    const ratio = width / height;
+
+    // tweak these thresholds depending on how strict you want it
+    return ratio >= 0.5 && ratio <= 2.0;
+  };
+
+  const hasShownInvalidToast = useRef(false);
+  const onMediaLoad = (mediaSize) => {
+    const { width, height } = mediaSize;
+
+    const ratio = width / height;
+
+    const isValid = ratio >= 0.5 && ratio <= 2.0;
+
+    if (!isValid && !hasShownInvalidToast.current) {
+      hasShownInvalidToast.current = true;
+
+      showToast(
+        "Photo Too Wide or Tall. Please choose a photo that's closer to a square.",
+        "error"
+      );
+
+      setShowCrop(false);
+      setImageSrc(null);
+    }
+  };
+
   const getSocialIcon = (platform) =>
     SOCIAL_PLATFORMS.find((p) => p.name === platform)?.icon || faGlobe;
 
@@ -318,51 +346,38 @@ export default function DashboardProfile() {
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/70 backdrop-blur-sm">
           <div className="w-[92%] max-w-md bg-white dark:bg-stone-900 rounded-3xl p-5 space-y-5 shadow-2xl">
             {/* Header */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between ">
               <h2 className="text-base font-semibold text-gray-800 dark:text-white">
                 Adjust Profile Photo
               </h2>
             </div>
 
             {/* Crop Area */}
-            <div className="relative w-full overflow-hidden h-80 bg-black/5 rounded-2xl">
+            <div className="relative w-full overflow-hidden bg-white h-80 dark:bg-stone-900 rounded-2xl">
               <Cropper
                 image={imageSrc}
                 crop={crop}
                 zoom={zoom}
                 aspect={1}
                 cropShape="round"
-                showGrid={false}
+                zoomWithScroll
+                restrictPosition
+                showGrid={true}
+                onMediaLoaded={onMediaLoad}
                 onCropChange={setCrop}
                 onZoomChange={setZoom}
                 onCropComplete={onCropComplete}
               />
-
-              {/* Circle guide overlay */}
             </div>
-
-            {/* Zoom */}
-            <div className="space-y-2">
-              <div className="flex justify-between text-xs text-gray-500">
-                <span>Zoom</span>
-              </div>
-
-              <input
-                type="range"
-                min={1}
-                max={3}
-                step={0.01}
-                value={zoom}
-                onChange={(e) => setZoom(Number(e.target.value))}
-                className="w-full accent-emerald-500"
-              />
-            </div>
-
             {/* Actions */}
-            <div className="flex justify-end gap-2 pt-2">
+            <p className="text-xs text-center text-gray-500">
+              Drag to reposition • Scroll or pinch to zoom
+            </p>
+
+            <div className="flex justify-end gap-2">
               <button
                 onClick={handleCropCancel}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-xl hover:bg-gray-300 dark:bg-stone-700 dark:text-gray-200"
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-xl hover:bg-gray-300 dark:bg-stone-700 dark:hover:bg-stone-500 dark:text-gray-200"
               >
                 Cancel
               </button>
