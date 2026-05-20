@@ -285,7 +285,7 @@ export default function DashboardProfile() {
       if (!res.ok) throw new Error(data.error || "Remove failed");
 
       await refreshProfile();
-      showToast("Avatar removed!", "success");
+      showToast("Your profile photo has been removed.", "success");
     } catch (err) {
       console.error("Avatar remove failed:", err);
       showToast(err.message, "error");
